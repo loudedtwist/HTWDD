@@ -246,7 +246,7 @@ private class worker extends AsyncTask<Calendar, Void, TEssen[]> {
 			
 				 essen=new TEssen[1];
 				essen[0]=new TEssen();
-				essen[0].setTitle("Fehler aufgetreten. Versuche es später erneut.");
+				essen[0].setTitle("Fehler aufgetreten. Versuche es spÃ¤ter erneut.");
 				essen[0]._comments="";
 				String titles[]=new String[essen.length];
 				 

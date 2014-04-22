@@ -56,7 +56,7 @@ import com.skyworxx.htwdd.Wizard2;
 
 import com.skyworxx.htwdd.types.TEssen;
 import com.skyworxx.htwdd.types.Type_Stunde;
-import com.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
 public class StundenplanFragment extends Fragment {
@@ -151,7 +151,7 @@ public StundenplanFragment(int week){
 	    			
 	    			AlertDialog alertDialog2 = new AlertDialog.Builder(getActivity()).create();
 	    			alertDialog2.setTitle("Fehlende Daten");
-			        alertDialog2.setMessage("Für den Stundenplan müssen IM-Jahr, Studiengangsnummer und Studiengruppennummer eingetragen werden.\n\nSoll der Konfigurations-Assistent gestartet werden?");
+			        alertDialog2.setMessage("FÃ¼r den Stundenplan mÃ¼ssen IM-Jahr, Studiengangsnummer und Studiengruppennummer eingetragen werden.\n\nSoll der Konfigurations-Assistent gestartet werden?");
 			        alertDialog2.setIcon(R.drawable.ic_launcher);
 			        alertDialog2.setButton2("nein", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int id) {
@@ -360,7 +360,7 @@ public StundenplanFragment(int week){
 				
 					//
 					// String tokens2[] =
-					// line2.split("Nur die Pflichtfächer und die mit Häkchen");
+					// line2.split("Nur die PflichtfÃ¤cher und die mit HÃ¤kchen");
 
 					String zeiten[] = line2.split("</td>");
 					
@@ -402,7 +402,7 @@ public StundenplanFragment(int week){
 								else if (ktyp.contains("Pr"))
 									ktyp = "Praktikum";
 								else
-									ktyp = "Übung";
+									ktyp = "Ãœbung";
 								
 
 							
@@ -418,7 +418,7 @@ public StundenplanFragment(int week){
 								if (i > 56)
 									Woche = 2;
 							}catch (Exception e){	 
-								resultstring="Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten können durch Antippen angepasst werden.";
+								resultstring="Problem beim Erkennen der Stunden(namen), Arten oder RÃ¤ume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten kÃ¶nnen durch Antippen angepasst werden.";
 							 
 							};
 							try {	
@@ -469,7 +469,7 @@ public StundenplanFragment(int week){
 										|| (i == 91)  || (i == 97))
 									Tag = "Freitag";
 							}catch (Exception e){	 
-								resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
+								resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten kÃ¶nnen diese durch Antippen angepasst werden.";
 							 
 							};
 								// System.out.println(Integer.toString(i));
@@ -484,7 +484,7 @@ public StundenplanFragment(int week){
 								try{db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde,
 										kname2, ktyp, kraum));
 								}catch (Exception e){	 
-									resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
+									resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten kï¿½nnen diese durch Antippen angepasst werden.";
 								 
 								};
 							}
@@ -637,7 +637,7 @@ public StundenplanFragment(int week){
 					
 						//
 						// String tokens2[] =
-						// line2.split("Nur die Pflichtfächer und die mit Häkchen");
+						// line2.split("Nur die PflichtfÃ¤cher und die mit HÃ¤kchen");
 
 						String zeiten[] = line2.split("</td>");
 						
@@ -679,7 +679,7 @@ public StundenplanFragment(int week){
 									else if (ktyp.contains("Pr"))
 										ktyp = "Praktikum";
 									else
-										ktyp = "Übung";
+										ktyp = "Ãœbung";
 									
 
 								
@@ -695,7 +695,7 @@ public StundenplanFragment(int week){
 									if (i > 56)
 										Woche = 2;
 								}catch (Exception e){	 
-									resultstring="Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten können durch Antippen angepasst werden.";
+									resultstring="Problem beim Erkennen der Stunden(namen), Arten oder RÃ¤ume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten kÃ¶nnen durch Antippen angepasst werden.";
 								 
 								};
 								try {	
@@ -746,7 +746,7 @@ public StundenplanFragment(int week){
 											|| (i == 91)  || (i == 97))
 										Tag = "Freitag";
 								}catch (Exception e){	 
-									resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
+									resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten kï¿½nnen diese durch Antippen angepasst werden.";
 								 
 								};
 									// System.out.println(Integer.toString(i));
@@ -761,7 +761,7 @@ public StundenplanFragment(int week){
 									try{db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde,
 											kname2, ktyp, kraum));
 									}catch (Exception e){	 
-										resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
+										resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten kÃ¶nnen diese durch Antippen angepasst werden.";
 									 
 									};
 								}

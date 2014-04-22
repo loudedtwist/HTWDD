@@ -3,21 +3,31 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.4'
+        classpath 'com.android.tools.build:gradle:0.9.+'
     }
 }
 apply plugin: 'android'
 
+repositories {
+	mavenCentral()
+    maven { url "http://jzaccone.github.io/SlidingMenu-aar" }
+}
+
 dependencies {
+    //compile 'com.google.android.gms:play-services:3.1.36'
+    compile 'com.google.android.gms:play-services:4.3.23'
+	compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+	compile 'com.android.support:support-v4:19.1.+'
+    compile project(':library')
 }
 
 android {
     compileSdkVersion 14
-    buildToolsVersion "14"
+    buildToolsVersion "19.0.3"
 
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 16
+        minSdkVersion 11
+        targetSdkVersion 17
     }
     sourceSets {
         main {

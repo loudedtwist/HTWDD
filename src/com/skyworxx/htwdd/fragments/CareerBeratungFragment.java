@@ -114,7 +114,7 @@ button.setText("Termin anfragen");
 
 button2.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
 
-button2.setText("Jobbörse im Browser öffnen");
+button2.setText("JobbÃ¶rse im Browser Ã¶ffnen");
 
 LinearLayout ln=(LinearLayout) getActivity().findViewById(R.id.menulayout);
 LinearLayout jln=(LinearLayout) getActivity().findViewById(R.id.joblayout);

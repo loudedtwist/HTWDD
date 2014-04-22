@@ -137,11 +137,11 @@ public int mapid;
 
 		mMap.addMarker(new MarkerOptions()
 		        .position(new LatLng(51.03742,  	13.73526))
-		        .title("Z-Geb‰ude"));
+		        .title("Z-Geb√§ude"));
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03628,  	13.73520))
-        .title("S-Geb‰ude"));
+        .title("S-Geb√§ude"));
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03617,  	13.73561))
@@ -154,11 +154,11 @@ public int mapid;
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03542,  	 13.73560))
-        .title("N-Geb‰ude"));
+        .title("N-Geb√§ude"));
 
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03421,  	 13.73413))
-        .title("Mensa Reichenbachstraﬂe"));
+        .title("Mensa Reichenbachstra√üe"));
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03495,  13.73532))
@@ -166,15 +166,15 @@ public int mapid;
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03549,  13.73630))
-        .title("A-Geb‰ude"));
+        .title("A-Geb√§ude"));
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03532,  13.73693))
-        .title("L-Geb‰ude"));
+        .title("L-Geb√§ude"));
 		
 		mMap.addMarker(new MarkerOptions()
         .position(new LatLng(51.03365,  13.73555))
-        .title("Dˆnermann"));
+        .title("D√∂nermann"));
 
 		*/
 		

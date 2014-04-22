@@ -238,7 +238,7 @@ public class CardFragment extends Fragment {
 			week=1;
 		}
 		
-	//	tt2.setText("Stundenübersicht von "+currentday);
+	//	tt2.setText("StundenÃ¼bersicht von "+currentday);
 
 	
 		if (day == 2) {
@@ -546,7 +546,7 @@ public class CardFragment extends Fragment {
 				
 			button4.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
 
-			button4.setText("Career Service öffnen");
+			button4.setText("Career Service Ã¶ffnen");
 			LinearLayout ln4=(LinearLayout) getActivity().findViewById(R.id.career);
 			LayoutParams lp4 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
@@ -695,13 +695,13 @@ public class CardFragment extends Fragment {
 		try{	
 	TextView mensatext=(TextView) getActivity().findViewById(R.id.news);
 	mensatext.setText(Html.fromHtml(essen[0]));
-		if 	(essen[0].contains("Unable")) mensatext.setText("Verbindung zum News-Server nicht möglich.");
+		if 	(essen[0].contains("Unable")) mensatext.setText("Verbindung zum News-Server nicht mÃ¶glich.");
 
 	if (essen[0].contains("KILL")){
 		
 		  AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
           adb.setTitle("Beta abgelaufen");
-          adb.setMessage("Diese Beta Version der HTWDD App ist abgelaufen. Die kostenlose Release-Version findest Du im Google Play Store. Vielen Dank für deine Hilfe :).");
+          adb.setMessage("Diese Beta Version der HTWDD App ist abgelaufen. Die kostenlose Release-Version findest Du im Google Play Store. Vielen Dank fÃ¼r deine Hilfe :).");
           adb.setPositiveButton("Ok", new DialogInterface.OnClickListener()
 {
 public void onClick(DialogInterface dialog, int id)
@@ -842,7 +842,7 @@ public void onClick(DialogInterface dialog, int id)
 					
 				button6.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
 
-				button6.setText("Website öffnen");
+				button6.setText("Website Ã¶ffnen");
 				LinearLayout ln6=(LinearLayout) getActivity().findViewById(R.id.htwaktuell);
 				LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
@@ -936,7 +936,7 @@ public void onClick(DialogInterface dialog, int id)
 				
 			button6.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
 
-			button6.setText("Play Store öffnen");
+			button6.setText("Play Store Ã¶ffnen");
 			LinearLayout ln6=(LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
 			LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
@@ -1017,7 +1017,7 @@ private class worker extends AsyncTask<Calendar, Void, TEssen[]> {
 			
 			try{
 			TextView mensatext2=(TextView) getActivity().findViewById(R.id.mensatext);
-			 mensatext2.setText("Verbindung zum Mensa-Server nicht möglich.\n\n");
+			 mensatext2.setText("Verbindung zum Mensa-Server nicht mÃ¶glich.\n\n");
 //			
 			
 			
@@ -1047,7 +1047,7 @@ private class worker extends AsyncTask<Calendar, Void, TEssen[]> {
 		
 	TextView mensatext=(TextView) getActivity().findViewById(R.id.mensatext);
 	mensatext.setText(mensa);
-	if 	(mensa.contains("UnkownHost")) mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
+	if 	(mensa.contains("UnkownHost")) mensatext.setText("Verbindung zum Mensa-Server nicht mÃ¶glich.");
 
 		 
 //			SmallMensaArrayAdapter colorAdapter = new SmallMensaArrayAdapter(getActivity(),titles, essen);
@@ -1057,7 +1057,7 @@ private class worker extends AsyncTask<Calendar, Void, TEssen[]> {
 //			
 				try{
 				TextView mensatext=(TextView) getActivity().findViewById(R.id.mensatext);
-			 mensatext.setText("Verbindung zum Mensa-Server nicht möglich.\n\n");
+			 mensatext.setText("Verbindung zum Mensa-Server nicht mÃ¶glich.\n\n");
 			}catch (Exception e2){}
 			}
 			

@@ -72,8 +72,8 @@ public void onCreate(Bundle savedInstanceState) {
         	
         	Intent intent = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
         	intent.setType("text/plain");
-        	intent.putExtra(Intent.EXTRA_SUBJECT, "Terminanfrage: "+ name.getText() +" [über HTWDD App]");
-        	intent.putExtra(Intent.EXTRA_TEXT, "Guten Tag,\nIch würde gerne einen Termin mit Ihnen vereinbaren.\n\nMfg\n"+name.getText().toString() +"\n\n"+ mDateDisplay.getText()+"\n"+ mTimeDisplay.getText()+"\n\n\nDiese Email wurde automatisch von der HTWDD App generiert.");
+        	intent.putExtra(Intent.EXTRA_SUBJECT, "Terminanfrage: "+ name.getText() +" [Ãœber HTWDD App]");
+        	intent.putExtra(Intent.EXTRA_TEXT, "Guten Tag,\nIch wÃ¼rde gerne einen Termin mit Ihnen vereinbaren.\n\nMfg\n"+name.getText().toString() +"\n\n"+ mDateDisplay.getText()+"\n"+ mTimeDisplay.getText()+"\n\n\nDiese Email wurde automatisch von der HTWDD App generiert.");
         	intent.setData(Uri.parse("mailto:tsonntag@htw-dresden.de")); // or just "mailto:" for blank
         	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
         	startActivity(intent);

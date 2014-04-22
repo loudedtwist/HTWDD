@@ -64,7 +64,7 @@ public static Date parsedate(String in){
 		in=in.trim();
 		in=in.replaceAll("Jan", "1");
 		in=in.replaceAll("Feb", "2");
-		in=in.replaceAll("Mär", "3");
+		in=in.replaceAll("MÃ¤r", "3");
 		in=in.replaceAll("Apr", "4");
 		in=in.replaceAll("Mai", "5");
 		in=in.replaceAll("Jun", "6");
@@ -114,7 +114,7 @@ public static Date parsedate(String in){
 		     
 		     if (app_preferences.getString("stdg", "0").equals("0"))
 		    	 Toast.makeText(getActivity(),
-							"Es wurde in den Einstellungen kein Studiengang gesetzt, daher werden nun alle Prüfungen ausgegeben.", Toast.LENGTH_LONG)
+							"Es wurde in den Einstellungen kein Studiengang gesetzt, daher werden nun alle PrÃ¼fungen ausgegeben.", Toast.LENGTH_LONG)
 							.show();
 		     
 		     if (app_preferences.getString("im", "0").equals("0"))
@@ -219,7 +219,7 @@ private class worker extends AsyncTask<String, Void, String> {
 				
 				tokens2[9]=tokens2[9].replace("&rarr;", "->");
 				tokens2[9]=tokens2[9].replace("<br>", "\n");	
-				tokens2[5]=tokens2[5].replace("&uuml;", "ü");	
+				tokens2[5]=tokens2[5].replace("&uuml;", "Ã¼");
 				
 				String datum=tokens2[7].substring(0,tokens2[7].indexOf("</td>"));
 				
@@ -263,16 +263,16 @@ private class worker extends AsyncTask<String, Void, String> {
 	    		
 	    		if (pruefung.length==0){
 	    			map = new HashMap<String, String>();
-		            map.put("titel",	"Keine Prüfungen" );		          
+		            map.put("titel",	"Keine PrÃ¼fungen" );
 		            mylist.add(map);
 	    		} 
 	    		
 		            map = new HashMap<String, String>();
-		            map.put("titel",	"Zeige Prüfungen des IM-Jahres "+String.format("%02d", currentim-1 ));	
+		            map.put("titel",	"Zeige PrÃ¼fungen des IM-Jahres "+String.format("%02d", currentim-1 ));
 		            mylist.add(map);
 		            
 		            map = new HashMap<String, String>();
-		            map.put("titel",	"Zeige Prüfungen des IM-Jahres "+String.format("%02d", currentim+1 ));	
+		            map.put("titel",	"Zeige PrÃ¼fungen des IM-Jahres "+String.format("%02d", currentim+1 ));
 		            mylist.add(map);
 	    		
 	     		

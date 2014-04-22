@@ -207,7 +207,7 @@ public class MyRoomAdapter extends BaseAdapter {
     	  btn.setText("");}
     	  
     	  if (((String) btn.getText()).contains("Vorlesung") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_blue));}
-    	  if (((String) btn.getText()).contains("Übung") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_green));}
+    	  if (((String) btn.getText()).contains("Ãœbung") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_green));}
     	  if (((String) btn.getText()).contains("Praktikum") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_orange));}
     	  
     	  

@@ -312,7 +312,7 @@ public class UpdateMensaWidgetService extends Service {
 //							img[i - 1]=BitmapFactory.decodeResource(getResources(), R.drawable.pizza);
 //						else
 //						//meals[i-1].setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pizza));
-//						//if (beschreibung.contains("soﬂe"))
+//						//if (beschreibung.contains("so√üe"))
 //							img[i - 1]=BitmapFactory.decodeResource(getResources(), R.drawable.pasta);
 //						//meals[i-1].setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pasta));
 //						//img[i - 1].setVisibility(1);

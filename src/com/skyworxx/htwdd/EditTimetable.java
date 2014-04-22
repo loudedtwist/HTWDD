@@ -70,7 +70,7 @@ if (week==2)week=0;
 	       if (type_Stunde.getTyp()!=null){
 		       if (type_Stunde.getTyp().equals("Vorlesung")) typint=0;
 		       if (type_Stunde.getTyp().equals("Praktikum")) typint=1;
-		       if (type_Stunde.getTyp().equals("Übung")) typint=2;
+		       if (type_Stunde.getTyp().equals("Ãœbung")) typint=2;
 	       }
 	       Spinner sptyp = (Spinner) findViewById(R.id.spinnerTyp);
 	       sptyp.setSelection(typint);
@@ -93,7 +93,7 @@ if (week==2)week=0;
             	    Log.d("Deleting",type_Stunde.getWoche()+" "+type_Stunde.getTag()+" "+type_Stunde.getStunde()+" "+type_Stunde.getName()+" "+type_Stunde.getTyp()+" "+type_Stunde.getRaum()+" ");
             	   db.deleteStunde(type_Stunde);
             	   db.addContact(new Type_Stunde(type_Stunde.getWoche(),type_Stunde.getTag(),type_Stunde.getStunde(),"(leer)" ,"",""));
-            	   Toast.makeText(arg0.getContext(), ("Eintrag gelöscht"), Toast.LENGTH_SHORT).show();
+            	   Toast.makeText(arg0.getContext(), ("Eintrag gelÃ¶scht"), Toast.LENGTH_SHORT).show();
             	  // android.support.v4.view.ViewPager v = (android.support.v4.view.ViewPager) findViewById(R.id.viewpager);
 
             	   
@@ -138,7 +138,7 @@ if (week==2)week=0;
 	       String rtyp="";	       
 	       if ((int)sptyp.getSelectedItemId()==0) rtyp="Vorlesung";
 	       if ((int)sptyp.getSelectedItemId()==1) rtyp="Praktikum";
-	       if ((int)sptyp.getSelectedItemId()==2) rtyp="Übung";
+	       if ((int)sptyp.getSelectedItemId()==2) rtyp="Ãœbung";
 	       if ((int)sptyp.getSelectedItemId()==3) rtyp="anderes";
    
 	       int woche = (int) spgerade.getSelectedItemId();
@@ -165,7 +165,7 @@ if (week==2)week=0;
    	   s.setStunde( (int) spstunde.getSelectedItemId()+1);
    	   
    	   db.overwriteStunde(s);
-   	 Toast.makeText(arg0.getContext(), ("Eintrag geändert"), Toast.LENGTH_LONG).show();
+   	 Toast.makeText(arg0.getContext(), ("Eintrag geÃ¤ndert"), Toast.LENGTH_LONG).show();
    	 
    	 
 //     Intent i = getBaseContext().getPackageManager()

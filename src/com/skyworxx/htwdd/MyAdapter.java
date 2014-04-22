@@ -180,7 +180,7 @@ public class MyAdapter extends BaseAdapter {
     	  if (((String) btn.getText()).contains("(leer)") ) {btn.setBackgroundColor(Color.parseColor("#00000000"));btn.setText("");}
     	  
     	  if (((String) btn.getText()).contains("Vorlesung") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_blue));}
-    	  if (((String) btn.getText()).contains("Übung") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_green));}
+    	  if (((String) btn.getText()).contains("Ãœbung") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_green));}
     	  if (((String) btn.getText()).contains("Praktikum") ) {btn.setBackgroundColor(context.getResources().getColor(R.color.faded_orange));}
     	  
     	//  btn.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.search_bg_shadow));

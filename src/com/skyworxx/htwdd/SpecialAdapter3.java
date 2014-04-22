@@ -44,9 +44,9 @@ public class SpecialAdapter3 extends SimpleAdapter {
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.aqua));
 		else if (items.get(position).get("art").contains("Club 11"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.club11));
-		else if (items.get(position).get("art").contains("B‰renzwinger"))
+		else if (items.get(position).get("art").contains("B√§renzwinger"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.baeren));
-		else if (items.get(position).get("art").contains("H‰ngeMathe"))
+		else if (items.get(position).get("art").contains("H√§ngeMathe"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.mathe));
 		else if (items.get(position).get("art").contains("Club Mensa"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.clubmensa));
@@ -54,7 +54,7 @@ public class SpecialAdapter3 extends SimpleAdapter {
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.cnf));
 		else if (items.get(position).get("art").contains("Novitatis"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.novitatis));
-		else if (items.get(position).get("art").contains("Traumt‰nzer"))
+		else if (items.get(position).get("art").contains("Traumt√§nzer"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.traum));
 		else if (items.get(position).get("art").contains("Count Down"))
 			image_iv.setImageDrawable(view.getResources().getDrawable(R.drawable.counddown));

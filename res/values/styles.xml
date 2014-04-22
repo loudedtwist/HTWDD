@@ -20,9 +20,7 @@
 <item name="android:background">#888888</item>
 
 </style>
-    
-     
-     <color name="black">#FF000000</color>
+
 <color name="whitegrey">#FFF2F2F2</color>
 
 <style name="dialog_light" parent="@android:style/Theme.Dialog">

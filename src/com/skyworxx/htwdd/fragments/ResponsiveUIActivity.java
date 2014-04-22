@@ -42,8 +42,8 @@ import com.skyworxx.htwdd.DatabaseHandlerNoten;
 import com.skyworxx.htwdd.R;
 import com.skyworxx.htwdd.Wizard1;
 import com.skyworxx.htwdd.Wizard2;
-import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 /**
  * This activity is an example of a responsive Android UI.
@@ -236,8 +236,8 @@ case 95:
     	case 97:
     		AlertDialog.Builder editalert = new AlertDialog.Builder(this);
 
-    		editalert.setTitle("Raum hinzufügen");
-    		editalert.setMessage("Geb die Raumnummer mit Leerzeichen zwischen Gebäude und Zimmernummer ein\n(z.B. S 305)");
+    		editalert.setTitle("Raum hinzufÃ¼gen");
+    		editalert.setMessage("Geb die Raumnummer mit Leerzeichen zwischen GebÃ¤ude und Zimmernummer ein\n(z.B. S 305)");
 
 
     		final EditText input = new EditText(this);
@@ -247,7 +247,7 @@ case 95:
 //    		input.setLayoutParams(lp);
     		editalert.setView(input);
 
-    		editalert.setPositiveButton("Hinzufügen", new DialogInterface.OnClickListener() {
+    		editalert.setPositiveButton("HinzufÃ¼gen", new DialogInterface.OnClickListener() {
     		    public void onClick(DialogInterface dialog, int whichButton) {
 
     		    	String raum=input.getText().toString();
@@ -344,7 +344,7 @@ case 95:
 			
 		case 1: 
 			  getSupportActionBar().removeAllTabs();
-			  getSupportActionBar().setTitle("Übersicht");
+			  getSupportActionBar().setTitle("Ãœbersicht");
 			  getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 			  
 			  mContent = new CardFragment();	
@@ -379,7 +379,7 @@ case 95:
 		        getSupportActionBar().addTab(tab);
 		        
 		       tab2 = getSupportActionBar().newTab();
-		        tab2.setText("nächste Woche ("+nextweek+")");
+		        tab2.setText("nÃ¤chste Woche ("+nextweek+")");
 		        tab2.setTabListener(this);
 		        getSupportActionBar().addTab(tab2);
 			break;
@@ -404,7 +404,7 @@ case 95:
 			 getSupportActionBar().removeAllTabs();
 			  getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 				
-			  getSupportActionBar().setTitle("Noten & Prüfungen");
+			  getSupportActionBar().setTitle("Noten & PrÃ¼fungen");
 			  tab = getSupportActionBar().newTab();
 		        tab.setText("Noten");
 		        tab.setTabListener(this);
@@ -416,7 +416,7 @@ case 95:
 		        getSupportActionBar().addTab(tab2);
 		        
 		        tab3 = getSupportActionBar().newTab();
-		        tab3.setText("Prüfungen");
+		        tab3.setText("PrÃ¼fungen");
 		        tab3.setTabListener(this);
 		        getSupportActionBar().addTab(tab3);
 	    	
@@ -520,7 +520,7 @@ case 95:
 			     
 			        
 			        tab2 = getSupportActionBar().newTab();
-			        tab2.setText("Rückgabe");
+			        tab2.setText("RÃ¼ckgabe");
 			        tab2.setTabListener(this);
 			        getSupportActionBar().addTab(tab2);
 			        
@@ -557,7 +557,7 @@ case 95:
 			        
 			        
 			        tab3 = getSupportActionBar().newTab();
-			        tab3.setText("Übermorgen");
+			        tab3.setText("Ãœbermorgen");
 			        tab3.setTabListener(this);
 			        getSupportActionBar().addTab(tab3);
 			        
@@ -576,13 +576,13 @@ case 95:
         alertDialog.setTitle("HTWDD V3");
  
         // Setting Dialog Message
-        alertDialog.setMessage("Die Entwicklung der HTWDD App wird nicht von der HTW Dresden finanziert und erfolgt komplett unentgeltlich in der Freizeit. Wenn Du die HTWDD App als nützlich empfindest, dann spende doch einen kleinen Betrag.");
+        alertDialog.setMessage("Die Entwicklung der HTWDD App wird nicht von der HTW Dresden finanziert und erfolgt komplett unentgeltlich in der Freizeit. Wenn Du die HTWDD App als nÃ¼tzlich empfindest, dann spende doch einen kleinen Betrag.");
  
         // Setting Icon to Dialog
         alertDialog.setIcon(R.drawable.ic_launcher);
  
       
-        alertDialog.setButton2("zurück", new DialogInterface.OnClickListener() {
+        alertDialog.setButton2("zurÃ¼ck", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
             }
@@ -645,13 +645,13 @@ case 95:
         alertDialog2.setTitle("HTWDD V3");
  
         // Setting Dialog Message
-        alertDialog2.setMessage("Version 3.13\n\nEntwickelt von Mark Schramm.\nDies ist keine offizielle App der HTW Dresden, des Studentenforum Dresden e.V. oder des Studentenwerks Dresden.\n\nAlle Rechte liegen bei ihren jeweiligen Inhabern.\n\nZu keinem Zeitpunkt werden private Daten an Dritte übertragen.");
+        alertDialog2.setMessage("Version 3.13\n\nEntwickelt von Mark Schramm.\nDies ist keine offizielle App der HTW Dresden, des Studentenforum Dresden e.V. oder des Studentenwerks Dresden.\n\nAlle Rechte liegen bei ihren jeweiligen Inhabern.\n\nZu keinem Zeitpunkt werden private Daten an Dritte Ã¼bertragen.");
  
         // Setting Icon to Dialog
         alertDialog2.setIcon(R.drawable.ic_launcher);
  
       
-        alertDialog2.setButton2("zurück", new DialogInterface.OnClickListener() {
+        alertDialog2.setButton2("zurÃ¼ck", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
             }
@@ -708,16 +708,16 @@ case 95:
                         ResponsiveUIActivity.this).create();
  
         // Setting Dialog Title
-        alertDialog12.setTitle("Cache Löschen");
+        alertDialog12.setTitle("Cache LÃ¶schen");
  
         // Setting Dialog Message
-        alertDialog12.setMessage("Der Cache (inklusive Stundenplan und Noten) wird gelöscht.");
+        alertDialog12.setMessage("Der Cache (inklusive Stundenplan und Noten) wird gelÃ¶scht.");
  
         // Setting Icon to Dialog
         alertDialog12.setIcon(R.drawable.ic_launcher);
  
       
-        alertDialog12.setButton2("zurück", new DialogInterface.OnClickListener() {
+        alertDialog12.setButton2("zurÃ¼ck", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
             }
@@ -800,12 +800,12 @@ case 95:
     	if (tab.getText().toString().contains("aktuelle") && (mode==7))  	
     		mContent = new RaumplanFragment(mContent.getView().getWidth(),	mContent.getView().getHeight(),week,lastraum);
     	
-    	if (tab.getText().toString().contains("nächste") && (mode==7))  	
+    	if (tab.getText().toString().contains("nÃ¤chste") && (mode==7))
     		mContent = new RaumplanFragment(mContent.getView().getWidth(),	mContent.getView().getHeight(),nextweek,lastraum);
     	
     	
     	}
-    	if (tab.getText().equals("Rückgabe") )  	
+    	if (tab.getText().equals("RÃ¼ckgabe") )
     		mContent = new BiblioFragment();
     	
     	if (tab.getText().equals("Suche") )  	
@@ -828,7 +828,7 @@ case 95:
     	if (tab.getText().equals("Statistik") )  	
     		mContent = new NotenStatsFragment(1);	
     	
-    	if (tab.getText().equals("Prüfungen"))
+    	if (tab.getText().equals("Prï¿½fungen"))
     		mContent = new PrufungenFragment();	
    		
 		
@@ -848,7 +848,7 @@ case 95:
     	if (tab.getText().equals("Morgen") && (mode==8))  	
     		mContent = new eXmaFragment(1);	
     	
-    	if (tab.getText().equals("Übermorgen") && (mode==8))  
+    	if (tab.getText().equals("ï¿½bermorgen") && (mode==8))  
     		
     		
     		
@@ -858,7 +858,7 @@ case 95:
     	if (tab.getText().toString().contains("aktuelle") && (mode==4))  	
     		mContent = new StundenplanFragment(	mContent.getView().getWidth(),	mContent.getView().getHeight(),week);
     	
-    	if (tab.getText().toString().contains("nächste")  && (mode==4))  	
+    	if (tab.getText().toString().contains("nï¿½chste")  && (mode==4))  	
     		mContent = new StundenplanFragment(	mContent.getView().getWidth(),	mContent.getView().getHeight(),nextweek);	
     	
     	
@@ -938,7 +938,7 @@ case 95:
     	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     	
     	
-    	menu.add(0, 97, 0, "Hinzufügen")
+    	menu.add(0, 97, 0, "Hinzufï¿½gen")
     	.setIcon(R.drawable.ic_menu_add) 	
     	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     	break;
@@ -949,7 +949,7 @@ case 95:
     	
     	
     	
-//    	menu.add(0, 98, 0, "Über")
+//    	menu.add(0, 98, 0, "ï¿½ber")
 //     	.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 //    	
 //    	
@@ -997,7 +997,7 @@ case 95:
 	        getSupportActionBar().addTab(tab);
 	        
 	       tab2 = getSupportActionBar().newTab();
-	        tab2.setText("nächste Woche ("+nextweek+")");
+	        tab2.setText("nï¿½chste Woche ("+nextweek+")");
 	        tab2.setTabListener(this);
 	        getSupportActionBar().addTab(tab2);
 		

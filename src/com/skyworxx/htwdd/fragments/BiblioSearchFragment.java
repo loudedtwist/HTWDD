@@ -85,7 +85,7 @@ public static Date parsedate(String in){
 		in=in.trim();
 		in=in.replaceAll("Jan", "1");
 		in=in.replaceAll("Feb", "2");
-		in=in.replaceAll("Mär", "3");
+		in=in.replaceAll("MÃ¤r", "3");
 		in=in.replaceAll("Apr", "4");
 		in=in.replaceAll("Mai", "5");
 		in=in.replaceAll("Jun", "6");
@@ -338,7 +338,7 @@ public static Date parsedate(String in){
 			protected void onPostExecute(TBuchSuche[] buecher) {
 				
 //				TextView titeltext=  (TextView) findViewById(R.id.titeltext);    	
-//		    	titeltext.setText("Ausgeliehene Bücher von "+app_preferences.getString("bib", "0")+":");
+//		    	titeltext.setText("Ausgeliehene BÃ¼cher von "+app_preferences.getString("bib", "0")+":");
 //				 
 		    	
 				

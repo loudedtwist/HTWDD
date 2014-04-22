@@ -13,7 +13,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+//import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.skyworxx.htwdd.fragments.ResponsiveUIActivity;
 import com.skyworxx.htwdd.types.TEssen;
@@ -137,7 +137,7 @@ SharedPreferences app_preferences;
 	    ImageButton pro_button = (ImageButton) rowView.findViewById(R.id.ImageButton02);
 	    
 	    if (essen[position].mensa==null){
-	    	essen[position].mensa="Reichenbachstraﬂe";
+	    	essen[position].mensa="Reichenbachstra√üe";
 	    	
 	    }
 	    
@@ -211,7 +211,7 @@ SharedPreferences app_preferences;
 			String bib=app_preferences.getString("bib", "0");
 			
 			/*if (bib.length()<4) {
-				Toast.makeText(getContext(), "Eine g¸ltige S-Nummer muss angegeben sein um Kommentare zu verˆffentlichen.",Toast.LENGTH_LONG).show();
+				Toast.makeText(getContext(), "Eine g√ºltige S-Nummer muss angegeben sein um Kommentare zu ver√∂ffentlichen.",Toast.LENGTH_LONG).show();
 				return;
 				
 			}*/
@@ -305,7 +305,7 @@ SharedPreferences app_preferences;
 				int hour = c.get(Calendar.HOUR_OF_DAY);
 			
 				
-				if ((hour<11) || (hour>15)) return "Du kannst nur zu den ÷ffnungszeiten der Mensa Deine Bewertung abgeben.";
+				if ((hour<11) || (hour>15)) return "Du kannst nur zu den √ñffnungszeiten der Mensa Deine Bewertung abgeben.";
 				
 			//	boolean alreadyvoted = app_preferences.getBoolean(params[1], false);
 			//	if (params[1].equals("0")) alreadyvoted=false;
@@ -341,7 +341,7 @@ SharedPreferences app_preferences;
 				editor.putBoolean(params[1], true);	
 				editor.commit(); // Very important
 			
-				return "Deine Bewertung wurde abgegeben. Beim n‰chsten Laden wird sie angezeigt.";
+				return "Deine Bewertung wurde abgegeben. Beim n√§chsten Laden wird sie angezeigt.";
 				
 				}
 			

@@ -180,7 +180,7 @@ String raum;
 		   			
    			
    			}else
-   				Toast.makeText(getActivity(), "Füge Räume hinzu indem Du auf das + Symbol drückst", Toast.LENGTH_LONG).show();
+   				Toast.makeText(getActivity(), "FÃ¼ge RÃ¤ume hinzu indem Du auf das + Symbol drÃ¼ckst", Toast.LENGTH_LONG).show();
    		
    		}	
    		
@@ -279,7 +279,7 @@ String raum;
 					
 						//
 						// String tokens2[] =
-						// line2.split("Nur die Pflichtfächer und die mit Häkchen");
+						// line2.split("Nur die PflichtfÃ¤cher und die mit HÃ¤kchen");
 
 						String zeiten[] = line2.split("</td>");
 						
@@ -314,7 +314,7 @@ String raum;
 									else if (ktyp.contains("Pr"))
 										ktyp = "Praktikum";
 									else
-										ktyp = "Übung";
+										ktyp = "Ãœbung";
 									
 
 								
@@ -330,7 +330,7 @@ String raum;
 									if (i > 56)
 										Woche = 2;
 								}catch (Exception e){	 
-									resultstring="Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
+									resultstring="Problem beim Erkennen der Stunden(namen), Arten oder RÃ¤ume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten kÃ¶nnen diese durch Antippen angepasst werden.";
 								 
 								};
 								try {	
@@ -381,7 +381,7 @@ String raum;
 											|| (i == 91)  || (i == 97))
 										Tag = "Freitag";
 								}catch (Exception e){	 
-									resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
+									resultstring="Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten kÃ¶nnen diese durch Antippen angepasst werden.";
 								 
 								};
 									// System.out.println(Integer.toString(i));
@@ -424,7 +424,7 @@ String raum;
 					else
 						{
 						Toast.makeText(getActivity(),
-								"Aktualisieres des Stundenplans nicht möglich.", Toast.LENGTH_LONG)
+								"Aktualisieres des Stundenplans nicht mÃ¶glich.", Toast.LENGTH_LONG)
 								.show();
 						
 						

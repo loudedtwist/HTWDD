@@ -75,8 +75,8 @@ public class MenuArrayAdapter extends ArrayAdapter<String> {
 		
 	   
 	   
-	   Typeface face=Typeface.createFromAsset(context.getAssets(), "robotothin.ttf"); 
-	   textView.setTypeface(face); 
+	  Typeface face=Typeface.createFromAsset(context.getAssets(), "robotothin.ttf");
+	  textView.setTypeface(face);
 	   
 	   }
 	 //   if (position==2) t.setBackgroundResource(R.drawable.alltag_bitmap);

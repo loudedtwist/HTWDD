@@ -160,7 +160,7 @@ public class NotenFragment extends Fragment {
 	    			
 	    			AlertDialog alertDialog2 = new AlertDialog.Builder(getActivity()).create();
 	    			alertDialog2.setTitle("Fehlende Daten");
-			        alertDialog2.setMessage("Für die Notenanzeige müssen Matrikelnummer und Passwort eingetragen werden.\n\nSoll der Konfigurations-Assistent gestartet werden?");
+			        alertDialog2.setMessage("FÃ¼r die Notenanzeige mÃ¼ssen Matrikelnummer und Passwort eingetragen werden.\n\nSoll der Konfigurations-Assistent gestartet werden?");
 			        alertDialog2.setIcon(R.drawable.ic_launcher);
 			        alertDialog2.setButton2("nein", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog, int id) {
@@ -527,7 +527,7 @@ public class NotenFragment extends Fragment {
 				error_text.setText("Konnte Keine Verbindung zum Server herstellen. Keine Internetverbindung?");
 				else
 					//error_text.setText(result[0]);
-					error_text.setText("Noten konnten nicht aktualisiert werden - Probiere es später erneut.");
+					error_text.setText("Noten konnten nicht aktualisiert werden - Probiere es spÃ¤ter erneut.");
 			 }
 			 else
 			 {

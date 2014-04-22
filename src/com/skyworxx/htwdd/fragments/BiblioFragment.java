@@ -73,7 +73,7 @@ public static Date parsedate(String in){
 		in=in.trim();
 		in=in.replaceAll("Jan", "1");
 		in=in.replaceAll("Feb", "2");
-		in=in.replaceAll("Mär", "3");
+		in=in.replaceAll("MÃ¤r", "3");
 		in=in.replaceAll("Apr", "4");
 		in=in.replaceAll("Mai", "5");
 		in=in.replaceAll("Jun", "6");
@@ -224,7 +224,7 @@ public static Date parsedate(String in){
 			protected void onPostExecute(String result) {
 				
 //				TextView titeltext=  (TextView) findViewById(R.id.titeltext);    	
-//		    	titeltext.setText("Ausgeliehene Bücher von "+app_preferences.getString("bib", "0")+":");
+//		    	titeltext.setText("Ausgeliehene BÃ¼cher von "+app_preferences.getString("bib", "0")+":");
 //				 
 		    	
 				
@@ -326,16 +326,16 @@ public static Date parsedate(String in){
 				            if (currentDate.getTime().compareTo(buecher[i]._verab)>0 )
 				            	
 				            	 if (buecher[i]._anzv<3 )
-				            		 map.put("verab",buecher[i]._anzv+" Verlängerungen - weitere Verlängerung möglich" );
+				            		 map.put("verab",buecher[i]._anzv+" VerlÃ¤ngerungen - weitere VerlÃ¤ngerung mÃ¶glich" );
 				            	 else
-				            		 map.put("verab",buecher[i]._anzv+" Verlängerungen - weitere Verlängerung nicht möglich!" );
+				            		 map.put("verab",buecher[i]._anzv+" VerlÃ¤ngerungen - weitere VerlÃ¤ngerung nicht mÃ¶glich!" );
 				            else{
-				            	map.put("verab",buecher[i]._anzv+" Verlängerungen -Verlängerung möglich ab:\t\t"+verab );
+				            	map.put("verab",buecher[i]._anzv+" VerlÃ¤ngerungen -VerlÃ¤ngerung mÃ¶glich ab:\t\t"+verab );
 				            	for (int a=0;a<ids.length;a++){
 				            	if (ids[a].equals(buecher[i]._barcode)) ids[a]="0"; 
 				            	}
 				            }
-				            map.put("bis",  "Rückgabe spätestens bis:\t\t"+bis);
+				            map.put("bis",  "RÃ¼ckgabe spÃ¤testens bis:\t\t"+bis);
 			
 				            mylist.add(map);
 				    		}
@@ -347,19 +347,19 @@ public static Date parsedate(String in){
 					{
 					if (result.contains("Die Kombination von Benutzernummer und Kennwort")){
 						map = new HashMap<String, String>();
-			            map.put("titel",	"Es ist ein Fehler aufgetreten:\nDie Kombination von Bibliotheksnummer und Kennwort ist ungültig." );
+			            map.put("titel",	"Es ist ein Fehler aufgetreten:\nDie Kombination von Bibliotheksnummer und Kennwort ist ungÃ¼ltig." );
 			            mylist.add(map);
 			            }
 					
-					else if (result.contains("Ungültige Benutzernummer")){
+					else if (result.contains("UngÃ¼ltige Benutzernummer")){
 						map = new HashMap<String, String>();
-			            map.put("titel",	"Es ist ein Fehler aufgetreten:\nBibliotheksnummer ist ungültig." );
+			            map.put("titel",	"Es ist ein Fehler aufgetreten:\nBibliotheksnummer ist ungÃ¼ltig." );
 			            mylist.add(map);
 			            }
 					
 					else {
 						map = new HashMap<String, String>();
-			            map.put("titel",	"Du hast noch keine Bücher ausgeliehen." );
+			            map.put("titel",	"Du hast noch keine BÃ¼cher ausgeliehen." );
 			            mylist.add(map);
 					}
 					
@@ -390,7 +390,7 @@ public static Date parsedate(String in){
 			          			               if (!ids[globalposition].equals("0"))
 			          			            	 if (anzv[globalposition]<3)
 			          			               {
-			          			                 builder.setMessage("Willst Du dieses Buch verlängern?")
+			          			                 builder.setMessage("Willst Du dieses Buch verlï¿½ngern?")
 			          			                        .setCancelable(false)
 			          			                        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
 			          			                            public void onClick(DialogInterface dialog, int id) {
@@ -434,9 +434,9 @@ public static Date parsedate(String in){
 			          			                 			// wr.close();
 			          			                 			rd.close();
 			          			           			
-			          			                 			if (line2.contains("Anforderung konnte aus den folgenden")) Toast.makeText(getActivity(), "Verlängern nicht erfolgreich!", Toast.LENGTH_SHORT).show();
+			          			                 			if (line2.contains("Anforderung konnte aus den folgenden")) Toast.makeText(getActivity(), "VerlÃ¤ngern nicht erfolgreich!", Toast.LENGTH_SHORT).show();
 			          			                 			else{
-			          			                 				Toast.makeText(getActivity(), "Verlängern erfolgreich!", Toast.LENGTH_SHORT).show();
+			          			                 				Toast.makeText(getActivity(), "VerlÃ¤ngern erfolgreich!", Toast.LENGTH_SHORT).show();
 			          			                 				worker w = new worker();
 			          			                  			    w.execute(bib,app_preferences.getString("bibpw", "0"));
 			          			                 			}
@@ -445,7 +445,7 @@ public static Date parsedate(String in){
 			          			                 			
 			          			                         	   }
 			          			                         	   catch (Exception e){
-			          			                         		Toast.makeText(getActivity(), "Verlängern nicht erfolgreich!", Toast.LENGTH_SHORT).show();
+			          			                         		Toast.makeText(getActivity(), "VerlÃ¤ngern nicht erfolgreich!", Toast.LENGTH_SHORT).show();
 			          			                         		   
 			          			                         	   };
 			          			                         	
@@ -460,7 +460,7 @@ public static Date parsedate(String in){
 			          			                  alert.show();
 			          			               }
 			          			               else
-			          			            	 Toast.makeText(getActivity(), "Verlängern nicht möglich.", Toast.LENGTH_SHORT).show();
+			          			            	 Toast.makeText(getActivity(), "VerlÃ¤ngern nicht mÃ¶glich.", Toast.LENGTH_SHORT).show();
 			          			                   
 			          			                   
 			          			                   
@@ -480,7 +480,7 @@ public static Date parsedate(String in){
 		        			
 				try {
 				
-			//	 Toast.makeText(getActivity(), "Du hast noch keine Bücher ausgeliehen.", Toast.LENGTH_SHORT).show();
+			//	 Toast.makeText(getActivity(), "Du hast noch keine BÃ¼cher ausgeliehen.", Toast.LENGTH_SHORT).show();
 					v.setVisibility(View.VISIBLE);
 		        getView().findViewById(R.id.waitIndicator).setVisibility(View.GONE);
 				}catch (Exception e){};
