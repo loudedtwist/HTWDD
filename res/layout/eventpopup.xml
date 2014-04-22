@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+   style="@style/nowCardStyle"
+    android:gravity="center_horizontal|top"
+    android:orientation="vertical" 
+     android:padding="10dp">
+
+    <!-- Screen Design for Photos -->
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+             android:padding="20dp" >
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text=""
+                 android:textColor="#707070"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+               />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="13"
+                android:text=""
+                 android:textColor="#707070"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                />
+
+
+            <ImageView
+                android:id="@+id/essenpreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               />
+
+            <WebView
+                android:id="@+id/webView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="7" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="Wird geladen..."
+             
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

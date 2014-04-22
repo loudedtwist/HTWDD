@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.skyworxx.htwdd"
+    android:versionCode="3510"
+    android:versionName="3.51" >
+
+    
+        <permission
+          android:name="com.skyworxx.htwdd.permission.MAPS_RECEIVE"
+          android:protectionLevel="signature"/>
+        
+        
+        
+        
+        <uses-permission android:name="com.skyworxx.htwdd.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+<uses-feature
+  android:glEsVersion="0x00020000"
+  android:required="true"/>
+
+  
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="16" />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/ExampleTheme" >
+        
+        <meta-data
+    android:name="com.google.android.maps.v2.API_KEY"
+    android:value="AIzaSyAQS2b2yNLEq9ALJYanBOfk5NLB4uf_8D8"/>
+        
+        <uses-library android:name="com.google.android.maps" />
+        
+        
+        
+        <activity
+            android:name=".fragments.ResponsiveUIActivity"
+            android:configChanges="orientation|screenSize|screenLayout"
+            android:theme="@style/ExampleTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PropertiesActivity" />
+        <activity android:name=".LeftAndRightActivity" />
+        <activity android:name=".AttachExample" />
+        <activity android:name=".anim.CustomScaleAnimation" />
+        <activity android:name=".anim.CustomZoomAnimation" />
+        <activity android:name=".anim.CustomRotateAnimation" />
+        <activity android:name=".anim.CustomSlideAnimation" />
+        <activity android:name=".SlidingTitleBar" />
+        <activity android:name=".SlidingContent" />
+        <activity android:name=".ViewPagerActivity" />
+        <activity android:name=".fragments.FragmentChangeActivity" />
+                
+        
+                            <activity
+            android:name=".Wizard1"
+            android:label="HTWDD"
+              android:theme="@style/ExampleTheme">       
+        </activity>
+        
+                                        <activity
+            android:name=".Wizard6"
+            android:label="HTWDD"
+                android:theme="@style/ExampleTheme">       
+         </activity>
+        
+      <activity
+          android:windowSoftInputMode="adjustPan"
+          
+            android:name=".Wizard2"
+            android:label="HTWDD"
+                android:theme="@style/ExampleTheme">       
+        >       
+        </activity>
+        
+        <activity
+            android:name=".Wizard3"
+            android:label="HTWDD"
+                 android:theme="@style/ExampleTheme">       
+        
+         </activity>
+        
+        <activity
+            android:name=".Wizard4"
+            android:windowSoftInputMode="adjustPan"
+                 android:theme="@style/ExampleTheme">       
+        
+            android:label="HTWDD"
+        </activity>
+        
+        <activity
+           android:windowSoftInputMode="adjustPan"
+            
+            android:name=".Wizard5"
+            android:label="HTWDD"     android:theme="@style/ExampleTheme">       
+        
+        </activity>
+        
+        
+         <activity
+            android:name=".TerminAnfragePopup"
+            android:label="Termin anfragen"
+           
+            android:theme="@style/ExampleTheme">       
+        </activity>
+        
+        
+          <activity
+            android:name=".EventPopup"
+            android:label="eXma Amt"
+            android:hardwareAccelerated="false"
+            android:theme="@style/ExampleTheme">       
+        </activity>
+        
+            <activity
+            android:name=".EditTimetable"
+            android:label="Stunde Bearbeiten"
+            android:theme="@android:style/Theme.Panel">       
+        </activity>
+        
+            
+               <activity
+            android:name=".datepicker"
+            android:label="Termin wählen"
+            android:theme="@style/ExampleTheme">       
+        </activity>
+          
+        <activity
+            android:name=".Preference"
+            android:label="Einstellungen"
+            android:theme="@style/ExampleTheme">       
+        </activity>
+        <activity
+            android:name=".fragments.BirdActivity"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
+        <activity android:name="com.crittercism.NotificationActivity"/>
+        
+        
+        
+        
+            <service android:name=".UpdateTimetableSmallWidgetService"></service>
+      
+                              
+         <receiver android:name=".WidgetTimetableSmallProvider"    android:label="HTWDD Stundenübersicht">
+            <intent-filter >
+                <action 
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_vorschau" />
+        </receiver>                  
+       
+       <service android:name=".UpdateMensaWidgetService"></service>
+                
+        <receiver android:name=".WidgetMensaProvider"    android:label="HTWDD Mensa 4x">
+            <intent-filter >
+                <action 
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info2" />
+        </receiver> 
+                 
+        
+        
+        
+         <service android:name=".UpdateMensaWidgetService2"></service>
+                
+        <receiver android:name=".WidgetMensaProvider2"    android:label="HTWDD Mensa 6x">
+            <intent-filter >
+                <action 
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info3" />
+        </receiver> 
+        
+        
+        
+        
+        
+    </application>
+
+</manifest>
