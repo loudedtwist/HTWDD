@@ -1,8 +1,5 @@
 package com.skyworxx.htwdd;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,87 +10,102 @@ import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.skyworxx.htwdd.fragments.MenuFragment;
-import com.skyworxx.htwdd.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.skyworxx.htwdd.R;
+import com.skyworxx.htwdd.fragments.MenuFragment;
 
-public class BaseActivity extends SlidingFragmentActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-	private int mTitleRes;
-	protected ListFragment mFrag;
+public class BaseActivity extends SlidingFragmentActivity
+{
 
-	public BaseActivity(int titleRes) {
-		mTitleRes = titleRes;
-	}
+    private int mTitleRes;
+    protected ListFragment mFrag;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    public BaseActivity(int titleRes)
+    {
+        mTitleRes = titleRes;
+    }
 
-		setTitle(mTitleRes);
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
 
-		// set the Behind View
-		setBehindContentView(R.layout.menu_frame);
-		FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-		mFrag = new MenuFragment(0);
-		t.replace(R.id.menu_frame, mFrag);
-		t.commit();
+        setTitle(mTitleRes);
 
-		// customize the SlidingMenu
-		SlidingMenu sm = getSlidingMenu();
-		sm.setShadowWidthRes(R.dimen.shadow_width);
-		sm.setShadowDrawable(R.drawable.shadow);
-		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		sm.setFadeDegree(0.35f);
-		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        // set the Behind View
+        setBehindContentView(R.layout.menu_frame);
+        FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
+        mFrag = new MenuFragment(0);
+        t.replace(R.id.menu_frame, mFrag);
+        t.commit();
 
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-	}
+        // customize the SlidingMenu
+        SlidingMenu sm = getSlidingMenu();
+        sm.setShadowWidthRes(R.dimen.shadow_width);
+        sm.setShadowDrawable(R.drawable.shadow);
+        sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        sm.setFadeDegree(0.35f);
+        sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			toggle();
-			return true;
-		
-		}
-		return super.onOptionsItemSelected(item);
-	}
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                toggle();
+                return true;
 
-	public class BasePagerAdapter extends FragmentPagerAdapter {
-		private List<Fragment> mFragments = new ArrayList<Fragment>();
-		private ViewPager mPager;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-		public BasePagerAdapter(FragmentManager fm, ViewPager vp) {
-			super(fm);
-			mPager = vp;
-			mPager.setAdapter(this);
-			for (int i = 0; i < 3; i++) {
-				addTab(new MenuFragment(0));
-			}
-		}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getSupportMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
-		public void addTab(Fragment frag) {
-			mFragments.add(frag);
-		}
+    public class BasePagerAdapter extends FragmentPagerAdapter
+    {
+        private List<Fragment> mFragments = new ArrayList<Fragment>();
+        private ViewPager mPager;
 
-		@Override
-		public Fragment getItem(int position) {
-			return mFragments.get(position);
-		}
+        public BasePagerAdapter(FragmentManager fm, ViewPager vp)
+        {
+            super(fm);
+            mPager = vp;
+            mPager.setAdapter(this);
+            for (int i = 0; i < 3; i++)
+            {
+                addTab(new MenuFragment(0));
+            }
+        }
 
-		@Override
-		public int getCount() {
-			return mFragments.size();
-		}
-	}
+        public void addTab(Fragment frag)
+        {
+            mFragments.add(frag);
+        }
+
+        @Override
+        public Fragment getItem(int position)
+        {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount()
+        {
+            return mFragments.size();
+        }
+    }
 
 }

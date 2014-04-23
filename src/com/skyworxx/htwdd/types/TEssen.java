@@ -2,9 +2,10 @@ package com.skyworxx.htwdd.types;
 
 import android.graphics.Bitmap;
 
-public class TEssen {
+public class TEssen
+{
 
-	
+
     //private variables
     int _id;
     String _tag;
@@ -18,123 +19,142 @@ public class TEssen {
     public int _pro;
     public String mensa;
     public int _contra;
- 
+
     // Empty constructor
-    public TEssen(){
- 
+    public TEssen()
+    {
+
     }
-	
-    public TEssen(int id, String tag,int woche,String title, String preis, String sonst, Bitmap bild, String bildset,int count, int rating){
+
+    public TEssen(int id, String tag, int woche, String title, String preis, String sonst, Bitmap bild, String bildset, int count, int rating)
+    {
         this._id = id;
-        this._tag=tag;
-        this._woche=woche;
-        this._title=title;
-        this._preis=preis;
-        this._sonst=sonst;
+        this._tag = tag;
+        this._woche = woche;
+        this._title = title;
+        this._preis = preis;
+        this._sonst = sonst;
         this._bild = bild;
         this._bildset = bildset;
-        this._pro=rating;
-        this._contra=count;
+        this._pro = rating;
+        this._contra = count;
 
     }
-    
-    public TEssen(int id, String tag,int woche,String title, String preis, String sonst, Bitmap bild, String bildset){
+
+    public TEssen(int id, String tag, int woche, String title, String preis, String sonst, Bitmap bild, String bildset)
+    {
         this._id = id;
-        this._tag=tag;
-        this._woche=woche;
-        this._title=title;
-        this._preis=preis;
-        this._sonst=sonst;
+        this._tag = tag;
+        this._woche = woche;
+        this._title = title;
+        this._preis = preis;
+        this._sonst = sonst;
         this._bild = bild;
         this._bildset = bildset;
 
 
     }
-	
-    public TEssen(String tag,int woche, String title, String preis, String sonst, Bitmap bild,String bildset){
-    	 this._tag=tag;
-         this._woche=woche;
-        this._title=title;
-        this._preis=preis;
-        this._sonst=sonst;
+
+    public TEssen(String tag, int woche, String title, String preis, String sonst, Bitmap bild, String bildset)
+    {
+        this._tag = tag;
+        this._woche = woche;
+        this._title = title;
+        this._preis = preis;
+        this._sonst = sonst;
         this._bild = bild;
         this._bildset = bildset;
 
     }
-    
-    public int getID(){
+
+    public int getID()
+    {
         return this._id;
     }
-    
-    public void setID(int id){
+
+    public void setID(int id)
+    {
         this._id = id;
     }
-    
-    
-    public String getTag(){
+
+
+    public String getTag()
+    {
         return this._tag;
     }
-    
-    public void setTag(String tag){
+
+    public void setTag(String tag)
+    {
         this._tag = tag;
     }
-    
-    public int getWoche(){
+
+    public int getWoche()
+    {
         return this._woche;
     }
-    
-    public void setWoche(int woche){
+
+    public void setWoche(int woche)
+    {
         this._woche = woche;
     }
-    
-    
-    
-    public String getTitle(){
+
+
+    public String getTitle()
+    {
         return this._title;
     }
-    
-    public void setTitle(String title){
-    	title=title.replace("&amp;amp;", "&");
-        this._title =  title;
+
+    public void setTitle(String title)
+    {
+        title = title.replace("&amp;amp;", "&");
+        this._title = title;
     }
-    
-    public String getPreis(){
+
+    public String getPreis()
+    {
         return this._preis;
     }
- 
+
     // setting name
-    public void setPreis(String preis){
+    public void setPreis(String preis)
+    {
         this._preis = preis;
     }
-    
-    public String getSonst(){
+
+    public String getSonst()
+    {
         return this._sonst;
     }
-    
-    public void setSonst(String sonst){
+
+    public void setSonst(String sonst)
+    {
         this._sonst = sonst;
     }
-    
-    
+
+
     // getting name
-    public Bitmap getBild(){
+    public Bitmap getBild()
+    {
         return this._bild;
     }
- 
+
     // setting name
-    public void setBild(Bitmap bild){
+    public void setBild(Bitmap bild)
+    {
         this._bild = bild;
     }
-    
-    
-    public String getBildset(){
+
+
+    public String getBildset()
+    {
         return this._bildset;
     }
- 
+
     // setting name
-    public void setBildset(String bildset){
+    public void setBildset(String bildset)
+    {
         this._bildset = bildset;
     }
-    
-	
+
+
 }

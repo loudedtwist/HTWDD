@@ -1,59 +1,30 @@
 package com.skyworxx.htwdd.fragments;
 
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
-import android.app.AlertDialog;
-import android.app.FragmentTransaction;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.LinearLayout.LayoutParams;
 
+import com.skyworxx.htwdd.R;
 
 /*import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;*/
-import com.skyworxx.htwdd.BelegungsAdapter;
-import com.skyworxx.htwdd.DatabaseHandlerTimetable;
-import com.skyworxx.htwdd.HTTPDownloader;
-import com.skyworxx.htwdd.MensaArrayAdapter;
-import com.skyworxx.htwdd.SmallMensaArrayAdapter;
-import com.skyworxx.htwdd.Wizard1;
 
-import com.skyworxx.htwdd.R;
-import com.skyworxx.htwdd.types.TEssen;
-import com.skyworxx.htwdd.types.Type_Stunde;
+public class KarteFragment extends Fragment
+{
+    public int mapid;
 
-public class KarteFragment extends Fragment {
-public int mapid;
-	
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         
 		/*
-		To Whomever sees this piece of code:
+        To Whomever sees this piece of code:
 		
 		I Know this is a terrible, terrible, terrible hack.
 		There is no other easy way to embed a mapfragment in a sliding layout.
@@ -64,64 +35,76 @@ public int mapid;
 		
 		
 		*/
-		
-		
-		try{
-        	mapid=0;
-		return inflater.inflate(R.layout.maps, container, false);   
-        } catch (Exception e){
-        	
-        	try {
-        		mapid=1;
-        	 return inflater.inflate(R.layout.maps2, container, false);  	
-        	}
-        	catch (Exception e2){
-        		
 
-            	try {
-            		mapid=2;
-            	 return inflater.inflate(R.layout.maps3, container, false);  	
-            	}
-            	catch (Exception e3){
-            		
-            		
 
-                	try {
-                		mapid=3;
-                	 return inflater.inflate(R.layout.maps4, container, false);  	
-                	}
-                	catch (Exception e4){
-                		
+        try
+        {
+            mapid = 0;
+            return inflater.inflate(R.layout.maps, container, false);
+        } catch (Exception e)
+        {
 
-                    	try {
-                    		mapid=4;
-                    	 return inflater.inflate(R.layout.maps5, container, false);  	
-                    	}
-                    	catch (Exception e5){};
-                		
-                		
-                	};
-            		
-            	};
-        		
-        		
-        	};
-        };
-        
+            try
+            {
+                mapid = 1;
+                return inflater.inflate(R.layout.maps2, container, false);
+            } catch (Exception e2)
+            {
+
+
+                try
+                {
+                    mapid = 2;
+                    return inflater.inflate(R.layout.maps3, container, false);
+                } catch (Exception e3)
+                {
+
+
+                    try
+                    {
+                        mapid = 3;
+                        return inflater.inflate(R.layout.maps4, container, false);
+                    } catch (Exception e4)
+                    {
+
+
+                        try
+                        {
+                            mapid = 4;
+                            return inflater.inflate(R.layout.maps5, container, false);
+                        } catch (Exception e5)
+                        {
+                        }
+                        ;
+
+
+                    }
+                    ;
+
+                }
+                ;
+
+
+            }
+            ;
+        }
+        ;
+
         return null;
     }
-	
-	@Override
-	public void onResume() {
-		super.onResume();
 
-	}
-	
-	
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
 		
 	    /*    
 		 GoogleMap mMap;
@@ -177,9 +160,8 @@ public int mapid;
         .title("Dönermann"));
 
 		*/
-		
-	}
-	
 
-	
+    }
+
+
 }
