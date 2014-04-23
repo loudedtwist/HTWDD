@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="20" >
 
-
-
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
@@ -27,7 +25,7 @@
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/logobig" />
 
@@ -44,59 +42,57 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:text="Die App für Studenten der HTW Dresden"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/holo_magenta"
                 android:textSize="18sp" />
 
-           <LinearLayout
-                        android:id="@+id/cardlayout2"
-                        style="@style/nowCardStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:minHeight="10dp"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
+            <LinearLayout
+                android:id="@+id/cardlayout2"
+                style="@style/nowCardStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:minHeight="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Entwickelt von Mark Schramm.\n\nDies ist keine offizielle App der HTW Dresden, des Studentenforum Dresden e.V. oder des Studentenwerks Dresden."
+                    android:text='Die HTWDD-App ist ein Projekt im Rahmen des Moduls "Mobile Netze" des Masterstudienganges Angewandte Informationstechnologien der HTW Dresden.\nEs ist keine offizielle App der HTW Dresden oder einer anderen Institution.'
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"/>
 
             </LinearLayout>
-            
-           
-              <LinearLayout
-                        android:id="@+id/cardlayout3"
-                        style="@style/nowCardStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:minHeight="10dp"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
+
+            <LinearLayout
+                android:id="@+id/cardlayout3"
+                style="@style/nowCardStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:minHeight="10dp"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_margin="10dp">
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Alle Rechte liegen bei ihren jeweiligen Inhabern.\n\nZu keinem Zeitpunkt werden private Daten wie Matrikel-, S-Nummer oder Passwörter an nicht-HTW Server oder für das Kommentar-System übertragen."
+                    android:text="Entwickelt von:\n\nSS14:\n&#8226; Alexander Elchlepp\n&#8226; Kay Förster\n&#8226; Thomas Herrlich\n&#8226; Tamara Machowa\n\nInitiator: Mark Schramm\n\nZu keinem Zeitpunkt werden private Daten wie Matrikel-, S-Nummer oder Passwörter an nicht-HTW Server übertragen"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="12sp" />
 
             </LinearLayout>
-           
+
         </LinearLayout>
 
     </ScrollView>
@@ -104,37 +100,21 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="15dp">
-
+        android:layout_height="wrap_content" android:layout_weight="1"
+        android:layout_margin="10dp">
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left" >
+            android:gravity="center" >
 
             <Button
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kaffeekasse" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="right" >
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Website öffnen" />
+                android:text="Projekt auf github.com" />
 
         </LinearLayout>
 
