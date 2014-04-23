@@ -1,4 +1,11 @@
+# ausgeschlossene Ordner
+.gradle/
+.idea/
 bin/
 build/
 gen/
+proguard/
+
+# ausgeschlossene Dateien
+.directory
 HTWDD.iml
