@@ -9,3 +9,5 @@ proguard/
 # ausgeschlossene Dateien
 .directory
 HTWDD.iml
+local.properties
+library/library.iml
