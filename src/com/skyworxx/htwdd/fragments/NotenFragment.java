@@ -430,7 +430,7 @@ public class NotenFragment extends Fragment
                 }
 
 
-                line3 = line3.substring(line3.indexOf("ffentlichungs- datum"));
+                line3 = line3.substring(line3.indexOf("ffentlichungsdatum"));
                 line3 = line3.substring(0, line3.indexOf("Hinweis"));
 
                 String tokens[] = line3.split("</tr>");
