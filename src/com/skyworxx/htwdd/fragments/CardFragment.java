@@ -702,9 +702,8 @@ public class CardFragment extends Fragment
         ((TextView) (getActivity().findViewById(R.id.best))).setText("beste Note " + totalbestmark);
         ((TextView) (getActivity().findViewById(R.id.worst))).setText("schlechteste Note " + totalworstmark);
 
-        //--------------------------------------
-
-        worker4 w4 = new worker4();
+        // Überprüfe auf neue App-Version
+        CheckUpdate w4 = new CheckUpdate();
         w4.execute();
 
         // Lade aktuelle App-Nachrichten aus dem Web
@@ -713,63 +712,6 @@ public class CardFragment extends Fragment
 
     }
 
-
-    private class worker2 extends AsyncTask<Calendar, Void, String[]>
-    {
-        @Override
-        protected String[] doInBackground(Calendar... params)
-        {
-
-            HTTPDownloader downloader = new HTTPDownloader("http://htwdd-app.de/news.txt");
-
-            String result = downloader.getString();
-
-            String[] results = {result};
-
-
-            return results;
-        }
-
-        @Override
-        protected void onPostExecute(String[] essen)
-        {
-            try
-            {
-                TextView mensatext = (TextView) getActivity().findViewById(R.id.news);
-                mensatext.setText(Html.fromHtml(essen[0]));
-                if (essen[0].contains("Unable"))
-                    mensatext.setText("Verbindung zum News-Server nicht möglich.");
-
-                if (essen[0].contains("KILL"))
-                {
-
-                    AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
-                    adb.setTitle("Beta abgelaufen");
-                    adb.setMessage("Diese Beta Version der HTWDD App ist abgelaufen. Die kostenlose Release-Version findest Du im Google Play Store. Vielen Dank für deine Hilfe :).");
-                    adb.setPositiveButton("Ok", new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int id)
-                        {
-
-                            getActivity().finish();
-                        }
-                    });
-//          adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-//{
-//                          public void onClick(DialogInterface dialog, int id)
-//                                          {
-//                                          // Action for 'Cancel' Button
-//                                          dialog.cancel();
-//                          }
-//          });
-
-                    adb.show();
-                }
-            } catch (Exception e)
-            {
-            }
-        }
-    }
 
     public class News
     {
@@ -837,19 +779,17 @@ public class CardFragment extends Fragment
                     LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.aktuellbox);
                     ln.setVisibility(View.GONE);
                 }
-
-                if (news != null)
+                else
                 {
-                    TextView mensatext3 = (TextView) getActivity().findViewById(R.id.aktuellheader);
-                    mensatext3.setText(Html.fromHtml(news.author));
-                    //	mensatext3.setVisibility(View.VISIBLE);
+                    TextView NewsHeader = (TextView) getActivity().findViewById(R.id.aktuellheader);
+                    NewsHeader.setText(Html.fromHtml(news.author));
 
-                    TextView mensatext = (TextView) getActivity().findViewById(R.id.aktuelltitel);
-                    mensatext.setText(Html.fromHtml(news.title));
-                    mensatext.setVisibility(View.VISIBLE);
+                    TextView NewsTitel = (TextView) getActivity().findViewById(R.id.aktuelltitel);
+                    NewsTitel.setText(Html.fromHtml(news.title));
+                    NewsTitel.setVisibility(View.VISIBLE);
 
-                    TextView mensatext2 = (TextView) getActivity().findViewById(R.id.aktuelldesc);
-                    mensatext2.setText(Html.fromHtml(news.desc));
+                    TextView NewsDesc = (TextView) getActivity().findViewById(R.id.aktuelldesc);
+                    NewsDesc.setText(Html.fromHtml(news.desc));
 
                     ImageView aktimage = (ImageView) getActivity().findViewById(R.id.aktuellimage);
                     aktimage.setImageBitmap(news.bitmap);
@@ -857,37 +797,31 @@ public class CardFragment extends Fragment
 
                     final String urlstring = news.url;
 
-                    Button button6;
+                    Button ButtonNews;
 
                     if (android.os.Build.VERSION.SDK_INT >= 14)
                     {
-                        //?android:attr/borderlessButtonStyle
-
-                        button6 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-                        //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
-                        button6.setTextColor(Color.parseColor("#33B5E5"));
+                        ButtonNews = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+                        ButtonNews.setTextColor(Color.parseColor("#33B5E5"));
                     }
                     else
-                        button6 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+                        ButtonNews = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
-                    button6.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                    ButtonNews.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                    ButtonNews.setText("Website öffnen");
 
-                    button6.setText("Website öffnen");
                     LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.htwaktuell);
                     LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-                    button6.setOnClickListener(new View.OnClickListener()
-                    {
+                    ButtonNews.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View arg0)
-                        {
-
+                        public void onClick(View arg0) {
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlstring));
                             startActivity(browserIntent);
                         }
                     });
 
-                    ln6.addView(button6, lp6);
+                    ln6.addView(ButtonNews, lp6);
                 }
 
             } catch (Exception e)
@@ -900,20 +834,21 @@ public class CardFragment extends Fragment
     }
 
 
-    private class worker4 extends AsyncTask<Calendar, Void, String[]>
+    private class CheckUpdate extends AsyncTask<Calendar, Void, String[]>
     {
         @Override
         protected String[] doInBackground(Calendar... params)
         {
             try
             {
-                HTTPDownloader downloader = new HTTPDownloader("http://htwdd-app.de/currentversion.txt");
+                HTTPDownloader downloader = new HTTPDownloader("http://www2.htw-dresden.de/~s71513/HTWDD/currentversion");
 
                 String result = downloader.getString();
 
                 String[] items = result.split(";");
 
                 return items;
+
             } catch (Exception e)
             {
                 return null;
@@ -923,52 +858,47 @@ public class CardFragment extends Fragment
         @Override
         protected void onPostExecute(String[] result)
         {
-            if (result != null && result[0].contains("ception"))
+            if (result != null)
             {
                 try
                 {
                     if (Integer.parseInt(result[0]) > info.versionCode)
                     {
-
                         LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
                         ln.setVisibility(View.VISIBLE);
 
-                        TextView mensatext3 = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
-                        mensatext3.setText(Html.fromHtml(result[1]));
+                        // Alternativen Text anzeigen
+                        if(!result[1].isEmpty())
+                        {
+                            TextView UpdateMessage = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
+                            UpdateMessage.setText(Html.fromHtml(result[1]));
+                        }
 
-                        Button button6;
+                        Button ButtonUpdate;
 
                         if (android.os.Build.VERSION.SDK_INT >= 14)
                         {
-                            //?android:attr/borderlessButtonStyle
-
-                            button6 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-                            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
-                            button6.setTextColor(Color.parseColor("#33B5E5"));
-
+                            ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+                            ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
                         }
                         else
-                            button6 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+                            ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
-                        button6.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                        ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 
-                        button6.setText("Play Store öffnen");
+                        ButtonUpdate.setText("Download App");
                         LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
                         LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-                        button6.setOnClickListener(new View.OnClickListener()
-                        {
+                        ButtonUpdate.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View arg0)
-                            {
-
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.skyworxx.htwdd"));
+                            public void onClick(View arg0) {
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www2.htw-dresden.de/~s71513/HTWDD/HTWDD_latest.apk"));
                                 startActivity(browserIntent);
                             }
                         });
 
-                        ln6.addView(button6, lp6);
-
+                        ln6.addView(ButtonUpdate, lp6);
                     }
                 } catch (Exception e2)
                 {
