@@ -50,8 +50,6 @@ public class CardFragment extends Fragment
 
     public CardFragment()
     {
-
-
     }
 
     public PackageInfo info;
@@ -415,18 +413,14 @@ public class CardFragment extends Fragment
             tt13.setText(uhrzeit);
 
             tt6.setText(upstundeOB.getName());
-
-
         }
-
 
         try
         {
             List<Type_Stunde> list2 = db.getStundenTag(odaystring, week);
-//		
+
             Type_Stunde[] stunden = new Type_Stunde[7];
-//		
-//		
+
             if (list2.size() != 0)
             {
                 for (int ab = 0; ab < stunden.length; ab++)
@@ -454,9 +448,7 @@ public class CardFragment extends Fragment
 
         } catch (Exception e)
         {
-
             Toast.makeText(getActivity(), "Konnte Stundenplan nicht anzeigen.", Toast.LENGTH_LONG).show();
-
         }
 
     }
@@ -466,7 +458,6 @@ public class CardFragment extends Fragment
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
 
         final SharedPreferences app_preferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity());
@@ -507,14 +498,13 @@ public class CardFragment extends Fragment
                 if (getActivity() instanceof ResponsiveUIActivity)
                 {
                     ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(new Fragment(), 4);
+                    ra.switchContent(new Fragment(), 3);
                 }
             }
         });
 
 
         ln.addView(button, lp);
-
 
         Button button2;
         int currentapiVersion2 = android.os.Build.VERSION.SDK_INT;
@@ -544,7 +534,7 @@ public class CardFragment extends Fragment
                 if (getActivity() instanceof ResponsiveUIActivity)
                 {
                     ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(new Fragment(), 5);
+                    ra.switchContent(new Fragment(), 4);
                 }
             }
         });
@@ -586,7 +576,6 @@ public class CardFragment extends Fragment
 
         ln3.addView(button3, lp3);
 
-
         Button button4;
 
         if (currentapiVersion >= 14)
@@ -615,7 +604,7 @@ public class CardFragment extends Fragment
                 if (getActivity() instanceof ResponsiveUIActivity)
                 {
                     ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(null, 10);
+                    ra.switchContent(null, 9);
                 }
             }
         });
@@ -652,7 +641,7 @@ public class CardFragment extends Fragment
                 if (getActivity() instanceof ResponsiveUIActivity)
                 {
                     ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(null, 6);
+                    ra.switchContent(null, 5);
                 }
             }
         });
@@ -700,8 +689,6 @@ public class CardFragment extends Fragment
             } catch (Exception e2)
             {
             }
-            ;
-
         }
 
         //if (validcount!=0)
@@ -716,7 +703,6 @@ public class CardFragment extends Fragment
         ((TextView) (getActivity().findViewById(R.id.worst))).setText("schlechteste Note " + totalworstmark);
 
         //--------------------------------------
-
 
         worker4 w4 = new worker4();
         w4.execute();
@@ -778,15 +764,10 @@ public class CardFragment extends Fragment
 //          });
 
                     adb.show();
-
-
                 }
-
-
             } catch (Exception e)
             {
             }
-            ;
         }
     }
 
@@ -797,7 +778,6 @@ public class CardFragment extends Fragment
         int id;
         Date startdate, enddate;
         String url;
-
     }
 
 
@@ -806,7 +786,6 @@ public class CardFragment extends Fragment
         @Override
         protected News[] doInBackground(Calendar... params)
         {
-//http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9
             HTTPDownloader downloader = new HTTPDownloader("http://htwdd-app.de/aktuell/htwaktuell.php");
 
             String result = downloader.getString();
@@ -817,15 +796,12 @@ public class CardFragment extends Fragment
 
             for (int i = 0; i < items.length; i++)
             {
-
                 String[] items2 = items[i].split("<br>");
                 if (items2.length < 2) break;
-
 
                 news[i] = new News();
                 news[i].id = Integer.parseInt(items2[0]);
                 news[i].author = items2[6];
-
 
                 HTTPDownloader imageloader = new HTTPDownloader("http://htwdd-app.de/aktuell/images/" + items2[3]);
 
@@ -840,34 +816,26 @@ public class CardFragment extends Fragment
                 news[i].url = items2[4];
             }
 
-
             return news;
         }
 
         @Override
         protected void onPostExecute(News[] result)
         {
-
-
             News news = null;
             if (result.length == 1) news = result[0];
             if (result.length > 1)
             {
-
                 int randomnumber = (int) ((Math.random() * (result.length)));
                 news = result[randomnumber];
             }
 
             try
             {
-
                 if (news == null)
                 {
-
                     LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.aktuellbox);
                     ln.setVisibility(View.GONE);
-
-
                 }
 
                 if (news != null)
@@ -875,7 +843,6 @@ public class CardFragment extends Fragment
                     TextView mensatext3 = (TextView) getActivity().findViewById(R.id.aktuellheader);
                     mensatext3.setText(Html.fromHtml(news.author));
                     //	mensatext3.setVisibility(View.VISIBLE);
-
 
                     TextView mensatext = (TextView) getActivity().findViewById(R.id.aktuelltitel);
                     mensatext.setText(Html.fromHtml(news.title));
@@ -890,7 +857,6 @@ public class CardFragment extends Fragment
 
                     final String urlstring = news.url;
 
-
                     Button button6;
 
                     if (android.os.Build.VERSION.SDK_INT >= 14)
@@ -900,7 +866,6 @@ public class CardFragment extends Fragment
                         button6 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
                         //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
                         button6.setTextColor(Color.parseColor("#33B5E5"));
-
                     }
                     else
                         button6 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
@@ -922,22 +887,16 @@ public class CardFragment extends Fragment
                         }
                     });
 
-
                     ln6.addView(button6, lp6);
-
-
                 }
 
             } catch (Exception e)
             {
             }
-            ;
 
             worker w1 = new worker();
             w1.execute();
         }
-
-
     }
 
 
@@ -948,14 +907,11 @@ public class CardFragment extends Fragment
         {
             try
             {
-//			
-//http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9
                 HTTPDownloader downloader = new HTTPDownloader("http://htwdd-app.de/currentversion.txt");
 
                 String result = downloader.getString();
 
                 String[] items = result.split(";");
-
 
                 return items;
             } catch (Exception e)
@@ -967,24 +923,18 @@ public class CardFragment extends Fragment
         @Override
         protected void onPostExecute(String[] result)
         {
-
-
             if (result != null && result[0].contains("ception"))
             {
                 try
                 {
-
-
                     if (Integer.parseInt(result[0]) > info.versionCode)
                     {
 
                         LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
                         ln.setVisibility(View.VISIBLE);
 
-
                         TextView mensatext3 = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
                         mensatext3.setText(Html.fromHtml(result[1]));
-
 
                         Button button6;
 
@@ -1017,20 +967,14 @@ public class CardFragment extends Fragment
                             }
                         });
 
-
                         ln6.addView(button6, lp6);
 
                     }
                 } catch (Exception e2)
                 {
                 }
-
             }
-
-
         }
-
-
     }
 
 
@@ -1039,7 +983,6 @@ public class CardFragment extends Fragment
         @Override
         protected TEssen[] doInBackground(Calendar... params)
         {
-//http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9
             HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9");
 
             String result = downloader.getString();
@@ -1062,33 +1005,23 @@ public class CardFragment extends Fragment
                         essen[i].setTitle("Heute kein Angebot");
 
                     }
-                    ;
-
-
                 }
-
-
                 return essen;
-
 
             } catch (Exception e)
             {
             }
-            ;
+
             return null;
         }
 
         @Override
         protected void onPostExecute(TEssen[] essen)
         {
-
-
             try
             {
                 TextView mensatext2 = (TextView) getActivity().findViewById(R.id.mensatext);
                 mensatext2.setText("Verbindung zum Mensa-Server nicht möglich.\n\n");
-//			
-
 
                 if (essen.length < 1)
                 {
@@ -1096,7 +1029,6 @@ public class CardFragment extends Fragment
                     essen[0] = new TEssen();
                     essen[0].setTitle("Kein Angebot an diesem Tag.\n\n");
                 }
-
 
 //		ListView l= (ListView) getView().findViewById(R.id.listView1);
 //		l.setVisibility(View.VISIBLE);
@@ -1108,7 +1040,6 @@ public class CardFragment extends Fragment
 
                 for (int i = 0; i < titles.length; i++)
                 {
-
                     if (i < titles.length - 1)
                         mensa += (essen[i].getTitle() + "\n\n");
                     else
@@ -1126,7 +1057,6 @@ public class CardFragment extends Fragment
 //			l.setAdapter(colorAdapter);
             } catch (Exception e)
             {
-//			
                 try
                 {
                     TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
@@ -1136,15 +1066,8 @@ public class CardFragment extends Fragment
                 }
             }
 
-
             //	worker2 w2=new worker2();
             //	w2.execute();
-
-
         }
-
-
     }
-
-
 }

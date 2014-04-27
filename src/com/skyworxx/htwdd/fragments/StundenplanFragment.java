@@ -32,7 +32,7 @@ import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-
+import android.util.Log; /*import log class*/
 
 public class StundenplanFragment extends Fragment
 {
@@ -40,18 +40,18 @@ public class StundenplanFragment extends Fragment
     public int week_id;
     public ProgressBar progressbar;
 
+    // DEBUG
+    private static final String TAG = "Stundenplan";
+
     public StundenplanFragment(int fragmentwidth, int fragmentheight, int i)
     {
-
         this.fragmentheight = fragmentheight;
         this.fragmentwidth = fragmentwidth;
         week_id = i;
-        ;
     }
 
     public StundenplanFragment()
     {
-
     }
 
 
@@ -64,7 +64,6 @@ public class StundenplanFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.stundenplan, null);
-
     }
 
     @Override
@@ -94,6 +93,8 @@ public class StundenplanFragment extends Fragment
     public void showweek(int week)
     {
 
+        Log.i(TAG, "Woche:" + week);
+
 
         final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());
 
@@ -102,12 +103,10 @@ public class StundenplanFragment extends Fragment
         if (list.size() == 0)
         {
             week = 0;
-
         }
 
         if (week == 0)
         {
-
             getView().findViewById(R.id.grid).setVisibility(View.GONE);
             getView().findViewById(R.id.waitIndicator).setVisibility(View.GONE);
 
@@ -163,7 +162,6 @@ public class StundenplanFragment extends Fragment
 
 
             }
-
             else
             {
                 AlertDialog alertDialog2 = new AlertDialog.Builder(getActivity()).create();
@@ -280,8 +278,7 @@ public class StundenplanFragment extends Fragment
                         + URLEncoder.encode(app_preferences.getString("studgruppe", "0"), "UTF-8");
 
                 // Send data
-                URL url = new URL(
-                        "http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
+                URL url = new URL("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
                 URLConnection conn = url.openConnection();
                 conn.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(
@@ -339,7 +336,6 @@ public class StundenplanFragment extends Fragment
 
                 for (int w = 1; w <= 2; w++)
                 {
-
                     for (int i = 1; i <= 7; i++)
                     {
                         Log.d("Deleting: ", "empty");
@@ -349,12 +345,9 @@ public class StundenplanFragment extends Fragment
                         db.addContact(new Type_Stunde(w, "Donnerstag", i, "(leer)", "",
                                 ""));
                         db.addContact(new Type_Stunde(w, "Freitag", i, "(leer)", "", ""));
-
                     }
-
                 }
                 onProgressUpdate(70);
-
             }
 
 
@@ -425,7 +418,7 @@ public class StundenplanFragment extends Fragment
                             resultstring = "Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten können durch Antippen angepasst werden.";
 
                         }
-                        ;
+
                         try
                         {
 
@@ -546,8 +539,6 @@ public class StundenplanFragment extends Fragment
 
 
         }
-
-
     }
 
 
@@ -620,7 +611,6 @@ public class StundenplanFragment extends Fragment
                 } catch (Exception e)
                 {
                 }
-                ;
                 onProgressUpdate(60);
 						/*for (Type_Stunde cn : stunden) {
 							String log = "Deleting: " + cn.getID() + " ,Name: "
@@ -819,16 +809,12 @@ public class StundenplanFragment extends Fragment
                 Toast.makeText(getActivity(),
                         "Stundenplan neu eingelesen!", Toast.LENGTH_LONG)
                         .show();
-
-
             }
             else
             {
                 Toast.makeText(getActivity(),
                         "Aktualisieres des Stundenplans fehlgeschlagen.", Toast.LENGTH_LONG)
                         .show();
-
-
             }
 
 
@@ -840,11 +826,7 @@ public class StundenplanFragment extends Fragment
 
 
             showweek(week);
-
-
         }
-
-
     }
 
 }

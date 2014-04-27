@@ -52,29 +52,24 @@ public class BelegungsFragment extends Fragment
         return inflater.inflate(R.layout.belegungs, null);
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
 
         DatabaseHandlerRoomTimetable db = new DatabaseHandlerRoomTimetable(getActivity());
         SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         if (!raum.equals("0"))
         {
-
             int count = db.getRaumCount(raum);
 
             if (count == 0)
             {
-
                 worker w = new worker();
                 w.execute(db, app_preferences, raum);
             }
             else
-
             {
                 try
                 {
@@ -82,7 +77,6 @@ public class BelegungsFragment extends Fragment
                     TextView t = (TextView) getView().findViewById(R.id.textView2);
                     t.setVisibility(View.GONE);
                     p.setVisibility(View.GONE);
-
 
 //   			List<Type_Stunde> list2=db.getStundenTag("Montag", 1, raum);
 //   			
@@ -113,8 +107,6 @@ public class BelegungsFragment extends Fragment
                     int a = 0;
 
                 }
-
-
             }
         }
         else
@@ -130,7 +122,6 @@ public class BelegungsFragment extends Fragment
 
             List<Type_Stunde> list2 = db.getDiffRaum();
 
-
             if (list2.size() > 0)
             {
 
@@ -143,10 +134,8 @@ public class BelegungsFragment extends Fragment
 
                 // final String titles[]={"7:30","9:20","11:10","13:10","15:00","16:50","18:30"};
 
-
                 BelegungsOverviewAdapter colorAdapter = new BelegungsOverviewAdapter(getActivity(), titles);
                 l.setAdapter(colorAdapter);
-
 
                 l.setOnItemClickListener(new OnItemClickListener()
                                          {
@@ -162,7 +151,6 @@ public class BelegungsFragment extends Fragment
 
                                                  ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
                                                  ra.showRaum(titles[arg2]);
-
                                              }
                                          }
                 );
@@ -171,9 +159,7 @@ public class BelegungsFragment extends Fragment
             }
             else
                 Toast.makeText(getActivity(), "Füge Räume hinzu indem Du auf das + Symbol drückst", Toast.LENGTH_LONG).show();
-
         }
-
     }
 
 
@@ -201,8 +187,7 @@ public class BelegungsFragment extends Fragment
                         + URLEncoder.encode((String) params[2]);
 
                 // Send data
-                URL url = new URL(
-                        "http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
+                URL url = new URL("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
                 URLConnection conn = url.openConnection();
                 conn.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(
@@ -221,7 +206,6 @@ public class BelegungsFragment extends Fragment
                 }
                 // wr.close();
                 rd.close();
-
 
                 String tokens[] = line2.split("Stundenplan");
                 line2 = tokens[2];
@@ -263,10 +247,7 @@ public class BelegungsFragment extends Fragment
                         db.addContact(new Type_Stunde(w, "Freitag", i, "(leer)", "", ""));
 
                     }
-
                 }
-
-
             }
 
 
@@ -292,8 +273,6 @@ public class BelegungsFragment extends Fragment
                     kname = zeiten[i].substring(10);
                     if (kname.length() > 0 && !kname.contains("Gremien"))
                     {
-
-
                         String ktyp = "";
                         int Stunde = 0;
                         String kname2 = "";
@@ -316,7 +295,6 @@ public class BelegungsFragment extends Fragment
 
                             kname2 = kname.substring(0, kname.indexOf(" "));
 
-
                             kraum = kname.substring(kname.indexOf("<br>") + 4,
                                     kname.indexOf(" - "));
 
@@ -330,11 +308,9 @@ public class BelegungsFragment extends Fragment
                             resultstring = "Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
 
                         }
-                        ;
+
                         try
                         {
-
-
                             if ((i > 8 && i < 14) || (i > 56 && i < 62))
                                 Stunde = 1;
                             if ((i > 14 && i < 20) || (i > 62 && i < 68))
@@ -381,9 +357,8 @@ public class BelegungsFragment extends Fragment
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
-
                         }
-                        ;
+
                         // System.out.println(Integer.toString(i));
                         //
                         // System.out.println(Integer.toString(Woche));
@@ -400,7 +375,6 @@ public class BelegungsFragment extends Fragment
                 }
             }
 
-
             return resultstring;
         }
 
@@ -409,42 +383,28 @@ public class BelegungsFragment extends Fragment
         {
             try
             {
-
-
                 if (result.equals("success"))
                 {
                     Toast.makeText(getActivity(),
                             "Stundenplan neu eingelesen!", Toast.LENGTH_LONG)
                             .show();
-
-
                 }
                 else
                 {
                     Toast.makeText(getActivity(),
                             "Aktualisieres des Stundenplans nicht möglich.", Toast.LENGTH_LONG)
                             .show();
-
-
                 }
-
 
                 if (getActivity() instanceof ResponsiveUIActivity)
                 {
                     ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(new Fragment(), 7);
+                    ra.switchContent(new Fragment(), 6);
                 }
 
             } catch (Exception e)
             {
             }
-            ;
-
-
         }
-
-
     }
-
-
 }

@@ -31,11 +31,13 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+
 /*import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;*/
+
 
 /**
  * This activity is an example of a responsive Android UI.
@@ -49,7 +51,6 @@ import com.google.android.gms.maps.model.MarkerOptions;*/
  */
 public class ResponsiveUIActivity extends SlidingFragmentActivity implements ActionBar.TabListener
 {
-
     private Fragment mContent;
     public int mode = 0;
     public String lastraum = "";
@@ -89,7 +90,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         setTitle(R.string.responsive_ui);
 
         setContentView(R.layout.responsive_content_frame);
-
 
         // check if the content frame contains the menu frame
         if (findViewById(R.id.menu_frame) == null)
@@ -144,9 +144,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //			.setTitle(R.string.what_is_this)
 //			.setMessage(R.string.responsive_explanation)
 //			.show();
-//		
-
-
     }
 
     @Override
@@ -161,16 +158,11 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         Intent intent;
         switch (item.getItemId())
         {
-
-
             case 91:
-
                 getSupportActionBar().setSelectedNavigationItem(0);
-
 
                 DatabaseHandlerNoten db12 = new DatabaseHandlerNoten(this);
                 db12.purge();
-
 
                 mContent = new NotenFragment(0);
                 getSupportFragmentManager()
@@ -187,13 +179,12 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 }, 50);
 
                 break;
-            case 95:
 
+            case 95:
                 getSupportActionBar().setSelectedNavigationItem(0);
 
                 DatabaseHandlerNoten db2 = new DatabaseHandlerNoten(this);
                 //db2.purge();
-
 
                 mContent = new NotenFragment(1);
                 getSupportFragmentManager()
@@ -208,15 +199,11 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         getSlidingMenu().showContent();
                     }
                 }, 50);
-
                 break;
 
-
             case 96:
-
                 DatabaseHandlerRoomTimetable db = new DatabaseHandlerRoomTimetable(this);
                 db.purge();
-
 
                 mContent = new BelegungsFragment("0");
                 getSupportFragmentManager()
@@ -231,7 +218,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         getSlidingMenu().showContent();
                     }
                 }, 50);
-
                 break;
 
             case 97:
@@ -242,10 +228,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
 
                 final EditText input = new EditText(this);
-//    		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-//    		        LinearLayout.LayoutParams.FILL_PARENT,
-//    		        LinearLayout.LayoutParams.FILL_PARENT);
-//    		input.setLayoutParams(lp);
+//    		    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//    		    LinearLayout.LayoutParams.FILL_PARENT,
+//    		    LinearLayout.LayoutParams.FILL_PARENT);
+//    		    input.setLayoutParams(lp);
                 editalert.setView(input);
 
                 editalert.setPositiveButton("Hinzufügen", new DialogInterface.OnClickListener()
@@ -280,13 +266,11 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                     }
                 });
 
-
                 editalert.show();
                 break;
 
 
             case 98:
-
                 mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), 0);
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -300,10 +284,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         getSlidingMenu().showContent();
                     }
                 }, 50);
-
-
                 break;
-
 
             case 99:
                 intent = new Intent(this, com.skyworxx.htwdd.Preference.class);
@@ -311,10 +292,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 startActivity(intent);
                 finish();
                 return true;
-            default:
-                ;
-        }
 
+            default:
+                break;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -341,20 +322,16 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //		}, 50);
         this.invalidateOptionsMenu();
 
-
         ActionBar.Tab tab, tab2, tab3;
-
 
         switch (position)
         {
-
             case 1:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setTitle("Übersicht");
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
                 mContent = new CardFragment();
-
 
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -370,10 +347,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 }, 50);
 
                 break;
-            case 4:
+
+            case 3:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
 
                 int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
                 int nextweek = week + 1;
@@ -390,7 +367,8 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 tab2.setTabListener(this);
                 getSupportActionBar().addTab(tab2);
                 break;
-            case 5:
+
+            case 4:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -406,8 +384,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab2);
                 break;
 
-            case 6:
-
+            case 5:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -426,12 +403,9 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 tab3.setText("Prüfungen");
                 tab3.setTabListener(this);
                 getSupportActionBar().addTab(tab3);
-
-
                 break;
 
-
-            case 7:
+            case 6:
                 try
                 {
                     getSupportActionBar().removeAllTabs();
@@ -454,33 +428,31 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 } catch (Exception e)
                 {
                 }
-                ;
-
 
                 break;
 
-//		case 6: 
-//			  getSupportActionBar().removeAllTabs();
-//			  getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-//				
-//			  getSupportActionBar().setTitle("Termine");
-//			  tab = getSupportActionBar().newTab();
-//		        tab.setText("Alle");
-//		        tab.setTabListener(this);
-//		        getSupportActionBar().addTab(tab);
-//		        
-//		        tab2 = getSupportActionBar().newTab();
-//		        tab2.setText("Eigene");
-//		        tab2.setTabListener(this);
-//		        getSupportActionBar().addTab(tab2);
-//		        
-//		        tab3 = getSupportActionBar().newTab();
-//		        tab3.setText("Online");
-//		        tab3.setTabListener(this);
-//		        getSupportActionBar().addTab(tab3);
-//			break;
+            case 7:
+                getSupportActionBar().removeAllTabs();
+                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-            case 10:
+                getSupportActionBar().setTitle("eXma Amt");
+                tab = getSupportActionBar().newTab();
+                tab.setText("Heute");
+                tab.setTabListener(this);
+                getSupportActionBar().addTab(tab);
+
+                tab2 = getSupportActionBar().newTab();
+                tab2.setText("Morgen");
+                tab2.setTabListener(this);
+                getSupportActionBar().addTab(tab2);
+
+                tab3 = getSupportActionBar().newTab();
+                tab3.setText("Übermorgen");
+                tab3.setTabListener(this);
+                getSupportActionBar().addTab(tab3);
+                break;
+
+            case 9:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -501,13 +473,32 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
+            case 10:
+                getSupportActionBar().removeAllTabs();
+                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-            case 12:
+                getSupportActionBar().setTitle("Mentoring");
+                tab = getSupportActionBar().newTab();
+                tab.setText("Mentoren");
+                tab.setTabListener(this);
+                getSupportActionBar().addTab(tab);
+
+                tab2 = getSupportActionBar().newTab();
+                tab2.setText("Aktuelles");
+                tab2.setTabListener(this);
+                getSupportActionBar().addTab(tab2);
+
+                tab3 = getSupportActionBar().newTab();
+                tab3.setText("Kontakt");
+                tab3.setTabListener(this);
+                getSupportActionBar().addTab(tab3);
+                break;
+
+            case 11:
                 getSupportActionBar().removeAllTabs();
 
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 getSupportActionBar().setTitle("Verwaltung");
-
 
                 mContent = new SemesterplanFragment();
                 getSupportFragmentManager()
@@ -525,13 +516,12 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                 break;
 
-            case 13:
+            case 12:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
                 getSupportActionBar().setTitle("Bibliothek");
                 tab = getSupportActionBar().newTab();
-
 
                 tab2 = getSupportActionBar().newTab();
                 tab2.setText("Rückgabe");
@@ -544,83 +534,14 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
-
-            case 15:
+            case 14:
                 Intent intent2 = new Intent(this, com.skyworxx.htwdd.Preference.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
                 finish();
                 break;
 
-
-            case 8:
-                getSupportActionBar().removeAllTabs();
-                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-                getSupportActionBar().setTitle("eXma Amt");
-                tab = getSupportActionBar().newTab();
-                tab.setText("Heute");
-                tab.setTabListener(this);
-                getSupportActionBar().addTab(tab);
-
-                tab2 = getSupportActionBar().newTab();
-                tab2.setText("Morgen");
-                tab2.setTabListener(this);
-                getSupportActionBar().addTab(tab2);
-
-
-                tab3 = getSupportActionBar().newTab();
-                tab3.setText("Übermorgen");
-                tab3.setTabListener(this);
-                getSupportActionBar().addTab(tab3);
-
-
-                break;
-
-
-            case 2:
-
-                AlertDialog alertDialog = new AlertDialog.Builder(
-                        ResponsiveUIActivity.this).create();
-
-                // Setting Dialog Title
-                alertDialog.setTitle("HTWDD V3");
-
-                // Setting Dialog Message
-                alertDialog.setMessage("Die Entwicklung der HTWDD App wird nicht von der HTW Dresden finanziert und erfolgt komplett unentgeltlich in der Freizeit. Wenn Du die HTWDD App als nützlich empfindest, dann spende doch einen kleinen Betrag.");
-
-                // Setting Icon to Dialog
-                alertDialog.setIcon(R.drawable.ic_launcher);
-
-
-                alertDialog.setButton2("zurück", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        // User clicked OK button
-                    }
-                });
-                alertDialog.setButton("Spenden", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-
-
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VYWUBBQ6T6PT2"));
-                        startActivity(browserIntent);
-
-                    }
-                });
-
-
-                // Showing Alert Message
-                alertDialog.show();
-
-                break;
-
-            case 16:
-
-
+            case 15:
                 PackageManager manager = this.getPackageManager();
                 PackageInfo info = null;
                 try
@@ -651,76 +572,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         getSlidingMenu().showContent();
                     }
                 }, 50);
-				
-				
-				/*
-				
-				
-				AlertDialog alertDialog2 = new AlertDialog.Builder(
-                        ResponsiveUIActivity.this).create();
- 
-        // Setting Dialog Title
-        alertDialog2.setTitle("HTWDD V3");
- 
-        // Setting Dialog Message
-        alertDialog2.setMessage("Version 3.13\n\nEntwickelt von Mark Schramm.\nDies ist keine offizielle App der HTW Dresden, des Studentenforum Dresden e.V. oder des Studentenwerks Dresden.\n\nAlle Rechte liegen bei ihren jeweiligen Inhabern.\n\nZu keinem Zeitpunkt werden private Daten an Dritte übertragen.");
- 
-        // Setting Icon to Dialog
-        alertDialog2.setIcon(R.drawable.ic_launcher);
- 
-      
-        alertDialog2.setButton2("zurück", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
-            }
-        });
-        alertDialog2.setButton("Webseite", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-              
-            	
-            	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.Mark-Schramm.de"));
-            	startActivity(browserIntent);
-            	
-            }
-        });
-        
- 
-        // Showing Alert Message
-        alertDialog2.show();
-				
-				*/
                 break;
 
-
-            case 11:
-                getSupportActionBar().removeAllTabs();
-                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-                getSupportActionBar().setTitle("Mentoring");
-                tab = getSupportActionBar().newTab();
-                tab.setText("Mentoren");
-                tab.setTabListener(this);
-                getSupportActionBar().addTab(tab);
-
-                tab2 = getSupportActionBar().newTab();
-                tab2.setText("Aktuelles");
-                tab2.setTabListener(this);
-                getSupportActionBar().addTab(tab2);
-
-                tab3 = getSupportActionBar().newTab();
-                tab3.setText("Kontakt");
-                tab3.setTabListener(this);
-                getSupportActionBar().addTab(tab3);
-
-
-                break;
-
-
-            case 20:
-
-
-                AlertDialog alertDialog12 = new AlertDialog.Builder(
-                        ResponsiveUIActivity.this).create();
+            case 19:
+                AlertDialog alertDialog12 = new AlertDialog.Builder(ResponsiveUIActivity.this).create();
 
                 // Setting Dialog Title
                 alertDialog12.setTitle("Cache Löschen");
@@ -730,7 +585,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                 // Setting Icon to Dialog
                 alertDialog12.setIcon(R.drawable.ic_launcher);
-
 
                 alertDialog12.setButton2("zurück", new DialogInterface.OnClickListener()
                 {
@@ -743,25 +597,17 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
-
-
                         clearApplicationData();
                         ResponsiveUIActivity.this.finish();
-
                     }
                 });
 
-
                 // Showing Alert Message
                 alertDialog12.show();
-
-
                 break;
 
             default:
                 break;
-
-
         }
     }
 
@@ -817,7 +663,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft)
     {
-
         int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
         int nextweek = week + 1;
         nextweek %= 52;
@@ -828,13 +673,11 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //    	
         if (lastraum != null)
         {
-            if (tab.getText().toString().contains("aktuelle") && (mode == 7))
+            if (tab.getText().toString().contains("aktuelle") && (mode == 6))
                 mContent = new RaumplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), week, lastraum);
 
-            if (tab.getText().toString().contains("nächste") && (mode == 7))
+            if (tab.getText().toString().contains("nächste") && (mode == 6))
                 mContent = new RaumplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), nextweek, lastraum);
-
-
         }
         if (tab.getText().equals("Rückgabe"))
             mContent = new BiblioFragment();
@@ -859,7 +702,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         if (tab.getText().equals("Statistik"))
             mContent = new NotenStatsFragment(1);
 
-        if (tab.getText().equals("Pr�fungen"))
+        if (tab.getText().equals("Prüfungen"))
             mContent = new PrufungenFragment();
 
 
@@ -872,28 +715,28 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
             mContent = new MentoringFragment(2);
 
 
-        if (tab.getText().equals("Heute") && (mode == 8))
+        if (tab.getText().equals("Heute") && (mode == 7))
             mContent = new eXmaFragment(0);
 
-        if (tab.getText().equals("Morgen") && (mode == 8))
+        if (tab.getText().equals("Morgen") && (mode == 7))
             mContent = new eXmaFragment(1);
 
-        if (tab.getText().equals("�bermorgen") && (mode == 8))
+        if (tab.getText().equals("Übermorgen") && (mode == 7))
 
 
             mContent = new eXmaFragment(2);
 
-        if (tab.getText().toString().contains("aktuelle") && (mode == 4))
+        if (tab.getText().toString().contains("aktuelle") && (mode == 3))
             mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), week);
 
-        if (tab.getText().toString().contains("n�chste") && (mode == 4))
+        if (tab.getText().toString().contains("nächste") && (mode == 3))
             mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), nextweek);
 
 
-        if (tab.getText().equals("Heute") && (mode == 5))
+        if (tab.getText().equals("Heute") && (mode == 4))
             mContent = new MensaFragment(9);
 
-        if (tab.getText().equals("Woche") && (mode == 5))
+        if (tab.getText().equals("Woche") && (mode == 4))
             mContent = new MensaWocheFragment();
 
 
@@ -931,13 +774,13 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //    	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 //    	break;
 
-            case 4:
+            case 3:
                 menu.add(0, 98, 0, "Update")
                         .setIcon(R.drawable.ic_menu_refresh)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                 break;
 
-            case 6:
+            case 5:
                 menu.add(0, 91, 0, "Purge")
                         .setIcon(R.drawable.ic_menu_delete)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -945,8 +788,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 menu.add(0, 95, 0, "Update")
                         .setIcon(R.drawable.ic_menu_refresh)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-
                 break;
 
 //    	case 11 : menu.add(0, 98, 0, "Update")
@@ -964,14 +805,12 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //    	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 //    	break;
 
-
-            case 7:
+            case 6:
                 menu.add(0, 96, 0, "Purge")
                         .setIcon(R.drawable.ic_menu_delete)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-
-                menu.add(0, 97, 0, "Hinzuf�gen")
+                menu.add(0, 97, 0, "Hinzufügen")
                         .setIcon(R.drawable.ic_menu_add)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                 break;
@@ -981,19 +820,14 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 break;
         }
 
-
 //    	menu.add(0, 98, 0, "�ber")
 //     	.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-//    	
-//    	
-
 
         return true;
     }
 
     public void showRaum(String raum)
     {
-
         mContent = new BelegungsFragment(raum);
         getSupportFragmentManager()
                 .beginTransaction()
@@ -1007,12 +841,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSlidingMenu().showContent();
             }
         }, 50);
-
     }
 
     public void switchtoRoom(String raum)
     {
-
         lastraum = raum;
 
         int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
@@ -1032,14 +864,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         getSupportActionBar().addTab(tab);
 
         tab2 = getSupportActionBar().newTab();
-        tab2.setText("n�chste Woche (" + nextweek + ")");
+        tab2.setText("nächste Woche (" + nextweek + ")");
         tab2.setTabListener(this);
         getSupportActionBar().addTab(tab2);
 
-
-//		
-//		
-//    	
 //		mContent = new RaumplanFragment(	mContent.getView().getWidth(),	mContent.getView().getHeight(),week,raum);
 //		getSupportFragmentManager()
 //		.beginTransaction()
@@ -1051,9 +879,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //				getSlidingMenu().showContent();
 //			}
 //		}, 50);
-//		
-
+//
     }
-
-
 }
