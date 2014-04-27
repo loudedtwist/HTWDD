@@ -707,8 +707,8 @@ public class CardFragment extends Fragment
         worker4 w4 = new worker4();
         w4.execute();
 
-
-        worker3 w3 = new worker3();
+        // Lade aktuelle App-Nachrichten aus dem Web
+        NewsWorker w3 = new NewsWorker();
         w3.execute();
 
     }
@@ -719,7 +719,7 @@ public class CardFragment extends Fragment
         @Override
         protected String[] doInBackground(Calendar... params)
         {
-//http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9
+
             HTTPDownloader downloader = new HTTPDownloader("http://htwdd-app.de/news.txt");
 
             String result = downloader.getString();
@@ -781,12 +781,12 @@ public class CardFragment extends Fragment
     }
 
 
-    private class worker3 extends AsyncTask<Calendar, Void, News[]>
+    private class NewsWorker extends AsyncTask<Calendar, Void, News[]>
     {
         @Override
         protected News[] doInBackground(Calendar... params)
         {
-            HTTPDownloader downloader = new HTTPDownloader("http://htwdd-app.de/aktuell/htwaktuell.php");
+            HTTPDownloader downloader = new HTTPDownloader("http://www2.htw-dresden.de/~s71513/HTWDD/news");
 
             String result = downloader.getString();
 
@@ -803,7 +803,7 @@ public class CardFragment extends Fragment
                 news[i].id = Integer.parseInt(items2[0]);
                 news[i].author = items2[6];
 
-                HTTPDownloader imageloader = new HTTPDownloader("http://htwdd-app.de/aktuell/images/" + items2[3]);
+                HTTPDownloader imageloader = new HTTPDownloader("http://www2.htw-dresden.de/~s71513/HTWDD/images/" + items2[3]);
 
                 news[i].bitmap = imageloader.getNormalBitmap();
 
@@ -1065,9 +1065,6 @@ public class CardFragment extends Fragment
                 {
                 }
             }
-
-            //	worker2 w2=new worker2();
-            //	w2.execute();
         }
     }
 }
