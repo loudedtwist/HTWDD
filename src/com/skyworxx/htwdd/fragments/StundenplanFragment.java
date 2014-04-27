@@ -1,6 +1,5 @@
 package com.skyworxx.htwdd.fragments;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,16 +31,12 @@ import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import android.util.Log; /*import log class*/
 
 public class StundenplanFragment extends Fragment
 {
     public int fragmentwidth, fragmentheight;
     public int week_id;
     public ProgressBar progressbar;
-
-    // DEBUG
-    private static final String TAG = "Stundenplan";
 
     public StundenplanFragment(int fragmentwidth, int fragmentheight, int i)
     {
@@ -92,12 +87,7 @@ public class StundenplanFragment extends Fragment
 
     public void showweek(int week)
     {
-
-        Log.i(TAG, "Woche:" + week);
-
-
         final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());
-
 
         List<Type_Stunde> list = db.getAllStunden();
         if (list.size() == 0)
@@ -109,7 +99,6 @@ public class StundenplanFragment extends Fragment
         {
             getView().findViewById(R.id.grid).setVisibility(View.GONE);
             getView().findViewById(R.id.waitIndicator).setVisibility(View.GONE);
-
 
             //	 final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());
             final SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -159,8 +148,6 @@ public class StundenplanFragment extends Fragment
                     }
                 });
                 alertDialog2.show();
-
-
             }
             else
             {
@@ -236,11 +223,8 @@ public class StundenplanFragment extends Fragment
 		    	final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());             
 	    		final SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());       		 
 	    		worker w = new worker();
-	    		w.execute(db, app_preferences);      
-	        	
-	        	
+	    		w.execute(db, app_preferences);
 	        }*/
-
     }
 
 
@@ -263,7 +247,6 @@ public class StundenplanFragment extends Fragment
 //							+ URLEncoder.encode(
 //									app_preferences.getString("matnr", "0"),
 //									"UTF-8");
-
 
                 String data = URLEncoder.encode("imm", "UTF-8")
                         + "="
@@ -309,7 +292,6 @@ public class StundenplanFragment extends Fragment
 
             if (line2.length() > 100)
             {
-
                 onProgressUpdate(50);
 
                 List<Type_Stunde> stunden = db.getAllStunden();
@@ -350,7 +332,6 @@ public class StundenplanFragment extends Fragment
                 onProgressUpdate(70);
             }
 
-
             //
             // String tokens2[] =
             // line2.split("Nur die Pflichtfächer und die mit Häkchen");
@@ -361,7 +342,6 @@ public class StundenplanFragment extends Fragment
 
             progress = 70;
             float maxprogressperslot = 30 / zeiten.length;
-
 
             for (int i = 0; i < zeiten.length; i++)
             {
@@ -401,13 +381,10 @@ public class StundenplanFragment extends Fragment
                             else
                                 ktyp = "Übung";
 
-
                             kname2 = kname.substring(0, kname.indexOf(" "));
-
 
                             kraum = kname.substring(kname.indexOf("<br>") + 4,
                                     kname.indexOf(" - "));
-
 
                             if (i < 51)
                                 Woche = 1;
@@ -437,7 +414,6 @@ public class StundenplanFragment extends Fragment
                                 Stunde = 6;
                             if ((i > 44 && i <= 50) || (i > 92 && i <= 97))
                                 Stunde = 7;
-
 
                             if ((i == 9) || (i == 15) || (i == 21) || (i == 27)
                                     || (i == 33) || (i == 39) || (i == 45)
@@ -495,7 +471,6 @@ public class StundenplanFragment extends Fragment
                 }
             }
 
-
             return resultstring;
         }
 
@@ -508,36 +483,25 @@ public class StundenplanFragment extends Fragment
         @Override
         protected void onPostExecute(String result)
         {
-
-
             if (result.equals("success"))
             {
                 Toast.makeText(getActivity(),
                         "Stundenplan neu eingelesen!", Toast.LENGTH_LONG)
                         .show();
-
-
             }
             else
             {
                 Toast.makeText(getActivity(),
                         "Aktualisieres des Stundenplans fehlgeschlagen.", Toast.LENGTH_LONG)
                         .show();
-
-
             }
-
 
             ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
             ra.switchContent(new Fragment(), 3);
 
-
             int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
 
-
             showweek(week);
-
-
         }
     }
 
@@ -589,7 +553,6 @@ public class StundenplanFragment extends Fragment
                 // wr.close();
                 rd.close();
 
-
                 String tokens[] = line2.split("Stundenplan");
                 line2 = tokens[2];
 
@@ -600,7 +563,6 @@ public class StundenplanFragment extends Fragment
 
             if (line2.length() > 100)
             {
-
                 onProgressUpdate(50);
 
                 List<Type_Stunde> stunden = db.getAllStunden();
@@ -641,7 +603,6 @@ public class StundenplanFragment extends Fragment
 
                 }
                 onProgressUpdate(70);
-
             }
 
 
@@ -674,8 +635,6 @@ public class StundenplanFragment extends Fragment
                     kname = zeiten[i].substring(10);
                     if (kname.length() > 0 && !kname.contains("Gremien"))
                     {
-
-
                         String ktyp = "";
                         int Stunde = 0;
                         String kname2 = "";
@@ -698,7 +657,6 @@ public class StundenplanFragment extends Fragment
 
                             kname2 = kname.substring(0, kname.indexOf(" "));
 
-
                             kraum = kname.substring(kname.indexOf("<br>") + 4,
                                     kname.indexOf(" - "));
 
@@ -712,11 +670,8 @@ public class StundenplanFragment extends Fragment
                             resultstring = "Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten können durch Antippen angepasst werden.";
 
                         }
-                        ;
                         try
                         {
-
-
                             if ((i > 8 && i < 14) || (i > 56 && i < 62))
                                 Stunde = 1;
                             if ((i > 14 && i < 20) || (i > 62 && i < 68))
@@ -784,12 +739,10 @@ public class StundenplanFragment extends Fragment
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
 
                         }
-                        ;
+
                     }
                 }
             }
-
-
             return resultstring;
         }
 
@@ -802,8 +755,6 @@ public class StundenplanFragment extends Fragment
         @Override
         protected void onPostExecute(String result)
         {
-
-
             if (result.equals("success"))
             {
                 Toast.makeText(getActivity(),
@@ -821,12 +772,9 @@ public class StundenplanFragment extends Fragment
             ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
             ra.switchContent(new Fragment(), 3);
 
-
             int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
-
 
             showweek(week);
         }
     }
-
 }
