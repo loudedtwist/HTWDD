@@ -217,8 +217,6 @@ public class BelegungsFragment extends Fragment
 
             if (line2.length() > 100)
             {
-
-
                 List<Type_Stunde> stunden = db.getAllStunden();
 
 //						for (Type_Stunde cn : stunden) {
@@ -235,7 +233,6 @@ public class BelegungsFragment extends Fragment
 
                 for (int w = 1; w <= 2; w++)
                 {
-
                     for (int i = 1; i <= 7; i++)
                     {
                         Log.d("Deleting: ", "empty");
@@ -245,7 +242,6 @@ public class BelegungsFragment extends Fragment
                         db.addContact(new Type_Stunde(w, "Donnerstag", i, "(leer)", "",
                                 ""));
                         db.addContact(new Type_Stunde(w, "Freitag", i, "(leer)", "", ""));
-
                     }
                 }
             }
@@ -261,7 +257,6 @@ public class BelegungsFragment extends Fragment
 
             for (int i = 0; i < zeiten.length; i++)
             {
-
                 if ((i > 8) && (i != 14) && (i != 20) && (i != 26)
                         && (i != 32) && (i != 38) && (i != 44) && (i != 50)
                         && (i != 51) && (i != 52) && (i != 53) && (i != 54)
@@ -306,7 +301,6 @@ public class BelegungsFragment extends Fragment
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
-
                         }
 
                         try
@@ -325,7 +319,6 @@ public class BelegungsFragment extends Fragment
                                 Stunde = 6;
                             if ((i > 44 && i <= 50) || (i > 92 && i <= 97))
                                 Stunde = 7;
-
 
                             if ((i == 9) || (i == 15) || (i == 21) || (i == 27)
                                     || (i == 33) || (i == 39) || (i == 45)
@@ -359,15 +352,7 @@ public class BelegungsFragment extends Fragment
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
                         }
 
-                        // System.out.println(Integer.toString(i));
-                        //
-                        // System.out.println(Integer.toString(Woche));
-                        // System.out.println(Integer.toString(Stunde));
-                        // System.out.println(kname2 );
-                        // System.out.println(ktyp );
-                        // System.out.println(kraum);
-                        // System.out.println("");
-                        Log.d("Insert: ", "Inserting " + kname2 + " " + Woche + " " + Tag + " " + Stunde);
+//                        Log.d("Insert: ", "Inserting " + kname2 + " " + Woche + " " + Tag + " " + Stunde);
 //									db.addContact(new Type_Stunde(Woche, Tag, Stunde,
 //											kname2, ktyp, kraum));
                         db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde, kname2, ktyp, kraum));
@@ -386,13 +371,13 @@ public class BelegungsFragment extends Fragment
                 if (result.equals("success"))
                 {
                     Toast.makeText(getActivity(),
-                            "Stundenplan neu eingelesen!", Toast.LENGTH_LONG)
+                            "Belegungsplan neu eingelesen!", Toast.LENGTH_LONG)
                             .show();
                 }
                 else
                 {
                     Toast.makeText(getActivity(),
-                            "Aktualisieres des Stundenplans nicht möglich.", Toast.LENGTH_LONG)
+                            "Aktualisieres des Belegungsplans nicht möglich.", Toast.LENGTH_LONG)
                             .show();
                 }
 
