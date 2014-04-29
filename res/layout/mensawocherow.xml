@@ -7,8 +7,6 @@
     android:paddingTop="20dp" 
     android:paddingRight="@dimen/sidemargin" >
 
-    <!-- Screen Design for Photos -->
-
     <LinearLayout
         android:id="@+id/menurow"
         style="@style/nowCardStyle"
@@ -26,7 +24,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="I-320 Programmierung III"
+            android:text="Essen"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -36,9 +34,8 @@
             android:paddingRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Small Text"
+            android:text="Beschreibung und Preis"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-
     </LinearLayout>
 
 </LinearLayout>

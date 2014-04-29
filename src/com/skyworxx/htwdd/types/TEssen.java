@@ -23,22 +23,6 @@ public class TEssen
     // Empty constructor
     public TEssen()
     {
-
-    }
-
-    public TEssen(int id, String tag, int woche, String title, String preis, String sonst, Bitmap bild, String bildset, int count, int rating)
-    {
-        this._id = id;
-        this._tag = tag;
-        this._woche = woche;
-        this._title = title;
-        this._preis = preis;
-        this._sonst = sonst;
-        this._bild = bild;
-        this._bildset = bildset;
-        this._pro = rating;
-        this._contra = count;
-
     }
 
     public TEssen(int id, String tag, int woche, String title, String preis, String sonst, Bitmap bild, String bildset)
@@ -51,8 +35,6 @@ public class TEssen
         this._sonst = sonst;
         this._bild = bild;
         this._bildset = bildset;
-
-
     }
 
     public TEssen(String tag, int woche, String title, String preis, String sonst, Bitmap bild, String bildset)
@@ -64,7 +46,6 @@ public class TEssen
         this._sonst = sonst;
         this._bild = bild;
         this._bildset = bildset;
-
     }
 
     public int getID()
@@ -76,7 +57,6 @@ public class TEssen
     {
         this._id = id;
     }
-
 
     public String getTag()
     {
@@ -97,7 +77,6 @@ public class TEssen
     {
         this._woche = woche;
     }
-
 
     public String getTitle()
     {
@@ -131,7 +110,6 @@ public class TEssen
         this._sonst = sonst;
     }
 
-
     // getting name
     public Bitmap getBild()
     {
@@ -143,7 +121,6 @@ public class TEssen
     {
         this._bild = bild;
     }
-
 
     public String getBildset()
     {
