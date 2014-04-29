@@ -9,22 +9,21 @@ buildscript {
 apply plugin: 'android'
 
 repositories {
-	mavenCentral()
-    maven { url "http://jzaccone.github.io/SlidingMenu-aar" }
+    mavenCentral()
+    maven { url 'http://jzaccone.github.io/SlidingMenu-aar' }
 }
 
 dependencies {
     //compile 'com.google.android.gms:play-services:3.1.36'
     compile 'com.google.android.gms:play-services:4.3.23'
-	compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
-	compile 'com.android.support:support-v4:19.1.+'
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile 'com.android.support:support-v4:19.1.+'
     compile project(':library')
 }
 
 android {
     compileSdkVersion 14
-    buildToolsVersion "19.0.3"
-
+    buildToolsVersion '19.0.3'
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 17
@@ -41,5 +40,13 @@ android {
         }
 
         instrumentTest.setRoot('tests')
+    }
+    buildTypes {
+        buildType1 {
+            debuggable false
+            jniDebugBuild false
+            packageNameSuffix 'HTWDD'
+            versionNameSuffix '3.52'
+        }
     }
 }
