@@ -1,8 +1,6 @@
 package com.skyworxx.htwdd.fragments;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -46,8 +44,6 @@ import java.util.Locale;
 
 public class CardFragment extends Fragment
 {
-
-
     public CardFragment()
     {
     }
@@ -469,17 +465,12 @@ public class CardFragment extends Fragment
 				
 			}*/
 
-
         Button button;
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= 14)
         {
-            //?android:attr/borderlessButtonStyle
-
             button = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
             button.setTextColor(Color.parseColor("#33B5E5"));
-
         }
         else
             button = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
@@ -510,12 +501,8 @@ public class CardFragment extends Fragment
         int currentapiVersion2 = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion2 >= 14)
         {
-            //?android:attr/borderlessButtonStyle
-
             button2 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
             button2.setTextColor(Color.parseColor("#33B5E5"));
-
         }
         else
             button2 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
@@ -546,12 +533,8 @@ public class CardFragment extends Fragment
 
         if (currentapiVersion >= 14)
         {
-            //?android:attr/borderlessButtonStyle
-
             button3 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
             button3.setTextColor(Color.parseColor("#33B5E5"));
-
         }
         else
             button3 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
@@ -580,12 +563,8 @@ public class CardFragment extends Fragment
 
         if (currentapiVersion >= 14)
         {
-            //?android:attr/borderlessButtonStyle
-
             button4 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
             button4.setTextColor(Color.parseColor("#33B5E5"));
-
         }
         else
             button4 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
@@ -617,12 +596,8 @@ public class CardFragment extends Fragment
 
         if (currentapiVersion >= 14)
         {
-            //?android:attr/borderlessButtonStyle
-
             button5 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
             button5.setTextColor(Color.parseColor("#33B5E5"));
-
         }
         else
             button5 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
@@ -828,7 +803,8 @@ public class CardFragment extends Fragment
             {
             }
 
-            worker w1 = new worker();
+            // Lade Mensa
+            MensaWorker w1 = new MensaWorker();
             w1.execute();
         }
     }
@@ -908,11 +884,13 @@ public class CardFragment extends Fragment
     }
 
 
-    private class worker extends AsyncTask<Calendar, Void, TEssen[]>
+    private class MensaWorker extends AsyncTask<Calendar, Void, TEssen[]>
     {
         @Override
         protected TEssen[] doInBackground(Calendar... params)
         {
+            int index;
+
             HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9");
 
             String result = downloader.getString();
@@ -927,13 +905,18 @@ public class CardFragment extends Fragment
                     essen[i] = new TEssen();
                     try
                     {
-                        essen[i].setTitle(tokens[i + 2].substring(0, tokens[i + 2].indexOf("(")));
+                        // Bestimme Index wo Titel endet (ohne Preis)
+                        index = tokens[i + 2].indexOf("(");
+                        if(index == -1)
+                            index = tokens[i + 2].indexOf("</title>");
+
+                        // Extrahiere die benötigten Informationen
+                        essen[i].setTitle(tokens[i + 2].substring(0, index));
                         essen[i].setSonst(tokens[i + 2].substring(tokens[i + 2].indexOf("<description>") + 13, tokens[i + 2].indexOf("</description>")));
                         essen[i].setID(Integer.parseInt(tokens[i + 2].substring(tokens[i + 2].indexOf("details-") + 8, tokens[i + 2].indexOf(".html"))));
                     } catch (Exception e)
                     {
-                        essen[i].setTitle("Heute kein Angebot");
-
+                        essen[i].setTitle("Fehler im Parser");
                     }
                 }
                 return essen;
@@ -960,10 +943,6 @@ public class CardFragment extends Fragment
                     essen[0].setTitle("Kein Angebot an diesem Tag.\n\n");
                 }
 
-//		ListView l= (ListView) getView().findViewById(R.id.listView1);
-//		l.setVisibility(View.VISIBLE);
-//		l.setDividerHeight(0);
-
                 String titles[] = new String[essen.length];
 
                 String mensa = "";
@@ -975,16 +954,12 @@ public class CardFragment extends Fragment
                     else
                         mensa += (essen[i].getTitle());
                 }
-                //titles[i]=essen[i].getTitle();
 
                 TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
                 mensatext.setText(mensa);
                 if (mensa.contains("UnkownHost"))
                     mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
 
-
-//			SmallMensaArrayAdapter colorAdapter = new SmallMensaArrayAdapter(getActivity(),titles, essen);
-//			l.setAdapter(colorAdapter);
             } catch (Exception e)
             {
                 try
