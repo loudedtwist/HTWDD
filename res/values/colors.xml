@@ -5,29 +5,24 @@
     <color name="blue">#009</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
-         <color name="bgcolor">#222222</color>
-        <color name="dividercolor">#1e1e1e</color>
-     <color name="menucolor">#303030</color>
-    
-      <color name="appbg">#e5e5e5</color>
-         <color name="bg">#11000000</color>
-      <color name="holo_blue">#00ddff</color>
-         <color name="holo_magenta">#ff00fF</color>
-            <color name="holo_green">#7eff00</color>
-               <color name="holo_orange">#ffae00</color>
-               
-         <color name="faded_blue">#66ccdd</color>
-         <color name="faded_magenta">#f56545</color>
-         <color name="faded_yellow">#eeee22</color>
-         <color name="faded_grey">#b5c5c5</color>
-         <color name="faded_turquois">#77ddbb</color>
-         <color name="faded_green">#bbe535</color>
-         <color name="faded_orange">#ffbb22</color>
-         
-  <color name="maintextcolor">#434343</color>
-   <color name="maintextcolor2">#33B5E5</color>
-   <color name="maintextcolor3">#00a0c8</color>
-   
-          <color name="popuptextcolor">#1f1f1f</color>
-     
+    <color name="bgcolor">#222222</color>
+    <color name="dividercolor">#1e1e1e</color>
+    <color name="menucolor">#303030</color>
+    <color name="appbg">#e5e5e5</color>
+    <color name="bg">#11000000</color>
+    <color name="holo_blue">#00ddff</color>
+    <color name="holo_magenta">#ff00fF</color>
+    <color name="holo_green">#7eff00</color>
+    <color name="holo_orange">#ffae00</color>
+    <color name="faded_blue">#66ccdd</color>
+    <color name="faded_magenta">#f56545</color>
+    <color name="faded_yellow">#eeee22</color>
+    <color name="faded_grey">#b5c5c5</color>
+    <color name="faded_turquois">#77ddbb</color>
+    <color name="faded_green">#bbe535</color>
+    <color name="faded_orange">#ffbb22</color>
+    <color name="maintextcolor">#434343</color>
+    <color name="maintextcolor2">#33B5E5</color>
+    <color name="maintextcolor3">#00a0c8</color>
+    <color name="popuptextcolor">#1f1f1f</color>
 </resources>

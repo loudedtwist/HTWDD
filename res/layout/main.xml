@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-     >
+    android:fillViewport="false">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -215,22 +214,16 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/stundenplan"
+            style="@style/nowCardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="@dimen/sidemargin"
-            android:layout_marginRight="@dimen/sidemargin"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/stundenplan"
-                style="@style/nowCardStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="@dimen/sidemargin"
+            android:layout_marginLeft="@dimen/sidemargin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -263,14 +256,7 @@
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:paddingTop="0dp" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-                    </LinearLayout>
+                    android:paddingTop="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -400,31 +386,28 @@
                     android:layout_weight="0"
                     android:background="@color/appbg" />
             </LinearLayout>
-        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/aktuellbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/sidemargin"
+            android:layout_marginRight="@dimen/sidemargin"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/aktuellbox"
+                android:id="@+id/htwaktuell"
+                style="@style/nowCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="@dimen/sidemargin"
-                android:layout_marginRight="@dimen/sidemargin"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-               >
-        
-        <LinearLayout
-        android:id="@+id/htwaktuell"
-        style="@style/nowCardStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-      
-        android:minHeight="100dp"
-        android:orientation="vertical" >
+                android:layout_gravity="top|center_horizontal"
+                android:minHeight="100dp"
+                android:orientation="vertical" >
 
-           <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -443,41 +426,39 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="30sp" />
-
                 </LinearLayout>
 
-       <com.skyworxx.htwdd.AspectRatioImageView
-           android:id="@+id/aktuellimage"
-           android:layout_width="fill_parent"
-           android:layout_height="fill_parent"
-           android:layout_gravity="center_vertical"
-           android:src="@drawable/abs__ab_bottom_solid_dark_holo"
-           android:visibility="gone" />
+                <com.skyworxx.htwdd.AspectRatioImageView
+                    android:id="@+id/aktuellimage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/abs__ab_bottom_solid_dark_holo"
+                    android:visibility="gone" />
 
-        <TextView
-             android:visibility="gone" 
-            android:id="@+id/aktuelltitel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="I-320 Programmierung III"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                     android:visibility="gone"
+                    android:id="@+id/aktuelltitel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="I-320 Programmierung III"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/aktuelldesc"
-               android:paddingBottom="10dp"
-           android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nachrichten werden geladen"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+                <TextView
+                    android:id="@+id/aktuelldesc"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nachrichten werden geladen"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        
-         <View
+                <View
                     android:id="@+id/horizontal_divider_login"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -485,28 +466,22 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0"
                     android:background="@color/appbg" />
-    </LinearLayout>
+            </LinearLayout>
        </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/mensalayout"
+            style="@style/nowCardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:layout_marginLeft="@dimen/sidemargin"
             android:layout_marginRight="@dimen/sidemargin"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical" >
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
-                android:id="@+id/mensalayout"
-                style="@style/nowCardStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                 
@@ -514,7 +489,7 @@
                     android:orientation="vertical"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"  >
+                    android:paddingTop="10dp">
 
                     <TextView
                         android:id="@+id/textView2"
@@ -526,7 +501,7 @@
                         android:textSize="30sp" />
                 </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -548,20 +523,14 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                
-                <View
-                      android:id="@+id/View03"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0"
-                    android:background="@color/appbg" />
-                
-              
-
-            </LinearLayout>
-
+            <View
+                android:id="@+id/View03"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0"
+                android:background="@color/appbg" />
         </LinearLayout>
 
         <LinearLayout
@@ -852,7 +821,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
-   
-    
 </ScrollView>
