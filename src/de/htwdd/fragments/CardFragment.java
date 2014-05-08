@@ -703,7 +703,7 @@ public class CardFragment extends Fragment
         @Override
         protected News[] doInBackground(Calendar... params)
         {
-            HTTPDownloader downloader = new HTTPDownloader("http://www2.htw-dresden.de/~s71513/HTWDD/news");
+            HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news");
 
             String result = downloader.getString();
 
@@ -720,7 +720,7 @@ public class CardFragment extends Fragment
                 news[i].id = Integer.parseInt(items2[0]);
                 news[i].author = items2[6];
 
-                HTTPDownloader imageloader = new HTTPDownloader("http://www2.htw-dresden.de/~s71513/HTWDD/images/" + items2[3]);
+                HTTPDownloader imageloader = new HTTPDownloader("https://htwdd.github.io/images/" + items2[3]);
 
                 news[i].bitmap = imageloader.getNormalBitmap();
 
@@ -817,7 +817,7 @@ public class CardFragment extends Fragment
         {
             try
             {
-                HTTPDownloader downloader = new HTTPDownloader("http://www2.htw-dresden.de/~s71513/HTWDD/currentversion");
+                HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/currentversion");
 
                 String result = downloader.getString();
 
@@ -869,7 +869,7 @@ public class CardFragment extends Fragment
                         ButtonUpdate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View arg0) {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www2.htw-dresden.de/~s71513/HTWDD/HTWDD_latest.apk"));
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD_latest.apk"));
                                 startActivity(browserIntent);
                             }
                         });
