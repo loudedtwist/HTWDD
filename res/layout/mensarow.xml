@@ -18,7 +18,7 @@
         android:minHeight="100dp"
         android:orientation="vertical" >
 
-       <com.skyworxx.htwdd.AspectRatioImageView
+       <de.htwdd.AspectRatioImageView
            android:layout_width="fill_parent"
            android:layout_height="fill_parent"
            android:layout_gravity="center_vertical"

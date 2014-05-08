@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.skyworxx.htwdd"
+    package="de.htwdd"
     android:versionCode="3520"
     android:versionName="3.52" >
     
@@ -17,7 +17,7 @@
         android:theme="@style/ExampleTheme" >        
 
         <activity
-            android:name=".fragments.ResponsiveUIActivity"
+            android:name="de.htwdd.fragments.ResponsiveUIActivity"
             android:configChanges="orientation|screenSize|screenLayout"
             android:theme="@style/ExampleTheme" >
             <intent-filter>
@@ -36,73 +36,73 @@
         <activity android:name=".SlidingTitleBar" />
         <activity android:name=".SlidingContent" />
         <activity android:name=".ViewPagerActivity" />
-        <activity android:name=".fragments.FragmentChangeActivity" />            
+        <activity android:name="de.htwdd.fragments.FragmentChangeActivity" />
         <activity
-            android:name=".Wizard1"
+            android:name="de.htwdd.Wizard1"
             android:label="HTWDD"
 			android:theme="@style/ExampleTheme">       
         </activity>        
         <activity
-            android:name=".Wizard6"
+            android:name="de.htwdd.Wizard6"
             android:label="HTWDD"
 			android:theme="@style/ExampleTheme">       
         </activity>        
 		<activity
 			android:windowSoftInputMode="adjustPan"          
-            android:name=".Wizard2"
+            android:name="de.htwdd.Wizard2"
             android:label="HTWDD"
 			android:theme="@style/ExampleTheme">                
         </activity>        
         <activity
-            android:name=".Wizard3"
+            android:name="de.htwdd.Wizard3"
             android:label="HTWDD"
             android:theme="@style/ExampleTheme">      
         </activity>        
         <activity
-            android:name=".Wizard4"
+            android:name="de.htwdd.Wizard4"
             android:windowSoftInputMode="adjustPan"
 			android:theme="@style/ExampleTheme"         
             android:label="HTWDD">
         </activity>        
         <activity
 			android:windowSoftInputMode="adjustPan"            
-            android:name=".Wizard5"
+            android:name="de.htwdd.Wizard5"
             android:label="HTWDD"     
 			android:theme="@style/ExampleTheme">         
         </activity>
 		<activity
-            android:name=".TerminAnfragePopup"
+            android:name="de.htwdd.TerminAnfragePopup"
             android:label="Termin anfragen"           
             android:theme="@style/ExampleTheme">       
         </activity>       
         <activity
-            android:name=".EventPopup"
+            android:name="de.htwdd.EventPopup"
             android:label="eXma Amt"
             android:hardwareAccelerated="false"
             android:theme="@style/ExampleTheme">       
         </activity>        
         <activity
-            android:name=".EditTimetable"
+            android:name="de.htwdd.EditTimetable"
             android:label="Stunde Bearbeiten"
             android:theme="@android:style/Theme.Panel">       
         </activity>           
         <activity
-            android:name=".datepicker"
+            android:name="de.htwdd.datepicker"
             android:label="Termin wählen"
             android:theme="@style/ExampleTheme">       
         </activity>          
         <activity
-            android:name=".Preference"
+            android:name="de.htwdd.Preference"
             android:label="Einstellungen"
             android:theme="@style/ExampleTheme">       
         </activity>
         <activity
-            android:name=".fragments.BirdActivity"
+            android:name="de.htwdd.fragments.BirdActivity"
             android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
         <activity android:name="com.crittercism.NotificationActivity"/>
         
-		<service android:name=".UpdateTimetableSmallWidgetService"></service>                      
-        <receiver android:name=".WidgetTimetableSmallProvider"    
+		<service android:name="de.htwdd.UpdateTimetableSmallWidgetService"></service>
+        <receiver android:name="de.htwdd.WidgetTimetableSmallProvider"
 			android:label="HTWDD Stundenübersicht">
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -112,8 +112,8 @@
                 android:resource="@xml/widget_vorschau" />
         </receiver>        
         
-		<service android:name=".UpdateMensaWidgetService"></service>                
-        <receiver android:name=".WidgetMensaProvider"    
+		<service android:name="de.htwdd.UpdateMensaWidgetService"></service>
+        <receiver android:name="de.htwdd.WidgetMensaProvider"
 			android:label="HTWDD Mensa 4x">
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -123,8 +123,8 @@
                 android:resource="@xml/widget_info2" />
         </receiver>
 		
-		<service android:name=".UpdateMensaWidgetService2"></service>                
-        <receiver android:name=".WidgetMensaProvider2"    
+		<service android:name="de.htwdd.UpdateMensaWidgetService2"></service>
+        <receiver android:name="de.htwdd.WidgetMensaProvider2"
 			android:label="HTWDD Mensa 6x">
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

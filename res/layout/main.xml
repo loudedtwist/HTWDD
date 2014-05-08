@@ -428,7 +428,7 @@
                         android:textSize="30sp" />
                 </LinearLayout>
 
-                <com.skyworxx.htwdd.AspectRatioImageView
+                <de.htwdd.AspectRatioImageView
                     android:id="@+id/aktuellimage"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"

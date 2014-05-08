@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true" >
 
-    <com.skyworxx.htwdd.fragments.NowLayout
+    <de.htwdd.fragments.NowLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#e3e3e3"
@@ -49,6 +49,6 @@
             android:layout_height="wrap_content"
             android:text="5"
             tools:context=".MainActivity" />
-    </com.skyworxx.htwdd.fragments.NowLayout>
+    </de.htwdd.fragments.NowLayout>
 
 </ScrollView>

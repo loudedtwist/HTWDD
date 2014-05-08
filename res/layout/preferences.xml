@@ -16,89 +16,80 @@
 
 <!-- This is a primitive example showing the different types of preferences available. -->
 <PreferenceScreen
-   
-        xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
    
     <PreferenceCategory
-            android:title="Assistent">
-             
-           <Preference
-    android:title="Assistenten starten">
+        android:title="Assistent">
 
-    <intent 
-        android:action="android.intent.action.VIEW"
-        android:targetPackage="com.skyworxx.htwdd"
-        android:targetClass="com.skyworxx.htwdd.Wizard1"
-    />
+        <Preference
+            android:title="Assistenten starten">
 
-</Preference>
-
-              
-              
-      </PreferenceCategory>   
-        
-    <PreferenceCategory
-            android:title="Einstellungen">
-           
-       
-            
-          <EditTextPreference android:title="Matrikelnummer"
-                      android:key="matnr"
-                      android:summary="z.B. 30123"></EditTextPreference>
-          
-                <EditTextPreference android:title="HISQIS Passwort"
-                      android:key="pw"
-                      android:inputType="textPassword"
-                      android:summary="i.d.R. Geburtstag: (t)tmmjj, z.B. 10185"></EditTextPreference>
-                
-                     
-                       
-                             <ListPreference     android:title="Abschluss"
-                      android:summary=""
-                      android:key="abschluss"
-                      android:defaultValue="1"
-                      android:entries="@array/abschluss_list"
-                      android:entryValues="@array/abschluss_values" />
-                             
-                               <EditTextPreference android:title="Jahrgang"
-                      android:key="im"
-                      android:summary="z.B. 11, 10, 09, etc"></EditTextPreference>
-                             
-                            <EditTextPreference android:title="Studiengang"
-                      android:key="stdg"
-                      android:summary="z.B. 043"></EditTextPreference>    
-                             
-                                 <EditTextPreference android:title="Studiengruppe"
-                      android:key="studgruppe"
-                      android:summary="z.B. 01, Kfz, 61, etc"></EditTextPreference>
-                                 
-                                 
-                     <EditTextPreference android:title="Kennung (nur für Hochschullehrer)"
-                      android:key="prof_kennung"
-                      android:summary="für Stundenplan"></EditTextPreference>
-                     
-                     
-                       <EditTextPreference android:title="Name (nur für Hochschullehrer)"
-                      android:key="prof_name"
-                      android:summary="z.B. Bar oder M. M - für Prüfungen"></EditTextPreference>
-                             
-                              
-                                 
-                                      <EditTextPreference android:title="Bibliotheksnummer"
-                      android:key="bib"
-                      android:summary="ohne führendes S, z.B. 63111"></EditTextPreference>
-                                      
-                                      
-                                      <EditTextPreference android:title="Bibliothekspasswort"
-                      android:key="bibpw"
-                      android:inputType="textPassword"
-                      android:summary="i.d.R. Geburtstag: ttmmjj, z.B. 010185"></EditTextPreference>
-
-  
-
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="de.htwdd"
+                android:targetClass="de.htwdd.Wizard1"
+            />
+        </Preference>
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="Einstellungen">
 
-
+        <EditTextPreference android:title="Matrikelnummer"
+            android:key="matnr"
+            android:summary="z.B. 30123"
+        />
+        <EditTextPreference android:title="HISQIS Passwort"
+            android:key="pw"
+            android:inputType="textPassword"
+            android:summary="i.d.R. Geburtstag: (t)tmmjj, z.B. 10185"
+        />
+        <ListPreference
+            android:title="Abschluss"
+            android:summary=""
+            android:key="abschluss"
+            android:defaultValue="1"
+            android:entries="@array/abschluss_list"
+            android:entryValues="@array/abschluss_values"
+        />
+        <EditTextPreference
+            android:title="Jahrgang"
+            android:key="im"
+            android:summary="z.B. 11, 10, 09, etc"
+        />
+        <EditTextPreference
+            android:title="Studiengang"
+            android:key="stdg"
+            android:summary="z.B. 043"
+        />
+        <EditTextPreference
+            android:title="Studiengruppe"
+            android:key="studgruppe"
+            android:summary="z.B. 01, Kfz, 61, etc"
+        />
+        <EditTextPreference
+            android:title="Kennung (nur für Hochschullehrer)"
+            android:key="prof_kennung"
+            android:summary="für Stundenplan"
+        />
+        <EditTextPreference
+            android:title="Name (nur für Hochschullehrer)"
+            android:key="prof_name"
+            android:summary="z.B. Bar oder M. M - für Prüfungen"
+        />
+        <EditTextPreference
+            android:title="Bibliotheksnummer"
+            android:key="bib"
+            android:summary="ohne führendes S, z.B. 63111"
+        />
+        <EditTextPreference
+            android:title="Bibliothekspasswort"
+            android:key="bibpw"
+            android:inputType="textPassword"
+            android:summary="i.d.R. Geburtstag: ttmmjj, z.B. 010185"
+        />
+    </PreferenceCategory>
 </PreferenceScreen>
