@@ -33,14 +33,13 @@ public class HTTPDownloader
     public HTTPDownloader(String urlstring)
     {
         this.urlstring = urlstring;
-
     }
 
 
     public String getString()
     {
-
         String line, line2 = "";
+        int rnd = new Random().nextInt(agents.length);
 
         URL url;
         try
@@ -49,20 +48,15 @@ public class HTTPDownloader
 
             URLConnection conn = url.openConnection();
             conn.addRequestProperty("Referer", urlstring);
-            int rnd = new Random().nextInt(agents.length);
             conn.addRequestProperty("User-Agent", agents[rnd]);
             conn.connect();
-            //	int code = ((HttpURLConnection) conn).getResponseCode();
-
 
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "iso-8859-15"));
 
             while ((line = rd.readLine()) != null)
-            {
                 line2 += line;
-            }
-            // wr.close();
+
             rd.close();
 
         } catch (Exception e)
@@ -75,33 +69,27 @@ public class HTTPDownloader
         return line2;
     }
 
-
     public String getStringUTF8()
     {
-
         String line, line2 = "";
-
+        int rnd = new Random().nextInt(agents.length);
         URL url;
+
         try
         {
             url = new URL(urlstring);
 
             URLConnection conn = url.openConnection();
             conn.addRequestProperty("Referer", urlstring);
-            int rnd = new Random().nextInt(agents.length);
             conn.addRequestProperty("User-Agent", agents[rnd]);
             conn.connect();
-            //	int code = ((HttpURLConnection) conn).getResponseCode();
-
 
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
             while ((line = rd.readLine()) != null)
-            {
                 line2 += line;
-            }
-            // wr.close();
+
             rd.close();
 
         } catch (Exception e)
@@ -116,33 +104,26 @@ public class HTTPDownloader
 
     public List<String> getCSV()
     {
+        List<String> list   = new ArrayList<String>();
+        int          rnd    = new Random().nextInt(agents.length);
+        String       line   = "";
+        URL          url;
 
-        String line = "";
-
-        List<String> list = new ArrayList<String>();
-
-
-        URL url;
         try
         {
             url = new URL(urlstring);
 
             URLConnection conn = url.openConnection();
             conn.addRequestProperty("Referer", urlstring);
-            int rnd = new Random().nextInt(agents.length);
             conn.addRequestProperty("User-Agent", agents[rnd]);
             conn.connect();
-            //	int code = ((HttpURLConnection) conn).getResponseCode();
-
 
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "iso-8859-15"));
 
             while ((line = rd.readLine()) != null)
-            {
                 list.add(line);
-            }
-            // wr.close();
+
             rd.close();
 
         } catch (Exception e)
@@ -155,33 +136,27 @@ public class HTTPDownloader
         return list;
     }
 
-
     public String getsafeString()
     {
+        String  line, line2 = "";
+        int     rnd = new Random().nextInt(agents.length);
+        URL     url;
 
-        String line, line2 = "";
-
-        URL url;
         try
         {
             url = new URL(urlstring);
 
             URLConnection conn = url.openConnection();
             conn.addRequestProperty("Referer", urlstring);
-            int rnd = new Random().nextInt(agents.length);
             conn.addRequestProperty("User-Agent", agents[rnd]);
             conn.connect();
-            //	int code = ((HttpURLConnection) conn).getResponseCode();
-
 
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
             while ((line = rd.readLine()) != null)
-            {
                 line2 += line;
-            }
-            // wr.close();
+
             rd.close();
 
         } catch (Exception e)
@@ -194,77 +169,55 @@ public class HTTPDownloader
         return line2;
     }
 
-
     public Bitmap getNormalBitmap()
     {
-
-
         try
         {
-
-
-            Bitmap image;
+            int code;
             URL myFileUrl = new URL(urlstring);
 
-
-            HttpURLConnection conn2 = (HttpURLConnection) myFileUrl
-                    .openConnection();
-
+            HttpURLConnection conn2 = (HttpURLConnection) myFileUrl.openConnection();
 
             conn2.connect();
-            int code = conn2.getResponseCode();
+
+            code = conn2.getResponseCode();
             if (code != 404)
             {
                 InputStream is = conn2.getInputStream();
                 return BitmapFactory.decodeStream(is);
-
-
             }
         } catch (Exception t)
         {
         }
-        ;
+
         return null;
-
     }
-
 
     public Bitmap getBitmap(int sid)
     {
-
-        String line, line2 = "";
-
         try
         {
+            URL myFileUrl   = new URL(urlstring);
+            int rnd         = new Random().nextInt(agents.length);
+            int code;
 
+            HttpURLConnection conn2 = (HttpURLConnection) myFileUrl.openConnection();
 
-            Bitmap image;
-            URL myFileUrl = new URL(urlstring);
-
-
-            HttpURLConnection conn2 = (HttpURLConnection) myFileUrl
-                    .openConnection();
             conn2.setDoInput(true);
             conn2.addRequestProperty("Referer", "http://www.studentenwerk-dresden.de/mensen/speiseplan/details-" + sid + ".html");
-
-            int rnd = new Random().nextInt(agents.length);
             conn2.addRequestProperty("User-Agent", agents[rnd]);
             conn2.connect();
-            int code = conn2.getResponseCode();
+
+            code = conn2.getResponseCode();
             if (code != 404)
             {
                 InputStream is = conn2.getInputStream();
                 return BitmapFactory.decodeStream(is);
-
-
             }
         } catch (Exception t)
         {
         }
-        ;
+
         return null;
-
     }
-
-
 }
