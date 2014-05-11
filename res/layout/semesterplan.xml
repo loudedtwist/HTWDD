@@ -9,7 +9,6 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-       
         android:layout_height="wrap_content" >
 
         <LinearLayout
@@ -17,795 +16,726 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+
             <LinearLayout
-                android:id="@+id/menulayout"
+                style="@style/nowCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp" >
+                android:padding="20dp"
+                android:layout_margin="20dp">
+
+                <TextView
+                    android:id="@+id/semester"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:text="Sommersemester 2014"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lehrveranstaltungen:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/vorlesung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17.03.14 - 05.07.14"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Freie Tage:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/frei"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ostern\t\t\t\t\t18.04. - 21.04.\nMaifeiertag\t\t01.05.\nHimmelfahrt\t\t29.05. - 30.05.\nPfingsten\t\t\t09.06. - 10.06.\ndies academicus\t\t\t\t 04.06."
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/TextView02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Prüfungszeitraum:"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/pruftv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="07.07.2014 - 26.07.2014"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Studentensekretariat"
+                style="@style/nowCardStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="15dp" >
+
+                        <TextView
+                            android:id="@+id/TextView201"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Studentensekretariat"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:id="@+id/TextView202"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Z 221"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/TextView203"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Leistungsangebot"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp" >
+
+                        <TextView
+                            android:id="@+id/TextView204"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Bewerbung / Immatrikulation"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView205"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Rückmeldung"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView206"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Bewerbung für höheres Fachsemester - Quereinstieg"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView207"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Gasthörer"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView208"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Beurlaubung"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView209"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Exmatrikulation"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView210"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Änderungsmitteilung online"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/TextView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Sprechzeiten"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp" >
+
+                        <TextView
+                            android:id="@+id/TextView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Montag:\t\t\t12:30 - 15:00 Uhr"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Dienstag:\t\t8:30 - 11:00 &amp; 12:30 - 17:00 Uhr"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/TextView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Donnerstag:\t12:30 - 15:00 Uhr"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Prüfungsamt"
+                style="@style/nowCardStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    style="@style/nowCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp" >
+                    android:paddingBottom="15dp" >
 
                     <TextView
-                        android:id="@+id/semester"
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="15dp"
-                        android:text="Wintersemester 13/14"
+                        android:text="Prüfungsamt"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/TextView03"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lehrveranstaltungen:"
+                        android:text="Z 223"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leistungsangebot"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
                     <TextView
-                        android:id="@+id/vorlesung"
+                        android:id="@+id/TextView04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="14.10.13 - 08.02.14"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:layout_marginTop="5dp"
+                        android:text="Notenerfassung und Notenverwaltung"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/TextView04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="Freie Tage:"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:layout_marginTop="5dp"
+                        android:text="Ausdrucken von Notenbescheinigungen"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
                     <TextView
-                        android:id="@+id/frei"
+                        android:id="@+id/TextView04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reformationstag\t\t\t31.10.2013\nBuß- und Bettag\t\t20.11.2013\nFerien\t\t\t23.12-04.01"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:layout_marginTop="5dp"
+                        android:text="Erstellung von Zeugnissen und Diplomurkunden"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
                     <TextView
-                        android:id="@+id/TextView02"
+                        android:id="@+id/TextView04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="Prüfungszeitraum:"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:layout_marginTop="5dp"
+                        android:text="Planung der Prüfungstermine für die Prüfungsabschnitte Februar und Juli"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
                     <TextView
-                        android:id="@+id/pruftv"
+                        android:id="@+id/TextView04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10.02.2014 - 01.03.2014"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:layout_marginTop="5dp"
+                        android:text="Bearbeitung der BAföG-Bescheinigungen nach § 48"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/TextView04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Bearbeitung der Erfassungsbelege für den Darlehens-Teilerlass (BAföG)"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/TextView06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Sprechzeiten"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
+
+                    <TextView
+                        android:id="@+id/TextView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Montag:\t\t\t12:30 - 15:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/TextView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Dienstag:\t\t8:30 - 11:00 &amp; 12:30 - 17:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/TextView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Donnerstag:\t12:30 - 15:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Auslandsamt"
+                style="@style/nowCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:padding="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout01"
-                    style="@style/nowCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp" >
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/TextView14"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp" >
+                        android:text="Akademisches Auslandsamt"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="24sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingBottom="15dp" >
+                    <TextView
+                        android:id="@+id/TextView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Z 232 und Z 233B"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/TextView06"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Studentensekretariat"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/TextView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leistungsangebot"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                            <TextView
-                                android:id="@+id/TextView09"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Z 221"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-                        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
-                        <TextView
-                            android:id="@+id/TextView07"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Leistungsangebot"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:id="@+id/TextView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Beratung zum Auslandsstudium"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+                </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
+                <TextView
+                    android:id="@+id/TextView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Sprechzeiten"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Bewerbung / Immatrikulation"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Rückmeldung"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Bewerbung für höheres Fachsemester - Quereinstieg"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Gasthörer"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Beurlaubung"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Exmatrikulation"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView08"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Änderungsmitteilung online"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/TextView13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="Sprechzeiten"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView12"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Montag: 12.30-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView12"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Dienstag: 8.30-11.00 &amp; 12.30-17.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Donnerstag: 12.30-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/TextView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Dienstag &amp; Donnerstag 13:00 - 15:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Studienberatung"
+                style="@style/nowCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:padding="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:id="@+id/mensalayout"
-                    style="@style/nowCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp" >
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/TextView21"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp" >
+                        android:text="Studienberatung"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="24sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingBottom="15dp" >
+                    <TextView
+                        android:id="@+id/TextView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Z 231"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/textView2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Prüfungsamt"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/TextView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leistungsangebot"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                            <TextView
-                                android:id="@+id/TextView03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Z 223"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-                        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
-                        <TextView
-                            android:id="@+id/TextView01"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Leistungsangebot"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:id="@+id/TextView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Wahl des richtigen Studienganges aus dem Studienangebot der HTW Dresden"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
+                    <TextView
+                        android:id="@+id/TextView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Zugangsvoraussetzungen und Chancen auf einen Studienplatz bei Zulassungsbeschränkungen (NC) bzw. Eignungstest"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Notenerfassung und Notenverwaltung"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
+                    <TextView
+                        android:id="@+id/TextView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Anforderungen, Inhalt und Aufbau der einzelnen Studiengänge"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Ausdrucken von Notenbescheinigungen"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
+                    <TextView
+                        android:id="@+id/TextView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Rechte und Pflichten im Studium"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Erstellung von Zeugnissen und Diplomurkunden"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
+                    <TextView
+                        android:id="@+id/TextView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Unterstützung Studierender zum erfolgreichen und effizienten Studienverlauf"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Planung der Prüfungstermine für die Prüfungsabschnitte Februar und Juli"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
+                    <TextView
+                        android:id="@+id/TextView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Hilfe in individuellen Lebens- und Studiensituationen, z. B. Elternschaft und Studium, Studium und Krankheit/Behinderung"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+                </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Bearbeitung der BAföG-Bescheinigungen nach § 48"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
+                <TextView
+                    android:id="@+id/TextView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Sprechzeiten"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Bearbeitung der Erfassungsbelege für den Darlehens-Teilerlass (BAföG)"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
-                        <TextView
-                            android:id="@+id/TextView06"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="Sprechzeiten"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:id="@+id/TextView232"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Montag:\t\t\t12:30 - 15:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
+                    <TextView
+                        android:id="@+id/TextView233"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Dienstag:\t\t8:30 - 11:00 &amp; 12:30 - 17:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Montag: 12.30-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Dienstag: 8.30-11.00 &amp; 12.30-17.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Donnerstag: 12.30-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/TextView234"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Donnerstag:\t12:30 - 15:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
+                    <TextView
+                        android:id="@+id/TextView235"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="und nach Vereinbarung"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/Druckerei"
+                style="@style/nowCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="vertical"
+                android:padding="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout02"
-                    style="@style/nowCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp" >
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/TextView18"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp" >
+                        android:text="Bereich Druck / Foto"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="24sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingBottom="15dp" >
-
-                            <TextView
-                                android:id="@+id/TextView14"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Akademisches Auslandsamt"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="24sp" />
-
-                            <TextView
-                                android:id="@+id/TextView16"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Z 232 und Z 233B"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/TextView15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Leistungsangebot"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView17"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Beratung zum Auslandsstudium"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/TextView20"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="Sprechzeiten"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView19"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Dienstag &amp; Donnerstag 13.00-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/TextView29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="S 125 a"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
                 </LinearLayout>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/TextView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leistungsangebot"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout03"
-                    style="@style/nowCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/TextView30"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp" >
+                        android:layout_marginTop="5dp"
+                        android:text="Drucken und Kopieren A5 bis A0, S/W und Farbe (auch digitale Vorlagen)"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingBottom="15dp" >
+                    <TextView
+                        android:id="@+id/TextView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Einscannen loser Blattsammlungen"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView21"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Studienberatung"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/TextView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Datenwiederherstellung von Datenspeichern (von Digitalkameras)"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                            <TextView
-                                android:id="@+id/TextView25"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Z 231"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-                        </LinearLayout>
+                    <TextView
+                        android:id="@+id/TextView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Bindearbeiten verschiedenster Art"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
 
-                        <TextView
-                            android:id="@+id/TextView22"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Leistungsangebot"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Wahl des richtigen Studienganges aus dem Studienangebot der HTW Dresden"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Zugangsvoraussetzungen und Chancen auf einen Studienplatz bei Zulassungsbeschränkungen (NC) bzw. Eignungstest"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Anforderungen, Inhalt und Aufbau der einzelnen Studiengänge"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Rechte und Pflichten im Studium"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Unterstützung Studierender zum erfolgreichen und effizienten Studienverlauf"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView24"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Hilfe in individuellen Lebens- und Studiensituationen, z. B. Elternschaft und Studium, Studium und Krankheit/Behinderung"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/TextView23"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="Sprechzeiten"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView26"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Montag: 12.30-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView26"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Dienstag: 8.30-11.00 &amp; 12.30-17.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView27"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Donnerstag: 12.30-15.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/TextView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Drucken und Binden von Diplomarbeiten"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
                 </LinearLayout>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/TextView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Öffnungszeiten"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout04"
-                    style="@style/nowCardStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/TextView32"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp" >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingBottom="15dp" >
-
-                            <TextView
-                                android:id="@+id/TextView18"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Bereich Druck / Foto"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textSize="24sp" />
-
-                            <TextView
-                                android:id="@+id/TextView29"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="S 125 a"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/TextView28"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Leistungsangebot"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView30"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Drucken und Kopieren A5 bis A0, S/W und Farbe (auch digitale Vorlagen)"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView30"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Einscannen loser Blattsammlungen"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView30"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Datenwiederherstellung von Datenspeichern (von Digitalkameras)"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView30"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Bindearbeiten verschiedenster Art"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-
-                            <TextView
-                                android:id="@+id/TextView30"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Drucken und Binden von Diplomarbeiten"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/TextView33"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="Öffnungszeiten"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="10dp" >
-
-                            <TextView
-                                android:id="@+id/TextView32"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Montag - Freitag 7.15-8.00 &amp; 12.00-13.00 Uhr"
-                                android:textAppearance="?android:attr/textAppearanceSmall"
-                                android:textSize="11sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                        android:layout_marginTop="5dp"
+                        android:text="Montag - Freitag: 7:15 - 8:00 &amp; 12:00 - 13:00 Uhr"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>
