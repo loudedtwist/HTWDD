@@ -74,53 +74,47 @@ public class UpdateMensaWidgetService extends Service
 
             remoteViews.setTextViewText(R.id.textView1, "Stand: " + dateNow + " Uhr, " + dateNow2);
 
-
             // Nach 15 Uhr Essen von morgen anzeigen
             if ((hour > 15) && (day != 7) && (day != 1))
                 day++;
 
-            if (day == 2)
+            switch (day)
             {
-                daystring       = "Montag";
-                nextdaystring   = "Dienstag";
-            }
-            else if (day == 3)
-            {
-                daystring       = "Dienstag";
-                nextdaystring   = "Mittwoch";
-            }
-            else if (day == 4)
-            {
-                daystring       = "Mittwoch";
-                nextdaystring   = "Donnerstag";
-            }
-            else if (day == 5)
-            {
-                daystring       = "Donnerstag";
-                nextdaystring   = "Freitag";
-            }
-            else if (day == 6)
-            {
-                daystring       = "Freitag";
-                nextdaystring   = "Samstag";
-            }
-            else if (day == 7)
-            {
-                daystring       = "Montag";
-                nextdaystring   = "Dienstag";
-                urlstring = "http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html";
-            }
-            else if (day == 1)
-            {
-                daystring       = "Montag";
-                nextdaystring   = "Dienstag";
-                urlstring = "http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html";
-            }
-            else if (day == 8)
-            {
-                daystring       = "Montag";
-                nextdaystring   = "Dienstag";
-                urlstring = "http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html";
+                case 1:
+                    daystring       = "Montag";
+                    nextdaystring   = "Dienstag";
+                    urlstring = "http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html";
+                    break;
+                case 2:
+                    daystring       = "Montag";
+                    nextdaystring   = "Dienstag";
+                    break;
+                case 3:
+                    daystring       = "Dienstag";
+                    nextdaystring   = "Mittwoch";
+                    break;
+                case 4:
+                    daystring       = "Mittwoch";
+                    nextdaystring   = "Donnerstag";
+                    break;
+                case 5:
+                    daystring       = "Donnerstag";
+                    nextdaystring   = "Freitag";
+                    break;
+                case 6:
+                    daystring       = "Freitag";
+                    nextdaystring   = "Samstag";
+                    break;
+                case 7:
+                    daystring       = "Montag";
+                    nextdaystring   = "Dienstag";
+                    urlstring = "http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html";
+                    break;
+                case 8:
+                    daystring       = "Montag";
+                    nextdaystring   = "Dienstag";
+                    urlstring = "http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html";
+                    break;
             }
 
             remoteViews.setTextViewText(R.id.TextView01, "Speiseplan von " + daystring);
