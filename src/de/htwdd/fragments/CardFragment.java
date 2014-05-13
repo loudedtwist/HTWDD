@@ -678,13 +678,16 @@ public class CardFragment extends Fragment
         ((TextView) (getActivity().findViewById(R.id.worst))).setText("schlechteste Note " + totalworstmark);
 
         // Überprüfe auf neue App-Version
-        CheckUpdate w4 = new CheckUpdate();
-        w4.execute();
+        CheckUpdate w1 = new CheckUpdate();
+        w1.execute();
 
         // Lade aktuelle App-Nachrichten aus dem Web
-        NewsWorker w3 = new NewsWorker();
-        w3.execute();
+        NewsWorker w2 = new NewsWorker();
+        w2.execute();
 
+        // Lade Mensa
+        MensaWorker w3 = new MensaWorker();
+        w3.execute();
     }
 
 
@@ -703,45 +706,53 @@ public class CardFragment extends Fragment
         @Override
         protected News[] doInBackground(Calendar... params)
         {
-            HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news");
+            try {
+                HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news");
 
-            String result = downloader.getString();
+                String result = downloader.getString();
 
-            String[] items = result.split("<item>");
+                String[] items = result.split("<item>");
 
-            News news[] = new News[items.length];
+                News news[] = new News[items.length];
 
-            for (int i = 0; i < items.length; i++)
-            {
-                String[] items2 = items[i].split("<br>");
-                if (items2.length < 2) break;
+                for (int i = 0; i < items.length; i++)
+                {
+                    String[] items2 = items[i].split("<br>");
+                    if (items2.length < 2) break;
 
-                news[i] = new News();
-                news[i].id = Integer.parseInt(items2[0]);
-                news[i].author = items2[6];
+                    news[i] = new News();
+                    news[i].id = Integer.parseInt(items2[0]);
+                    news[i].author = items2[6];
 
-                HTTPDownloader imageloader = new HTTPDownloader("https://htwdd.github.io/images/" + items2[3]);
+                    HTTPDownloader imageloader = new HTTPDownloader("https://htwdd.github.io/images/" + items2[3]);
 
-                news[i].bitmap = imageloader.getNormalBitmap();
+                    news[i].bitmap = imageloader.getNormalBitmap();
 
-                //add http// to url if not present
-                if (!items2[4].startsWith("http://") && !items2[4].startsWith("https://"))
-                    items2[4] = "http://" + items2[4];
+                    //add http// to url if not present
+                    if (!items2[4].startsWith("http://") && !items2[4].startsWith("https://"))
+                        items2[4] = "http://" + items2[4];
 
-                news[i].title = items2[1];
-                news[i].desc = items2[2];
-                news[i].url = items2[4];
+                    news[i].title = items2[1];
+                    news[i].desc = items2[2];
+                    news[i].url = items2[4];
+                }
+
+                return news;
             }
-
-            return news;
+            catch (Exception e)
+            {
+                return  null;
+            }
         }
 
         @Override
         protected void onPostExecute(News[] result)
         {
             News news = null;
-            if (result.length == 1) news = result[0];
-            if (result.length > 1)
+
+            if (result.length == 1)
+                news = result[0];
+            else if (result.length > 1)
             {
                 int randomnumber = (int) ((Math.random() * (result.length)));
                 news = result[randomnumber];
@@ -751,6 +762,7 @@ public class CardFragment extends Fragment
             {
                 if (news == null)
                 {
+                    // Blende Kachel aus
                     LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.aktuellbox);
                     ln.setVisibility(View.GONE);
                 }
@@ -802,10 +814,6 @@ public class CardFragment extends Fragment
             } catch (Exception e)
             {
             }
-
-            // Lade Mensa
-            MensaWorker w1 = new MensaWorker();
-            w1.execute();
         }
     }
 
@@ -840,6 +848,7 @@ public class CardFragment extends Fragment
                 {
                     if (Integer.parseInt(result[0]) > info.versionCode)
                     {
+                        // Schalte Kachel sichtbar
                         LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
                         ln.setVisibility(View.VISIBLE);
 
@@ -891,14 +900,13 @@ public class CardFragment extends Fragment
         {
             int index;
 
-            HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9");
-
-            String result = downloader.getString();
             try
             {
-                String tokens[] = result.split("<title>");
+                HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9");
 
-                TEssen[] essen = new TEssen[tokens.length - 2];
+                String result   = downloader.getString();
+                String tokens[] = result.split("<title>");
+                TEssen[] essen  = new TEssen[tokens.length - 2];
 
                 for (int i = 0; i < essen.length; i++)
                 {
@@ -923,9 +931,8 @@ public class CardFragment extends Fragment
 
             } catch (Exception e)
             {
+                return null;
             }
-
-            return null;
         }
 
         @Override
@@ -933,14 +940,11 @@ public class CardFragment extends Fragment
         {
             try
             {
-                TextView mensatext2 = (TextView) getActivity().findViewById(R.id.mensatext);
-                mensatext2.setText("Verbindung zum Mensa-Server nicht möglich.\n\n");
-
                 if (essen.length < 1)
                 {
                     essen = new TEssen[1];
                     essen[0] = new TEssen();
-                    essen[0].setTitle("Kein Angebot an diesem Tag.\n\n");
+                    essen[0].setTitle("Kein Angebot an diesem Tag.");
                 }
 
                 String titles[] = new String[essen.length];
@@ -962,13 +966,8 @@ public class CardFragment extends Fragment
 
             } catch (Exception e)
             {
-                try
-                {
-                    TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
-                    mensatext.setText("Verbindung zum Mensa-Server nicht möglich.\n\n");
-                } catch (Exception e2)
-                {
-                }
+                TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
+                mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
             }
         }
     }

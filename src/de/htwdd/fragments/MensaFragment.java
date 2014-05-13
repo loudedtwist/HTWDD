@@ -70,69 +70,81 @@ public class MensaFragment extends ListFragment
         protected TEssen[] doInBackground(Calendar... params)
         {
             int progress = 0;
-            HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=" + mensa_id);
-
-            String result = downloader.getString();
-
-            String tokens[] = result.split("<title>");
+            int index;
             int a = 0;
-            while (tokens.length < 3 && a <= 4)
-            {
+            String result;
+
+            try {
+                HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=" + mensa_id);
                 result = downloader.getString();
-                tokens = result.split("<title>");
-                a++;
+
+                String tokens[] = result.split("<title>");
+
+                while (tokens.length < 3 && a <= 4)
+                {
+                    result = downloader.getString();
+                    tokens = result.split("<title>");
+                    a++;
+                }
+
+                if (tokens.length < 3)
+                    return null;
+
+                TEssen[] essen = new TEssen[tokens.length - 2];
+
+                int maxprogressperfood = 100 / essen.length;
+
+                for (int i = 0; i < essen.length; i++)
+                {
+                    essen[i] = new TEssen();
+                    progress += maxprogressperfood;
+                    onProgressUpdate(progress);
+
+                    // Bestimme Index wo Titel endet (ohne Preis)
+                    index = tokens[i + 2].indexOf("(");
+                    if(index == -1)
+                        index = tokens[i + 2].indexOf("</title>");
+
+                    // Extrahiere die benötigten Informationen
+                    essen[i].setTitle(tokens[i + 2].substring(0, index));
+                    essen[i].setSonst(tokens[i + 2].substring(tokens[i + 2].indexOf("<description>") + 13, tokens[i + 2].indexOf("</description>")));
+                    essen[i].setID(Integer.parseInt(tokens[i + 2].substring(tokens[i + 2].indexOf("details-") + 8, tokens[i + 2].indexOf(".html"))));
+
+                    Calendar calendar = Calendar.getInstance(Locale.GERMANY);
+                    final int month = calendar.get(Calendar.MONTH) + 1;
+                    final int year = calendar.get(Calendar.YEAR);
+
+                    String monthstring = String.valueOf(month);
+                    if (month < 10) monthstring = "0" + String.valueOf(month);
+
+                    String thumbs = "/";
+
+                    int thumbmode = app_preferences.getInt("thumbnail", 2);
+
+                    if (thumbmode == 1) thumbs = "/thumbs/";
+
+                    Bitmap image;
+                    String url =
+                            "http://bilderspeiseplan.studentenwerk-dresden.de/m" + mensa_id + "/"
+                                    + String.valueOf(year)
+                                    + monthstring + thumbs + essen[i].getID()
+                                    + ".jpg";
+
+                    if (thumbmode != 0)
+                    {
+                        HTTPDownloader imagedownloader = new HTTPDownloader(url);
+
+                        essen[i].setBild(imagedownloader.getBitmap(essen[i].getID()));
+                    }
+                }
+
+                return essen;
             }
-
-            if (tokens.length < 3) return null;
-            TEssen[] essen = new TEssen[tokens.length - 2];
-
-            int maxprogressperfood = 100 / essen.length;
-
-            for (int i = 0; i < essen.length; i++)
+            catch (Exception e)
             {
-                essen[i] = new TEssen();
-                progress += maxprogressperfood;
-                onProgressUpdate(progress);
-                try
-                {
-                    essen[i].setTitle(tokens[i + 2].substring(0, tokens[i + 2].indexOf("(")));
-                } catch (Exception e)
-                {
-                    essen[i].setTitle(tokens[i + 2].substring(0, tokens[i + 2].indexOf("<")));
-                }
-
-                essen[i].setSonst(tokens[i + 2].substring(tokens[i + 2].indexOf("<description>") + 13, tokens[i + 2].indexOf("</description>")));
-                essen[i].setID(Integer.parseInt(tokens[i + 2].substring(tokens[i + 2].indexOf("details-") + 8, tokens[i + 2].indexOf(".html"))));
-
-                Calendar calendar = Calendar.getInstance(Locale.GERMANY);
-                final int month = calendar.get(Calendar.MONTH) + 1;
-                final int year = calendar.get(Calendar.YEAR);
-
-                String monthstring = String.valueOf(month);
-                if (month < 10) monthstring = "0" + String.valueOf(month);
-
-                String thumbs = "/";
-
-                int thumbmode = app_preferences.getInt("thumbnail", 2);
-
-                if (thumbmode == 1) thumbs = "/thumbs/";
-
-                Bitmap image;
-                String url =
-                        "http://bilderspeiseplan.studentenwerk-dresden.de/m" + mensa_id + "/"
-                                + String.valueOf(year)
-                                + monthstring + thumbs + essen[i].getID()
-                                + ".jpg";
-
-                if (thumbmode != 0)
-                {
-                    HTTPDownloader imagedownloader = new HTTPDownloader(url);
-
-                    essen[i].setBild(imagedownloader.getBitmap(essen[i].getID()));
-                }
             }
 
-            return essen;
+            return  null;
         }
 
         protected void onProgressUpdate(Integer... values)

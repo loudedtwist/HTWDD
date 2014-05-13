@@ -20,14 +20,12 @@ public class MentoringFragment extends Fragment
     public String[] links;
     public String[] titles;
     public String[] location;
-    public String[] shortinfo;
     public LinearLayout wait;
     public int mode;
     WebView web;
 
     public MentoringFragment()
     {
-
     }
 
     public MentoringFragment(int i)
@@ -36,15 +34,11 @@ public class MentoringFragment extends Fragment
         mode = i;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.mentoring, null);
-
-
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
@@ -55,57 +49,43 @@ public class MentoringFragment extends Fragment
         worker w = new worker();
         w.execute(mode);
 
-
         wait = (LinearLayout) getView().findViewById(R.id.waitheute);
         wait.setVisibility(View.VISIBLE);
-
-
     }
 
 
     private class worker extends AsyncTask<Object, Integer, String>
     {
-
-
         @Override
         protected String doInBackground(Object... params)
         {
-
             HTTPDownloader downloader = null;
-            if (mode == 0)
-                downloader = new HTTPDownloader("http://www2.htw-dresden.de/~mumm/mentoring2/mentoren/");
-            if (mode == 1) downloader = new HTTPDownloader("http://www2.htw-dresden.de/~mumm/");
-            if (mode == 2)
-                downloader = new HTTPDownloader("http://www2.htw-dresden.de/~mumm/uber-uns/kontakt/");
-            //if (mode==3) downloader=new HTTPDownloader("http://www2.htw-dresden.de/~mumm/uber-uns/");
 
+            try {
+                if (mode == 0)
+                    downloader = new HTTPDownloader("http://www2.htw-dresden.de/~mumm/mentoring2/mentoren/");
+                else if (mode == 1)
+                    downloader = new HTTPDownloader("http://www2.htw-dresden.de/~mumm/");
+                else if (mode == 2)
+                    downloader = new HTTPDownloader("http://www2.htw-dresden.de/~mumm/uber-uns/kontakt/");
 
-            String result = downloader.getStringUTF8();
-            result = result.replace("https", "http");
-            result = result.substring(result.indexOf("<div id=\"content\">"), result.indexOf("<!-- #content -->"));
+                String result = downloader.getStringUTF8();
+                result = result.replace("https", "http");
+                result = result.substring(result.indexOf("<div id=\"content\">"), result.indexOf("<!-- #content -->"));
 
-		/*	if (mode==0){ 
-				downloader=new HTTPDownloader("http://www2.htw-dresden.de/~mumm/uber-uns/");
-				String result2=downloader.getStringUTF8();			
-				result2=result2.replace("https", "http");			
-				result2= result2.substring(result2.indexOf("<div id=\"content\">"),result2.indexOf("<!-- #content -->"));
-				result+=result2;
-			}*/
+                return result;
+            } catch (Exception e)
+            {
+            }
 
-            return result;
-
+            return  null;
         }
-
 
         @Override
         protected void onPostExecute(String html)
         {
             try
             {
-                //	ProgressBar p= (ProgressBar) getView().findViewById(R.id.waitIndicator);
-
-                //	p.setVisibility(View.GONE);
-
                 final String mimeType = "text/html";
                 final String encoding = "UTF-8";
 
@@ -128,14 +108,7 @@ public class MentoringFragment extends Fragment
 
             } catch (Exception e)
             {
-                //	Toast.makeText(getActivity(), e.toString()+" pruning failed", Toast.LENGTH_SHORT).show();
             }
-
-
         }
-
-
     }
-
-
 }
