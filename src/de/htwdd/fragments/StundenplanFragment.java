@@ -49,7 +49,6 @@ public class StundenplanFragment extends Fragment
     {
     }
 
-
     public StundenplanFragment(int week)
     {
         week_id = week;
@@ -66,8 +65,6 @@ public class StundenplanFragment extends Fragment
     {
         super.onResume();
 
-        //worker w = new worker();
-        //w.execute();
         showweek(week_id);
     }
 
@@ -77,13 +74,7 @@ public class StundenplanFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
 
         progressbar = (ProgressBar) getActivity().findViewById(R.id.progressBar1);
-
-
-        //worker w = new worker();
-        //w.execute();
-        //showweek(week_id);
     }
-
 
     public void showweek(int week)
     {
@@ -103,25 +94,8 @@ public class StundenplanFragment extends Fragment
             //	 final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());
             final SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-	    		/*
-	    		 * 
-	    		 * String data = URLEncoder.encode("imm", "UTF-8")
-							+ "="
-							+ URLEncoder.encode(app_preferences.getString("im", "0"),"UTF-8")
-							+ "&"
-							+ URLEncoder.encode("stuga", "UTF-8")
-							+ "="
-							+ URLEncoder.encode(app_preferences.getString("stdg", "0"),"UTF-8")
-							+ "&"
-							+ URLEncoder.encode("grup", "UTF-8")
-							+ "="
-							+ URLEncoder.encode(app_preferences.getString("studgruppe", "0"),"UTF-8");
-	    		 * 
-	    		 * 
-	    		 */
             if ((app_preferences.getString("prof_kennung", "").length() < 1) && (app_preferences.getString("im", "").length() < 1 || app_preferences.getString("stdg", "").length() < 1 || app_preferences.getString("studgruppe", "0").length() < 1))
             {
-
                 AlertDialog alertDialog2 = new AlertDialog.Builder(getActivity()).create();
                 alertDialog2.setTitle("Fehlende Daten");
                 alertDialog2.setMessage("Für den Stundenplan müssen IM-Jahr, Studiengangsnummer und Studiengruppennummer eingetragen werden.\n\nSoll der Konfigurations-Assistent gestartet werden?");
@@ -159,7 +133,6 @@ public class StundenplanFragment extends Fragment
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
-                        // User clicked OK button
                         ProgressBar p = (ProgressBar) getView().findViewById(R.id.waitIndicator);
                         p.setVisibility(View.GONE);
                         getView().findViewById(R.id.progressBar1).setVisibility(View.GONE);
@@ -174,38 +147,32 @@ public class StundenplanFragment extends Fragment
                         getView().findViewById(R.id.waitIndicator).setVisibility(View.VISIBLE);
                         getView().findViewById(R.id.progressBar1).setVisibility(View.VISIBLE);
 
-
                         if (app_preferences.getString("prof_kennung", "").length() < 1)
                         {
-                            worker w = new worker();
+                            getPlanStudent w = new getPlanStudent();
                             w.execute(db, app_preferences);
                         }
+                        else
                         {
-                            worker2 w2 = new worker2();
+                            getPlanProf w2 = new getPlanProf();
                             w2.execute(db, app_preferences);
-
                         }
                         Toast.makeText(getActivity(), "Stundenplan wird aktualisiert", Toast.LENGTH_LONG).show();
                     }
                 });
                 alertDialog2.show();
-
-
             }
 
             return;
         }
 
-
-        //   try {
-
         GridView gridview = (GridView) getView().findViewById(R.id.grid);
 
-
-        int width = fragmentwidth;
-        int height = fragmentheight;
-        int planweek = week % 2;
-        if (planweek == 0) planweek = 2;
+        int width       = fragmentwidth;
+        int height      = fragmentheight;
+        int planweek    = week % 2;
+        if (planweek == 0)
+            planweek = 2;
 
         gridview.setAdapter(new MyAdapter(getActivity(), planweek, width, height));
         gridview.setColumnWidth(width / 6);
@@ -214,21 +181,11 @@ public class StundenplanFragment extends Fragment
 
         p.setVisibility(View.GONE);
         getView().findViewById(R.id.progressBar1).setVisibility(View.GONE);
-
         gridview.setVisibility(View.VISIBLE);
-			
-	        
-	        /*}catch (Exception e){
-
-		    	final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());             
-	    		final SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());       		 
-	    		worker w = new worker();
-	    		w.execute(db, app_preferences);
-	        }*/
     }
 
 
-    public class worker extends AsyncTask<Object, Void, String>
+    public class getPlanStudent extends AsyncTask<Object, Void, String>
     {
         @Override
         protected String doInBackground(Object... params)
@@ -239,14 +196,10 @@ public class StundenplanFragment extends Fragment
             float progress;
             onProgressUpdate(10);
             String line2;
+
             // Construct data
             try
             {
-//					String data = URLEncoder.encode("matr", "UTF-8")
-//							+ "="
-//							+ URLEncoder.encode(
-//									app_preferences.getString("matnr", "0"),
-//									"UTF-8");
 
                 String data = URLEncoder.encode("imm", "UTF-8")
                         + "="
@@ -264,23 +217,19 @@ public class StundenplanFragment extends Fragment
                 URL url = new URL("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
                 URLConnection conn = url.openConnection();
                 conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(
-                        conn.getOutputStream());
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
                 wr.write(data);
                 wr.flush();
 
                 // Get the response
-                BufferedReader rd = new BufferedReader(new InputStreamReader(
-                        conn.getInputStream()));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String line;
                 line2 = "";
                 while ((line = rd.readLine()) != null)
                 {
                     line2 += line;
                 }
-                // wr.close();
                 rd.close();
-
 
                 String tokens[] = line2.split("Stundenplan");
                 line2 = tokens[2];
@@ -302,42 +251,25 @@ public class StundenplanFragment extends Fragment
                 } catch (Exception e)
                 {
                 }
-                ;
-                onProgressUpdate(60);
-					/*for (Type_Stunde cn : stunden) {
-						String log = "Deleting: " + cn.getID() + " ,Name: "
-								+ cn.getName();
-						// Writing Stunden to log
-						Log.d("Deleting: ", log);
 
-						db.deleteStunde(cn);
-						
-					}*/
+                onProgressUpdate(60);
 
                 // add completely empty timetable
-
                 for (int w = 1; w <= 2; w++)
-                {
                     for (int i = 1; i <= 7; i++)
                     {
                         Log.d("Deleting: ", "empty");
                         db.addContact(new Type_Stunde(w, "Montag", i, "(leer)", "", ""));
                         db.addContact(new Type_Stunde(w, "Dienstag", i, "(leer)", "", ""));
                         db.addContact(new Type_Stunde(w, "Mittwoch", i, "(leer)", "", ""));
-                        db.addContact(new Type_Stunde(w, "Donnerstag", i, "(leer)", "",
-                                ""));
+                        db.addContact(new Type_Stunde(w, "Donnerstag", i, "(leer)", "", ""));
                         db.addContact(new Type_Stunde(w, "Freitag", i, "(leer)", "", ""));
                     }
-                }
+
                 onProgressUpdate(70);
             }
 
-            //
-            // String tokens2[] =
-            // line2.split("Nur die Pflichtfächer und die mit Häkchen");
-
             String zeiten[] = line2.split("</td>");
-
             String resultstring = "success";
 
             progress = 70;
@@ -347,7 +279,6 @@ public class StundenplanFragment extends Fragment
             {
                 progress += maxprogressperslot;
                 onProgressUpdate((int) progress);
-
 
                 if ((i > 8) && (i != 14) && (i != 20) && (i != 26)
                         && (i != 32) && (i != 38) && (i != 44) && (i != 50)
@@ -360,19 +291,16 @@ public class StundenplanFragment extends Fragment
                     kname = zeiten[i].substring(10);
                     if (kname.length() > 0 && !kname.contains("Gremien"))
                     {
-
-
-                        String ktyp = "";
-                        int Stunde = 0;
-                        String kname2 = "";
-                        String kraum = "";
-                        int Woche = 0;
-                        String Tag = "";
+                        int Stunde      = 0;
+                        int Woche       = 0;
+                        String ktyp     = "";
+                        String kname2   = "";
+                        String kraum    = "";
+                        String Tag      = "";
 
                         try
                         {
-                            ktyp = kname.substring(kname.indexOf(" ") + 1,
-                                    kname.indexOf("<br>") - 1);
+                            ktyp = kname.substring(kname.indexOf(" ") + 1, kname.indexOf("<br>") - 1);
 
                             if (ktyp.contains("V"))
                                 ktyp = "Vorlesung";
@@ -382,9 +310,7 @@ public class StundenplanFragment extends Fragment
                                 ktyp = "Übung";
 
                             kname2 = kname.substring(0, kname.indexOf(" "));
-
-                            kraum = kname.substring(kname.indexOf("<br>") + 4,
-                                    kname.indexOf(" - "));
+                            kraum  = kname.substring(kname.indexOf("<br>") + 4, kname.indexOf(" - "));
 
                             if (i < 51)
                                 Woche = 1;
@@ -393,13 +319,10 @@ public class StundenplanFragment extends Fragment
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten können durch Antippen angepasst werden.";
-
                         }
 
                         try
                         {
-
-
                             if ((i > 8 && i < 14) || (i > 56 && i < 62))
                                 Stunde = 1;
                             if ((i > 14 && i < 20) || (i > 62 && i < 68))
@@ -445,28 +368,16 @@ public class StundenplanFragment extends Fragment
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
-
                         }
-                        ;
-                        // System.out.println(Integer.toString(i));
-                        //
-                        // System.out.println(Integer.toString(Woche));
-                        // System.out.println(Integer.toString(Stunde));
-                        // System.out.println(kname2 );
-                        // System.out.println(ktyp );
-                        // System.out.println(kraum);
-                        // System.out.println("");
+
                         Log.d("Insert: ", "Inserting " + kname2 + " " + Woche + " " + Tag + " " + Stunde);
                         try
                         {
-                            db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde,
-                                    kname2, ktyp, kraum));
+                            db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde, kname2, ktyp, kraum));
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten k�nnen diese durch Antippen angepasst werden.";
-
                         }
-                        ;
                     }
                 }
             }
@@ -484,17 +395,9 @@ public class StundenplanFragment extends Fragment
         protected void onPostExecute(String result)
         {
             if (result.equals("success"))
-            {
-                Toast.makeText(getActivity(),
-                        "Stundenplan neu eingelesen!", Toast.LENGTH_LONG)
-                        .show();
-            }
+                Toast.makeText(getActivity(), "Stundenplan neu eingelesen!", Toast.LENGTH_LONG).show();
             else
-            {
-                Toast.makeText(getActivity(),
-                        "Aktualisieres des Stundenplans fehlgeschlagen.", Toast.LENGTH_LONG)
-                        .show();
-            }
+                Toast.makeText(getActivity(), "Aktualisieres des Stundenplans fehlgeschlagen.", Toast.LENGTH_LONG).show();
 
             ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
             ra.switchContent(new Fragment(), 3);
@@ -506,7 +409,7 @@ public class StundenplanFragment extends Fragment
     }
 
 
-    public class worker2 extends AsyncTask<Object, Void, String>
+    public class getPlanProf extends AsyncTask<Object, Void, String>
     {
         @Override
         protected String doInBackground(Object... params)
@@ -520,37 +423,26 @@ public class StundenplanFragment extends Fragment
             // Construct data
             try
             {
-//						String data = URLEncoder.encode("matr", "UTF-8")
-//								+ "="
-//								+ URLEncoder.encode(
-//										app_preferences.getString("matnr", "0"),
-//										"UTF-8");
-
-
                 String data = URLEncoder.encode("unix", "UTF-8")
                         + "="
                         + URLEncoder.encode(app_preferences.getString("prof_kennung", "0"), "UTF-8");
 
                 // Send data
-                URL url = new URL(
-                        "http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
-                URLConnection conn = url.openConnection();
+                URL url             = new URL("http://www2.htw-dresden.de/~rawa/cgi-bin/auf/raiplan.php");
+                URLConnection conn  = url.openConnection();
                 conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(
-                        conn.getOutputStream());
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
                 wr.write(data);
                 wr.flush();
 
                 // Get the response
-                BufferedReader rd = new BufferedReader(new InputStreamReader(
-                        conn.getInputStream()));
+                BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String line;
                 line2 = "";
                 while ((line = rd.readLine()) != null)
                 {
                     line2 += line;
                 }
-                // wr.close();
                 rd.close();
 
                 String tokens[] = line2.split("Stundenplan");
@@ -574,47 +466,27 @@ public class StundenplanFragment extends Fragment
                 {
                 }
                 onProgressUpdate(60);
-						/*for (Type_Stunde cn : stunden) {
-							String log = "Deleting: " + cn.getID() + " ,Name: "
-									+ cn.getName();
-							// Writing Stunden to log
-							Log.d("Deleting: ", log);
-
-							db.deleteStunde(cn);
-							
-						}*/
 
                 // add completely empty timetable
-
                 for (int w = 1; w <= 2; w++)
-                {
-
                     for (int i = 1; i <= 7; i++)
                     {
                         Log.d("Deleting: ", "empty");
                         db.addContact(new Type_Stunde(w, "Montag", i, "(leer)", "", ""));
                         db.addContact(new Type_Stunde(w, "Dienstag", i, "(leer)", "", ""));
                         db.addContact(new Type_Stunde(w, "Mittwoch", i, "(leer)", "", ""));
-                        db.addContact(new Type_Stunde(w, "Donnerstag", i, "(leer)", "",
-                                ""));
+                        db.addContact(new Type_Stunde(w, "Donnerstag", i, "(leer)", "", ""));
                         db.addContact(new Type_Stunde(w, "Freitag", i, "(leer)", "", ""));
 
                     }
 
-                }
                 onProgressUpdate(70);
             }
 
 
-            //
-            // String tokens2[] =
-            // line2.split("Nur die Pflichtfächer und die mit Häkchen");
-
-            String zeiten[] = line2.split("</td>");
-
-            String resultstring = "success";
-
-            progress = 70;
+            String zeiten[]          = line2.split("</td>");
+            String resultstring      = "success";
+            progress                 = 70;
             float maxprogressperslot = 30 / zeiten.length;
 
 
@@ -622,7 +494,6 @@ public class StundenplanFragment extends Fragment
             {
                 progress += maxprogressperslot;
                 onProgressUpdate((int) progress);
-
 
                 if ((i > 8) && (i != 14) && (i != 20) && (i != 26)
                         && (i != 32) && (i != 38) && (i != 44) && (i != 50)
@@ -644,8 +515,7 @@ public class StundenplanFragment extends Fragment
 
                         try
                         {
-                            ktyp = kname.substring(kname.indexOf(" ") + 1,
-                                    kname.indexOf("<br>") - 1);
+                            ktyp = kname.substring(kname.indexOf(" ") + 1, kname.indexOf("<br>") - 1);
 
                             if (ktyp.contains("V"))
                                 ktyp = "Vorlesung";
@@ -657,9 +527,7 @@ public class StundenplanFragment extends Fragment
 
                             kname2 = kname.substring(0, kname.indexOf(" "));
 
-                            kraum = kname.substring(kname.indexOf("<br>") + 4,
-                                    kname.indexOf(" - "));
-
+                            kraum = kname.substring(kname.indexOf("<br>") + 4, kname.indexOf(" - "));
 
                             if (i < 51)
                                 Woche = 1;
@@ -668,8 +536,8 @@ public class StundenplanFragment extends Fragment
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunden(namen), Arten oder Räume. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Fehlende Stunden oder falsche Daten können durch Antippen angepasst werden.";
-
                         }
+
                         try
                         {
                             if ((i > 8 && i < 14) || (i > 56 && i < 62))
@@ -718,28 +586,17 @@ public class StundenplanFragment extends Fragment
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten k�nnen diese durch Antippen angepasst werden.";
-
                         }
-                        ;
-                        // System.out.println(Integer.toString(i));
-                        //
-                        // System.out.println(Integer.toString(Woche));
-                        // System.out.println(Integer.toString(Stunde));
-                        // System.out.println(kname2 );
-                        // System.out.println(ktyp );
-                        // System.out.println(kraum);
-                        // System.out.println("");
+
                         Log.d("Insert: ", "Inserting " + kname2 + " " + Woche + " " + Tag + " " + Stunde);
+
                         try
                         {
-                            db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde,
-                                    kname2, ktyp, kraum));
+                            db.overwriteStunde(new Type_Stunde(Woche, Tag, Stunde, kname2, ktyp, kraum));
                         } catch (Exception e)
                         {
                             resultstring = "Problem beim Erkennen der Stunde/Wochentag. Es wurden Stunden in den Plan eingetragen, die Korrektheit kann jedoch nicht garantiert werden. Bei fehlenden Stunden oder falschen Daten können diese durch Antippen angepasst werden.";
-
                         }
-
                     }
                 }
             }
@@ -756,18 +613,9 @@ public class StundenplanFragment extends Fragment
         protected void onPostExecute(String result)
         {
             if (result.equals("success"))
-            {
-                Toast.makeText(getActivity(),
-                        "Stundenplan neu eingelesen!", Toast.LENGTH_LONG)
-                        .show();
-            }
+                Toast.makeText(getActivity(), "Stundenplan neu eingelesen!", Toast.LENGTH_LONG).show();
             else
-            {
-                Toast.makeText(getActivity(),
-                        "Aktualisieres des Stundenplans fehlgeschlagen.", Toast.LENGTH_LONG)
-                        .show();
-            }
-
+                Toast.makeText(getActivity(), "Aktualisieres des Stundenplans fehlgeschlagen.", Toast.LENGTH_LONG).show();
 
             ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
             ra.switchContent(new Fragment(), 3);
