@@ -878,7 +878,7 @@ public class CardFragment extends Fragment
                         ButtonUpdate.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View arg0) {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD_latest.apk"));
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
                                 startActivity(browserIntent);
                             }
                         });
