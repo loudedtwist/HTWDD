@@ -940,34 +940,39 @@ public class CardFragment extends Fragment
         {
             try
             {
-                if (essen.length < 1)
+                // check if the fragment is currently added to its activity
+                // otherwise getActivity will throw an exception
+                if(isAdded())
                 {
-                    essen = new TEssen[1];
-                    essen[0] = new TEssen();
-                    essen[0].setTitle("Kein Angebot an diesem Tag.");
+                    if (essen.length < 1)
+                    {
+                        essen = new TEssen[1];
+                        essen[0] = new TEssen();
+                        essen[0].setTitle("Kein Angebot an diesem Tag.");
+                    }
+
+                    String titles[] = new String[essen.length];
+
+                    String mensa = "";
+
+                    for (int i = 0; i < titles.length; i++)
+                    {
+                        if (i < titles.length - 1)
+                            mensa += (essen[i].getTitle() + "\n\n");
+                        else
+                            mensa += (essen[i].getTitle());
+                    }
+
+                    TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
+
+                    mensatext.setText(mensa);
+                    if (mensa.contains("UnkownHost"))
+                        mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
                 }
-
-                String titles[] = new String[essen.length];
-
-                String mensa = "";
-
-                for (int i = 0; i < titles.length; i++)
-                {
-                    if (i < titles.length - 1)
-                        mensa += (essen[i].getTitle() + "\n\n");
-                    else
-                        mensa += (essen[i].getTitle());
-                }
-
-                TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
-                mensatext.setText(mensa);
-                if (mensa.contains("UnkownHost"))
-                    mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
 
             } catch (Exception e)
             {
-                TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
-                mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
+                return;
             }
         }
     }
