@@ -46,11 +46,9 @@ public class MentoringFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
 
         web = (WebView) getView().findViewById(R.id.webView1);
+
         worker w = new worker();
         w.execute(mode);
-
-        wait = (LinearLayout) getView().findViewById(R.id.waitheute);
-        wait.setVisibility(View.VISIBLE);
     }
 
 
@@ -74,11 +72,11 @@ public class MentoringFragment extends Fragment
                 result = result.substring(result.indexOf("<div id=\"content\">"), result.indexOf("<!-- #content -->"));
 
                 return result;
+
             } catch (Exception e)
             {
+                return "<br/><div style='text-align:center;'>Keine Internetverbindung!</div>";
             }
-
-            return  null;
         }
 
         @Override
@@ -86,9 +84,6 @@ public class MentoringFragment extends Fragment
         {
             try
             {
-                final String mimeType = "text/html";
-                final String encoding = "UTF-8";
-
                 String styles = "<html><head>" +
                         " <link rel=\"stylesheet\" href=\"http://www2.htw-dresden.de/~mumm/wp-content/plugins/buddypress/bp-themes/bp-htw/style.css\" type=\"text/css\" media=\"screen\" />" +
                         "<link rel='stylesheet' id='NextGEN-css'  href='http://www2.htw-dresden.de/~mumm/wp-content/plugins/nextgen-gallery/css/nggallery.css?ver=1.0.0' type='text/css' media='screen' />" +
@@ -100,10 +95,11 @@ public class MentoringFragment extends Fragment
                         "<link rel='stylesheet' id='galleryview-css'  href='http://www2.htw-dresden.de/~mumm/wp-content/plugins/nggGalleryview/galleryview.css?ver=1.0.1' type='text/css' media='screen' />" +
                         "</head><body>";
 
+                // Blende Ladebalgen aus
                 wait = (LinearLayout) getView().findViewById(R.id.waitheute);
                 wait.setVisibility(View.GONE);
 
-                web.loadDataWithBaseURL("", styles + html + "</body></html>", mimeType, encoding, "");
+                web.loadDataWithBaseURL("", styles + html + "</body></html>", "text/html", "UTF-8", "");
                 web.getSettings().setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
 
             } catch (Exception e)
