@@ -75,13 +75,7 @@
             android:label="Termin anfragen"           
             android:theme="@style/ExampleTheme">       
         </activity>       
-        <activity
-            android:name="de.htwdd.EventPopup"
-            android:label="eXma Amt"
-            android:hardwareAccelerated="false"
-            android:theme="@style/ExampleTheme">       
-        </activity>        
-        <activity
+       <activity
             android:name="de.htwdd.EditTimetable"
             android:label="Stunde Bearbeiten"
             android:theme="@android:style/Theme.Panel">       
@@ -96,11 +90,7 @@
             android:label="Einstellungen"
             android:theme="@style/ExampleTheme">       
         </activity>
-        <activity
-            android:name="de.htwdd.fragments.BirdActivity"
-            android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
-        <activity android:name="com.crittercism.NotificationActivity"/>
-        
+
 		<service android:name="de.htwdd.UpdateTimetableSmallWidgetService"></service>
         <receiver android:name="de.htwdd.WidgetTimetableSmallProvider"
 			android:label="HTWDD Stundenübersicht">

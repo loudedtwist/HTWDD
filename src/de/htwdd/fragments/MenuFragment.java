@@ -46,7 +46,7 @@ public class MenuFragment extends ListFragment
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id)
     {
-        if ((position != 0) && (position != 2) && (position != 8) && (position != 13))
+        if ((position != 0) && (position != 2) && (position != 7) && (position != 12))
         {
             Fragment newContent = new CardFragment();
             if (newContent != null)

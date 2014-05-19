@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import de.htwdd.R;
-import de.htwdd.SpecialAdapter3;
 import de.htwdd.types.TPruefung;
 
 import java.io.BufferedReader;
@@ -266,7 +266,7 @@ public class PrufungenFragment extends Fragment
             mylist.add(map);
 
 
-            SpecialAdapter3 mSchedule = new SpecialAdapter3(getActivity(), mylist, R.layout.pruefrow,
+            SimpleAdapter mSchedule = new SimpleAdapter(getActivity(), mylist, R.layout.pruefrow,
                     new String[]{"titel", "art", "tag", "zeit", "raum"}, new int[]{R.id.pruftitel, R.id.art, R.id.pruftag, R.id.prufzeit, R.id.prufraum});
 
             v.setAdapter(mSchedule);

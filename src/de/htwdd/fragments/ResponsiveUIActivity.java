@@ -32,14 +32,6 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-
-/*import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;*/
-
-
 /**
  * This activity is an example of a responsive Android UI.
  * On phones, the SlidingMenu will be enabled only in portrait mode.
@@ -310,17 +302,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
     public void switchContent(final Fragment fragment, int position)
     {
         mode = position;
-//		mContent = fragment;
-//		getSupportFragmentManager()
-//		.beginTransaction()
-//		.replace(R.id.content_frame, new CardFragment())//fragment)
-//		.commit();
-//		Handler h = new Handler();
-//		h.postDelayed(new Runnable() {
-//			public void run() {
-//				getSlidingMenu().showContent();
-//			}
-//		}, 50);
         this.invalidateOptionsMenu();
 
         ActionBar.Tab tab, tab2, tab3;
@@ -432,28 +413,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                 break;
 
-            case 7:
-                getSupportActionBar().removeAllTabs();
-                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-                getSupportActionBar().setTitle("eXma Amt");
-                tab = getSupportActionBar().newTab();
-                tab.setText("Heute");
-                tab.setTabListener(this);
-                getSupportActionBar().addTab(tab);
-
-                tab2 = getSupportActionBar().newTab();
-                tab2.setText("Morgen");
-                tab2.setTabListener(this);
-                getSupportActionBar().addTab(tab2);
-
-                tab3 = getSupportActionBar().newTab();
-                tab3.setText("Übermorgen");
-                tab3.setTabListener(this);
-                getSupportActionBar().addTab(tab3);
-                break;
-
-            case 9:
+            case 8:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -474,7 +434,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
-            case 10:
+            case 9:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -495,7 +455,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
-            case 11:
+            case 10:
                 getSupportActionBar().removeAllTabs();
 
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -517,7 +477,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                 break;
 
-            case 12:
+            case 11:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -535,14 +495,14 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
-            case 14:
+            case 13:
                 Intent intent2 = new Intent(this, Preference.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
                 finish();
                 break;
 
-            case 15:
+            case 14:
                 PackageManager manager = this.getPackageManager();
                 PackageInfo info = null;
                 try
@@ -575,7 +535,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 }, 50);
                 break;
 
-            case 19:
+            case 18:
                 AlertDialog alertDialog12 = new AlertDialog.Builder(ResponsiveUIActivity.this).create();
 
                 // Setting Dialog Title
@@ -668,10 +628,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         int nextweek = week + 1;
         nextweek %= 52;
 
-
-//    	if (tab.getText().equals("Auswahl") && (mode==6))  	
-//    		mContent = new BelegungsFragment("0");
-//    	
         if (lastraum != null)
         {
             if (tab.getText().toString().contains("aktuelle") && (mode == 6))
@@ -695,8 +651,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         if (tab.getText().equals("Beratung"))
             mContent = new CareerBeratungFragment(2);
 
-
-        ///Toast.makeText(this,mode, Toast.LENGTH_LONG).show();
         if (tab.getText().equals("Noten"))
             mContent = new NotenFragment(0);
 
@@ -706,7 +660,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         if (tab.getText().equals("Prüfungen"))
             mContent = new PrufungenFragment();
 
-
         //Mentoring
         if (tab.getText().equals("Mentoren"))
             mContent = new MentoringFragment(0);
@@ -714,18 +667,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
             mContent = new MentoringFragment(1);
         if (tab.getText().equals("Kontakt"))
             mContent = new MentoringFragment(2);
-
-
-        if (tab.getText().equals("Heute") && (mode == 7))
-            mContent = new eXmaFragment(0);
-
-        if (tab.getText().equals("Morgen") && (mode == 7))
-            mContent = new eXmaFragment(1);
-
-        if (tab.getText().equals("Übermorgen") && (mode == 7))
-
-
-            mContent = new eXmaFragment(2);
 
         if (tab.getText().toString().contains("aktuelle") && (mode == 3))
             mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), week);
@@ -741,10 +682,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
             mContent = new MensaWocheFragment();
 
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content_frame, mContent)
-                .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mContent).commit();
         Handler h = new Handler();
         h.postDelayed(new Runnable()
         {
@@ -753,8 +691,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSlidingMenu().showContent();
             }
         }, 50);
-
-        //	}
     }
 
     @Override
@@ -769,12 +705,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
         switch (mode)
         {
-
-//    	case 1: menu.add(0, 99, 0, "Einstellungen")
-//    	.setIcon(R.drawable.ic_menu_preferences)
-//    	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-//    	break;
-
             case 3:
                 menu.add(0, 98, 0, "Update")
                         .setIcon(R.drawable.ic_menu_refresh)
@@ -791,21 +721,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                 break;
 
-//    	case 11 : menu.add(0, 98, 0, "Update")
-//    	.setIcon(R.drawable.ic_menu_refresh)  	
-//    	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-//    	break;
-
-//    	case 12 : menu.add(0, 98, 0, "Update")
-//    	.setIcon(R.drawable.ic_menu_refresh)  	
-//    	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-//    	break;
-
-//    	case 14 : menu.add(0, 98, 0, "Update")
-//    	.setIcon(R.drawable.ic_menu_refresh)  	
-//    	.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-//    	break;
-
             case 6:
                 menu.add(0, 96, 0, "Purge")
                         .setIcon(R.drawable.ic_menu_delete)
@@ -816,13 +731,9 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
                 break;
 
-
             default:
                 break;
         }
-
-//    	menu.add(0, 98, 0, "�ber")
-//     	.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return true;
     }

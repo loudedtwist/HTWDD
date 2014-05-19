@@ -37,7 +37,6 @@ public class MenuArrayAdapter extends ArrayAdapter<String>
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.menurow, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.pruftitel);
-        // ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         textView.setText(values[position]);
         LinearLayout t = (LinearLayout) rowView.findViewById(R.id.menurow);
         textView.setTextColor(Color.WHITE);
@@ -45,35 +44,47 @@ public class MenuArrayAdapter extends ArrayAdapter<String>
             t.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, menuheight));
 
         ImageView image_iv = (ImageView) rowView.findViewById(R.id.image);
-        if (position == 1)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.home));
-        if (position == 3)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.calendar));
-        if (position == 4)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.round));
-        if (position == 5)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.certificate));
-        if (position == 6)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.spreadsheet));
-        if (position == 7)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.emoticongrin));
-        if (position == 9)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.messenger));
-        if (position == 10)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.group));
-        if (position == 11)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.administrator));
-        if (position == 12)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.bookmark));
-        if (position == 14)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.gear));
-        if (position == 15)
-            image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.info2));
+        switch (position)
+        {
+            case 1:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.home));
+                break;
+            case 3:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.calendar));
+                break;
+            case 4:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.round));
+                break;
+            case 5:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.certificate));
+                break;
+            case 6:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.spreadsheet));
+                break;
+            case 8:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.messenger));
+                break;
+            case 9:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.group));
+                break;
+            case 10:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.administrator));
+                break;
+            case 11:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.bookmark));
+                break;
+            case 13:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.gear));
+                break;
+            case 14:
+                image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.info2));
+                break;
+        }
 
         // Change the icon for Windows and iPhone
         String s = values[position];
 
-        if (position == 0 || position == 2 || position == 8 || position == 13)
+        if (position == 0 || position == 2 || position == 7 || position == 12)
         {
             t.setBackgroundColor(Color.BLACK);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);

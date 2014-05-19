@@ -583,7 +583,7 @@ public class CardFragment extends Fragment
                 if (getActivity() instanceof ResponsiveUIActivity)
                 {
                     ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(null, 9);
+                    ra.switchContent(null, 7);
                 }
             }
         });
