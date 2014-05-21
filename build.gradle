@@ -41,17 +41,4 @@ android {
 
         instrumentTest.setRoot('tests')
     }
-    buildTypes {
-        buildType1 {
-            debuggable false
-            jniDebugBuild false
-            packageNameSuffix 'HTWDD'
-            versionNameSuffix '3.52'
-        }
-    }
-
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
 }
