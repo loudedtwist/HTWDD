@@ -8,7 +8,6 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -28,7 +27,7 @@
                 android:id="@+id/LinearLayout04"
                 style="@style/nowCardStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:minHeight="100dp"
                 android:orientation="vertical" >
@@ -238,7 +237,7 @@
                     <TextView
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="Stundenplan"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -365,7 +364,7 @@
 
                         <ListView
                             android:id="@+id/belegungslist"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="155dp"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="1"
@@ -421,7 +420,7 @@
                     <TextView
                         android:id="@+id/aktuellheader"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="HTW Aktuell"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -446,7 +445,6 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="I-320 Programmierung III"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -460,7 +458,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <View
-                    android:id="@+id/View03"
+                    android:id="@+id/Line_News"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
@@ -497,7 +495,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mensa"
-                         android:textColor="@color/white"
+                        android:textColor="@color/white"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="30sp" />
                 </LinearLayout>
@@ -522,7 +520,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/View03"
+                android:id="@+id/Line_Mensa"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="5dp"
@@ -636,7 +634,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/View02"
+                android:id="@+id/Line_Noten"
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="5dp"
