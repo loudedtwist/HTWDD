@@ -120,7 +120,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         // set the Behind View Fragment
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.menu_frame, new MenuFragment(72))
+                .replace(R.id.menu_frame, new MenuFragment())
                 .commit();
 
         // customize the SlidingMenu
@@ -149,15 +149,18 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         }
 
         Intent intent;
+        final Bundle args = new Bundle();
+
         switch (item.getItemId())
         {
+            // Noten löschen
             case 91:
                 getSupportActionBar().setSelectedNavigationItem(0);
 
                 DatabaseHandlerNoten db12 = new DatabaseHandlerNoten(this);
                 db12.purge();
 
-                mContent = new NotenFragment(0);
+                mContent = new NotenFragment();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)
@@ -173,13 +176,13 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                 break;
 
+            // Noten neuladen
             case 95:
                 getSupportActionBar().setSelectedNavigationItem(0);
 
-                DatabaseHandlerNoten db2 = new DatabaseHandlerNoten(this);
-                //db2.purge();
-
-                mContent = new NotenFragment(1);
+                args.putInt("mode",1);
+                mContent = new NotenFragment();
+                mContent.setArguments(args);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)
@@ -198,7 +201,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 DatabaseHandlerRoomTimetable db = new DatabaseHandlerRoomTimetable(this);
                 db.purge();
 
-                mContent = new BelegungsFragment("0");
+                mContent = new BelegungsFragment();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)
@@ -243,7 +246,10 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                         Toast.makeText(ResponsiveUIActivity.this, "Suche nach Raum " + firstchar + leftover, Toast.LENGTH_SHORT).show();
 
-                        mContent = new BelegungsFragment(firstchar + leftover);
+                        args.putString("raum", firstchar + leftover);
+                        mContent = new BelegungsFragment();
+                        mContent.setArguments(args);
+
                         getSupportFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.content_frame, mContent)
@@ -262,9 +268,12 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 editalert.show();
                 break;
 
-
+            // Stundenplan aktualisieren
             case 98:
-                mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), 0);
+                args.putInt("fragmentheight",mContent.getView().getHeight());
+                args.putInt("fragmentwidth", mContent.getView().getWidth());
+                mContent = new StundenplanFragment();
+                mContent.setArguments(args);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)
@@ -394,7 +403,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                     getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                     getSupportActionBar().setTitle("Belegungsplan");
 
-                    mContent = new BelegungsFragment("0");
+                    mContent = new BelegungsFragment();
                     getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.content_frame, mContent)
@@ -624,63 +633,105 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft)
     {
-        int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
-        int nextweek = week + 1;
-        nextweek %= 52;
+        int week    = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
+        Bundle args = new Bundle();
+        int nextweek = (week + 1)%52;
 
-        if (lastraum != null)
+        // Übersicht Raumplan
+        if ((mode == 6) && lastraum != null)
         {
-            if (tab.getText().toString().contains("aktuelle") && (mode == 6))
-                mContent = new RaumplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), week, lastraum);
+            args.putInt("fragmentheight",mContent.getView().getHeight());
+            args.putInt("fragmentwidth", mContent.getView().getWidth());
+            args.putString("raum", lastraum);
 
-            if (tab.getText().toString().contains("nächste") && (mode == 6))
-                mContent = new RaumplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), nextweek, lastraum);
+            if (tab.getText().toString().contains("aktuelle"))
+                args.putInt("weekID", week);
+            else if (tab.getText().toString().contains("nächste"))
+                args.putInt("weekID", nextweek);
+
+            mContent = new RaumplanFragment();
         }
+        // Stundenplan
+        else if(mode == 3)
+        {
+            args.putInt("fragmentheight",mContent.getView().getHeight());
+            args.putInt("fragmentwidth", mContent.getView().getWidth());
+
+            if (tab.getText().toString().contains("aktuelle"))
+                args.putInt("weekID", week);
+            else if (tab.getText().toString().contains("nächste"))
+                args.putInt("weekID", nextweek);
+
+            mContent = new StundenplanFragment();
+        }
+
+
+
+
+
         if (tab.getText().equals("Rückgabe"))
             mContent = new BiblioFragment();
 
         if (tab.getText().equals("Suche"))
             mContent = new BiblioSearchFragment();
 
+        // Career Service
         if (tab.getText().equals("Events"))
-            mContent = new CareerFragment(0);
+        {
+            args.putInt("mode",0);
+            mContent = new CareerFragment();
+        }
+        else if (tab.getText().equals("Workshops"))
+        {
+            args.putInt("mode",1);
+            mContent = new CareerFragment();
+        }
+        // Mentoring
+        else if (tab.getText().equals("Mentoren"))
+            mContent = new MentoringFragment();
+        else if (tab.getText().equals("Aktuelles"))
+        {
+            args.putInt("mode", 1);
+            mContent = new MentoringFragment();
+        }
+        else if (tab.getText().equals("Kontakt"))
+        {
+            args.putInt("mode", 2);
+            mContent = new MentoringFragment();
+        }
+        // Mensa
+        else if (tab.getText().equals("Heute") && (mode == 4))
+            mContent = new MensaFragment();
+        // Noten
+        else if (tab.getText().equals("Noten"))
+            mContent = new NotenFragment();
+        else if (tab.getText().equals("Statistik"))
+            mContent = new NotenStatsFragment();
 
-        if (tab.getText().equals("Workshops"))
-            mContent = new CareerFragment(1);
+
+
+
+
+
+
 
         if (tab.getText().equals("Beratung"))
-            mContent = new CareerBeratungFragment(2);
+            mContent = new CareerBeratungFragment();
 
-        if (tab.getText().equals("Noten"))
-            mContent = new NotenFragment(0);
 
-        if (tab.getText().equals("Statistik"))
-            mContent = new NotenStatsFragment(1);
+
+
 
         if (tab.getText().equals("Prüfungen"))
             mContent = new PrufungenFragment();
 
-        //Mentoring
-        if (tab.getText().equals("Mentoren"))
-            mContent = new MentoringFragment(0);
-        if (tab.getText().equals("Aktuelles"))
-            mContent = new MentoringFragment(1);
-        if (tab.getText().equals("Kontakt"))
-            mContent = new MentoringFragment(2);
 
-        if (tab.getText().toString().contains("aktuelle") && (mode == 3))
-            mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), week);
-
-        if (tab.getText().toString().contains("nächste") && (mode == 3))
-            mContent = new StundenplanFragment(mContent.getView().getWidth(), mContent.getView().getHeight(), nextweek);
-
-
-        if (tab.getText().equals("Heute") && (mode == 4))
-            mContent = new MensaFragment(9);
 
         if (tab.getText().equals("Woche") && (mode == 4))
             mContent = new MensaWocheFragment();
 
+        // Argumente übergeben
+        mContent.setArguments(args);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mContent).commit();
         Handler h = new Handler();
@@ -740,7 +791,11 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
     public void showRaum(String raum)
     {
-        mContent = new BelegungsFragment(raum);
+        Bundle args = new Bundle();
+        args.putString("raum", raum);
+        mContent = new BelegungsFragment();
+        mContent.setArguments(args);
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content_frame, mContent)
@@ -763,7 +818,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         int nextweek = week + 1;
         nextweek %= 52;
 
-        ActionBar.Tab tab, tab2, tab3;
+        ActionBar.Tab tab, tab2;
 
         getSupportActionBar().removeAllTabs();
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -779,18 +834,5 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         tab2.setText("nächste Woche (" + nextweek + ")");
         tab2.setTabListener(this);
         getSupportActionBar().addTab(tab2);
-
-//		mContent = new RaumplanFragment(	mContent.getView().getWidth(),	mContent.getView().getHeight(),week,raum);
-//		getSupportFragmentManager()
-//		.beginTransaction()
-//		.replace(R.id.content_frame, mContent)
-//		.commit();
-//		Handler h = new Handler();
-//		h.postDelayed(new Runnable() {
-//			public void run() {
-//				getSlidingMenu().showContent();
-//			}
-//		}, 50);
-//
     }
 }

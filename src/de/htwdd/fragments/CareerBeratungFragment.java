@@ -26,24 +26,13 @@ public class CareerBeratungFragment extends Fragment
 
     public CareerBeratungFragment()
     {
-
     }
-
-    public CareerBeratungFragment(int i)
-    {
-        // TODO Auto-generated constructor stub
-        mode = i;
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-
         return inflater.inflate(R.layout.career_beratung, null);
-
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState)

@@ -20,37 +20,16 @@ import de.htwdd.types.TNote;
 
 import java.util.List;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
 
 public class NotenStatsFragment extends Fragment
 {
     public SharedPreferences app_preferences;
-    public String stg, stg2;
-    public String abschl, abschl2;
     public DatabaseHandlerNoten db;
     public int count;
-    public int count2;
-    public int mode;
 
-    final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier()
-    {
-        public boolean verify(String hostname, SSLSession session)
-        {
-            return true;
-        }
-    };
-
-    public NotenStatsFragment(int i)
-    {
-        // TODO Auto-generated constructor stub
-        mode = i;
-    }
 
     public NotenStatsFragment()
     {
-
     }
 
 

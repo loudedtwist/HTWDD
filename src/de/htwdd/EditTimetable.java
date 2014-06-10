@@ -156,16 +156,7 @@ public class EditTimetable extends Activity
 
                 db.overwriteStunde(s);
                 Toast.makeText(arg0.getContext(), ("Eintrag geändert"), Toast.LENGTH_LONG).show();
-
-
-//     Intent i = getBaseContext().getPackageManager()
-//             .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-//     Intent i = new Intent(EditTimetable.this, StundenplanFragment.class);
-//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//startActivity(i);
-
                 finish();
-
             }
         });
 

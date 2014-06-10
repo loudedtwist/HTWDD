@@ -39,7 +39,7 @@ public class BaseActivity extends SlidingFragmentActivity
         // set the Behind View
         setBehindContentView(R.layout.menu_frame);
         FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-        mFrag = new MenuFragment(0);
+        mFrag = new MenuFragment();
         t.replace(R.id.menu_frame, mFrag);
         t.commit();
 
@@ -85,7 +85,7 @@ public class BaseActivity extends SlidingFragmentActivity
             mPager.setAdapter(this);
             for (int i = 0; i < 3; i++)
             {
-                addTab(new MenuFragment(0));
+                addTab(new MenuFragment());
             }
         }
 

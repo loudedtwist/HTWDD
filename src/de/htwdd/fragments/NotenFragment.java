@@ -54,7 +54,7 @@ public class NotenFragment extends Fragment
     public DatabaseHandlerNoten db;
     public int count;
     public int count2;
-    public int mode;
+    public int mode=0;
 
     final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier()
     {
@@ -64,15 +64,8 @@ public class NotenFragment extends Fragment
         }
     };
 
-    public NotenFragment(int i)
-    {
-        // TODO Auto-generated constructor stub
-        mode = i;
-    }
-
     public NotenFragment()
     {
-
     }
 
     public static String getStackTrace(Throwable aThrowable)
@@ -120,6 +113,8 @@ public class NotenFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        if (getArguments() != null)
+            mode = getArguments().getInt("mode");
         return inflater.inflate(R.layout.noten, null);
     }
 

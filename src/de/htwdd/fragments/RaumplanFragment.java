@@ -19,26 +19,19 @@ public class RaumplanFragment extends Fragment
     public int week_id;
     public String raum;
 
-    public RaumplanFragment(int fragmentwidth, int fragmentheight, int i, String raum)
-    {
-
-        this.fragmentheight = fragmentheight;
-        this.fragmentwidth = fragmentwidth;
-        week_id = i;
-        ;
-        this.raum = raum;
-    }
-
     public RaumplanFragment()
     {
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.stundenplan, null);
+        fragmentheight  = getArguments().getInt("fragmentheight");
+        fragmentwidth   = getArguments().getInt("fragmentwidth");
+        week_id         = getArguments().getInt("weekID");
+        raum            = getArguments().getString("raum");
 
+        return inflater.inflate(R.layout.stundenplan, null);
     }
 
     @Override
@@ -46,8 +39,6 @@ public class RaumplanFragment extends Fragment
     {
         super.onResume();
 
-        //worker w = new worker();
-        //w.execute();
         showweek(week_id);
     }
 
@@ -56,51 +47,26 @@ public class RaumplanFragment extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
 
-        //worker w = new worker();
-        //w.execute();
         showweek(week_id);
     }
 
 
     public void showweek(int week)
     {
-
         if (week == 0)
-        {
-
-
             return;
-        }
 
-
-        //    try {
+        int planweek = week % 2;
+        if (planweek == 0)
+            planweek = 2;
 
         GridView gridview = (GridView) getView().findViewById(R.id.grid);
-
-
-        int width = fragmentwidth;
-        int height = fragmentheight;
-        int planweek = week % 2;
-        if (planweek == 0) planweek = 2;
-
-        gridview.setAdapter(new MyRoomAdapter(getActivity(), planweek, width, height, raum));
-        gridview.setColumnWidth(width / 6);
+        gridview.setAdapter(new MyRoomAdapter(getActivity(), planweek, fragmentwidth, fragmentheight, raum));
+        gridview.setColumnWidth(fragmentwidth / 6);
 
         ProgressBar p = (ProgressBar) getView().findViewById(R.id.waitIndicator);
-
         p.setVisibility(View.GONE);
 
         gridview.setVisibility(View.VISIBLE);
-
-//	        
-//	        }catch (Exception e){
-//
-//	        	int a=0;
-//	        	a++;
-//	        	
-//	        }
-
     }
-
-
 }

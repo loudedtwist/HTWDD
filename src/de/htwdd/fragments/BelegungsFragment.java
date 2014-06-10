@@ -33,22 +33,17 @@ import java.util.List;
 
 public class BelegungsFragment extends Fragment
 {
-    String raum;
-
-    public BelegungsFragment(String raum)
-    {
-        // TODO Auto-generated constructor stub
-        this.raum = raum;
-    }
+    String raum = "0";
 
     public BelegungsFragment()
     {
-        this.raum = "0";
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        if (getArguments() != null)
+            raum = getArguments().getString("raum");
         return inflater.inflate(R.layout.belegungs, null);
     }
 
