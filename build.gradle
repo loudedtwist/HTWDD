@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.10.+'
+        classpath 'com.android.tools.build:gradle:0.11.+'
     }
 }
 apply plugin: 'android'
@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     //compile 'com.google.android.gms:play-services:3.1.36'
-    compile 'com.google.android.gms:play-services:4.3.23'
+    compile 'com.google.android.gms:play-services:4.4.52'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.android.support:support-v4:19.1.+'
     compile project(':library')
@@ -23,7 +23,7 @@ dependencies {
 
 android {
     compileSdkVersion 14
-    buildToolsVersion '19.0.3'
+    buildToolsVersion '19.1.0'
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 17
