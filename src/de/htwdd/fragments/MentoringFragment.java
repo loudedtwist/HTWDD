@@ -17,26 +17,21 @@ import de.htwdd.R;
 
 public class MentoringFragment extends Fragment
 {
-    public String[] links;
     public String[] titles;
     public String[] location;
     public LinearLayout wait;
-    public int mode;
+    public int mode=0;
     WebView web;
 
     public MentoringFragment()
     {
     }
 
-    public MentoringFragment(int i)
-    {
-        // TODO Auto-generated constructor stub
-        mode = i;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        if (getArguments() != null)
+            mode = getArguments().getInt("mode");
         return inflater.inflate(R.layout.mentoring, null);
     }
 

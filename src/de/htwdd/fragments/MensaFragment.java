@@ -17,30 +17,15 @@ import de.htwdd.MensaArrayAdapter;
 import de.htwdd.R;
 import de.htwdd.types.TEssen;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
 
 public class MensaFragment extends ListFragment
 {
-
     int mensa_id = 9;
     public SharedPreferences app_preferences;
-    ArrayList mensen;
     public ProgressBar progressbar;
-
-    public MensaFragment(int mensa_id)
-    {
-        mensen = null;
-        this.mensa_id = mensa_id;
-    }
-
-    public MensaFragment(ArrayList mensen)
-    {
-        mensa_id = -1;
-        this.mensen = mensen;
-    }
 
     public MensaFragment()
     {
@@ -55,6 +40,9 @@ public class MensaFragment extends ListFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
+        if (getArguments() != null)
+            mensa_id = getArguments().getInt("MensaID",9);
+
         super.onActivityCreated(savedInstanceState);
 
         app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());

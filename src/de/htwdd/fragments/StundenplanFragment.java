@@ -38,25 +38,17 @@ public class StundenplanFragment extends Fragment
     public int week_id;
     public ProgressBar progressbar;
 
-    public StundenplanFragment(int fragmentwidth, int fragmentheight, int i)
-    {
-        this.fragmentheight = fragmentheight;
-        this.fragmentwidth = fragmentwidth;
-        week_id = i;
-    }
-
     public StundenplanFragment()
     {
-    }
-
-    public StundenplanFragment(int week)
-    {
-        week_id = week;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        fragmentheight  = getArguments().getInt("fragmentheight");
+        fragmentwidth   = getArguments().getInt("fragmentwidth");
+        week_id         = getArguments().getInt("weekID",0);
+
         return inflater.inflate(R.layout.stundenplan, null);
     }
 

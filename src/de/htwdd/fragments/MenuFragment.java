@@ -13,18 +13,8 @@ import de.htwdd.R;
 
 public class MenuFragment extends ListFragment
 {
-    public int menuheight;
-
-
     public MenuFragment()
     {
-
-    }
-
-    public MenuFragment(int height)
-    {
-        // TODO Auto-generated constructor stub
-        menuheight = height;
     }
 
     @Override
@@ -38,7 +28,7 @@ public class MenuFragment extends ListFragment
     {
         super.onActivityCreated(savedInstanceState);
         String[] birds = getResources().getStringArray(R.array.birds);
-        MenuArrayAdapter colorAdapter = new MenuArrayAdapter(getActivity(), birds, menuheight);
+        MenuArrayAdapter colorAdapter = new MenuArrayAdapter(getActivity(), birds,0);
         setListAdapter(colorAdapter);
     }
 

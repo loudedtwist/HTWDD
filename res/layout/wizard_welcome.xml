@@ -10,70 +10,71 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical" android:layout_weight="20">
+        android:orientation="vertical"
+        android:layout_weight="20">
 
-           <ScrollView
-               android:id="@+id/scrollView1"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content" >
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:gravity="center"
-                   android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical" >
 
-                   <ImageView
-                       android:layout_width="match_parent"
-                       android:layout_height="124dp"
-                       android:layout_marginTop="15dp"
-                       android:src="@drawable/logo" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="124dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/logo" />
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Willkommen zu HTWDD!"
-                       android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Willkommen zu HTWDD!"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                   <LinearLayout
-                       style="@style/nowCardStyle"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_margin="10dp"
-                       android:layout_weight="1"
-                       android:gravity="left"
-                       android:minHeight="10dp"
-                       android:orientation="vertical"
-                       android:padding="5dp" >
+                <LinearLayout
+                    style="@style/nowCardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:minHeight="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp" >
 
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:padding="10dp"
-                           android:text="Der Konfigurationsassistent wird dich nun durch die Einrichtung der App führen. Du kannst jederzeit einzelne Felder überspringen und später in den Optionen nachtragen."
-                           android:textAppearance="?android:attr/textAppearanceSmall" />
-                   </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Der Konfigurationsassistent wird dich nun durch die Einrichtung der App führen. Du kannst jederzeit einzelne Felder überspringen und später in den Optionen nachtragen."
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
 
-                   <LinearLayout
-                       style="@style/nowCardStyle"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_margin="10dp"
-                       android:layout_weight="1"
-                       android:gravity="left"
-                       android:minHeight="10dp"
-                       android:orientation="vertical"
-                       android:padding="5dp" >
+                <LinearLayout
+                    style="@style/nowCardStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:minHeight="10dp"
+                    android:orientation="vertical"
+                    android:padding="5dp" >
 
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:padding="10dp"
-                           android:text="Zu keinem Zeitpunkt werden deine persönlichen Daten an Dritte weitergegeben!"
-                           android:textAppearance="?android:attr/textAppearanceSmall" />
-                   </LinearLayout>
-               </LinearLayout>
-           </ScrollView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="Zu keinem Zeitpunkt werden deine persönlichen Daten an Dritte weitergegeben!"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout

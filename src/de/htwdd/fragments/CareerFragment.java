@@ -34,16 +34,10 @@ public class CareerFragment extends Fragment
     {
     }
 
-    public CareerFragment(int i)
-    {
-        // TODO Auto-generated constructor stub
-        mode = i;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        mode = getArguments().getInt("mode",0);
         if (mode != 2)
             return inflater.inflate(R.layout.career, null);
         else
