@@ -8,32 +8,27 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
-import de.htwdd.R;
-
 import de.htwdd.fragments.ResponsiveUIActivity;
 
 
-public class Wizard6 extends Activity
+public class WizardFinal extends Activity
 {
     /**
      * Called when the activity is first created.
      */
     public void onCreate(Bundle savedInstanceState)
     {
-
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.wizard6);
+        setContentView(R.layout.wizard_final);
 
         Button b1 = (Button) findViewById(R.id.button1);
         Button b2 = (Button) findViewById(R.id.button2);
-
 
         b1.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View arg0)
             {
-                Intent nextScreen = new Intent(getApplicationContext(), Wizard5.class);
+                Intent nextScreen = new Intent(getApplicationContext(), WizardBibliothek.class);
                 startActivity(nextScreen);
             }
         });
@@ -42,29 +37,17 @@ public class Wizard6 extends Activity
         {
             public void onClick(View arg0)
             {
-
-
-                SharedPreferences app_preferences = PreferenceManager
-                        .getDefaultSharedPreferences(Wizard6.this);
-
+                SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(WizardFinal.this);
                 SharedPreferences.Editor editor = app_preferences.edit();
 
-
                 editor.putString("wizardrun", "yes");
-
                 editor.commit(); // Very important
-
 
                 Intent nextScreen = new Intent(getApplicationContext(), ResponsiveUIActivity.class);
                 startActivity(nextScreen);
 
                 finish();
-
             }
         });
-
-
     }
-
-
 }

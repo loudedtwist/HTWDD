@@ -9,8 +9,6 @@ import android.os.IBinder;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import de.htwdd.R;
-
 import de.htwdd.fragments.ResponsiveUIActivity;
 import de.htwdd.types.Type_Stunde;
 
@@ -34,7 +32,7 @@ public class UpdateTimetableSmallWidgetService extends Service
             // Create some random data
             int number = (new Random().nextInt(100));
 
-            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_vorschau);
+            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_timetable);
 
             // Reset all textfields
             remoteViews.setTextViewText(R.id.TextView01, "");

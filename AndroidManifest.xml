@@ -26,47 +26,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PropertiesActivity" />
-        <activity android:name=".LeftAndRightActivity" />
-        <activity android:name=".AttachExample" />
-        <activity android:name=".anim.CustomScaleAnimation" />
-        <activity android:name=".anim.CustomZoomAnimation" />
-        <activity android:name=".anim.CustomRotateAnimation" />
-        <activity android:name=".anim.CustomSlideAnimation" />
-        <activity android:name=".SlidingTitleBar" />
-        <activity android:name=".SlidingContent" />
-        <activity android:name=".ViewPagerActivity" />
-        <activity android:name="de.htwdd.fragments.FragmentChangeActivity" />
+
         <activity
-            android:name="de.htwdd.Wizard1"
+            android:name=".WizardWelcome"
             android:label="HTWDD"
-			android:theme="@style/ExampleTheme">       
-        </activity>        
+			android:theme="@style/ExampleTheme">
+        </activity>
         <activity
-            android:name="de.htwdd.Wizard6"
+            android:name=".WizardFinal"
             android:label="HTWDD"
 			android:theme="@style/ExampleTheme">       
         </activity>        
 		<activity
 			android:windowSoftInputMode="adjustPan"          
-            android:name="de.htwdd.Wizard2"
+            android:name=".About"
             android:label="HTWDD"
 			android:theme="@style/ExampleTheme">                
         </activity>        
         <activity
-            android:name="de.htwdd.Wizard3"
+            android:name=".WizardMatrikel"
             android:label="HTWDD"
             android:theme="@style/ExampleTheme">      
         </activity>        
         <activity
-            android:name="de.htwdd.Wizard4"
+            android:name=".WizardStudyGroup"
             android:windowSoftInputMode="adjustPan"
 			android:theme="@style/ExampleTheme"         
             android:label="HTWDD">
         </activity>        
         <activity
 			android:windowSoftInputMode="adjustPan"            
-            android:name="de.htwdd.Wizard5"
+            android:name=".WizardBibliothek"
             android:label="HTWDD"     
 			android:theme="@style/ExampleTheme">         
         </activity>
@@ -99,7 +89,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_vorschau" />
+                android:resource="@xml/widget_timetable" />
         </receiver>        
         
 		<service android:name="de.htwdd.UpdateMensaWidgetService"></service>
@@ -110,7 +100,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_info2" />
+                android:resource="@xml/widget_mensa_4" />
         </receiver>
 		
 		<service android:name="de.htwdd.UpdateMensaWidgetService2"></service>
@@ -122,7 +112,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_info3" />
+                android:resource="@xml/widget_mensa_6" />
         </receiver>
     </application>
 </manifest>

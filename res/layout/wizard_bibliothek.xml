@@ -4,48 +4,37 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
-<LinearLayout
-    android:focusable="true" android:focusableInTouchMode="true"
-    android:layout_width="0px" android:layout_height="0px"/>
-    
+
     <ScrollView
-        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20" >
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/imageView1"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/biblnr" />
 
             <TableLayout
-                android:id="@+id/tableLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_margin="15dp">
-
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
 
                 <TableRow
-                    android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/linearLayout6"
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/textView1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="15dp"
@@ -53,7 +42,6 @@
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <TextView
-                            android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ohne führendes S"
@@ -62,28 +50,21 @@
                     </LinearLayout>
 
                     <EditText
-                        android:id="@+id/editText1"
+                        android:id="@+id/bibliotheksnummer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:singleLine="true" >
-
-                       
-                    </EditText>
+                        android:singleLine="true" />
                 </TableRow>
 
-
                 <TableRow
-                    android:id="@+id/tableRow2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/linearLayout7"
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView02"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="15dp"
@@ -91,7 +72,6 @@
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <TextView
-                            android:id="@+id/TextView01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="i.d.R. Geburtsdatum als ttmmjj\nz.B. 02.05.1984 -> 020584"
@@ -100,7 +80,7 @@
                     </LinearLayout>
 
                     <EditText
-                        android:id="@+id/EditText02"
+                        android:id="@+id/bibPasswort"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
@@ -109,10 +89,9 @@
             </TableLayout>
 
             <LinearLayout
-                        android:id="@+id/cardlayout2"
                         style="@style/nowCardStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:gravity="left"
@@ -121,7 +100,6 @@
                         android:padding="5dp" >
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -129,17 +107,15 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="15dp">
-
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="15dp">
 
         <LinearLayout
-            android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -149,13 +125,10 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zurück" />
-
+                android:text="@string/back" />
         </LinearLayout>
 
-
         <LinearLayout
-            android:id="@+id/linearLayout5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -165,10 +138,7 @@
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Weiter" />
-
+                android:text="@string/next" />
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

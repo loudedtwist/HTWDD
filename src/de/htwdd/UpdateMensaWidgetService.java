@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.os.IBinder;
 import android.widget.RemoteViews;
 
-import de.htwdd.R;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -32,7 +30,7 @@ public class UpdateMensaWidgetService extends Service
 
         for (int widgetId : allWidgetIds)
         {
-            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_layout2);
+            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_mensa_4);
 
             VersionedStrictModeWrapper.StrictModeWrapper strictMode = VersionedStrictModeWrapper.getInstance();
             VersionedStrictModeWrapper.StrictModeWrapper.ThreadPolicyWrapper origPolicy = strictMode.allowThreadDiskReads();

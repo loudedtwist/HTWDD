@@ -29,13 +29,7 @@ public class Preference extends SherlockPreferenceActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-//        menu.add("Save")
-//            .setIcon(R.drawable.ic_compose)
-//            .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-        menu.add(0, 1, 0, "Speichern")
-
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(0, 1, 0, "Speichern").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -43,11 +37,9 @@ public class Preference extends SherlockPreferenceActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
-        //  getSupportActionBar().setIcon(R.drawable.ic_pref);
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        addPreferencesFromResource(R.layout.preferences);
+
+        addPreferencesFromResource(R.xml.preferences);
     }
 
     @Override
@@ -70,12 +62,7 @@ public class Preference extends SherlockPreferenceActivity
                 return true;
 
             default:
-                ;
         }
-
-
         return true;
     }
-
-
 }

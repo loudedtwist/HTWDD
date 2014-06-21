@@ -31,7 +31,7 @@ import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.HTTPDownloader;
 import de.htwdd.R;
-import de.htwdd.Wizard1;
+import de.htwdd.WizardWelcome;
 import de.htwdd.types.TEssen;
 import de.htwdd.types.TNote;
 import de.htwdd.types.Type_Stunde;
@@ -550,7 +550,7 @@ public class CardFragment extends Fragment
             @Override
             public void onClick(View arg0)
             {
-                Intent nextScreen = new Intent(getActivity().getApplicationContext(), Wizard1.class);
+                Intent nextScreen = new Intent(getActivity().getApplicationContext(), WizardWelcome.class);
                 startActivity(nextScreen);
                 getActivity().finish();
             }

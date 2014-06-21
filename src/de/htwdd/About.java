@@ -9,15 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import de.htwdd.R;
 
-
-public class Wizard2 extends Fragment
+public class About extends Fragment
 {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.wizard2, null);
+        return inflater.inflate(R.layout.about, null);
     }
 
     @Override

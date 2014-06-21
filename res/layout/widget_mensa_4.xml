@@ -3,19 +3,10 @@
     android:id="@+id/widgetcontainer0"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-     android:gravity="center"
-     android:background="@drawable/appwidget_dark_bg"
-     android:textColor="#000000"
+    android:gravity="center"
+    android:background="@drawable/appwidget_dark_bg"
     android:orientation="vertical"
-    android:layout_margin="@dimen/widget_margin"
-      
-    >
-
-
-
-
-
-
+    android:layout_margin="@dimen/widget_margin" >
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -37,8 +28,7 @@
                 android:minWidth="85dp"
                 android:text="Bitte warten..."
                 android:textAppearance="?android:attr/textAppearanceMedium"
-               
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/TextView002"
@@ -46,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:visibility="visible" />
 
             <TextView
@@ -54,8 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-             
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/TextView004"
@@ -63,42 +52,21 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:visibility="visible" />
-
-            
-            <TextView
-                android:id="@+id/TextView03"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-            
-                android:textSize="12sp" />
-            
-            <TextView
-                android:id="@+id/TextView02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
-
-            
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="bottom"
-                android:orientation="vertical"
-               >
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/TextView01"
+                    android:textColor="@color/bgcolor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   
                     android:textSize="7sp" />
             </LinearLayout>
         </LinearLayout>
@@ -116,8 +84,7 @@
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/textView02"
@@ -125,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:visibility="visible" />
 
             <TextView
@@ -133,8 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-           
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/textView06"
@@ -142,23 +108,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/TextView05"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/TextView04"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:visibility="visible" />
 
             <LinearLayout
@@ -171,7 +121,6 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   
                     android:textSize="7sp" />
 
                 <ImageView
@@ -181,7 +130,5 @@
                     android:src="@drawable/refresh" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

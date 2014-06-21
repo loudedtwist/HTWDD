@@ -28,7 +28,7 @@
                 android:id="@+id/LinearLayout04"
                 style="@style/nowCardStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:minHeight="100dp"
                 android:orientation="vertical" >
@@ -114,7 +114,7 @@
                 android:id="@+id/willkommen"
                 style="@style/nowCardStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:minHeight="100dp"
                 android:orientation="vertical" >
@@ -238,9 +238,9 @@
                     <TextView
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Stundenplan"
+                        android:text="@string/timetable"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="30sp" />
@@ -316,7 +316,7 @@
                             android:orientation="vertical" >
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/bibliotheksnummer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nächste"
@@ -365,7 +365,7 @@
 
                         <ListView
                             android:id="@+id/belegungslist"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="155dp"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="1"
@@ -421,7 +421,7 @@
                     <TextView
                         android:id="@+id/aktuellheader"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="HTW Aktuell"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -460,7 +460,6 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <View
-                    android:id="@+id/View03"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginLeft="5dp"
@@ -585,7 +584,7 @@
                      android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <LinearLayout
-                     android:layout_width="wrap_content"
+                     android:layout_width="0dp"
                      android:layout_height="wrap_content"
                      android:layout_weight="1"
                      android:gravity="center|left"
@@ -661,7 +660,7 @@
                 android:id="@+id/career"
                 style="@style/nowCardStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:minHeight="100dp"
                 android:orientation="vertical"
@@ -737,7 +736,7 @@
                 android:id="@+id/LinearLayout01"
                 style="@style/nowCardStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:minHeight="100dp"
                 android:orientation="vertical" >
@@ -761,8 +760,6 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="30sp" />
                 </LinearLayout>
-
-             
 
                 <LinearLayout
                     android:layout_width="match_parent"

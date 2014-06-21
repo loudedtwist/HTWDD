@@ -21,12 +21,13 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+
+import de.htwdd.About;
 import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerRoomTimetable;
 import de.htwdd.Preference;
 
 import de.htwdd.R;
-import de.htwdd.Wizard2;
 
 import java.io.File;
 import java.util.Calendar;
@@ -82,7 +83,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         super.onCreate(savedInstanceState);
         setTitle(R.string.responsive_ui);
 
-        setContentView(R.layout.responsive_content_frame);
+        setContentView(R.layout.content_frame);
 
         // check if the content frame contains the menu frame
         if (findViewById(R.id.menu_frame) == null)
@@ -520,7 +521,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().setTitle("HTWDD V" + info.versionName);
 
 
-                mContent = new Wizard2();
+                mContent = new About();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)

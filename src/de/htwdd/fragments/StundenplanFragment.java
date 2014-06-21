@@ -19,7 +19,7 @@ import android.widget.Toast;
 import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.MyAdapter;
 import de.htwdd.R;
-import de.htwdd.Wizard1;
+import de.htwdd.WizardWelcome;
 import de.htwdd.types.Type_Stunde;
 
 import java.io.BufferedReader;
@@ -116,7 +116,7 @@ public class StundenplanFragment extends Fragment
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
-                        Intent nextScreen = new Intent(getActivity(), Wizard1.class);
+                        Intent nextScreen = new Intent(getActivity(), WizardWelcome.class);
                         startActivity(nextScreen);
                         getActivity().finish();
                     }
