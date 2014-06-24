@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:allowBackup="true"
-        android:theme="@style/ExampleTheme" >        
+        android:theme="@style/ExampleTheme" >
 
         <activity
             android:name="de.htwdd.fragments.ResponsiveUIActivity"
@@ -25,51 +25,40 @@
         </activity>
 
         <activity
-            android:name=".WizardWelcome"
-            android:label="HTWDD"
-			android:theme="@style/ExampleTheme">
+            android:name=".WizardWelcome">
         </activity>
         <activity
-            android:name=".WizardFinal"
-            android:label="HTWDD"
-			android:theme="@style/ExampleTheme">       
+            android:name=".WizardFinal">
         </activity>
         <activity
-            android:name=".WizardMatrikel"
-            android:label="HTWDD"
-            android:theme="@style/ExampleTheme">      
+            android:name=".WizardMatrikel">
         </activity>        
         <activity
             android:name=".WizardStudyGroup"
             android:windowSoftInputMode="adjustPan"
-			android:theme="@style/ExampleTheme"         
             android:label="HTWDD">
         </activity>        
         <activity
 			android:windowSoftInputMode="adjustPan"            
             android:name=".WizardBibliothek"
-            android:label="HTWDD"     
-			android:theme="@style/ExampleTheme">         
+            android:label="HTWDD">
         </activity>
 		<activity
             android:name="de.htwdd.TerminAnfragePopup"
-            android:label="Termin anfragen"           
-            android:theme="@style/ExampleTheme">       
+            android:label="Termin anfragen">
         </activity>       
-       <activity
+        <activity
             android:name="de.htwdd.EditTimetable"
             android:label="Stunde Bearbeiten"
-            android:theme="@android:style/Theme.Panel">       
+            android:theme="@android:style/Theme.Panel">
         </activity>           
         <activity
             android:name="de.htwdd.datepicker"
-            android:label="Termin wählen"
-            android:theme="@style/ExampleTheme">       
+            android:label="Termin wählen">
         </activity>          
         <activity
             android:name="de.htwdd.Preference"
-            android:label="Einstellungen"
-            android:theme="@style/ExampleTheme">       
+            android:label="Einstellungen">
         </activity>
 
 		<service android:name="de.htwdd.UpdateTimetableSmallWidgetService"></service>

@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Willkommen zur HTWDD App!"
+                        android:text="Willkommen zur HTWDresden App!"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <TextView
@@ -189,7 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="Dies ist die Übersichts-Seite auf der Du einen Überblick über den aktuellen Tag und dein Studium hast.\n\nStarte den Konfigurations-Assistent um alle Features der HTWDD App benutzen zu können."
+                        android:text="Dies ist die Übersichts-Seite auf der Du einen Überblick über den aktuellen Tag und dein Studium hast.\n\nStarte den Konfigurations-Assistent um alle Features der HTWDresden App benutzen zu können."
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <LinearLayout
@@ -716,71 +716,6 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="0"
                     android:background="@color/appbg" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="@dimen/sidemargin"
-            android:layout_marginRight="@dimen/sidemargin"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:visibility="gone" >
-
-            <LinearLayout
-                android:id="@+id/LinearLayout01"
-                style="@style/nowCardStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:minHeight="100dp"
-                android:orientation="vertical" >
-
-                   <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                
-                      android:background="@color/faded_grey"
-                    android:orientation="vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"  >
-
-                    <TextView
-                        android:id="@+id/textView03"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="HTWDD"
-                         android:textColor="@color/white"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textSize="30sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp" >
-
-                    <TextView
-                        android:id="@+id/news"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text=""
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

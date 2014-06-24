@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">HTWDD</string>
-    <string name="responsive_ui">HTWDD</string>
+    <string name="app_name">HTWDresden</string>
+    <string name="responsive_ui">HTWDresden</string>
     <string name="timetable">Stundenplan</string>
     <string name="next">Weiter</string>
     <string name="back">Zurück</string>

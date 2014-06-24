@@ -33,10 +33,10 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HTWDD"
+                android:text="@string/app_name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/bgcolor"
-                android:textSize="60sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text='Die HTWDD-App ist ein Projekt im Rahmen des Moduls "Mobile Netze" des Masterstudienganges Angewandte Informationstechnologien der HTW Dresden.\nEs ist keine offizielle App der HTW Dresden oder einer anderen Institution.'
+                    android:text='Die HTWDresden-App ist ein Projekt im Rahmen des Moduls "Mobile Netze" des Masterstudienganges Angewandte Informationstechnologien der HTW Dresden.\nEs ist keine offizielle App der HTW Dresden oder einer anderen Institution.'
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="12sp"/>
 

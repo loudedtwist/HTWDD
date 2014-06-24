@@ -526,7 +526,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().removeAllTabs();
 
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-                getSupportActionBar().setTitle("HTWDD V" + info.versionName);
+                getSupportActionBar().setTitle("HTWDresden V" + info.versionName);
 
 
                 mContent = new About();
@@ -732,7 +732,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
         // Argumente übergeben
         mContent.setArguments(args);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mContent).commit();
         Handler h = new Handler();
         h.postDelayed(new Runnable()

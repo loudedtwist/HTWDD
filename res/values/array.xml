@@ -10,7 +10,7 @@
     </string-array>
 
     <string-array name="birds">
-        <item>HTWDD</item>
+        <item>@string/responsive_ui</item>
         <item>Übersicht</item>
         <item>Alltag</item>
         <item>Stundenplan</item>
