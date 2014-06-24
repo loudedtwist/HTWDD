@@ -22,7 +22,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import de.htwdd.About;
 import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerRoomTimetable;
 import de.htwdd.Preference;
