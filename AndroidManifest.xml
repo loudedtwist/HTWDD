@@ -4,17 +4,16 @@
     android:versionCode="3610"
     android:versionName="3.61" >
 
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:allowBackup="true"
         android:theme="@style/ExampleTheme" >
-
         <activity
-            android:name="de.htwdd.fragments.ResponsiveUIActivity"
+            android:name=".fragments.ResponsiveUIActivity"
             android:configChanges="orientation|screenSize|screenLayout"
             android:theme="@style/ExampleTheme" >
             <intent-filter>
@@ -23,70 +22,60 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".WizardWelcome">
+        <activity android:name=".WizardWelcome" >
         </activity>
-        <activity
-            android:name=".WizardFinal">
+        <activity android:name=".WizardFinal" >
         </activity>
-        <activity
-            android:name=".WizardMatrikel">
-        </activity>        
+        <activity android:name=".WizardMatrikel" >
+        </activity>
         <activity
             android:name=".WizardStudyGroup"
-            android:windowSoftInputMode="adjustPan"
-            android:label="HTWDD">
-        </activity>        
-        <activity
-			android:windowSoftInputMode="adjustPan"            
-            android:name=".WizardBibliothek"
-            android:label="HTWDD">
+            android:label="HTWDD"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
-		<activity
-            android:name="de.htwdd.TerminAnfragePopup"
-            android:label="Termin anfragen">
-        </activity>       
         <activity
-            android:name="de.htwdd.EditTimetable"
+            android:name=".WizardBibliothek"
+            android:label="HTWDD"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".TerminAnfragePopup"
+            android:label="Termin anfragen" >
+        </activity>
+        <activity
+            android:name=".EditTimetable"
             android:label="Stunde Bearbeiten"
-            android:theme="@android:style/Theme.Panel">
-        </activity>           
+            android:theme="@android:style/Theme.Panel" >
+        </activity>
         <activity
-            android:name="de.htwdd.datepicker"
-            android:label="Termin wählen">
-        </activity>          
+            android:name=".datepicker"
+            android:label="Termin wählen" >
+        </activity>
         <activity
-            android:name="de.htwdd.Preference"
-            android:label="Einstellungen">
+            android:name=".Preference"
+            android:label="Einstellungen" >
         </activity>
 
-		<service android:name="de.htwdd.UpdateTimetableSmallWidgetService"></service>
-        <receiver android:name="de.htwdd.WidgetTimetableSmallProvider"
-			android:label="HTWDD Stundenübersicht">
-            <intent-filter >
+        <service android:name=".UpdateTimetableSmallWidgetService" />
+
+        <receiver
+            android:name=".WidgetTimetableSmallProvider"
+            android:label="HTWDD Stundenübersicht" >
+            <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_timetable" />
-        </receiver>        
-        
-		<service android:name="de.htwdd.UpdateMensaWidgetService"></service>
-        <receiver android:name="de.htwdd.WidgetMensaProvider"
-			android:label="HTWDD Mensa 4x">
-            <intent-filter >
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_mensa_4" />
         </receiver>
-		
-		<service android:name="de.htwdd.UpdateMensaWidgetService2"></service>
-        <receiver android:name="de.htwdd.WidgetMensaProvider2"
-			android:label="HTWDD Mensa 6x">
-            <intent-filter >
+
+        <service android:name=".UpdateMensaWidgetService2" />
+
+        <receiver
+            android:name=".WidgetMensaProvider2"
+            android:label="HTWDD Mensa 6x" >
+            <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
@@ -94,5 +83,18 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_mensa_6" />
         </receiver>
+        <receiver
+            android:name=".WidgetMensa"
+            android:label="HTWDresden Mensa">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_mensa_info" />
+        </receiver>
+
     </application>
+
 </manifest>

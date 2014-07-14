@@ -701,7 +701,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         }
         // Mensa
         else if (tab.getText().equals("Heute") && (mode == 4))
-            mContent = new MensaFragment();
+            mContent = new MensaDay();
         // Noten
         else if (tab.getText().equals("Noten"))
             mContent = new NotenFragment();
@@ -728,7 +728,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
 
         if (tab.getText().equals("Woche") && (mode == 4))
-            mContent = new MensaWocheFragment();
+            mContent = new MensaWeek();
 
         // Argumente übergeben
         mContent.setArguments(args);

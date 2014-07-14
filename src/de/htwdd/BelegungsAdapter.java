@@ -9,8 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import de.htwdd.R;
-
 import de.htwdd.types.Type_Stunde;
 
 import java.util.Calendar;
@@ -27,7 +25,7 @@ public class BelegungsAdapter extends ArrayAdapter<String>
 
     public BelegungsAdapter(Context context, String[] titles, Type_Stunde[] essen)
     {
-        super(context, R.layout.mensarow, titles);
+        super(context, R.layout.mensa, titles);
         this.context = context;
         this.stunden = essen;
         this.titles = titles;
