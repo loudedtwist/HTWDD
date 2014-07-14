@@ -25,7 +25,7 @@ public class UpdateMensaWidgetService2 extends Service
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this.getApplicationContext());
         int[] allWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
 
-        ComponentName thisWidget = new ComponentName(getApplicationContext(), WidgetMensaProvider.class);
+        ComponentName thisWidget = new ComponentName(getApplicationContext(), WidgetMensaProvider2.class);
         int[] allWidgetIds2 = appWidgetManager.getAppWidgetIds(thisWidget);
 
         for (int widgetId : allWidgetIds)

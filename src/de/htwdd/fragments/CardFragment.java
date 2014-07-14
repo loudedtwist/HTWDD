@@ -30,6 +30,7 @@ import de.htwdd.BelegungsAdapter;
 import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.HTTPDownloader;
+import de.htwdd.Mensa;
 import de.htwdd.R;
 import de.htwdd.WizardWelcome;
 import de.htwdd.types.TEssen;
@@ -49,24 +50,6 @@ public class CardFragment extends Fragment
     }
 
     public PackageInfo info;
-
-    public void clearApplicationData()
-    {
-        File cache = getActivity().getCacheDir();
-        File appDir = new File(cache.getParent());
-        if (appDir.exists())
-        {
-            String[] children = appDir.list();
-            for (String s : children)
-            {
-                if (!s.equals("lib"))
-                {
-                    deleteDir(new File(appDir, s));
-
-                }
-            }
-        }
-    }
 
     public static boolean deleteDir(File dir)
     {
@@ -893,46 +876,16 @@ public class CardFragment extends Fragment
     }
 
 
-    private class MensaWorker extends AsyncTask<Calendar, Void, TEssen[]>
+    private class MensaWorker extends AsyncTask<Void, Void, TEssen[]>
     {
         @Override
-        protected TEssen[] doInBackground(Calendar... params)
+        protected TEssen[] doInBackground(Void... params)
         {
-            int index;
+            // Lade Mensa
+            Mensa myMensa = new Mensa();
+            myMensa.getDataCurrentDay();
 
-            try
-            {
-                HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=9");
-
-                String result   = downloader.getString();
-                String tokens[] = result.split("<title>");
-                TEssen[] essen  = new TEssen[tokens.length - 2];
-
-                for (int i = 0; i < essen.length; i++)
-                {
-                    essen[i] = new TEssen();
-                    try
-                    {
-                        // Bestimme Index wo Titel endet (ohne Preis)
-                        index = tokens[i + 2].indexOf("(");
-                        if(index == -1)
-                            index = tokens[i + 2].indexOf("</title>");
-
-                        // Extrahiere die benötigten Informationen
-                        essen[i].setTitle(tokens[i + 2].substring(0, index));
-                        essen[i].setSonst(tokens[i + 2].substring(tokens[i + 2].indexOf("<description>") + 13, tokens[i + 2].indexOf("</description>")));
-                        essen[i].setID(Integer.parseInt(tokens[i + 2].substring(tokens[i + 2].indexOf("details-") + 8, tokens[i + 2].indexOf(".html"))));
-                    } catch (Exception e)
-                    {
-                        essen[i].setTitle("Fehler im Parser");
-                    }
-                }
-                return essen;
-
-            } catch (Exception e)
-            {
-                return null;
-            }
+            return myMensa.Food;
         }
 
         @Override
@@ -944,35 +897,24 @@ public class CardFragment extends Fragment
                 // otherwise getActivity will throw an exception
                 if(isAdded())
                 {
-                    if (essen.length < 1)
+                    String mensa = "Heute kein Angebot";
+
+                    if (essen.length > 0)
                     {
-                        essen = new TEssen[1];
-                        essen[0] = new TEssen();
-                        essen[0].setTitle("Kein Angebot an diesem Tag.");
-                    }
-
-                    String titles[] = new String[essen.length];
-
-                    String mensa = "";
-
-                    for (int i = 0; i < titles.length; i++)
-                    {
-                        if (i < titles.length - 1)
-                            mensa += (essen[i].getTitle() + "\n\n");
-                        else
-                            mensa += (essen[i].getTitle());
+                        // Alle Mahlzeiten (Titel) in einen String verketten
+                        mensa = "";
+                        for (int i = 0; i < essen.length; i++)
+                            if (i < essen.length - 1)
+                                mensa += essen[i].Title + "\n\n";
+                            else
+                                mensa += essen[i].Title;
                     }
 
                     TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
-
                     mensatext.setText(mensa);
-                    if (mensa.contains("UnkownHost"))
-                        mensatext.setText("Verbindung zum Mensa-Server nicht möglich.");
                 }
-
             } catch (Exception e)
             {
-                return;
             }
         }
     }

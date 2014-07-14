@@ -3,18 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:paddingBottom="10dp"
     android:paddingLeft="@dimen/sidemargin"
-    android:paddingTop="20dp" 
-    android:paddingRight="@dimen/sidemargin" >
+    android:paddingRight="@dimen/sidemargin"
+    android:paddingTop="10dp" >
 
     <LinearLayout
         android:id="@+id/menurow"
         style="@style/nowCardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:minHeight="200dp"
+        android:layout_gravity="top|center_horizontal"
+        android:minHeight="100dp"
         android:orientation="vertical" >
+
+        <de.htwdd.AspectRatioImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/image"
+            android:src="@drawable/abs__ab_bottom_solid_dark_holo"/>
 
         <TextView
             android:id="@+id/titel"
@@ -24,18 +32,24 @@
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="Essen"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/preis"
-               android:paddingBottom="10dp"
-           android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Beschreibung und Preis"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-    </LinearLayout>
 
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0"
+            android:background="@color/appbg" />
+    </LinearLayout>
 </LinearLayout>
