@@ -443,28 +443,8 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
+
             case 9:
-                getSupportActionBar().removeAllTabs();
-                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-                getSupportActionBar().setTitle("Mentoring");
-                tab = getSupportActionBar().newTab();
-                tab.setText("Mentoren");
-                tab.setTabListener(this);
-                getSupportActionBar().addTab(tab);
-
-                tab2 = getSupportActionBar().newTab();
-                tab2.setText("Aktuelles");
-                tab2.setTabListener(this);
-                getSupportActionBar().addTab(tab2);
-
-                tab3 = getSupportActionBar().newTab();
-                tab3.setText("Kontakt");
-                tab3.setTabListener(this);
-                getSupportActionBar().addTab(tab3);
-                break;
-
-            case 10:
                 getSupportActionBar().removeAllTabs();
 
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -486,7 +466,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
                 break;
 
-            case 11:
+            case 10:
                 getSupportActionBar().removeAllTabs();
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -504,14 +484,14 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
-            case 13:
+            case 11:
                 Intent intent2 = new Intent(this, Preference.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
                 finish();
                 break;
 
-            case 14:
+            case 13:
                 PackageManager manager = this.getPackageManager();
                 PackageInfo info = null;
                 try
@@ -544,7 +524,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 }, 50);
                 break;
 
-            case 18:
+            case 17:
                 AlertDialog alertDialog12 = new AlertDialog.Builder(ResponsiveUIActivity.this).create();
 
                 // Setting Dialog Title
@@ -630,6 +610,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
     {
     }
 
+    //TODO
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft)
     {
@@ -668,15 +649,15 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
 
 
-
+        // Bibliothek
         if (tab.getText().equals("Rückgabe"))
             mContent = new BiblioFragment();
 
-        if (tab.getText().equals("Suche"))
+        else if (tab.getText().equals("Suche"))
             mContent = new BiblioSearchFragment();
 
         // Career Service
-        if (tab.getText().equals("Events"))
+        else if (tab.getText().equals("Events"))
         {
             args.putInt("mode",0);
             mContent = new CareerFragment();
@@ -686,19 +667,8 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
             args.putInt("mode",1);
             mContent = new CareerFragment();
         }
-        // Mentoring
-        else if (tab.getText().equals("Mentoren"))
-            mContent = new MentoringFragment();
-        else if (tab.getText().equals("Aktuelles"))
-        {
-            args.putInt("mode", 1);
-            mContent = new MentoringFragment();
-        }
-        else if (tab.getText().equals("Kontakt"))
-        {
-            args.putInt("mode", 2);
-            mContent = new MentoringFragment();
-        }
+        else if (tab.getText().equals("Beratung"))
+            mContent = new CareerBeratungFragment();
         // Mensa
         else if (tab.getText().equals("Heute") && (mode == 4))
             mContent = new MensaDay();
@@ -708,15 +678,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         else if (tab.getText().equals("Statistik"))
             mContent = new NotenStatsFragment();
 
-
-
-
-
-
-
-
-        if (tab.getText().equals("Beratung"))
-            mContent = new CareerBeratungFragment();
 
 
 

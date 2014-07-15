@@ -39,50 +39,52 @@ public class CareerBeratungFragment extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
 
-
-        Button button, button2;
+        Button ButtonTermin, ButtonJobboerse, ButtonMentoring;
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+
         if (currentapiVersion >= 14)
         {
-            //?android:attr/borderlessButtonStyle
+            ButtonTermin = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+            ButtonTermin.setTextColor(Color.parseColor("#33B5E5"));
 
-            button = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
-            button.setTextColor(Color.parseColor("#33B5E5"));
+            ButtonJobboerse = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+            ButtonJobboerse.setTextColor(Color.parseColor("#33B5E5"));
 
-            button2 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            //	 (Button) inflater.inflate(android.R.attr.borderlessButtonStyle,parent, false);
-            button2.setTextColor(Color.parseColor("#33B5E5"));
-
+            ButtonMentoring = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+            ButtonMentoring.setTextColor(Color.parseColor("#33B5E5"));
         }
         else
         {
-            button = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-            button2 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+            ButtonTermin    = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+            ButtonJobboerse = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+            ButtonMentoring = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
         }
-        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 
-        button.setText("Termin anfragen");
+        ButtonTermin.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        ButtonTermin.setText("Termin anfragen");
 
-        button2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        ButtonJobboerse.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        ButtonJobboerse.setText("Jobbörse im Browser öffnen");
 
-        button2.setText("Jobbörse im Browser öffnen");
+        ButtonMentoring.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        ButtonMentoring.setText("Mentoring im Browser öffnen");
 
-        LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.menulayout);
-        LinearLayout jln = (LinearLayout) getActivity().findViewById(R.id.joblayout);
+        LinearLayout layoutBeratung  = (LinearLayout) getActivity().findViewById(R.id.CareerBeratung);
+        LinearLayout layoutJobboerse = (LinearLayout) getActivity().findViewById(R.id.CareerJobboerse);
+        LinearLayout layoutMentoring = (LinearLayout) getActivity().findViewById(R.id.CareerMentoring);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-        ln.addView(button, lp);
-        jln.addView(button2, lp);
+        layoutBeratung.addView(ButtonTermin, lp);
+        layoutJobboerse.addView(ButtonJobboerse, lp);
+        layoutMentoring.addView(ButtonMentoring, lp);
 
-        button.setOnClickListener(new MyOnClickListener());
-        button2.setOnClickListener(new MyOnClickListener2());
-
-
+        ButtonTermin.setOnClickListener(new TerminOnClickListener());
+        ButtonJobboerse.setOnClickListener(new JobboerseOnClickListener());
+        ButtonMentoring.setOnClickListener(new MentoringOnClickListener());
     }
 
 
-    class MyOnClickListener implements OnClickListener
+    class TerminOnClickListener implements OnClickListener
     {
         public void onClick(View v)
         {
@@ -91,14 +93,21 @@ public class CareerBeratungFragment extends Fragment
         }
     }
 
-    class MyOnClickListener2 implements OnClickListener
+    class JobboerseOnClickListener implements OnClickListener
     {
         public void onClick(View v)
         {
-
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.htw-dresden.de/jobboerse/"));
             getActivity().startActivity(i);
         }
     }
 
+    class MentoringOnClickListener implements OnClickListener
+    {
+        public void onClick(View v)
+        {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www2.htw-dresden.de/~mumm/mentoring/"));
+            getActivity().startActivity(i);
+        }
+    }
 }
