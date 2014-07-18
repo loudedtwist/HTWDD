@@ -115,7 +115,7 @@ public class Mensa {
                     if (!matcher.group(1).equals("ausverkauft"))
                         Food[i-1].Price = matcher.group(1)+" €";
                     else
-                        Food[i-1].Price = "ausverk";
+                        Food[i-1].Price = "aus.";
                 }
                 catch (Exception e)
                 {
