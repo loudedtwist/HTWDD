@@ -1,7 +1,5 @@
 package de.htwdd;
 
-import android.util.Log;
-
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,7 +78,7 @@ public class Mensa {
         String result;
         String token[];
         Pattern title   = Pattern.compile(".*?<td class=\"text\">(.*?)</td>");
-        Pattern price   = Pattern.compile(">(\\d?\\d,\\d\\d|ausverkauft)");
+        Pattern price   = Pattern.compile(">(\\d?\\d,\\d\\d|ausverkauft| )");
         Matcher matcher;
         int AnzToken;
 
@@ -105,19 +103,31 @@ public class Mensa {
             {
                 Food[i-1] = new TEssen();
 
-                //Title
-                matcher = title.matcher(token[i]);
-                matcher.find();
-                Food[i-1].Title = matcher.group(1);
+                try {
+                    //Title
+                    matcher = title.matcher(token[i]);
+                    matcher.find();
+                    Food[i-1].Title = matcher.group(1);
 
-                //Preis
-                matcher = price.matcher(token[i]);
-                matcher.find();
-                Food[i-1].Price = matcher.group(1);
+                    //Preis
+                    matcher = price.matcher(token[i]);
+                    matcher.find();
+                    if (!matcher.group(1).equals("ausverkauft"))
+                        Food[i-1].Price = matcher.group(1)+" €";
+                    else
+                        Food[i-1].Price = "ausverk";
+                }
+                catch (Exception e)
+                {
+                    Food[i-1].Title = "Fehler im Parser";
+                }
             }
         }
         catch (Exception e)
         {
+            Food = new TEssen[1];
+            Food[0] = new TEssen();
+            Food[0].Title = "Keine Internetverbindung!";
         }
     }
 
@@ -173,7 +183,7 @@ public class Mensa {
         {
             String url = "http://bilderspeiseplan.studentenwerk-dresden.de/m" + MensaID + "/"+rightNow.get(Calendar.YEAR)+String.format("%02d",rightNow.get(Calendar.MONTH)+1)+"/thumbs/"+i.ID+".jpg";
             HTTPDownloader downloader = new HTTPDownloader(url);
-            i.Thumbnail = downloader.getBitmap(i.ID);
+            i.Thumbnail = downloader.getBitmap();
         }
     }
 

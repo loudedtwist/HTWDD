@@ -56,7 +56,10 @@ public class WidgetMensa extends AppWidgetProvider {
         super.onReceive(context, intent);
 
         if (intent.getAction().equals("Update"))
+        {
             new MensaWorker().execute(context);
+        }
+
     }
 
     @Override
@@ -102,20 +105,34 @@ public class WidgetMensa extends AppWidgetProvider {
         {
             int resID_Title;
             int resID_Price;
+            int count_essen;
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             views               = new RemoteViews(context.getPackageName(),R.layout.widget_mensa);
             Resources ressource = context.getResources();
             String packageName  = context.getPackageName();
 
+            // Lösche alle Felder
+            for (int i = 1; i < 5; i++)
+            {
+                views.setTextViewText(ressource.getIdentifier("Food_"+i,"id", packageName), "");
+                views.setTextViewText(ressource.getIdentifier("Price_" + i, "id", packageName), "");
+            }
+
+            // Anzahl Essen die angezeigt werden
+            if (essen.length < 4+1)
+                count_essen = essen.length+1;
+            else
+                count_essen = 4+1;
+
             // Zeige Essen an
-            for (int i = 1; i < 4+1; i++)
+            for (int i = 1; i < count_essen; i++)
             {
                 resID_Title = ressource.getIdentifier("Food_"+i,"id", packageName);
                 resID_Price = ressource.getIdentifier("Price_" + i, "id", packageName);
 
                 views.setTextViewText(resID_Title, cut(essen[i-1].Title));
-                views.setTextViewText(resID_Price, essen[i-1].Price+" €");
+                views.setTextViewText(resID_Price, essen[i-1].Price);
             }
 
             // Tag von dem der Speiseplan angezeigt wird
