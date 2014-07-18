@@ -19,19 +19,16 @@ import de.htwdd.R;
 import de.htwdd.datepicker;
 
 
-public class CareerBeratungFragment extends Fragment
+public class CareerServiceBeratung extends Fragment
 {
-
-    public int mode;
-
-    public CareerBeratungFragment()
+    public CareerServiceBeratung()
     {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.career_beratung, null);
+        return inflater.inflate(R.layout.career_service_beratung, null);
     }
 
     @Override

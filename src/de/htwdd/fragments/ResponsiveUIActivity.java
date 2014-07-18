@@ -432,11 +432,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 tab.setTabListener(this);
                 getSupportActionBar().addTab(tab);
 
-                tab2 = getSupportActionBar().newTab();
-                tab2.setText("Workshops");
-                tab2.setTabListener(this);
-                getSupportActionBar().addTab(tab2);
-
                 tab3 = getSupportActionBar().newTab();
                 tab3.setText("Beratung");
                 tab3.setTabListener(this);
@@ -660,15 +655,15 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         else if (tab.getText().equals("Events"))
         {
             args.putInt("mode",0);
-            mContent = new CareerFragment();
+            mContent = new CareerServiceEvents();
         }
         else if (tab.getText().equals("Workshops"))
         {
             args.putInt("mode",1);
-            mContent = new CareerFragment();
+            mContent = new CareerServiceEvents();
         }
         else if (tab.getText().equals("Beratung"))
-            mContent = new CareerBeratungFragment();
+            mContent = new CareerServiceBeratung();
         // Mensa
         else if (tab.getText().equals("Heute") && (mode == 4))
             mContent = new MensaDay();
