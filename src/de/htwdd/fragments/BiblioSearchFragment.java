@@ -275,7 +275,7 @@ public class BiblioSearchFragment extends Fragment
 
                     HTTPDownloader imagedownloader = new HTTPDownloader(picstring);
 
-                    buecher[i]._pic = imagedownloader.getNormalBitmap();
+                    buecher[i]._pic = imagedownloader.getBitmap();
                 } catch (Exception e)
                 {
                     buecher[i]._pic = null;

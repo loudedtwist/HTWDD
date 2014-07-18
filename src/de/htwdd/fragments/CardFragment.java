@@ -45,28 +45,10 @@ import java.util.Locale;
 
 public class CardFragment extends Fragment
 {
-    public CardFragment()
-    {
-    }
-
     public PackageInfo info;
 
-    public static boolean deleteDir(File dir)
+    public CardFragment()
     {
-        if (dir != null && dir.isDirectory())
-        {
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++)
-            {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success)
-                {
-                    return false;
-                }
-            }
-        }
-
-        return dir.delete();
     }
 
 
@@ -74,17 +56,6 @@ public class CardFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.main, container, false);
-
-        // NowLayout now= new NowLayout(getActivity());
-
-        //  return now;
-
-
-        //TextView tv = new TextView(getActivity());
-        //tv.setText("My first fragment");
-
-        //return tv;
-
     }
 
     @Override
@@ -92,8 +63,7 @@ public class CardFragment extends Fragment
     {
         super.onResume();
 
-        SharedPreferences app_preferences = PreferenceManager
-                .getDefaultSharedPreferences(getActivity());
+        SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 
         if (app_preferences.getBoolean("first_run_bool", true) == false)
@@ -133,10 +103,7 @@ public class CardFragment extends Fragment
         String odaystring = "";
         Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-        int month = calendar.get(Calendar.MONTH);
-        month++;
         int week = calendar.get(Calendar.WEEK_OF_YEAR);
-        int year = calendar.get(Calendar.YEAR);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
 
@@ -163,8 +130,6 @@ public class CardFragment extends Fragment
         TextView tt12 = (TextView) getView().findViewById(R.id.textView12);
         TextView tt13 = (TextView) getView().findViewById(R.id.textView13);
 
-
-        int oweek = week;
 
         week = week % 2;
 
@@ -217,7 +182,7 @@ public class CardFragment extends Fragment
         if ((day == 1) || (day == 7))
         {
             day = 2;
-//		
+//
             currentday = "Montag";
             if (week == 1) week = 2;
             else
@@ -443,9 +408,9 @@ public class CardFragment extends Fragment
 
 			/*if (app_preferences.getString("wizardrun", "no").equals("no"))
 			{
-				Intent nextScreen = new Intent(getActivity().getApplicationContext(), Wizard1.class);            
+				Intent nextScreen = new Intent(getActivity().getApplicationContext(), Wizard1.class);
 	            startActivity(nextScreen);
-				
+
 			}*/
 
         Button button;
@@ -709,7 +674,7 @@ public class CardFragment extends Fragment
 
                     HTTPDownloader imageloader = new HTTPDownloader("https://htwdd.github.io/images/" + items2[3]);
 
-                    news[i].bitmap = imageloader.getNormalBitmap();
+                    news[i].bitmap = imageloader.getBitmap();
 
                     //add http// to url if not present
                     if (!items2[4].startsWith("http://") && !items2[4].startsWith("https://"))
