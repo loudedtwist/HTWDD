@@ -479,7 +479,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().addTab(tab3);
                 break;
 
-            case 11:
+            case 12:
                 Intent intent2 = new Intent(this, Preference.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);

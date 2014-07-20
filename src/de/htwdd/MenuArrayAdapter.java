@@ -70,7 +70,7 @@ public class MenuArrayAdapter extends ArrayAdapter<String>
             case 10:
                 image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.administrator));
                 break;
-            case 11:
+            case 12:
                 image_iv.setImageDrawable(rowView.getResources().getDrawable(R.drawable.bookmark));
                 break;
             case 13:
@@ -84,7 +84,7 @@ public class MenuArrayAdapter extends ArrayAdapter<String>
         // Change the icon for Windows and iPhone
         String s = values[position];
 
-        if (position == 0 || position == 2 || position == 7 || position == 12)
+        if (position == 0 || position == 2 || position == 7 || position == 11)
         {
             t.setBackgroundColor(Color.BLACK);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
