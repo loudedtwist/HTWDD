@@ -1,10 +1,11 @@
-HTWDD
+HTWDresden
 =====
 
 Die App von Studenten für Studenten der HTW Dresden.
 
-HTWDD ist ein eigenständiges, inoffizielles Projekt und nicht durch die HTW Dresden selbst vertreten. Das Benutzen erfolgt auf eigene Verantwortung.
+HTWDresden ist ein eigenständiges, inoffizielles Projekt und nicht durch die HTW Dresden selbst vertreten. Das Benutzen erfolgt auf eigene Verantwortung.
 * Ansprechpartner: Frau Prof. Dr.-Ing. Kühn.
+* Entwickler: Kay Förster, B.Sc.
 * Kontakt: htwcampusapp@htw-dresden.de
 
 
