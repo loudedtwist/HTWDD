@@ -87,10 +87,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="Entwickelt von:\n\nSS14:\n&#8226; Alexander Elchlepp\n&#8226; Kay Förster\n&#8226; Thomas Herrlich\n&#8226; Tamara Machowa\n\nInitiator: Mark Schramm\n\nZu keinem Zeitpunkt werden private Daten wie Matrikel-, S-Nummer oder Passwörter an nicht-HTW Server übertragen"
+                    android:text="Entwickelt von:\n\nWS14/15:\n&#8226; Kay Förster\n\nSS14:\n&#8226; Alexander Elchlepp\n&#8226; Kay Förster\n&#8226; Thomas Herrlich\n&#8226; Tamara Machowa\n\nInitiator: Mark Schramm\n\nZu keinem Zeitpunkt werden private Daten wie Matrikel-, S-Nummer oder Passwörter an nicht-HTW Server übertragen"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="12sp" />
-
             </LinearLayout>
 
         </LinearLayout>

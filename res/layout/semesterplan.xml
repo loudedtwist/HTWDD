@@ -29,9 +29,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="15dp"
-                    android:text="Sommersemester 2014"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="28sp" />
+                    android:text="Wintersemester 2014/15"
+                    android:textSize="24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,7 +42,7 @@
                     android:id="@+id/vorlesung"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="17.03.14 - 05.07.14"
+                    android:text="06.10.14 - 31.01.15"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
@@ -53,12 +52,44 @@
                     android:text="Freie Tage:"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                <TextView
-                    android:id="@+id/frei"
+                <TableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ostern\t\t\t\t\t18.04. - 21.04.\nMaifeiertag\t\t01.05.\nHimmelfahrt\t\t29.05. - 30.05.\nPfingsten\t\t\t09.06. - 10.06.\ndies academicus\t\t\t\t 04.06."
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:layout_gravity="center_horizontal">
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reformationstag"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="31.10.2014"
+                            android:layout_marginLeft="10dp" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Buß- und Bettatag"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="19.11.2014"
+                            android:layout_marginLeft="10dp" />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weihnachten"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="22.12.2014 - 03.01.2015"
+                            android:layout_marginLeft="10dp" />
+                    </TableRow>
+                </TableLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,7 +102,7 @@
                     android:id="@+id/pruftv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="07.07.2014 - 26.07.2014"
+                    android:text="02.02.2015 - 21.02.2015"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
                 </LinearLayout>
 
