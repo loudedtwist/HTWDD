@@ -465,11 +465,11 @@ public class NotenFragment extends Fragment
                 }
 
 
-                if (line4.contains("ffentlichungs- datum"))
+                if (line4.contains("ffentlichungsdatum"))
                 {
 
 
-                    line4 = line4.substring(line4.indexOf("ffentlichungs- datum"));
+                    line4 = line4.substring(line4.indexOf("ffentlichungsdatum"));
                     line4 = line4.substring(0, line4.indexOf("Hinweis"));
 
                     String tokensb[] = line4.split("</tr>");
