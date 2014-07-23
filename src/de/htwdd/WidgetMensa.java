@@ -80,23 +80,26 @@ public class WidgetMensa extends AppWidgetProvider {
         Calendar calendar       = Calendar.getInstance(Locale.GERMANY);
         int hour                = calendar.get(Calendar.HOUR_OF_DAY);
         int day                 = calendar.get(Calendar.DAY_OF_WEEK);
+        int week                = calendar.get(Calendar.WEEK_OF_YEAR);
 
         @Override
         protected TEssen[] doInBackground(Context... params)
         {
             context = params[0];
 
-            // Nach 15 Uhr das Essen von morgen anzeigen
-            if (hour >= 15)
-                day++;
-
             // Am Sammstag, Sonntag auf Montag springen
             if (day == 7 || day == 1)
+            {
                 day = 2;
+                week++;
+            }
+            // Nach 15 Uhr das Essen von morgen anzeigen, außer Samstag / Sonntag
+            else if (hour >= 15)
+                day++;
 
             // Essen laden
             Mensa mensa = new Mensa();
-            mensa.getDataDay(day);
+            mensa.getDataDay(day,week);
             return mensa.Food;
         }
 

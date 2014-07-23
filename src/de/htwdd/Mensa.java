@@ -1,6 +1,7 @@
 package de.htwdd;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,10 +70,15 @@ public class Mensa {
         }
     }
 
-    /*
-    Widget: Lädt die Mahlzeiten des übergebenen Tages herrunter
+
+    /**
+     * Speichert das Essen von dem entsprechendem Tag der übergebenen Woche in der Klassenvariable Food.
+     * Es kann dabei nur das Essen von der aktuellen oder der nächste Woche geparst werden
+     *
+     * @param day Wochentag von welchem das Essen geparst werden soll
+     * @param week Kalenderwoche von welcher das Essen geparst werden soll (nur aktuelle oder nächste Woche möglich)
      */
-    public void getDataDay(int day)
+    public void getDataDay(int day, int week)
     {
         HTTPDownloader downloader;
         String result;
@@ -82,10 +88,9 @@ public class Mensa {
         Matcher matcher;
         int AnzToken;
 
-
         try {
 
-            if (day >= Calendar.getInstance().get(Calendar.DAY_OF_WEEK))
+            if (week <= Calendar.getInstance(Locale.GERMANY).get(Calendar.WEEK_OF_YEAR))
                 downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse.html?print=1");
             else
                 downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html?print=1");
