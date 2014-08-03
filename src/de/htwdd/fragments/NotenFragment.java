@@ -394,7 +394,6 @@ public class NotenFragment extends Fragment
                 // wr.close();
                 rd.close();
 
-
                 //Connect to real page 2
                 if (stg2.length() > 1)
                 {
@@ -425,7 +424,7 @@ public class NotenFragment extends Fragment
                 }
 
 
-                line3 = line3.substring(line3.indexOf("ffentlichungsdatum"));
+                line3 = line3.substring(line3.indexOf("Ver&ouml;ffentlichungsdatum"));
                 line3 = line3.substring(0, line3.indexOf("Hinweis"));
 
                 String tokens[] = line3.split("</tr>");
@@ -469,7 +468,7 @@ public class NotenFragment extends Fragment
                 {
 
 
-                    line4 = line4.substring(line4.indexOf("ffentlichungsdatum"));
+                    line4 = line4.substring(line4.indexOf("Ver&ouml;ffentlichungsdatum\""));
                     line4 = line4.substring(0, line4.indexOf("Hinweis"));
 
                     String tokensb[] = line4.split("</tr>");
@@ -513,7 +512,6 @@ public class NotenFragment extends Fragment
 
             } catch (Exception e)
             {
-
 
                 String returnvalue[] = new String[3];
                 returnvalue[0] = "interner Fehler: " + e.toString();
