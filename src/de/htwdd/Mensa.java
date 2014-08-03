@@ -33,8 +33,8 @@ public class Mensa {
             HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=" + MensaID);
             result          = downloader.getString();
             token           = result.split("<item>");
-            int AnzToken    = token.length;
-            Food   = new TEssen[token.length-2];
+            int AnzToken    = (token.length > 2) ? token.length : 2;
+            Food            = new TEssen[AnzToken-2];
 
             //Speichere einzelne Mahlzeiten in das Array
             for (int i = 2; i < AnzToken; i++)
