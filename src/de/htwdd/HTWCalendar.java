@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Vector;
 
@@ -30,7 +31,7 @@ public class HTWCalendar {
             JSONArray array             = new JSONArray(downloader.getStringWithPost());
             int count                   = array.length();
 
-            for (int i=1; i<count; i++)
+            for (int i=0; i<count; i++)
             {
                 // Hole JSON-Objekt
                 object  = array.getJSONObject(i);
@@ -50,6 +51,10 @@ public class HTWCalendar {
                 tmp.url  = object.getString("url");
                 vector.add(tmp);
             }
+
+            //Vektor umdrehen (jüngste Ereigenisse als erstes)
+            Collections.reverse(vector);
+
             return vector.toArray(new TEvent[vector.size()]);
         }
         catch (Exception e)
