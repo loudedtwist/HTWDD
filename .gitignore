@@ -4,11 +4,14 @@
 bin/
 build/
 gen/
+gradle/
 proguard/
+
 
 # ausgeschlossene Dateien
 library/library.iml
 .directory
+gradlew
+gradlew.bat
 HTWDD.iml
 local.properties
-
