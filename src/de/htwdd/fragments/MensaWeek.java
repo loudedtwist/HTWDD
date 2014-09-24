@@ -8,10 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import de.htwdd.Mensa;
+import de.htwdd.classes.Mensa;
 import de.htwdd.MensaArrayAdapter;
 import de.htwdd.R;
-import de.htwdd.types.TEssen;
+import de.htwdd.types.Meal;
 
 
 public class MensaWeek extends ListFragment
@@ -37,10 +37,10 @@ public class MensaWeek extends ListFragment
     }
 
 
-    private class worker extends AsyncTask<Void, Void, TEssen[]>
+    private class worker extends AsyncTask<Void, Void, Meal[]>
     {
         @Override
-        protected TEssen[] doInBackground(Void... params)
+        protected Meal[] doInBackground(Void... params)
         {
             Mensa myMensa = new Mensa();
             myMensa.getDataWeek();
@@ -49,7 +49,7 @@ public class MensaWeek extends ListFragment
         }
 
         @Override
-        protected void onPostExecute(TEssen[] essen)
+        protected void onPostExecute(Meal[] essen)
         {
             try
             {
@@ -63,8 +63,8 @@ public class MensaWeek extends ListFragment
 
                 if (essen.length < 1)
                 {
-                    essen = new TEssen[1];
-                    essen[0] = new TEssen();
+                    essen = new Meal[1];
+                    essen[0] = new Meal();
                     essen[0].Title = "Heute kein Angebot";
                 }
 

@@ -1,4 +1,4 @@
-package de.htwdd;
+package de.htwdd.types;
 
 import android.graphics.Bitmap;
 

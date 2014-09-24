@@ -15,15 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import de.htwdd.types.TEssen;
+import de.htwdd.types.Meal;
 
-public class MensaArrayAdapter extends ArrayAdapter<TEssen>
+public class MensaArrayAdapter extends ArrayAdapter<Meal>
 {
     private final Context context;
-    private TEssen[] essen;
+    private Meal[] essen;
     ViewGroup parent;
 
-    public MensaArrayAdapter(Context context, TEssen[] essen)
+    public MensaArrayAdapter(Context context, Meal[] essen)
     {
         super(context, R.layout.mensa, essen);
         this.context = context;

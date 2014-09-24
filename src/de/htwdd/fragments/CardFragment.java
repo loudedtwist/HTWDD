@@ -29,15 +29,14 @@ import android.widget.Toast;
 import de.htwdd.BelegungsAdapter;
 import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerTimetable;
-import de.htwdd.HTTPDownloader;
-import de.htwdd.Mensa;
+import de.htwdd.classes.HTTPDownloader;
+import de.htwdd.classes.Mensa;
 import de.htwdd.R;
 import de.htwdd.WizardWelcome;
-import de.htwdd.types.TEssen;
+import de.htwdd.types.Meal;
 import de.htwdd.types.TNote;
 import de.htwdd.types.Type_Stunde;
 
-import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -841,10 +840,10 @@ public class CardFragment extends Fragment
     }
 
 
-    private class MensaWorker extends AsyncTask<Void, Void, TEssen[]>
+    private class MensaWorker extends AsyncTask<Void, Void, Meal[]>
     {
         @Override
-        protected TEssen[] doInBackground(Void... params)
+        protected Meal[] doInBackground(Void... params)
         {
             // Lade Mensa
             Mensa myMensa = new Mensa();
@@ -854,7 +853,7 @@ public class CardFragment extends Fragment
         }
 
         @Override
-        protected void onPostExecute(TEssen[] essen)
+        protected void onPostExecute(Meal[] essen)
         {
             try
             {

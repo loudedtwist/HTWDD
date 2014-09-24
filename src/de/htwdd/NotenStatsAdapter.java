@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import de.htwdd.R;
+import de.htwdd.types.Stats_element;
 
 public class NotenStatsAdapter extends ArrayAdapter<String>
 {

@@ -1,4 +1,4 @@
-package de.htwdd;
+package de.htwdd.classes;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -6,11 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.htwdd.types.Day;
-import de.htwdd.types.TEssen;
+import de.htwdd.types.Meal;
 
 public class Mensa {
     short MensaID = 9;
-    public TEssen[] Food;
+    public Meal[] Food;
 
     //Standardkonstruktor
     public Mensa(){
@@ -34,12 +34,12 @@ public class Mensa {
             result          = downloader.getString();
             token           = result.split("<item>");
             int AnzToken    = (token.length > 2) ? token.length : 2;
-            Food            = new TEssen[AnzToken-2];
+            Food            = new Meal[AnzToken-2];
 
             //Speichere einzelne Mahlzeiten in das Array
             for (int i = 2; i < AnzToken; i++)
             {
-                Food[i-2]   = new TEssen();
+                Food[i-2]   = new Meal();
 
                 // Extrahiere die benötigten Informationen
                 try {
@@ -64,8 +64,8 @@ public class Mensa {
         }
         catch (Exception e)
         {
-            Food = new TEssen[1];
-            Food[0] = new TEssen();
+            Food = new Meal[1];
+            Food[0] = new Meal();
             Food[0].Title = "Keine Internetverbindung!";
         }
     }
@@ -101,12 +101,12 @@ public class Mensa {
             // Zähle Mahlzeiten die es an dem entsprechenden Tag gibt und lege Array an
             token       = token[day-1].split("<tr class=");
             AnzToken    = token.length-1;
-            Food        = new TEssen[AnzToken];
+            Food        = new Meal[AnzToken];
 
             // Speichere einzelne Mahlzeiten in das Array
             for (int i = 1; i < AnzToken; i++)
             {
-                Food[i-1] = new TEssen();
+                Food[i-1] = new Meal();
 
                 try {
                     //Title
@@ -130,8 +130,8 @@ public class Mensa {
         }
         catch (Exception e)
         {
-            Food = new TEssen[1];
-            Food[0] = new TEssen();
+            Food = new Meal[1];
+            Food[0] = new Meal();
             Food[0].Title = "Keine Internetverbindung!";
         }
     }
@@ -147,12 +147,12 @@ public class Mensa {
             HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse.html?print=1");
             result  = downloader.getStringUTF8();
             token   = result.split("class=\"speiseplan\"");
-            Food    = new TEssen[5];
+            Food    = new Meal[5];
 
             // Gehe Montag bis Freitag durch
             for (int i = 0; i < 5; i++)
             {
-                Food[i] = new TEssen();
+                Food[i] = new Meal();
                 Food[i].Price = "";
                 Food[i].Title = Day.values()[i].toString();
 
@@ -173,8 +173,8 @@ public class Mensa {
         }
         catch (Exception e)
         {
-            Food = new TEssen[1];
-            Food[0] = new TEssen();
+            Food = new Meal[1];
+            Food[0] = new Meal();
             Food[0].Title = "Keine Internetverbindung!";
         }
     }
@@ -184,7 +184,7 @@ public class Mensa {
     {
         Calendar rightNow = Calendar.getInstance();
 
-        for (TEssen i : Food)
+        for (Meal i : Food)
         {
             String url = "http://bilderspeiseplan.studentenwerk-dresden.de/m" + MensaID + "/"+rightNow.get(Calendar.YEAR)+String.format("%02d",rightNow.get(Calendar.MONTH)+1)+"/thumbs/"+i.ID+".jpg";
             HTTPDownloader downloader = new HTTPDownloader(url);

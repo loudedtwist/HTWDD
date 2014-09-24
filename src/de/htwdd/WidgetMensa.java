@@ -14,8 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import de.htwdd.classes.Mensa;
 import de.htwdd.types.Day;
-import de.htwdd.types.TEssen;
+import de.htwdd.types.Meal;
 
 
 /**
@@ -73,7 +74,7 @@ public class WidgetMensa extends AppWidgetProvider {
     }
 
 
-    private class MensaWorker extends AsyncTask<Context, Void, TEssen[]>
+    private class MensaWorker extends AsyncTask<Context, Void, Meal[]>
     {
         Context context;
         RemoteViews views;
@@ -83,11 +84,11 @@ public class WidgetMensa extends AppWidgetProvider {
         int week                = calendar.get(Calendar.WEEK_OF_YEAR);
 
         @Override
-        protected TEssen[] doInBackground(Context... params)
+        protected Meal[] doInBackground(Context... params)
         {
             context = params[0];
 
-            // Am Sammstag, Sonntag auf Montag springen
+            // Am Samstag, Sonntag auf Montag springen
             if (day == 7 || day == 1)
             {
                 day = 2;
@@ -104,7 +105,7 @@ public class WidgetMensa extends AppWidgetProvider {
         }
 
         @Override
-        protected void onPostExecute(TEssen[] essen)
+        protected void onPostExecute(Meal[] essen)
         {
             int resID_Title;
             int resID_Price;

@@ -1,4 +1,4 @@
-package de.htwdd;
+package de.htwdd.classes;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,20 +8,20 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Vector;
 
-import de.htwdd.types.TEvent;
+import de.htwdd.types.Event;
 
 public class HTWCalendar {
     static String url = "https://www.htw-dresden.de/vtms/service/events";
 
-    public TEvent[] getEvents(short organizer, long startTime, long endTime)
+    public Event[] getEvents(short organizer, long startTime, long endTime)
     {
         try {
             JSONObject object;
-            TEvent tmp;
+            Event tmp;
             Date date;
 
             Date currentDate            = new Date();
-            Vector<TEvent> vector       = new Vector<TEvent>();
+            Vector<Event> vector       = new Vector<Event>();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
             // Daten von HTW laden
@@ -44,7 +44,7 @@ public class HTWCalendar {
                     break;
 
                 // Event anlegen und Werte speichern
-                tmp = new TEvent();
+                tmp = new Event();
                 tmp.datum = date;
                 tmp.Title = object.getString("title");
                 tmp.desc  = object.getString("title_ext");
@@ -55,12 +55,12 @@ public class HTWCalendar {
             //Vektor umdrehen (jüngste Ereigenisse als erstes)
             Collections.reverse(vector);
 
-            return vector.toArray(new TEvent[vector.size()]);
+            return vector.toArray(new Event[vector.size()]);
         }
         catch (Exception e)
         {
-            TEvent[] events = new TEvent[1];
-            events[0] = new TEvent();
+            Event[] events = new Event[1];
+            events[0] = new Event();
             events[0].Title = "Keine Internetverbindung!";
             return  events;
         }

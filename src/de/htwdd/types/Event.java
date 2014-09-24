@@ -1,7 +1,7 @@
 package de.htwdd.types;
 import java.util.Date;
 
-public class TEvent
+public class Event
 {
     public String Title = "";
     public Date datum;

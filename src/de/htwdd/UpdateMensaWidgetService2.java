@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import de.htwdd.types.Type_mahlzeit;
+
 public class UpdateMensaWidgetService2 extends Service
 {
     @Override

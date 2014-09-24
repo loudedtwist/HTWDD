@@ -15,7 +15,7 @@ import android.widget.ListView;
 import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.NotenStatsAdapter;
 import de.htwdd.R;
-import de.htwdd.Stats_element;
+import de.htwdd.types.Stats_element;
 import de.htwdd.types.TNote;
 
 import java.util.List;

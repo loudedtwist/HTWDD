@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import de.htwdd.BiblioSearchArrayAdapter;
-import de.htwdd.HTTPDownloader;
+import de.htwdd.classes.HTTPDownloader;
 import de.htwdd.R;
 import de.htwdd.types.TBuchSuche;
 

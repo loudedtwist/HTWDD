@@ -17,16 +17,16 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
-import de.htwdd.types.TEvent;
+import de.htwdd.types.Event;
 
-public class CareerServiceArrayAdapter extends ArrayAdapter<TEvent>
+public class CareerServiceArrayAdapter extends ArrayAdapter<Event>
 {
     final Context context;
-    TEvent[] events;
+    Event[] events;
     ViewGroup parent;
 
 
-    public CareerServiceArrayAdapter(Context context, TEvent[] events)
+    public CareerServiceArrayAdapter(Context context, Event[] events)
     {
         super(context, R.layout.careerrow, events);
         this.context = context;

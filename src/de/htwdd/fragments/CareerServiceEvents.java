@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import de.htwdd.CareerServiceArrayAdapter;
-import de.htwdd.HTWCalendar;
+import de.htwdd.classes.HTWCalendar;
 import de.htwdd.R;
-import de.htwdd.types.TEvent;
+import de.htwdd.types.Event;
 
 
 public class CareerServiceEvents extends Fragment
@@ -51,10 +51,10 @@ public class CareerServiceEvents extends Fragment
         }
     }
 
-    private class worker extends AsyncTask<TEvent, Integer, TEvent[]>
+    private class worker extends AsyncTask<Event, Integer, Event[]>
     {
         @Override
-        protected TEvent[] doInBackground(TEvent... params)
+        protected Event[] doInBackground(Event... params)
         {
             long time = System.currentTimeMillis();
 
@@ -63,7 +63,7 @@ public class CareerServiceEvents extends Fragment
         }
 
          @Override
-        protected void onPostExecute(TEvent[] events)
+        protected void onPostExecute(Event[] events)
         {
             try
             {
@@ -77,8 +77,8 @@ public class CareerServiceEvents extends Fragment
 
                 if (events.length < 1)
                 {
-                    events = new TEvent[1];
-                    events[0] = new TEvent();
+                    events = new Event[1];
+                    events[0] = new Event();
                     events[0].Title = "Aktuell keine Angebote";
                 }
 

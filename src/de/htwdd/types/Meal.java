@@ -2,7 +2,7 @@ package de.htwdd.types;
 
 import android.graphics.Bitmap;
 
-public class TEssen
+public class Meal
 {
     public int ID;
     public String Title = "";
