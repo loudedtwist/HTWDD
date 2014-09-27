@@ -23,7 +23,7 @@ public class WizardWelcome extends Activity
         {
             public void onClick(View arg0)
             {
-                Intent nextScreen = new Intent(WizardWelcome.this, WizardMatrikel.class);
+                Intent nextScreen = new Intent(WizardWelcome.this, WizardBibliothek.class);
                 startActivity(nextScreen);
                 finish();
             }

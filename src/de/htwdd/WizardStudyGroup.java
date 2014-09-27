@@ -69,7 +69,7 @@ public class WizardStudyGroup extends Activity
         {
             public void onClick(View arg0)
             {
-                Intent nextScreen = new Intent(getApplicationContext(), WizardMatrikel.class);
+                Intent nextScreen = new Intent(getApplicationContext(), WizardBibliothek.class);
                 startActivity(nextScreen);
             }
         });
@@ -106,7 +106,7 @@ public class WizardStudyGroup extends Activity
                 editor.putString("abschluss", abschlussstring);
                 editor.commit(); // Very important
 
-                Intent nextScreen = new Intent(getApplicationContext(), WizardBibliothek.class);
+                Intent nextScreen = new Intent(getApplicationContext(), WizardFinal.class);
                 startActivity(nextScreen);
                 finish();
             }

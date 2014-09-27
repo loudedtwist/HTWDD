@@ -29,15 +29,15 @@
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:paddingTop="15dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="15dp"
                             android:text="Bibliotheksnummer:"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -50,7 +50,7 @@
                     </LinearLayout>
 
                     <EditText
-                        android:id="@+id/bibliotheksnummer"
+                        android:id="@+id/WizardSNummer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -62,12 +62,41 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:paddingTop="15dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="15dp"
+                            android:text="RZ-Passwort:"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dein Unix-Passwort"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/WizardRZLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:singleLine="true" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Bib.-Passwort:"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -75,7 +104,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="i.d.R. Geburtsdatum als ttmmjj\nz.B. 02.05.1984 -> 020584"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textSize="10sp" />
                     </LinearLayout>
 
@@ -88,24 +116,14 @@
                 </TableRow>
             </TableLayout>
 
-            <LinearLayout
-                        style="@style/nowCardStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:minHeight="10dp"
-                        android:orientation="vertical"
-                        android:padding="5dp" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/WizardBibliothekVerwendung"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_margin="10dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="Diese Daten werden für die Anzeige der ausgeliehenen Bücher verwendet."
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

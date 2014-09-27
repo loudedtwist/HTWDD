@@ -27,7 +27,7 @@ public class WizardBibliothek extends Activity
         {
             public void onClick(View arg0)
             {
-                Intent nextScreen = new Intent(getApplicationContext(), WizardStudyGroup.class);
+                Intent nextScreen = new Intent(getApplicationContext(), WizardWelcome.class);
                 startActivity(nextScreen);
             }
         });
@@ -36,35 +36,31 @@ public class WizardBibliothek extends Activity
         {
             public void onClick(View arg0)
             {
-                EditText bibnummerret = (EditText) findViewById(R.id.bibliotheksnummer);
-                EditText bibpasswortret = (EditText) findViewById(R.id.bibPasswort);
-
-                String bibnummerstring, bibpasswortstring = null;
-
-                bibnummerstring = bibnummerret.getText().toString();
-                bibpasswortstring = bibpasswortret.getText().toString();
-
-                if (bibnummerstring.contains("s"))
-                    bibnummerstring = bibnummerstring.substring(1);
+                EditText WizardSNummer        = (EditText) findViewById(R.id.WizardSNummer);
+                EditText Wizardbibpasswortret = (EditText) findViewById(R.id.bibPasswort);
+                EditText WizardRZLogin        = (EditText) findViewById(R.id.WizardRZLogin);
 
                 SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(WizardBibliothek.this);
                 SharedPreferences.Editor editor = app_preferences.edit();
 
-                editor.putString("bib", bibnummerstring);
-                editor.putString("bibpw", bibpasswortstring);
-                editor.commit(); // Very important
+                editor.putString("bib", WizardSNummer.getText().toString());
+                editor.putString("RZLogin", WizardRZLogin.getText().toString());
+                editor.putString("bibpw", Wizardbibpasswortret.getText().toString());
+                editor.commit();
 
-                Intent nextScreen = new Intent(getApplicationContext(), WizardFinal.class);
+                Intent nextScreen = new Intent(getApplicationContext(), WizardStudyGroup.class);
                 startActivity(nextScreen);
                 finish();
             }
         });
 
-        EditText bibnummerret = (EditText) findViewById(R.id.bibliotheksnummer);
-        EditText bibpasswortret = (EditText) findViewById(R.id.bibPasswort);
+        EditText WizardSNummer        = (EditText) findViewById(R.id.WizardSNummer);
+        EditText Wizardbibpasswortret = (EditText) findViewById(R.id.bibPasswort);
+        EditText WizardRZLogin        = (EditText) findViewById(R.id.WizardRZLogin);
 
         final SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        bibnummerret.setText(app_preferences.getString("bib", ""));
-        bibpasswortret.setText(app_preferences.getString("bibpw", ""));
+        WizardSNummer.setText(app_preferences.getString("bib",""));
+        Wizardbibpasswortret.setText(app_preferences.getString("bibpw",""));
+        WizardRZLogin.setText(app_preferences.getString("RZLogin",""));
     }
 }

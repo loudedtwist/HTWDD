@@ -35,40 +35,52 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Einstellungen">
-
-        <EditTextPreference android:title="Matrikelnummer"
-            android:key="matnr"
-            android:summary="z.B. 30123"
-        />
-        <EditTextPreference android:title="HISQIS Passwort"
-            android:key="pw"
+        android:title="Zugangsdaten">
+        <EditTextPreference
+            android:title="Bibliotheksnummer"
+            android:key="bib"
+            android:numeric="integer"
+            android:summary="ohne führendes S, z.B. 63111"/>
+        <EditTextPreference
+            android:title="RZ-Passwort"
+            android:key="RZLogin"
+            android:password="true"
             android:inputType="textPassword"
-            android:summary="i.d.R. Geburtstag: (t)tmmjj, z.B. 10185"
-        />
+            android:summary="Unix-Passwort"/>
+        <EditTextPreference
+            android:title="Bibliothekspasswort"
+            android:key="bibpw"
+            android:password="true"
+            android:inputType="textPassword"
+            android:summary="Passwort zur Nutzung der Bibliothek"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Einstellungen">
         <ListPreference
             android:title="Abschluss"
             android:summary=""
             android:key="abschluss"
             android:defaultValue="1"
             android:entries="@array/abschluss_list"
-            android:entryValues="@array/abschluss_values"
-        />
+            android:entryValues="@array/abschluss_values"/>
         <EditTextPreference
             android:title="Jahrgang"
             android:key="im"
-            android:summary="z.B. 11, 10, 09, etc"
-        />
+            android:numeric="integer"
+            android:maxLength="2"
+            android:summary="z.B. 11, 10, 09, etc"/>
         <EditTextPreference
             android:title="Studiengang"
             android:key="stdg"
-            android:summary="z.B. 043"
-        />
+            android:numeric="integer"
+            android:maxLength="3"
+            android:summary="z.B. 043"/>
         <EditTextPreference
             android:title="Studiengruppe"
             android:key="studgruppe"
-            android:summary="z.B. 01, Kfz, 61, etc"
-        />
+            android:summary="z.B. 01, Kfz, 61, etc"/>
+
         <EditTextPreference
             android:title="Kennung (nur für Hochschullehrer)"
             android:key="prof_kennung"
@@ -78,17 +90,6 @@
             android:title="Name (nur für Hochschullehrer)"
             android:key="prof_name"
             android:summary="z.B. Bar oder M. M - für Prüfungen"
-        />
-        <EditTextPreference
-            android:title="Bibliotheksnummer"
-            android:key="bib"
-            android:summary="ohne führendes S, z.B. 63111"
-        />
-        <EditTextPreference
-            android:title="Bibliothekspasswort"
-            android:key="bibpw"
-            android:inputType="textPassword"
-            android:summary="i.d.R. Geburtstag: ttmmjj, z.B. 010185"
         />
     </PreferenceCategory>
 </PreferenceScreen>
