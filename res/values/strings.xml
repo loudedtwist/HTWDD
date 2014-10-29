@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">HTWDresden</string>
+    <string name="app_no_internet">Keine Internetverbindung!</string>
     <string name="responsive_ui">HTWDresden</string>
     <string name="timetable">Stundenplan</string>
     <string name="next">Weiter</string>
     <string name="back">Zurück</string>
+    <string name="search">Suche</string>
+    <string name="close">Schließen</string>
+
+
+    <string name="library_title">Title:</string>
+    <string name="library_author">Author:</string>
+    <string name="library_medium">Medium:</string>
+    <string name="library_availability">Verfügbarkeit:</string>
+    <string name="library_location">Standort:</string>
+    <string name="library_katalog">Katalog:</string>
 </resources>

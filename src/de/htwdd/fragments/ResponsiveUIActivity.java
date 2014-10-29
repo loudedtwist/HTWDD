@@ -649,7 +649,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
             mContent = new BiblioFragment();
 
         else if (tab.getText().equals("Suche"))
-            mContent = new BiblioSearchFragment();
+            mContent = new LibrarySearchFragment();
 
         // Career Service
         else if (tab.getText().equals("Events"))
