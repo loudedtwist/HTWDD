@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 
 public class HTTPDownloader
 {
@@ -23,82 +22,27 @@ public class HTTPDownloader
         this.urlstring = urlstring;
     }
 
-
     public String getString()
     {
-        String line, line2 = "";
-
-        URL url;
-        try
-        {
-            url = new URL(urlstring);
-
-            URLConnection conn = url.openConnection();
-            conn.addRequestProperty("Referer", urlstring);
-            conn.addRequestProperty("User-Agent", agent);
-            conn.connect();
-
-            // Get the response
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "iso-8859-15"));
-
-            while ((line = rd.readLine()) != null)
-                line2 += line;
-
-            rd.close();
-
-        } catch (Exception e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return (e.toString());
-        }
-
-        return line2;
+        return getString("iso-8859-15");
     }
 
     public String getStringUTF8()
     {
-        String line, line2 = "";
-
-        try
-        {
-            URL url = new URL(urlstring);
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.addRequestProperty("Referer", urlstring);
-            conn.addRequestProperty("User-Agent", agent);
-            conn.connect();
-
-            ResponseCode = conn.getResponseCode();
-
-            // Get the response
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-            while ((line = rd.readLine()) != null)
-                line2 += line;
-
-            rd.close();
-            conn.disconnect();
-
-        } catch (Exception e)
-        {
-            ResponseCode = 999;
-            return null;
-        }
-
-        return line2;
+        return getString("UTF-8");
     }
-
-
 
     public String getStringWithPost()
     {
-        String line, line2 = "";
-        URL url;
+        String tmp;
+        StringBuilder result = new StringBuilder();
 
         try
         {
-            url = new URL(urlstring);
+            // create a url object
+            URL url = new URL(urlstring);
+
+            // create a urlconnection object
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -118,41 +62,81 @@ public class HTTPDownloader
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
-            while ((line = rd.readLine()) != null)
-                line2 += line;
+            while ((tmp = rd.readLine()) != null)
+                result.append(tmp);
 
             rd.close();
+            conn.disconnect();
 
         } catch (Exception e)
         {
+            ResponseCode = 999;
             return null;
         }
 
-        return line2;
+        return result.toString();
     }
 
     public Bitmap getBitmap()
     {
         try
         {
-            URL myFileUrl   = new URL(urlstring);
-            int code;
+            // create a url object
+            URL url = new URL(urlstring);
 
-            HttpURLConnection connection = (HttpURLConnection) myFileUrl.openConnection();
+            // create a urlconnection object
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            conn.addRequestProperty("User-Agent", agent);
+            conn.connect();
 
-            connection.addRequestProperty("User-Agent", agent);
-            connection.connect();
+            ResponseCode = conn.getResponseCode();
 
-            code = connection.getResponseCode();
-            if (code != 404)
+            if (ResponseCode == 200)
             {
-                InputStream is = connection.getInputStream();
+                InputStream is = conn.getInputStream();
                 return BitmapFactory.decodeStream(is);
             }
         } catch (Exception e)
         {
+            ResponseCode = 999;
         }
 
         return null;
+    }
+
+    private String getString(String Encoding)
+    {
+        String tmp;
+        StringBuilder result = new StringBuilder();
+
+        try
+        {
+            // create a url object
+            URL url = new URL(urlstring);
+
+            // create a urlconnection object
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.addRequestProperty("Referer", urlstring);
+            conn.addRequestProperty("User-Agent", agent);
+            conn.connect();
+
+            ResponseCode = conn.getResponseCode();
+
+            // Get the response
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), Encoding));
+
+            while ((tmp = rd.readLine()) != null)
+                result.append(tmp);
+
+            rd.close();
+            conn.disconnect();
+
+        } catch (Exception e)
+        {
+            ResponseCode = 999;
+            return null;
+        }
+
+        return result.toString();
     }
 }
