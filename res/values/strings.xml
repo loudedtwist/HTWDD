@@ -5,4 +5,6 @@
     <string name="timetable">Stundenplan</string>
     <string name="next">Weiter</string>
     <string name="back">Zurück</string>
+    <string name="overview_update_title">Eine neue Version ist verfügbar!</string>
+    <string name="overview_update_message">Bitte Update auf die neuste Version.</string>
 </resources>

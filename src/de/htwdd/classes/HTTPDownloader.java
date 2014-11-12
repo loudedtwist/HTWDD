@@ -2,7 +2,6 @@ package de.htwdd.classes;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
@@ -16,6 +15,7 @@ public class HTTPDownloader
     private String agent = "HTWDresden App";
     public String urlstring;
     public String urlParameters;
+    public int ResponseCode;
 
 
     public HTTPDownloader(String urlstring)
@@ -90,7 +90,6 @@ public class HTTPDownloader
 
     public String getStringWithPost()
     {
-
         String line, line2 = "";
         URL url;
 
@@ -109,6 +108,9 @@ public class HTTPDownloader
             wr.writeBytes(urlParameters);
             wr.flush ();
             wr.close ();
+
+            // Get the response code
+            ResponseCode = conn.getResponseCode();
 
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));

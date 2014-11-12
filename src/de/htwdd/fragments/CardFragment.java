@@ -27,13 +27,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.htwdd.BelegungsAdapter;
-import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.classes.HTTPDownloader;
 import de.htwdd.classes.Mensa;
 import de.htwdd.R;
 import de.htwdd.WizardWelcome;
+import de.htwdd.classes.Noten;
 import de.htwdd.types.Meal;
+import de.htwdd.types.Stats;
 import de.htwdd.types.TNote;
 import de.htwdd.types.Type_Stunde;
 
@@ -41,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class CardFragment extends Fragment
 {
@@ -539,6 +541,8 @@ public class CardFragment extends Fragment
         ln4.addView(button4, lp4);
 
 
+
+
         Button button5;
 
         if (currentapiVersion >= 14)
@@ -552,7 +556,7 @@ public class CardFragment extends Fragment
         button5.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 
         button5.setText("Noten anzeigen");
-        LinearLayout ln5 = (LinearLayout) getActivity().findViewById(R.id.noten);
+        LinearLayout ln5 = (LinearLayout) getActivity().findViewById(R.id.Stats);
         LayoutParams lp5 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         button5.setOnClickListener(new View.OnClickListener()
@@ -568,61 +572,48 @@ public class CardFragment extends Fragment
             }
         });
 
+        View divider = new View(getActivity());
+        divider.setBackgroundColor(getResources().getColor(R.color.appbg));
+        divider.setMinimumHeight(2);
 
+        ln5.addView(divider,lp5);
         ln5.addView(button5, lp5);
 
 
-        //Noten--------------------
-
-        DatabaseHandlerNoten db = new DatabaseHandlerNoten(getActivity());
-
-        List<TNote> e = db.getAllNoten();
-
-        TNote[] noten = new TNote[e.size()];
-        for (int i = 0; i < e.size(); i++)
+        // Zeige Noten Statistik an
+        Noten noten = new Noten(getActivity());
+        Stats[] statses = noten.getStats();
+        float average=0.0f, gradeBest= 0.0f, gradeWorst= 0.0f, credits=0.0f;
+        int count = 0;
+        if (statses.length != 0)
         {
-            noten[i] = e.get(i);
+            average = statses[0].Average;
+            credits = statses[0].Credits;
+            gradeBest = statses[0].GradeBest;
+            gradeWorst = statses[0].GradeWorst;
+            count = statses[0].GradeCount;
         }
 
-        double finalmark = 0;
-        int validcount = 0;
-        double mark = 0;
-        double credits = 0;
+        TextView semester = (TextView) getActivity().findViewById(R.id.StatsSemester);
+        semester.setText("Noten");
+        semester.setBackgroundColor(getResources().getColor(R.color.faded_magenta));
+        semester.setTextColor(getResources().getColor(R.color.white));
+        semester.setTextSize(30);
 
+        TextView textAverage  = (TextView) getActivity().findViewById(R.id.StatsAverage);
+        TextView textnote     = (TextView) getActivity().findViewById(R.id.StatsNoten);
+        TextView textcredits  = (TextView) getActivity().findViewById(R.id.StatsCredits);
+        TextView textnoteBest = (TextView) getActivity().findViewById(R.id.StatsNoteBest);
+        TextView textnoteWorst= (TextView) getActivity().findViewById(R.id.StatsNoteWorst);
 
-        float totalworstmark = 0.0f;
-        float totalbestmark = 5.0f;
-
-        for (int i = 0; i < e.size(); i++)
-        {
-            try
-            {
-                double c = Float.parseFloat(noten[i]._Note.replace(',', '.'));
-                double cr = Float.parseFloat(noten[i]._Credits);
-                if (cr > 0)
-                {
-                    mark += (c * cr);
-                    validcount++;
-                    credits += cr;
-                }
-                totalworstmark = (float) Math.max(totalworstmark, c);
-                totalbestmark = (float) Math.min(totalbestmark, c);
-
-            } catch (Exception e2)
-            {
-            }
-        }
-
-        //if (validcount!=0)
-        if (credits != 0)
-            finalmark = mark / credits;
-        finalmark = Math.round(finalmark * 100.0) / 100.0;
-
-        ((TextView) (getActivity().findViewById(R.id.finalmark))).setText("Durchschnitt: " + finalmark);
-        ((TextView) (getActivity().findViewById(R.id.count))).setText(validcount + " Noten (mit Credits)");
-        ((TextView) (getActivity().findViewById(R.id.credits))).setText(credits + " Credits");
-        ((TextView) (getActivity().findViewById(R.id.best))).setText("beste Note " + totalbestmark);
-        ((TextView) (getActivity().findViewById(R.id.worst))).setText("schlechteste Note " + totalworstmark);
+        textAverage.setText(String.format("Durchschnitt: %.2f",average));
+        textAverage.setPadding(0,15,0,0);
+        textnote.setText(count+" Noten");
+        textnote.setPadding(0,15,0,0);
+        textcredits.setText(credits+" Credits");
+        textnoteBest.setText("beste Note: "+gradeBest);
+        textnoteWorst.setText("schlechteste Note: "+gradeWorst);
+        textnoteWorst.setPadding(0,0,0,15);
 
         // Überprüfe auf neue App-Version
         CheckUpdate w1 = new CheckUpdate();
@@ -695,80 +686,72 @@ public class CardFragment extends Fragment
         @Override
         protected void onPostExecute(News[] result)
         {
+            Random random = new Random();
             News news = null;
 
-            if (result.length == 1)
-                news = result[0];
-            else if (result.length > 1)
+            if (!isAdded())
+                return;
+
+            if (result != null)
+                news = result[(random.nextInt(result.length))];
+
+            if (news == null)
             {
-                int randomnumber = (int) ((Math.random() * (result.length)));
-                news = result[randomnumber];
+                // Blende Kachel aus
+                LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.aktuellbox);
+                ln.setVisibility(View.GONE);
+                return;
             }
 
-            try
+            TextView NewsHeader = (TextView) getActivity().findViewById(R.id.aktuellheader);
+            NewsHeader.setText(Html.fromHtml(news.author));
+
+            TextView NewsTitel = (TextView) getActivity().findViewById(R.id.aktuelltitel);
+            NewsTitel.setText(Html.fromHtml(news.title));
+            NewsTitel.setVisibility(View.VISIBLE);
+
+            TextView NewsDesc = (TextView) getActivity().findViewById(R.id.aktuelldesc);
+            NewsDesc.setText(Html.fromHtml(news.desc));
+
+            ImageView aktimage = (ImageView) getActivity().findViewById(R.id.aktuellimage);
+            aktimage.setImageBitmap(news.bitmap);
+            if (news.bitmap != null) aktimage.setVisibility(View.VISIBLE);
+
+            final String urlstring = news.url;
+
+            Button ButtonNews;
+
+            if (android.os.Build.VERSION.SDK_INT >= 14)
             {
-                if (news == null)
-                {
-                    // Blende Kachel aus
-                    LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.aktuellbox);
-                    ln.setVisibility(View.GONE);
-                }
-                else
-                {
-                    TextView NewsHeader = (TextView) getActivity().findViewById(R.id.aktuellheader);
-                    NewsHeader.setText(Html.fromHtml(news.author));
-
-                    TextView NewsTitel = (TextView) getActivity().findViewById(R.id.aktuelltitel);
-                    NewsTitel.setText(Html.fromHtml(news.title));
-                    NewsTitel.setVisibility(View.VISIBLE);
-
-                    TextView NewsDesc = (TextView) getActivity().findViewById(R.id.aktuelldesc);
-                    NewsDesc.setText(Html.fromHtml(news.desc));
-
-                    ImageView aktimage = (ImageView) getActivity().findViewById(R.id.aktuellimage);
-                    aktimage.setImageBitmap(news.bitmap);
-                    if (news.bitmap != null) aktimage.setVisibility(View.VISIBLE);
-
-                    final String urlstring = news.url;
-
-                    Button ButtonNews;
-
-                    if (android.os.Build.VERSION.SDK_INT >= 14)
-                    {
-                        ButtonNews = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-                        ButtonNews.setTextColor(Color.parseColor("#33B5E5"));
-                    }
-                    else
-                        ButtonNews = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-
-                    ButtonNews.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                    ButtonNews.setText("Website öffnen");
-
-                    LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.htwaktuell);
-                    LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-                    ButtonNews.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View arg0) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlstring));
-                            startActivity(browserIntent);
-                        }
-                    });
-
-                    ln6.addView(ButtonNews, lp6);
-                }
-
-            } catch (Exception e)
-            {
+                ButtonNews = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+                ButtonNews.setTextColor(Color.parseColor("#33B5E5"));
             }
+            else
+                ButtonNews = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+
+            ButtonNews.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            ButtonNews.setText("Website öffnen");
+
+            LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.htwaktuell);
+            LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+            ButtonNews.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlstring));
+                    startActivity(browserIntent);
+                }
+            });
+
+            ln6.addView(ButtonNews, lp6);
         }
     }
 
 
-    private class CheckUpdate extends AsyncTask<Calendar, Void, String[]>
+    private class CheckUpdate extends AsyncTask<Void, Void, String[]>
     {
         @Override
-        protected String[] doInBackground(Calendar... params)
+        protected String[] doInBackground(Void... params)
         {
             try
             {
@@ -776,9 +759,7 @@ public class CardFragment extends Fragment
 
                 String result = downloader.getString();
 
-                String[] items = result.split(";");
-
-                return items;
+                return result.split(";");
 
             } catch (Exception e)
             {
@@ -859,24 +840,24 @@ public class CardFragment extends Fragment
             {
                 // check if the fragment is currently added to its activity
                 // otherwise getActivity will throw an exception
-                if(isAdded())
+                if(!isAdded())
+                    return;
+
+                String mensa = "Heute kein Angebot";
+
+                if (essen.length > 0)
                 {
-                    String mensa = "Heute kein Angebot";
-
-                    if (essen.length > 0)
-                    {
-                        // Alle Mahlzeiten (Titel) in einen String verketten
-                        mensa = "";
-                        for (int i = 0; i < essen.length; i++)
-                            if (i < essen.length - 1)
-                                mensa += essen[i].Title + "\n\n";
-                            else
-                                mensa += essen[i].Title;
-                    }
-
-                    TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
-                    mensatext.setText(mensa);
+                    // Alle Mahlzeiten (Titel) in einen String verketten
+                    mensa = "";
+                    for (int i = 0; i < essen.length; i++)
+                        if (i < essen.length - 1)
+                            mensa += essen[i].Title + "\n\n";
+                        else
+                            mensa += essen[i].Title;
                 }
+
+                TextView mensatext = (TextView) getActivity().findViewById(R.id.mensatext);
+                mensatext.setText(mensa);
             } catch (Exception e)
             {
             }
