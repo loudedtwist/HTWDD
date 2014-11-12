@@ -28,7 +28,7 @@ public class WizardFinal extends Activity
         {
             public void onClick(View arg0)
             {
-                Intent nextScreen = new Intent(getApplicationContext(), WizardBibliothek.class);
+                Intent nextScreen = new Intent(getApplicationContext(), WizardStudyGroup.class);
                 startActivity(nextScreen);
             }
         });

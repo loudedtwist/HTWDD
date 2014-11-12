@@ -74,7 +74,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="z.B. 10"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textSize="10sp" />
                     </LinearLayout>
 
@@ -82,7 +81,8 @@
                         android:id="@+id/bibliotheksnummer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="2" />
                 </TableRow>
 
                 <TableRow
@@ -111,7 +111,8 @@
                         android:id="@+id/studiengang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number" >
+                        android:inputType="number"
+                        android:maxLength="3">
                             <requestFocus />
                     </EditText>
                 </TableRow>
@@ -160,7 +161,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:padding="10dp"
-                   android:text="Diese Daten werden zur Anzeige der Prüfungen und des Stundenplans benötigt."
+                   android:text="@string/WizardStudyGroupVerwendung"
                    android:textAppearance="?android:attr/textAppearanceSmall" />
            </LinearLayout>
         </LinearLayout>

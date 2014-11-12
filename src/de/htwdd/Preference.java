@@ -21,7 +21,6 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import de.htwdd.R;
 import de.htwdd.fragments.ResponsiveUIActivity;
 
 public class Preference extends SherlockPreferenceActivity
@@ -45,24 +44,10 @@ public class Preference extends SherlockPreferenceActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        Intent intent;
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                intent = new Intent(this, ResponsiveUIActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return true;
-            case 1: //Speichern
-                intent = new Intent(this, ResponsiveUIActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return true;
-
-            default:
-        }
+        Intent intent = new Intent(this, ResponsiveUIActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
         return true;
     }
 }

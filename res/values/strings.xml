@@ -10,11 +10,13 @@
     <string name="search">Suche</string>
     <string name="close">Schließen</string>
 
-
     <string name="library_title">Title:</string>
     <string name="library_author">Author:</string>
     <string name="library_medium">Medium:</string>
     <string name="library_availability">Verfügbarkeit:</string>
     <string name="library_location">Standort:</string>
     <string name="library_katalog">Katalog:</string>
+
+    <string name="overview_update_title">Eine neue Version ist verfügbar!</string>
+    <string name="overview_update_message">Bitte Update auf die neuste Version.</string>
 </resources>

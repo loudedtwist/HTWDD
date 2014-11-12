@@ -26,16 +26,12 @@
         </activity>
         <activity android:name=".WizardFinal" >
         </activity>
-        <activity android:name=".WizardMatrikel" >
-        </activity>
         <activity
             android:name=".WizardStudyGroup"
-            android:label="HTWDD"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".WizardBibliothek"
-            android:label="HTWDD"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity

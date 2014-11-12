@@ -22,7 +22,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import de.htwdd.DatabaseHandlerNoten;
 import de.htwdd.DatabaseHandlerRoomTimetable;
 import de.htwdd.Preference;
 
@@ -66,12 +65,12 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 	@Override
 	public void onBackPressed() {
 		//if (!usedbackbutton){
-			
+
 			getSlidingMenu().showMenu();
 		}
 		else
 			super.onBackPressed();
-		
+
 		usedbackbutton=true;
 	}
 	*/
@@ -116,7 +115,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 //		TypedValue tv = new TypedValue();
 //		getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true);
 //		int actionBarHeight = getResources().getDimensionPixelSize(tv.resourceId);
-//	
+//
         // set the Behind View Fragment
         getSupportFragmentManager()
                 .beginTransaction()
@@ -153,29 +152,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
         switch (item.getItemId())
         {
-            // Noten löschen
-            case 91:
-                getSupportActionBar().setSelectedNavigationItem(0);
-
-                DatabaseHandlerNoten db12 = new DatabaseHandlerNoten(this);
-                db12.purge();
-
-                mContent = new NotenFragment();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content_frame, mContent)
-                        .commit();
-                Handler h2 = new Handler();
-                h2.postDelayed(new Runnable()
-                {
-                    public void run()
-                    {
-                        getSlidingMenu().showContent();
-                    }
-                }, 50);
-
-                break;
-
             // Noten neuladen
             case 95:
                 getSupportActionBar().setSelectedNavigationItem(0);
@@ -224,10 +200,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
 
                 final EditText input = new EditText(this);
-//    		    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-//    		    LinearLayout.LayoutParams.FILL_PARENT,
-//    		    LinearLayout.LayoutParams.FILL_PARENT);
-//    		    input.setLayoutParams(lp);
                 editalert.setView(input);
 
                 editalert.setPositiveButton("Hinzufügen", new DialogInterface.OnClickListener()
@@ -301,12 +273,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
         return super.onOptionsItemSelected(item);
     }
-
-//	@Override
-//	public void onSaveInstanceState(Bundle outState) {
-//		super.onSaveInstanceState(outState);
-//		getSupportFragmentManager().putFragment(outState, "mContent", mContent);
-//	}
 
     public void switchContent(final Fragment fragment, int position)
     {
@@ -592,14 +558,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         return dir.delete();
     }
 
-
-    public void onBirdPressed(int pos)
-    {
-        //	Intent intent = BirdActivity.newInstance(this, pos);
-        //	startActivity(intent);
-    }
-
-
     @Override
     public void onTabReselected(Tab tab, FragmentTransaction ft)
     {
@@ -650,7 +608,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
         else if (tab.getText().equals("Suche"))
             mContent = new LibrarySearchFragment();
-
         // Career Service
         else if (tab.getText().equals("Events"))
         {
@@ -664,27 +621,18 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         }
         else if (tab.getText().equals("Beratung"))
             mContent = new CareerServiceBeratung();
-        // Mensa
-        else if (tab.getText().equals("Heute") && (mode == 4))
+            // Mensa
+        else if ((mode == 4) && tab.getText().equals("Heute"))
             mContent = new MensaDay();
-        // Noten
+        else if ((mode == 4) && tab.getText().equals("Woche"))
+            mContent = new MensaWeek();
+            // Noten
         else if (tab.getText().equals("Noten"))
             mContent = new NotenFragment();
         else if (tab.getText().equals("Statistik"))
             mContent = new NotenStatsFragment();
-
-
-
-
-
-
-        if (tab.getText().equals("Prüfungen"))
+        else if (tab.getText().equals("Prüfungen"))
             mContent = new PrufungenFragment();
-
-
-
-        if (tab.getText().equals("Woche") && (mode == 4))
-            mContent = new MensaWeek();
 
         // Argumente übergeben
         mContent.setArguments(args);
@@ -718,10 +666,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 break;
 
             case 5:
-                menu.add(0, 91, 0, "Purge")
-                        .setIcon(R.drawable.ic_menu_delete)
-                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
                 menu.add(0, 95, 0, "Update")
                         .setIcon(R.drawable.ic_menu_refresh)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

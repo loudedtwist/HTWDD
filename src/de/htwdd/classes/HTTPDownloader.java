@@ -2,8 +2,6 @@ package de.htwdd.classes;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
@@ -95,7 +93,6 @@ public class HTTPDownloader
 
     public String getStringWithPost()
     {
-
         String line, line2 = "";
         URL url;
 
@@ -114,6 +111,9 @@ public class HTTPDownloader
             wr.writeBytes(urlParameters);
             wr.flush ();
             wr.close ();
+
+            // Get the response code
+            ResponseCode = conn.getResponseCode();
 
             // Get the response
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
