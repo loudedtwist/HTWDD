@@ -28,7 +28,7 @@ public class CareerServiceArrayAdapter extends ArrayAdapter<Event>
 
     public CareerServiceArrayAdapter(Context context, Event[] events)
     {
-        super(context, R.layout.careerrow, events);
+        super(context, R.layout.fragment_career_item_detail, events);
         this.context = context;
         this.events = events;
     }
@@ -37,11 +37,11 @@ public class CareerServiceArrayAdapter extends ArrayAdapter<Event>
     public View getView(final int position, View convertView, ViewGroup parent)
     {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView            = inflater.inflate(R.layout.careerrow, parent, false);
-        TextView layout_title   = (TextView) rowView.findViewById(R.id.titel);
-        TextView layout_desc    = (TextView) rowView.findViewById(R.id.desc);
-        TextView layout_date    = (TextView) rowView.findViewById(R.id.date);
-        LinearLayout careerln   = (LinearLayout) rowView.findViewById(R.id.careerll);
+        convertView             = inflater.inflate(R.layout.fragment_career_item_detail, parent, false);
+        TextView layout_title   = (TextView) convertView.findViewById(R.id.titel);
+        TextView layout_desc    = (TextView) convertView.findViewById(R.id.desc);
+        TextView layout_date    = (TextView) convertView.findViewById(R.id.date);
+        LinearLayout careerln   = (LinearLayout) convertView.findViewById(R.id.careerll);
 
         // Setze Texte
         layout_title.setText(events[position].Title);
@@ -69,33 +69,19 @@ public class CareerServiceArrayAdapter extends ArrayAdapter<Event>
             LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             careerln.addView(button, lp);
 
-            button.setOnClickListener(new MyOnClickListener(position));
+            button.setOnClickListener(new OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(events[position].url));
+                    context.startActivity(i);
+                }
+            });
         }
         else
-            rowView.findViewById(R.id.separator).setVisibility(View.GONE);
+            convertView.findViewById(R.id.separator).setVisibility(View.GONE);
 
-        return rowView;
-    }
-
-
-    class MyOnClickListener implements OnClickListener
-    {
-        int pos;
-
-        MyOnClickListener(int pos)
-        {
-            this.pos = pos;
-        }
-
-        public void onClick(View v)
-        {
-            try
-            {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(events[pos].url));
-                context.startActivity(i);
-            } catch (Exception e)
-            {
-            }
-        }
+        return convertView;
     }
 }

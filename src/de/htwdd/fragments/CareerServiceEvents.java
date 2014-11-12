@@ -30,9 +30,9 @@ public class CareerServiceEvents extends Fragment
     {
         mode = getArguments().getInt("mode",0);
         if (mode != 2)
-            return inflater.inflate(R.layout.career_service_events, null);
+            return inflater.inflate(R.layout.fragment_career_service_events, container, false);
         else
-            return inflater.inflate(R.layout.career_service_beratung, null);
+            return inflater.inflate(R.layout.fragment_career_service_beratung, container, false);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CareerServiceEvents extends Fragment
             w.execute();
 
             // Zeige Progessbar an
-            waitIndicator = (LinearLayout) getView().findViewById(R.id.ProgressBar);
+            waitIndicator = (LinearLayout) getActivity().findViewById(R.id.ProgressBar);
             waitIndicator.setVisibility(View.VISIBLE);
         }
     }
@@ -65,28 +65,26 @@ public class CareerServiceEvents extends Fragment
          @Override
         protected void onPostExecute(Event[] events)
         {
-            try
+            if(!isAdded())
+                return;
+
+            // Progessbar unsichtbar machen
+            waitIndicator.setVisibility(View.GONE);
+
+            // Liste sichtbar machen
+            ListView l = (ListView) getActivity().findViewById(R.id.eventlist);
+            l.setVisibility(View.VISIBLE);
+            l.setDividerHeight(0);
+
+            if (events.length < 1)
             {
-                // Progessbar unsichtbar machen
-                waitIndicator.setVisibility(View.GONE);
-
-                // Liste sichtbar machen
-                ListView l = (ListView) getView().findViewById(R.id.eventlist);
-                l.setVisibility(View.VISIBLE);
-                l.setDividerHeight(0);
-
-                if (events.length < 1)
-                {
-                    events = new Event[1];
-                    events[0] = new Event();
-                    events[0].Title = "Aktuell keine Angebote";
-                }
-
-                CareerServiceArrayAdapter colorAdapter = new CareerServiceArrayAdapter(getActivity(), events);
-                l.setAdapter(colorAdapter);
-            } catch (Exception e)
-            {
+                events = new Event[1];
+                events[0] = new Event();
+                events[0].Title = "Aktuell keine Angebote";
             }
+
+            CareerServiceArrayAdapter colorAdapter = new CareerServiceArrayAdapter(getActivity(), events);
+            l.setAdapter(colorAdapter);
         }
     }
 }

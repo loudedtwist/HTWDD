@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/sidemargin"
     android:paddingRight="@dimen/sidemargin"
-    android:paddingTop="20dp" >
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
 
     <LinearLayout
         android:id="@+id/careerll"
@@ -37,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:paddingBottom="10dp"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -45,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:paddingBottom="10dp"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </LinearLayout>

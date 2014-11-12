@@ -28,7 +28,7 @@ public class CareerServiceBeratung extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.career_service_beratung, null);
+        return inflater.inflate(R.layout.fragment_career_service_beratung, null);
     }
 
     @Override

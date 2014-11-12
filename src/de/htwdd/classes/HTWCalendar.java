@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Vector;
@@ -21,7 +22,7 @@ public class HTWCalendar {
             Date date;
 
             Date currentDate            = new Date();
-            Vector<Event> vector       = new Vector<Event>();
+            ArrayList<Event> arrayList = new ArrayList<Event>();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
             // Daten von HTW laden
@@ -49,13 +50,13 @@ public class HTWCalendar {
                 tmp.Title = object.getString("title");
                 tmp.desc  = object.getString("title_ext");
                 tmp.url  = object.getString("url");
-                vector.add(tmp);
+                arrayList.add(tmp);
             }
 
             //Vektor umdrehen (jüngste Ereigenisse als erstes)
-            Collections.reverse(vector);
+            Collections.reverse(arrayList);
 
-            return vector.toArray(new Event[vector.size()]);
+            return arrayList.toArray(new Event[arrayList.size()]);
         }
         catch (Exception e)
         {
