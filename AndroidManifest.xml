@@ -4,7 +4,6 @@
     android:versionCode="3621"
     android:versionName="3.62" >
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,7 +17,6 @@
             android:theme="@style/ExampleTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
