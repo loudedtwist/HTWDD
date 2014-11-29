@@ -52,7 +52,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right">
+            android:gravity="end">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:gravity="right">
+        android:gravity="end">
 
         <LinearLayout
             android:orientation="vertical"
@@ -118,14 +118,14 @@
                 android:id="@+id/Update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stand 16:24 Uhr, 04.07"
                 android:textSize="7sp" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="9dp"
-                android:src="@drawable/refresh" />
+                android:src="@android:drawable/stat_notify_sync_noanim"
+                android:contentDescription="@string/update"/>
         </LinearLayout>
     </LinearLayout>
 

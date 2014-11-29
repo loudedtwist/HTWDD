@@ -22,18 +22,18 @@ import de.htwdd.types.Meal;
 /**
  * Implementation of App Widget functionality.
  */
-public class WidgetMensa extends AppWidgetProvider {
+public class WidgetMensa_6 extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_mensa);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_mensa_6);
 
         // There may be multiple widgets active, so update all of them
         for (int ID: appWidgetIds)
         {
             //Create a new intent that will target this class
-            Intent intent = new Intent(context, WidgetMensa.class);
+            Intent intent = new Intent(context, WidgetMensa_6.class);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, ID);
             intent.setAction("Update");
 
@@ -88,13 +88,13 @@ public class WidgetMensa extends AppWidgetProvider {
         {
             context = params[0];
 
-            // Am Samstag, Sonntag auf Montag springen
-            if (day == 7 || day == 1)
+            // Am Freitag nach 15 Uhr, Samstag, Sonntag auf Montag springen
+            if (day == 7 || day == 1 || (day == 6 && hour >= 15))
             {
                 day = 2;
                 week++;
             }
-            // Nach 15 Uhr das Essen von morgen anzeigen, außer Samstag / Sonntag
+            // Nach 15 Uhr das Essen von morgen anzeigen, außer Freitag / Samstag / Sonntag
             else if (hour >= 15)
                 day++;
 
@@ -112,22 +112,22 @@ public class WidgetMensa extends AppWidgetProvider {
             int count_essen;
 
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            views               = new RemoteViews(context.getPackageName(),R.layout.widget_mensa);
+            views               = new RemoteViews(context.getPackageName(),R.layout.widget_mensa_6);
             Resources ressource = context.getResources();
             String packageName  = context.getPackageName();
 
             // Lösche alle Felder
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 7; i++)
             {
                 views.setTextViewText(ressource.getIdentifier("Food_"+i,"id", packageName), "");
                 views.setTextViewText(ressource.getIdentifier("Price_" + i, "id", packageName), "");
             }
 
             // Anzahl Essen die angezeigt werden
-            if (essen.length < 4+1)
+            if (essen.length < 6+1)
                 count_essen = essen.length+1;
             else
-                count_essen = 4+1;
+                count_essen = 6+1;
 
             // Zeige Essen an
             for (int i = 1; i < count_essen; i++)
@@ -135,7 +135,7 @@ public class WidgetMensa extends AppWidgetProvider {
                 resID_Title = ressource.getIdentifier("Food_"+i,"id", packageName);
                 resID_Price = ressource.getIdentifier("Price_" + i, "id", packageName);
 
-                views.setTextViewText(resID_Title, cut(essen[i-1].Title));
+                views.setTextViewText(resID_Title, essen[i-1].Title);
                 views.setTextViewText(resID_Price, essen[i-1].Price);
             }
 
@@ -146,15 +146,7 @@ public class WidgetMensa extends AppWidgetProvider {
             views.setTextViewText(R.id.Update, "Stand: " + (new SimpleDateFormat("HH:mm")).format(calendar.getTime()) + " Uhr, " + (new SimpleDateFormat("dd.MM.")).format(calendar.getTime()));
 
             // Instruct the widget manager to update the widget
-            appWidgetManager.updateAppWidget(new ComponentName(context, WidgetMensa.class), views);
-        }
-
-        private String cut(String string)
-        {
-            if (string.length() < 44)
-                return string;
-            else
-                return string.substring(0,40)+"...";
+            appWidgetManager.updateAppWidget(new ComponentName(context, WidgetMensa_6.class), views);
         }
     }
 }

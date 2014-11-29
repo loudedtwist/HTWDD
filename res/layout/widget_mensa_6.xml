@@ -1,165 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widgetcontainer0"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
-    android:background="@drawable/appwidget_dark_bg"
     android:orientation="vertical"
-    android:layout_margin="@dimen/widget_margin" >
+    android:weightSum="1"
+    android:id="@+id/WidgetMensa"
+    android:background="@android:drawable/editbox_dropdown_dark_frame">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center" >
+        android:layout_height="wrap_content"
+        android:padding="2dp">
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="143dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/TextView001"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="85dp"
-                android:text="Bitte warten..."
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Food_1"
+                android:textSize="12sp"
+                android:lines="3"
+                android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/TextView002"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Price_1"
+                android:textSize="12sp"
+                android:textColor="@color/maintextcolor2"/>
 
             <TextView
-                android:id="@+id/TextView003"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Food_3"
+                android:textSize="12sp"
+                android:lines="2"
+                android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/TextView004"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Price_3"
+                android:textSize="12sp"
+                android:textColor="@color/maintextcolor2"/>
 
             <TextView
-                android:id="@+id/TextView03"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp" />
-            
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Food_5"
+                android:textSize="12sp"
+                android:lines="2"
+                android:ellipsize="end"/>
+
             <TextView
-                android:id="@+id/TextView02"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/TextView01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="7sp" />
-            </LinearLayout>
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Price_5"
+                android:textSize="12sp"
+                android:textColor="@color/maintextcolor2"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/LinearLayout01"
-            android:layout_width="143dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
 
             <TextView
-                android:id="@+id/update0"
-                style="@android:style/TextAppearance.Medium"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Food_2"
+                android:textSize="12sp"
+                android:lines="3"
+                android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/textView02"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Price_2"
+                android:textSize="12sp"
+                android:textColor="@color/maintextcolor2"/>
 
             <TextView
-                android:id="@+id/textView04"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Food_4"
+                android:textSize="12sp"
+                android:lines="2"
+                android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/textView06"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Price_4"
+                android:textSize="12sp"
+                android:textColor="@color/maintextcolor2"/>
 
             <TextView
-                android:id="@+id/TextView05"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="12sp" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Food_6"
+                android:textSize="12sp"
+                android:lines="2"
+                android:ellipsize="end"/>
 
             <TextView
-                android:id="@+id/TextView04"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/maintextcolor2"
-                android:textSize="10sp"
-                android:visibility="visible" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/Price_6"
+                android:textSize="12sp"
+                android:textColor="@color/maintextcolor2"/>
+        </LinearLayout>
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="bottom|right" >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="7sp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="bottom">
 
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:src="@drawable/refresh" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Menu_from"
+                android:textSize="7sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom|end">
+
+            <TextView
+                android:id="@+id/Update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="7sp" />
+
+            <ImageView
+                android:id="@+id/WidgetMensaReload"
+                android:layout_width="wrap_content"
+                android:layout_height="9dp"
+                android:contentDescription="@string/update"
+                android:src="@android:drawable/stat_notify_sync_noanim"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

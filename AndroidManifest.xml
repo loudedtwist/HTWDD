@@ -69,8 +69,8 @@
         <service android:name=".UpdateMensaWidgetService2" />
 
         <receiver
-            android:name=".WidgetMensaProvider2"
-            android:label="HTWDD Mensa 6x" >
+            android:name=".WidgetMensa_6"
+            android:label="HTWDresdem Mensa" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -79,8 +79,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_mensa_6" />
         </receiver>
+
+
         <receiver
-            android:name=".WidgetMensa"
+            android:name=".WidgetMensa_4"
             android:label="HTWDresden Mensa">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -88,7 +90,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_mensa_info" />
+                android:resource="@xml/widget_mensa_4" />
         </receiver>
 
     </application>

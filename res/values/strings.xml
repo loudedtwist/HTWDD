@@ -9,6 +9,7 @@
     <string name="back">Zurück</string>
     <string name="search">Suche</string>
     <string name="close">Schließen</string>
+    <string name="update">Aktualisieren</string>
 
     <string name="library_title">Title:</string>
     <string name="library_author">Author:</string>
