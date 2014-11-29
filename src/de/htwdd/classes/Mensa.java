@@ -1,5 +1,6 @@
 package de.htwdd.classes;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -22,52 +23,43 @@ public class Mensa {
     }
 
     // Lade Essen von der Mensa
-    public void getDataCurrentDay(){
-        String result;
-        String token[];
-        Pattern ID      = Pattern.compile(".*?details-(\\d*).html.*?");
-        Pattern title   = Pattern.compile(".*?<title>(.*?)( \\((.*?)\\))?</title>.*?");
+    public void getDataCurrentDay()
+    {
+        ArrayList<Meal> food = new ArrayList<Meal>();
+        Pattern pattern = Pattern.compile(".*?<item>.*?<title>(.*?)( \\((.*?)\\))?</title>.*?details-(\\d*).html</link>.*?</item>");
         Matcher matcher;
 
-        try {
-            HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=" + MensaID);
-            result          = downloader.getString();
-            token           = result.split("<item>");
-            int AnzToken    = (token.length > 2) ? token.length : 2;
-            Food            = new Meal[AnzToken-2];
+        HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=" + MensaID);
+        String result = downloader.getString();
 
-            //Speichere einzelne Mahlzeiten in das Array
-            for (int i = 2; i < AnzToken; i++)
-            {
-                Food[i-2]   = new Meal();
-
-                // Extrahiere die benötigten Informationen
-                try {
-                    //ID
-                    matcher = ID.matcher(token[i]);
-                    matcher.find();
-                    Food[i-2].ID = Integer.parseInt(matcher.group(1));
-
-                    //Title
-                    matcher = title.matcher(token[i]);
-                    matcher.find();
-                    Food[i-2].Title = matcher.group(1);
-
-                    //Preis
-                    Food[i-2].Price = matcher.group(3);
-                }
-                catch (Exception e)
-                {
-                    Food[i-2].Title = "Fehler im Parser";
-                }
-            }
-        }
-        catch (Exception e)
+        // Prüfe ob Downloader ein Ergebnis zurückgibt
+        if (result == null)
         {
             Food = new Meal[1];
             Food[0] = new Meal();
             Food[0].Title = "Keine Internetverbindung!";
+            return;
         }
+
+        matcher = pattern.matcher(result);
+        while (matcher.find())
+        {
+            Meal meal   = new Meal();
+
+            try
+            {
+                meal.Title  = matcher.group(1);
+                meal.Price  = matcher.group(3);
+                meal.ID     = Integer.parseInt(matcher.group(4));
+            }
+            catch (Exception e)
+            {
+                meal.Title  = "Fehler im Parser";
+            }
+
+            food.add(meal);
+        }
+        Food = food.toArray(new Meal[food.size()]);
     }
 
 
@@ -81,59 +73,52 @@ public class Mensa {
     public void getDataDay(int day, int week)
     {
         HTTPDownloader downloader;
-        String result;
-        String token[];
-        Pattern title   = Pattern.compile(".*?<td class=\"text\">(.*?)</td>");
-        Pattern price   = Pattern.compile(">(\\d?\\d,\\d\\d|ausverkauft| )");
-        Matcher matcher;
-        int AnzToken;
+        ArrayList<Meal> arrayList = new ArrayList<Meal>();
+        Pattern pattern = Pattern.compile(".*?<td class=\"text\">(.*?)</td>.*?>(\\d?\\d,\\d\\d|ausverkauft| )");
 
-        try {
+        if (week <= Calendar.getInstance(Locale.GERMANY).get(Calendar.WEEK_OF_YEAR))
+            downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse.html?print=1");
+        else
+            downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html?print=1");
 
-            if (week <= Calendar.getInstance(Locale.GERMANY).get(Calendar.WEEK_OF_YEAR))
-                downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse.html?print=1");
-            else
-                downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html?print=1");
+        String result = downloader.getStringUTF8();
 
-            result      = downloader.getStringUTF8();
-            token       = result.split("class=\"speiseplan\"");
-
-            // Zähle Mahlzeiten die es an dem entsprechenden Tag gibt und lege Array an
-            token       = token[day-1].split("<tr class=");
-            AnzToken    = token.length-1;
-            Food        = new Meal[AnzToken];
-
-            // Speichere einzelne Mahlzeiten in das Array
-            for (int i = 1; i < AnzToken; i++)
-            {
-                Food[i-1] = new Meal();
-
-                try {
-                    //Title
-                    matcher = title.matcher(token[i]);
-                    matcher.find();
-                    Food[i-1].Title = matcher.group(1);
-
-                    //Preis
-                    matcher = price.matcher(token[i]);
-                    matcher.find();
-                    if (!matcher.group(1).equals("ausverkauft"))
-                        Food[i-1].Price = matcher.group(1)+" €";
-                    else
-                        Food[i-1].Price = "aus.";
-                }
-                catch (Exception e)
-                {
-                    Food[i-1].Title = "Fehler im Parser";
-                }
-            }
-        }
-        catch (Exception e)
+        // Prüfe ob Downloader ein Ergebnis zurückgibt
+        if (result == null)
         {
             Food = new Meal[1];
             Food[0] = new Meal();
             Food[0].Title = "Keine Internetverbindung!";
+            return;
         }
+
+        // Teile Speiseplan in einzelne Tage und übergebe entsprechenden Tag an Matcher
+        String token[]  = result.split("class=\"speiseplan\"");
+        Matcher matcher = pattern.matcher(token[day-1]);
+
+        // Suche die einzelnen Speisen
+        while (matcher.find())
+        {
+            Meal meal = new Meal();
+
+            try
+            {
+                meal.Title = matcher.group(1);
+
+                if (!matcher.group(2).equals("ausverkauft"))
+                    meal.Price = matcher.group(2)+" €";
+                else
+                    meal.Price = "aus.";
+            }
+            catch (Exception e)
+            {
+                meal.Title = "Fehler im Parser";
+            }
+
+            arrayList.add(meal);
+        }
+
+        Food = arrayList.toArray(new Meal[arrayList.size()]);
     }
 
     public void getDataWeek()
@@ -191,5 +176,4 @@ public class Mensa {
             i.Thumbnail = downloader.getBitmap();
         }
     }
-
 }
