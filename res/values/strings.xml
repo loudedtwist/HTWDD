@@ -3,6 +3,7 @@
 
     <string name="app_name">HTWDresden</string>
     <string name="app_no_internet">Keine Internetverbindung!</string>
+    <string name="app_slogan">Die App für Studenten der HTW Dresden</string>
     <string name="responsive_ui">HTWDresden</string>
     <string name="timetable">Stundenplan</string>
     <string name="next">Weiter</string>
@@ -10,6 +11,22 @@
     <string name="search">Suche</string>
     <string name="close">Schließen</string>
     <string name="update">Aktualisieren</string>
+    <string name="website">Webseite</string>
+    <string name="note">Hinweis</string>
+
+    <string name="about_contact">Kontakt</string>
+    <string name="about_email">htwcampusapp@htw-dresden.de</string>
+    <string name="about_link_website">https://htwdd.github.io</string>
+    <string name="about_link_github">https://github.com/HTWDD/HTWDD</string>
+    <string name="about_project">Projekt</string>
+    <string name="about_developer">Entwickler</string>
+    <string name="about_ws14">WS14/15</string>
+    <string name="about_ss14">SS14</string>
+    <string name="about_initiator">Initiator</string>
+    <string name="about_developer_ws14">Kay Förster</string>
+    <string name="about_developer_ss14">Alexander Elchlepp, Kay Förster, Thomas Herrlich, Tamara Machowa</string>
+    <string name="about_developer_initiator">Mark Schramm</string>
+
 
     <string name="library_title">Title:</string>
     <string name="library_author">Author:</string>

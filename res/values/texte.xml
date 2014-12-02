@@ -4,5 +4,6 @@
     <string name="CareerMentoringBeschreibung">Die Idee des Mentoring ist die Förderung eines Schützlings, dem Mentee, und der Weitergabe von Wissen und Erfahrungen durch einen erfahrenen Mentor. Der Mentor unterstützt die persönliche und fachliche Entwicklung des Mentee und steht ihm mit Rat zur Seite.</string>
     <string name="WizardBibliothekVerwendung">Diese Daten werden wie folgt verwendet:\n&#8226; Bibl.Nr. + RZ-Login: Abfrage der Noten\n&#8226; Bibl.Nr. + Bibliothekspasswort: Anzeige der ausgeliehenen Medien in der Bibliothek</string>
     <string name="WizardStudyGroupVerwendung">Diese Daten werden zur Anzeige der Prüfungen und des Stundenplans benötigt.</string>
-    <string name="AboutCard2">Entwickelt von:\n\nWS14/15:\n&#8226; Kay Förster\n\nSS14:\n&#8226; Alexander Elchlepp\n&#8226; Kay Förster\n&#8226; Thomas Herrlich\n&#8226; Tamara Machowa\n\nInitiator: Mark Schramm\n\nZu keinem Zeitpunkt werden private Daten wie S-Nummer oder Passwörter an nicht-HTW Server übertragen</string>
+    <string name="about_inoffiziell">Die HTWDresden-App ist keine offizelle App der HTW Dresden oder einer anderen Institution.</string>
+    <string name="about_security">Zu keinem Zeitpunkt werden private Daten wie S-Nummer oder Passwörter an nicht-HTW Server übertragen</string>
 </resources>
