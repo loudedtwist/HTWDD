@@ -26,6 +26,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import de.htwdd.BelegungsAdapter;
 import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.classes.HTTPDownloader;
@@ -34,10 +37,13 @@ import de.htwdd.R;
 import de.htwdd.WizardWelcome;
 import de.htwdd.classes.Noten;
 import de.htwdd.types.Meal;
+import de.htwdd.types.News;
 import de.htwdd.types.Stats;
 import de.htwdd.types.TNote;
 import de.htwdd.types.Type_Stunde;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -628,54 +634,51 @@ public class CardFragment extends Fragment
         w3.execute();
     }
 
-
-    public class News
-    {
-        String title, desc, author;
-        Bitmap bitmap;
-        int id;
-        Date startdate, enddate;
-        String url;
-    }
-
-
     private class NewsWorker extends AsyncTask<Calendar, Void, News[]>
     {
         @Override
         protected News[] doInBackground(Calendar... params)
         {
+            JSONObject object;
+            ArrayList<News> arrayList = new ArrayList<News>();
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
+            Calendar startDate = Calendar.getInstance();
+            Calendar endDate = Calendar.getInstance();
+            Calendar today = Calendar.getInstance();
+
             try {
-                HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news");
+                HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news.json");
 
-                String result = downloader.getString();
+                JSONArray array = new JSONArray(downloader.getStringUTF8());
+                int count = array.length();
 
-                String[] items = result.split("<item>");
-
-                News news[] = new News[items.length];
-
-                for (int i = 0; i < items.length; i++)
+                for (int i=0; i<count; i++)
                 {
-                    String[] items2 = items[i].split("<br>");
-                    if (items2.length < 2) break;
+                    object = array.getJSONObject(i);
 
-                    news[i] = new News();
-                    news[i].id = Integer.parseInt(items2[0]);
-                    news[i].author = items2[6];
+                    startDate.setTime(format.parse(object.getString("StartDate")));
+                    endDate.setTime(format.parse(object.getString("EndDate")));
 
-                    HTTPDownloader imageloader = new HTTPDownloader("https://htwdd.github.io/images/" + items2[3]);
+                    if (startDate.after(today) || endDate.before(today))
+                        continue;
 
-                    news[i].bitmap = imageloader.getBitmap();
+                    News news   = new News();
+                    news.title  = object.getString("Title");
+                    news.desc   = object.getString("Desc");
+                    news.author = object.getString("Author");
+                    news.url    = object.getString("URL");
 
-                    //add http// to url if not present
-                    if (!items2[4].startsWith("http://") && !items2[4].startsWith("https://"))
-                        items2[4] = "http://" + items2[4];
+                    if (object.getString("Image") != null)
+                    {
+                        HTTPDownloader imageloader = new HTTPDownloader("https://htwdd.github.io/images/" + object.getString("Image"));
+                        news.bitmap = imageloader.getBitmap();
+                    }
 
-                    news[i].title = items2[1];
-                    news[i].desc = items2[2];
-                    news[i].url = items2[4];
+                    arrayList.add(news);
                 }
 
-                return news;
+                return arrayList.toArray(new News[array.length()]);
             }
             catch (Exception e)
             {
@@ -755,13 +758,9 @@ public class CardFragment extends Fragment
         {
             try
             {
-                HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/currentversion");
-
-                String result = downloader.getString();
-
-                return result.split(";");
-
-            } catch (Exception e)
+                return new HTTPDownloader("https://htwdd.github.io/currentversion").getStringUTF8().split(";");
+            }
+            catch (Exception e)
             {
                 return null;
             }
@@ -770,52 +769,47 @@ public class CardFragment extends Fragment
         @Override
         protected void onPostExecute(String[] result)
         {
-            if (result != null)
+            if (!isAdded())
+                return;
+
+            if (result != null && Integer.parseInt(result[0]) > info.versionCode)
             {
-                try
+                // Schalte Kachel sichtbar
+                LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
+                ln.setVisibility(View.VISIBLE);
+
+                // Alternativen Text anzeigen
+                if(!result[1].isEmpty())
                 {
-                    if (Integer.parseInt(result[0]) > info.versionCode)
-                    {
-                        // Schalte Kachel sichtbar
-                        LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
-                        ln.setVisibility(View.VISIBLE);
-
-                        // Alternativen Text anzeigen
-                        if(!result[1].isEmpty())
-                        {
-                            TextView UpdateMessage = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
-                            UpdateMessage.setText(Html.fromHtml(result[1]));
-                        }
-
-                        Button ButtonUpdate;
-
-                        if (android.os.Build.VERSION.SDK_INT >= 14)
-                        {
-                            ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-                            ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
-                        }
-                        else
-                            ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-
-                        ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
-                        ButtonUpdate.setText("Download App");
-                        LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
-                        LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-                        ButtonUpdate.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View arg0) {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
-                                startActivity(browserIntent);
-                            }
-                        });
-
-                        ln6.addView(ButtonUpdate, lp6);
-                    }
-                } catch (Exception e2)
-                {
+                    TextView UpdateMessage = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
+                    UpdateMessage.setText(Html.fromHtml(result[1]));
                 }
+
+                Button ButtonUpdate;
+
+                if (android.os.Build.VERSION.SDK_INT >= 14)
+                {
+                    ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+                    ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
+                }
+                else
+                    ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+
+                ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+
+                ButtonUpdate.setText("Download App");
+                LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
+                LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+                ButtonUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
+                        startActivity(browserIntent);
+                    }
+                });
+
+                ln6.addView(ButtonUpdate, lp6);
             }
         }
     }
