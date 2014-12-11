@@ -41,6 +41,7 @@ public class DatabaseHandlerNoten extends SQLiteOpenHelper
                 COLUMN_NAME_SEMESTER + INT_TYPE + COMMA_SEP +
                 COLUMN_NAME_KENNZEICHEN + TEXT_TYPE +
                 " )");
+        sqLiteDatabase.execSQL("CREATE INDEX IndexSemester ON "+TABLE_NAME+"("+COLUMN_NAME_SEMESTER+");");
     }
 
     @Override
