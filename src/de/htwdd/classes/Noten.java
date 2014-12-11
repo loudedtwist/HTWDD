@@ -41,7 +41,7 @@ public class Noten
         Grade grade;
 
         // Lade Studiengänge des Studenten
-        HTTPDownloader downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/qisserver/api/student/getcourses");
+        HTTPDownloader downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/appservice/getcourses");
         downloader.urlParameters  = "sNummer=s" + sNummer + "&RZLogin=" + RZLogin;
 
         String response = downloader.getStringWithPost();
@@ -60,7 +60,7 @@ public class Noten
                 object = arrayCourses.getJSONObject(i);
 
                 // Lade die Noten je nach Studiengang
-                downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/qisserver/api/student/getgrades");
+                downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/appservice/getgrades");
                 downloader.urlParameters  = "sNummer=s" + sNummer + "&RZLogin=" + RZLogin + "&AbschlNr=" + object.getString("AbschlNr") + "&StgNr=" + object.getString("StgNr") + "&POVersion=" + object.getString("POVersion");
 
                 response = downloader.getStringWithPost();
