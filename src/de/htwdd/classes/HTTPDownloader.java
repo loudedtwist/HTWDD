@@ -22,7 +22,7 @@ import de.htwdd.R;
 
 public class HTTPDownloader
 {
-    private String agent = "HTWDresden App";
+    private String agent = "HTWDresden Android App";
     public String urlstring;
     public String urlParameters;
     public int ResponseCode;
@@ -86,7 +86,9 @@ public class HTTPDownloader
 
         } catch (Exception e)
         {
-            ResponseCode = 999;
+            if (ResponseCode == 0)
+                ResponseCode = 999;
+
             return null;
         }
 
@@ -149,7 +151,8 @@ public class HTTPDownloader
 
         } catch (Exception e)
         {
-            ResponseCode = 999;
+            if (ResponseCode == 0)
+                ResponseCode = 999;
             return null;
         }
 
