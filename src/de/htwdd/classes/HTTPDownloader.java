@@ -1,13 +1,24 @@
 package de.htwdd.classes;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+
+import de.htwdd.R;
 
 public class HTTPDownloader
 {
@@ -15,6 +26,7 @@ public class HTTPDownloader
     public String urlstring;
     public String urlParameters;
     public int ResponseCode;
+    public Context context;
 
 
     public HTTPDownloader(String urlstring)
@@ -43,7 +55,11 @@ public class HTTPDownloader
             URL url = new URL(urlstring);
 
             // create a urlconnection object
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+
+            if (context != null)
+                conn.setSSLSocketFactory(addHTWCA().getSocketFactory());
+
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setRequestMethod("POST");
@@ -53,8 +69,8 @@ public class HTTPDownloader
             //Send request
             DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
             wr.writeBytes(urlParameters);
-            wr.flush ();
-            wr.close ();
+            wr.flush();
+            wr.close();
 
             // Get the response code
             ResponseCode = conn.getResponseCode();
@@ -85,7 +101,7 @@ public class HTTPDownloader
             URL url = new URL(urlstring);
 
             // create a urlconnection object
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.addRequestProperty("User-Agent", agent);
             conn.connect();
 
@@ -138,5 +154,40 @@ public class HTTPDownloader
         }
 
         return result.toString();
+    }
+
+
+    private SSLContext addHTWCA() throws Exception
+    {
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+
+        // Load CAs from Ressource
+        InputStream caInput = context.getResources().openRawResource(R.raw.ca_htw);
+        Certificate ca;
+
+        try
+        {
+            ca = cf.generateCertificate(caInput);
+        } finally
+        {
+            caInput.close();
+        }
+
+        // Create a KeyStore containing our trusted CAs
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry("ca", ca);
+
+        // Create a TrustManager that trusts the CAs in our KeyStore
+        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+        tmf.init(keyStore);
+
+        // Create an SSLContext that uses our TrustManager
+        SSLContext context = SSLContext.getInstance("TLS");
+        context.init(null, tmf.getTrustManagers(), null);
+
+        return context;
     }
 }

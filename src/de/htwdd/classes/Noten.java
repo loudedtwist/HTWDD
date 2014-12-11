@@ -23,6 +23,7 @@ public class Noten
     private String sNummer;
     private String RZLogin;
     private DatabaseHandlerNoten mDbHelper;
+    private Context context;
     public Grade[] noten;
 
     public Noten(Context context)
@@ -31,6 +32,7 @@ public class Noten
         sNummer = sharedPreferences.getString("bib", "");
         RZLogin = sharedPreferences.getString("RZLogin", "");
         mDbHelper = new DatabaseHandlerNoten(context);
+        this.context = context;
     }
 
     public int getNotenHIS()
@@ -43,6 +45,7 @@ public class Noten
         // Lade Studiengänge des Studenten
         HTTPDownloader downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/appservice/getcourses");
         downloader.urlParameters  = "sNummer=s" + sNummer + "&RZLogin=" + RZLogin;
+        downloader.context =context;
 
         String response = downloader.getStringWithPost();
 
@@ -61,9 +64,11 @@ public class Noten
 
                 // Lade die Noten je nach Studiengang
                 downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/appservice/getgrades");
+                downloader.context = context;
                 downloader.urlParameters  = "sNummer=s" + sNummer + "&RZLogin=" + RZLogin + "&AbschlNr=" + object.getString("AbschlNr") + "&StgNr=" + object.getString("StgNr") + "&POVersion=" + object.getString("POVersion");
 
                 response = downloader.getStringWithPost();
+
 
                 // Überprüfe HTTP- ResonseCde
                 if (downloader.ResponseCode != 200)
