@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -310,8 +311,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
                 int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
-                int nextweek = week + 1;
-                nextweek %= 52;
+                int nextweek = week==52?1:week+1;
 
                 getSupportActionBar().setTitle("Stundenplan");
                 tab = getSupportActionBar().newTab();
@@ -569,7 +569,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
     {
         int week    = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
         Bundle args = new Bundle();
-        int nextweek = (week + 1)%52;
+        int nextweek = week==52?1:week+1;
 
         // Übersicht Raumplan
         if ((mode == 6) && lastraum != null)
@@ -714,8 +714,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         lastraum = raum;
 
         int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
-        int nextweek = week + 1;
-        nextweek %= 52;
+        int nextweek = week==52?1:week+1;
 
         ActionBar.Tab tab, tab2;
 
