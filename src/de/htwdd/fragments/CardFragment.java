@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -29,26 +28,24 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
+
 import de.htwdd.BelegungsAdapter;
 import de.htwdd.DatabaseHandlerTimetable;
-import de.htwdd.classes.HTTPDownloader;
-import de.htwdd.classes.Mensa;
 import de.htwdd.R;
 import de.htwdd.WizardWelcome;
+import de.htwdd.classes.HTTPDownloader;
+import de.htwdd.classes.Mensa;
 import de.htwdd.classes.Noten;
 import de.htwdd.types.Meal;
 import de.htwdd.types.News;
 import de.htwdd.types.Stats;
-import de.htwdd.types.TNote;
 import de.htwdd.types.Type_Stunde;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 public class CardFragment extends Fragment
 {
@@ -73,7 +70,7 @@ public class CardFragment extends Fragment
         SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 
-        if (app_preferences.getBoolean("first_run_bool", true) == false)
+        if (!app_preferences.getBoolean("first_run_bool", true))
         {
             getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
         }
@@ -86,7 +83,7 @@ public class CardFragment extends Fragment
                 SharedPreferences app_preferences1 = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 SharedPreferences.Editor editor = app_preferences1.edit();
                 editor.putBoolean("first_run_bool", false);
-                editor.commit();
+                editor.apply();
                 getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
             }
         });

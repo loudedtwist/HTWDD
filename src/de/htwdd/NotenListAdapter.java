@@ -73,7 +73,7 @@ public class NotenListAdapter extends BaseExpandableListAdapter
         String HeaderTitle = (String) getGroup(i);
 
         if (view == null)
-            view = inflater.inflate(R.layout.fragment_noten_group, null);
+            view = inflater.inflate(R.layout.fragment_noten_group, viewGroup, false);
 
         TextView textView = (TextView) view.findViewById(R.id.expandableListHeader);
         textView.setText(HeaderTitle);
@@ -87,7 +87,7 @@ public class NotenListAdapter extends BaseExpandableListAdapter
         final Grade ChildText = (Grade) getChild(i,i2);
 
         if (view == null)
-            view = inflater.inflate(R.layout.fragment_noten_item, null);
+            view = inflater.inflate(R.layout.fragment_noten_item, viewGroup, false);
 
         TextView modul = (TextView) view.findViewById(R.id.expandableListItemModul);
         modul.setText(ChildText.Modul);
