@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -85,13 +86,17 @@ public class Noten
                     // Noten anlegen
                     grade =  new Grade();
                     grade.Modul     = object.getString("PrTxt");
-                    grade.Note      = Float.parseFloat(object.getString("PrNote"))/100;
+
                     grade.Vermerk   = object.getString("Vermerk");
                     grade.Status    = object.getString("Status");
                     grade.Credits   = Float.parseFloat(object.getString("EctsCredits"));
                     grade.Versuch   = Short.parseShort(object.getString("Versuch"));
                     grade.Semester  = object.getInt("Semester");
                     grade.Kennzeichen= object.getString("PrForm");
+
+                    if (!object.getString("PrNote").equals(""))
+                        grade.Note      = Float.parseFloat(object.getString("PrNote"))/100;
+                    else grade.Note = 0f;
 
                     arrayList.add(grade);
                 }
@@ -191,7 +196,9 @@ public class Noten
                 " FROM Noten" +
                 " JOIN (SELECT Semester, Count(Credits) AS AnzahlNoten FROM Noten WHERE Credits != 0.0 GROUP BY Semester) AS UA" +
                 " ON UA.Semester == Noten.Semester" +
-                " GROUP BY Noten.Semester", null);
+                " WHERE NOTE != 0" +
+                " GROUP BY Noten.Semester" +
+                " ORDER BY Noten.Semester DESC", null);
 
         if (cursor.moveToFirst())
         {
