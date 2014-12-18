@@ -501,9 +501,8 @@
             layout="@layout/fragment_noten_stats_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/sidemargin"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="@dimen/sidemargin"/>
+            />
 
         <LinearLayout
             android:id="@+id/LinearLayout03"
