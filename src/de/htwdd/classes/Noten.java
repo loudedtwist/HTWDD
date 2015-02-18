@@ -6,11 +6,11 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -31,9 +31,18 @@ public class Noten
     {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sNummer = sharedPreferences.getString("bib", "");
-        RZLogin = sharedPreferences.getString("RZLogin", "");
         mDbHelper = new DatabaseHandlerNoten(context);
         this.context = context;
+
+        // Encode the Password
+        try
+        {
+            RZLogin = URLEncoder.encode(sharedPreferences.getString("RZLogin", ""), "UTF-8");
+
+        } catch (Exception e)
+        {
+            RZLogin = sharedPreferences.getString("RZLogin", "");
+        }
     }
 
     public int getNotenHIS()
@@ -69,7 +78,6 @@ public class Noten
                 downloader.urlParameters  = "sNummer=s" + sNummer + "&RZLogin=" + RZLogin + "&AbschlNr=" + object.getString("AbschlNr") + "&StgNr=" + object.getString("StgNr") + "&POVersion=" + object.getString("POVersion");
 
                 response = downloader.getStringWithPost();
-
 
                 // Überprüfe HTTP- ResonseCde
                 if (downloader.ResponseCode != 200)
