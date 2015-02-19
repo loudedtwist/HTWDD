@@ -13,98 +13,154 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <LinearLayout
                 style="@style/nowCardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
                 android:orientation="vertical"
                 android:padding="20dp"
                 android:layout_margin="20dp">
 
                 <TextView
-                    android:id="@+id/semester"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="15dp"
-                    android:text="Wintersemester 2014/15"
-                    android:textSize="24dp" />
+                    android:text="@string/management_semester"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lehrveranstaltungen:"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/vorlesung"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="06.10.14 - 31.01.15"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:paddingTop="10sp"
+                    android:text="@string/management_semester_length"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:text="Freie Tage:"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:paddingLeft="10sp"
+                    android:paddingRight="5sp"
+                    android:text="@string/management_semester_length1"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10sp"
+                    android:text="@string/management_semester_free"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                 <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-                    <TableRow>
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TableRow android:layout_width="wrap_content"
+                              android:layout_height="wrap_content">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Reformationstag"/>
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free1"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="31.10.2014"
-                            android:layout_marginLeft="10dp" />
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free2"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </TableRow>
-                    <TableRow>
+
+                    <TableRow android:layout_width="wrap_content"
+                              android:layout_height="wrap_content">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Buß- und Bettatag"/>
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free3"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="19.11.2014"
-                            android:layout_marginLeft="10dp" />
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free4"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </TableRow>
-                    <TableRow>
+                    <TableRow android:layout_width="wrap_content"
+                              android:layout_height="wrap_content">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Weihnachten"/>
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free5"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="22.12.2014 - 03.01.2015"
-                            android:layout_marginLeft="10dp" />
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free6"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    </TableRow>
+                    <TableRow android:layout_width="wrap_content"
+                              android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free7"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free8"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    </TableRow>
+                    <TableRow android:layout_width="wrap_content"
+                              android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free9"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="5sp"
+                            android:text="@string/management_semester_free10"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </TableRow>
                 </TableLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:text="Prüfungszeitraum:"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                    android:paddingTop="10sp"
+                    android:text="@string/management_semester_exam"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                 <TextView
-                    android:id="@+id/pruftv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="02.02.2015 - 21.02.2015"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-                </LinearLayout>
+                    android:paddingLeft="10sp"
+                    android:paddingRight="5sp"
+                    android:text="@string/management_semester_exam1"
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Studentensekretariat"
@@ -112,7 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="left"
+                android:gravity="start"
                 android:orientation="vertical"
                 android:padding="20dp"
                 android:layout_marginLeft="20dp"

@@ -14,13 +14,31 @@
     <string name="website">Webseite</string>
     <string name="note">Hinweis</string>
 
+
+    <string name="management_semester">Sommersemester 2015</string>
+    <string name="management_semester_length">Lehrveranstaltungen </string>
+    <string name="management_semester_length1">16.03.15 – 04.07.15</string>
+    <string name="management_semester_exam">Prüfungsabschnitt</string>
+    <string name="management_semester_exam1">06.07.15 – 25.07.15</string>
+    <string name="management_semester_free">Freie Tage</string>
+    <string name="management_semester_free1">Ostern</string>
+    <string name="management_semester_free2">03.04.15 – 06.04.15</string>
+    <string name="management_semester_free3">Maifeiertag</string>
+    <string name="management_semester_free4">01.05.15</string>
+    <string name="management_semester_free5">Himmelfahrt</string>
+    <string name="management_semester_free6">14.05.15 – 16.05.15</string>
+    <string name="management_semester_free7">Pfingsten</string>
+    <string name="management_semester_free8">25.05.15 – 26.05.15</string>
+    <string name="management_semester_free9">dies academicus</string>
+    <string name="management_semester_free10">03.06.15</string>
+
     <string name="about_contact">Kontakt</string>
     <string name="about_email">htwcampusapp@htw-dresden.de</string>
     <string name="about_link_website">https://htwdd.github.io</string>
     <string name="about_link_github">https://github.com/HTWDD/HTWDD</string>
     <string name="about_project">Projekt</string>
     <string name="about_developer">Entwickler</string>
-    <string name="about_ws14">WS14/15</string>
+    <string name="about_ws14">&#8805; WS14/15</string>
     <string name="about_ss14">SS14</string>
     <string name="about_initiator">Initiator</string>
     <string name="about_developer_ws14">Kay Förster</string>
