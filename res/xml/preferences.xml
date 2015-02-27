@@ -55,8 +55,10 @@
             android:summary="Passwort zur Nutzung der Bibliothek"/>
     </PreferenceCategory>
 
+
     <PreferenceCategory
-        android:title="Einstellungen">
+        android:title="Studium">
+
         <ListPreference
             android:title="Abschluss"
             android:summary=""
@@ -64,32 +66,45 @@
             android:defaultValue="1"
             android:entries="@array/abschluss_list"
             android:entryValues="@array/abschluss_values"/>
+
         <EditTextPreference
             android:title="Jahrgang"
             android:key="im"
             android:numeric="integer"
             android:maxLength="2"
             android:summary="z.B. 11, 10, 09, etc"/>
+
         <EditTextPreference
             android:title="Studiengang"
             android:key="stdg"
             android:numeric="integer"
             android:maxLength="3"
             android:summary="z.B. 043"/>
+
+        <EditTextPreference
+            android:title="Studienrichtung"
+            android:key="stgri"
+            android:summary="Optional: Filter für Prüfungen"/>
+
         <EditTextPreference
             android:title="Studiengruppe"
             android:key="studgruppe"
             android:summary="z.B. 01, Kfz, 61, etc"/>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="Professoren">
 
         <EditTextPreference
-            android:title="Kennung (nur für Hochschullehrer)"
+            android:title="Kennung"
             android:key="prof_kennung"
-            android:summary="für Stundenplan"
-        />
+            android:summary="für Stundenplan"/>
+
         <EditTextPreference
-            android:title="Name (nur für Hochschullehrer)"
+            android:title="Name"
             android:key="prof_name"
-            android:summary="z.B. Bar oder M. M - für Prüfungen"
-        />
+            android:summary="für Prüfungen"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

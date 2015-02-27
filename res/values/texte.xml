@@ -6,4 +6,8 @@
     <string name="WizardStudyGroupVerwendung">Diese Daten werden zur Anzeige der Prüfungen und des Stundenplans benötigt.</string>
     <string name="about_inoffiziell">Die HTWDresden-App ist keine offizelle App der HTW Dresden oder einer anderen Institution.</string>
     <string name="about_security">Zu keinem Zeitpunkt werden private Daten wie S-Nummer oder Passwörter an nicht-HTW Server übertragen</string>
+
+    <string name="exam_note">*) Einteilung bzw. Terminfestlegung erfolgt in der Fakultät\nWeiter N/W-Prüfungen siehe Termine untere Semester</string>
+    <string name="exam_noData">"Für die Anzeige der Prüfungstermine müssen Abschluss, Jahrgang und Studiengang angegeben werden.\n\nSoll der Konfigurations-Assistent gestartet werden?"</string>
+    <string name="exam_noData2">Die Prüfungstermine können auf Grund von fehlenden Daten nicht angezeigt werden.</string>
 </resources>

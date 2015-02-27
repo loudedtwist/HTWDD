@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,9 +89,9 @@ public class NotenFragment extends Fragment
             // Use the Builder class for convenient dialog construction
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage("Für die Notenanzeige müssen sNummer und RZ-Login angegeben werden\n\nSoll der Konfigurations-Assistent gestartet werden?")
-                    .setTitle("Fehlende Daten")
+                    .setTitle(R.string.noData)
                     .setIcon(R.drawable.ic_launcher)
-                    .setPositiveButton("Assistenten starten", new DialogInterface.OnClickListener()
+                    .setPositiveButton(R.string.startAssistent, new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int id)
                         {

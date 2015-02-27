@@ -13,6 +13,9 @@
     <string name="update">Aktualisieren</string>
     <string name="website">Webseite</string>
     <string name="note">Hinweis</string>
+    <string name="noData">Fehlende Daten</string>
+    <string name="startAssistent">Assistenten starten</string>
+    <string name="pars_error">Fehler beim Parsen</string>
 
 
     <string name="management_semester">Sommersemester 2015</string>
@@ -52,6 +55,14 @@
     <string name="library_availability">Verfügbarkeit:</string>
     <string name="library_location">Standort:</string>
     <string name="library_katalog">Katalog:</string>
+
+
+    <string name="exam_ExamType">Art</string>
+    <string name="exam_StudyBranch">Richtung</string>
+    <string name="exam_Date">Datum</string>
+    <string name="exam_Time">Uhrzeit</string>
+    <string name="exam_Room">Raum</string>
+    <string name="exma_noExams">Keine Prüfungen gefunden</string>
 
     <string name="overview_update_title">Eine neue Version ist verfügbar!</string>
     <string name="overview_update_message">Bitte Update auf die neuste Version.</string>

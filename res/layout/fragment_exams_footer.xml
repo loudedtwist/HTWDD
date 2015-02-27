@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/examNoteTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="@dimen/sidemargin"
+        android:paddingRight="@dimen/sidemargin"
+        android:text="@string/note"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <TextView
+        android:id="@+id/examNoteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/examNoteTitle"
+        android:paddingLeft="@dimen/sidemargin"
+        android:paddingRight="@dimen/sidemargin"
+        android:text="@string/exam_note"/>
+
+    <Button
+        android:id="@+id/examButtonSub"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/examNoteText"
+        android:layout_marginLeft="@dimen/sidemargin"
+        android:layout_marginRight="0dp"/>
+
+    <Button
+        android:id="@+id/examButtonAdd"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/examNoteText"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="@dimen/sidemargin"/>
+</RelativeLayout>

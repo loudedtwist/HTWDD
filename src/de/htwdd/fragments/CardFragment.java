@@ -646,7 +646,6 @@ public class CardFragment extends Fragment
 
             try {
                 HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news.json");
-
                 JSONArray array = new JSONArray(downloader.getStringUTF8());
                 int count = array.length();
 

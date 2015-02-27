@@ -632,7 +632,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         else if (tab.getText().equals("Statistik"))
             mContent = new NotenStatsFragment();
         else if (tab.getText().equals("Prüfungen"))
-            mContent = new PrufungenFragment();
+            mContent = new ExamsFragment();
 
         // Argumente übergeben
         mContent.setArguments(args);

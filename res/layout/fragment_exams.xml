@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/examProgressbar"
+        android:paddingTop="@dimen/sidemargin"
+        android:paddingBottom="@dimen/sidemargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ListView
+        android:layout_gravity="bottom|center"
+        android:id="@+id/listExams"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"/>
+
+    <TextView
+        android:textAppearance="?android:textAppearanceMedium"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/examNotes"
+        android:paddingLeft="@dimen/sidemargin"
+        android:paddingRight="@dimen/sidemargin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+</FrameLayout>
