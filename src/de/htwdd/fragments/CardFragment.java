@@ -9,6 +9,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -50,6 +51,7 @@ import de.htwdd.types.Type_Stunde;
 public class CardFragment extends Fragment
 {
     public PackageInfo info;
+    SharedPreferences sharedPreferences;
 
     public CardFragment()
     {
@@ -67,10 +69,7 @@ public class CardFragment extends Fragment
     {
         super.onResume();
 
-        SharedPreferences app_preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-
-        if (!app_preferences.getBoolean("first_run_bool", true))
+        if (!sharedPreferences.getBoolean("first_run_bool", true))
         {
             getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
         }
@@ -80,8 +79,7 @@ public class CardFragment extends Fragment
             @Override
             public void onClick(View arg0)
             {
-                SharedPreferences app_preferences1 = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor editor = app_preferences1.edit();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("first_run_bool", false);
                 editor.apply();
                 getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
@@ -407,15 +405,7 @@ public class CardFragment extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
 
-        final SharedPreferences app_preferences = PreferenceManager
-                .getDefaultSharedPreferences(getActivity());
-
-			/*if (app_preferences.getString("wizardrun", "no").equals("no"))
-			{
-				Intent nextScreen = new Intent(getActivity().getApplicationContext(), Wizard1.class);
-	            startActivity(nextScreen);
-
-			}*/
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         Button button;
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
@@ -557,7 +547,6 @@ public class CardFragment extends Fragment
             button5 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
         button5.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
         button5.setText("Noten anzeigen");
         LinearLayout ln5 = (LinearLayout) getActivity().findViewById(R.id.Stats);
         LayoutParams lp5 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -618,6 +607,11 @@ public class CardFragment extends Fragment
         textnoteWorst.setText("schlechteste Note: "+gradeWorst);
         textnoteWorst.setPadding(0,0,0,15);
 
+
+        // Update Message anzeigen
+        if (sharedPreferences.getBoolean("AppUpdate", false))
+            showUpdateMessage("");
+
         // Überprüfe auf neue App-Version
         CheckUpdate w1 = new CheckUpdate();
         w1.execute();
@@ -630,6 +624,52 @@ public class CardFragment extends Fragment
         MensaWorker w3 = new MensaWorker();
         w3.execute();
     }
+
+    /**
+     * Blendet die Kachel zur Information das ein Update verfügbar ist ein.
+     *
+     * @param AlternateUpdateMessage Anzeige eines alternativen Update-Nachricht
+     */
+    private void showUpdateMessage(String AlternateUpdateMessage)
+    {
+        // Schalte Kachel sichtbar
+        LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
+        linearLayout.setVisibility(View.VISIBLE);
+
+        // Alternativen Text anzeigen
+        if(!AlternateUpdateMessage.isEmpty())
+        {
+            TextView UpdateMessage = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
+            UpdateMessage.setText(Html.fromHtml(AlternateUpdateMessage));
+        }
+
+        // Button zum Updaten hinzufügen
+        Button ButtonUpdate;
+        if (Build.VERSION.SDK_INT >= 14)
+        {
+            ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+            ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
+        }
+        else
+            ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+
+        ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        ButtonUpdate.setText("Download App");
+
+        linearLayout = (LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+        ButtonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
+                startActivity(browserIntent);
+            }
+        });
+
+        linearLayout.addView(ButtonUpdate, layoutParams);
+    }
+
 
     private class NewsWorker extends AsyncTask<Calendar, Void, News[]>
     {
@@ -768,48 +808,18 @@ public class CardFragment extends Fragment
             if (!isAdded())
                 return;
 
+            SharedPreferences.Editor edit = sharedPreferences.edit();
             if (result != null && Integer.parseInt(result[0]) > info.versionCode)
             {
-                // Schalte Kachel sichtbar
-                LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
-                ln.setVisibility(View.VISIBLE);
-
-                // Alternativen Text anzeigen
-                if(!result[1].isEmpty())
-                {
-                    TextView UpdateMessage = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
-                    UpdateMessage.setText(Html.fromHtml(result[1]));
-                }
-
-                Button ButtonUpdate;
-
-                if (android.os.Build.VERSION.SDK_INT >= 14)
-                {
-                    ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-                    ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
-                }
-                else
-                    ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-
-                ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
-                ButtonUpdate.setText("Download App");
-                LinearLayout ln6 = (LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
-                LayoutParams lp6 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-                ButtonUpdate.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
-                        startActivity(browserIntent);
-                    }
-                });
-
-                ln6.addView(ButtonUpdate, lp6);
+                edit.putBoolean("AppUpdate", true);
+                showUpdateMessage(result[1]);
             }
+            else
+                edit.putBoolean("AppUpdate", false);
+
+            edit.apply();
         }
     }
-
 
     private class MensaWorker extends AsyncTask<Void, Void, Meal[]>
     {
