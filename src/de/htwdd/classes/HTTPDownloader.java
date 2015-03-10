@@ -3,6 +3,7 @@ package de.htwdd.classes;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -32,6 +33,15 @@ public class HTTPDownloader
     public HTTPDownloader(String urlstring)
     {
         this.urlstring = urlstring;
+    }
+
+    public static boolean CheckInternet(Context context)
+    {
+        ConnectivityManager connec = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        android.net.NetworkInfo wifi = connec.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        android.net.NetworkInfo mobile = connec.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        return wifi.isConnected() || mobile.isConnected();
     }
 
     public String getString()
@@ -158,7 +168,6 @@ public class HTTPDownloader
 
         return result.toString();
     }
-
 
     private SSLContext addHTWCA() throws Exception
     {

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,10 +53,14 @@ public class Noten
         ArrayList<Grade> arrayList = new ArrayList<Grade>();
         Grade grade;
 
+        // Überprüfe Internetverbindung
+        if (!HTTPDownloader.CheckInternet(context))
+            return 900;
+
         // Lade Studiengänge des Studenten
         HTTPDownloader downloader = new HTTPDownloader("https://wwwqis.htw-dresden.de/appservice/getcourses");
         downloader.urlParameters  = "sNummer=s" + sNummer + "&RZLogin=" + RZLogin;
-        downloader.context =context;
+        downloader.context = context;
 
         String response = downloader.getStringWithPost();
 

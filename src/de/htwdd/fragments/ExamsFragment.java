@@ -2,6 +2,7 @@ package de.htwdd.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,6 +36,7 @@ public class ExamsFragment extends Fragment
     private String Stg;
     private int StgJhrCurr = 90;
     private String Stgri;
+    private Context context;
     private ExamsAdapter examsAdapter;
     private List<Exam> examses = new ArrayList<Exam>();
 
@@ -51,12 +53,13 @@ public class ExamsFragment extends Fragment
     {
         View view = paramLayoutInflater.inflate(R.layout.fragment_exams, paramViewGroup, false);
 
+        context             = paramLayoutInflater.getContext();
         examsAdapter        = new ExamsAdapter(getActivity(), examses);
         ListView listView   = (ListView) view.findViewById(R.id.listExams);
         listView.setAdapter(this.examsAdapter);
 
         // Füge Footer hinzu
-        View footer = paramLayoutInflater.inflate(R.layout.fragment_exams_footer, null, false);
+        View footer = paramLayoutInflater.inflate(R.layout.fragment_exams_footer, paramViewGroup, false);
         listView.addFooterView(footer);
 
         // Prüfe ob alle Daten zur Abfrage vorhanden sind
@@ -160,7 +163,7 @@ public class ExamsFragment extends Fragment
         examNoteText.setVisibility(View.GONE);
 
         // Hinweise anzeigen
-        if (ResponseCode == 999)
+        if (ResponseCode == 900)
             examNotes.setText(R.string.app_no_internet);
         else if (ResponseCode != 200)
             examNotes.setText(R.string.pars_error);
@@ -188,7 +191,7 @@ public class ExamsFragment extends Fragment
 
         protected Exams doInBackground(Void[] params)
         {
-            Exams localExams = new Exams();
+            Exams localExams = new Exams(context);
             ResponseCode = localExams.getExamsInside(Prof);
             return localExams;
         }
@@ -206,7 +209,7 @@ public class ExamsFragment extends Fragment
 
         protected Exams doInBackground(Void[] paramArrayOfVoid)
         {
-            Exams localExams = new Exams();
+            Exams localExams = new Exams(context);
             ResponseCode = localExams.getExamsInside(StgJhrCurr, Stg, AbSc, Stgri);
             return localExams;
         }

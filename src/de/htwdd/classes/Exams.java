@@ -1,6 +1,8 @@
 package de.htwdd.classes;
 
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,10 +15,20 @@ import de.htwdd.types.Exam;
 public class Exams
 {
     public ArrayList<Exam> exams = new ArrayList<Exam>();
+    private Context context;
 
+
+    public Exams(Context context)
+    {
+        this.context = context;
+    }
 
     private int parseExams(String url)
     {
+        // Überprüfe Internetverbindung
+        if (!HTTPDownloader.CheckInternet(context))
+            return 900;
+
         HTTPDownloader downloader = new HTTPDownloader(url);
         String response = downloader.getStringUTF8();
 
@@ -59,7 +71,7 @@ public class Exams
         }
         catch (Exception e)
         {
-            return 900;
+            return 999;
         }
 
         Collections.sort(this.exams, new ComparatorDay());

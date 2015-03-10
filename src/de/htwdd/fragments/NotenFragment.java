@@ -195,7 +195,13 @@ public class NotenFragment extends Fragment
                         hinweis = (LinearLayout)  getActivity().findViewById(R.id.NotenHinweis);
                         hinweis.setVisibility(View.VISIBLE);
                         message = (TextView)  getActivity().findViewById(R.id.NotenHinweisText);
-                        message.setText("Fehler beim Parsen der Noten!");
+                        message.setText(R.string.pars_error);
+                        break;
+                    case 900:
+                        hinweis = (LinearLayout)  getActivity().findViewById(R.id.NotenHinweis);
+                        hinweis.setVisibility(View.VISIBLE);
+                        message = (TextView)  getActivity().findViewById(R.id.NotenHinweisText);
+                        message.setText(R.string.app_no_internet);
                         break;
                     case 401:
                         hinweis = (LinearLayout)  getActivity().findViewById(R.id.NotenHinweis);
