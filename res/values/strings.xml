@@ -56,6 +56,10 @@
     <string name="library_location">Standort:</string>
     <string name="library_katalog">Katalog:</string>
 
+    
+    <string name="grade_sign_off">Abgemeldet</string>
+    <string name="grade_ill">Krankgeschrieben</string>
+    <string name="grade_not_allowed">Nicht zugelassen</string>
 
     <string name="exam_ExamType">Art</string>
     <string name="exam_StudyBranch">Richtung</string>

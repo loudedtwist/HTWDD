@@ -1,6 +1,7 @@
 package de.htwdd;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,12 +92,42 @@ public class NotenListAdapter extends BaseExpandableListAdapter
 
         TextView modul = (TextView) view.findViewById(R.id.expandableListItemModul);
         modul.setText(ChildText.Modul);
-        if (ChildText.Credits != 0.0f)
-            modul.setTextColor(view.getResources().getColor(R.color.green));
-        else if (ChildText.Note == 5.0f)
+        modul.setTypeface(null, Typeface.NORMAL);
+        modul.setTextColor(view.getResources().getColor(R.color.black));
+
+        TextView vermerk = (TextView) view.findViewById(R.id.expandableListItemVermerk);
+        vermerk.setText("");
+
+        // Genauen Status setzen
+        if (ChildText.Status.equals("AN"))
+        {
+            modul.setTypeface(null, Typeface.ITALIC);
+            modul.setTextColor(view.getResources().getColor(R.color.faded_grey));
+
+            // Student hat sich abgemeldet
+            if (ChildText.Vermerk.equals("e"))
+                vermerk.setText(R.string.grade_sign_off);
+            // Student war krank
+            else if (ChildText.Vermerk.equals("k"))
+                vermerk.setText(R.string.grade_ill);
+            // Student wurde nicht zugelassen
+            else if (ChildText.Vermerk.equals("nz"))
+                vermerk.setText(R.string.grade_not_allowed);
+        }
+        // Student hat bestanden
+        else if (ChildText.Status.equals("BE"))
+        {
+            if (ChildText.Credits != 0.0f)
+                modul.setTextColor(view.getResources().getColor(R.color.green));
+            else
+                modul.setTextColor(view.getResources().getColor(R.color.black));
+        }
+        // Student hat NICHT bestanden
+        else if (ChildText.Status.equals("NB") || ChildText.Status.equals("EN"))
+        {
             modul.setTextColor(view.getResources().getColor(R.color.red));
-        else
-            modul.setTextColor(view.getResources().getColor(R.color.black));
+        }
+
 
         TextView note = (TextView) view.findViewById(R.id.expandableListItemNote);
         note.setText("Note: "+ChildText.Note);

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -169,6 +168,7 @@ public class Noten
         else
             noten = new Grade[0];
 
+        cursor.close();
         db.close();
     }
 
@@ -244,11 +244,13 @@ public class Noten
 
             arrayList.add(0, total);
 
+            cursor.close();
             db.close();
 
             return arrayList.toArray(new Stats[arrayList.size()]);
         }
 
+        cursor.close();
         db.close();
         return new Stats[0];
     }
