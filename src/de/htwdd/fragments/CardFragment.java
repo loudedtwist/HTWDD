@@ -686,7 +686,7 @@ public class CardFragment extends Fragment
 
             try {
                 HTTPDownloader downloader = new HTTPDownloader("https://htwdd.github.io/news.json");
-                JSONArray array = new JSONArray(downloader.getStringUTF8());
+                JSONArray array = new JSONArray(downloader.getString());
                 int count = array.length();
 
                 for (int i=0; i<count; i++)
@@ -794,7 +794,7 @@ public class CardFragment extends Fragment
         {
             try
             {
-                return new HTTPDownloader("https://htwdd.github.io/currentversion").getStringUTF8().split(";");
+                return new HTTPDownloader("https://htwdd.github.io/currentversion").getString().split(";");
             }
             catch (Exception e)
             {

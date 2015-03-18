@@ -30,7 +30,7 @@ public class Exams
             return 900;
 
         HTTPDownloader downloader = new HTTPDownloader(url);
-        String response = downloader.getStringUTF8();
+        String response = downloader.getString();
 
         if (downloader.ResponseCode != 200)
             return downloader.ResponseCode;

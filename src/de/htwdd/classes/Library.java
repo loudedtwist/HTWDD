@@ -16,7 +16,7 @@ public class Library
         ArrayList<Medium> arrayList = new ArrayList<Medium>();
 
         HTTPDownloader downloader = new HTTPDownloader("https://katalog.bib.htw-dresden.de/Search/Results?lookfor="+term+"&type=AllFields&view=rss&page="+Page);
-        String result = downloader.getStringUTF8();
+        String result = downloader.getString();
 
         if (downloader.ResponseCode != 200)
             return null;
@@ -42,7 +42,7 @@ public class Library
 
         // Lade Mediendetails über Export-Schnittstelle
         HTTPDownloader downloader = new HTTPDownloader("https://katalog.bib.htw-dresden.de/Record/"+ID+"/Export?style=EndNote");
-        String result = downloader.getStringUTF8();
+        String result = downloader.getString();
 
         if (result==null)
             return null;
@@ -83,7 +83,7 @@ public class Library
 
         // Lade Verfügbarkeit
         downloader = new HTTPDownloader("https://katalog.bib.htw-dresden.de/AJAX/JSON?method=getItemStatuses&id[]="+ID);
-        result = downloader.getStringUTF8();
+        result = downloader.getString();
 
         if (result==null)
             return medium;

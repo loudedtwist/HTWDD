@@ -30,7 +30,7 @@ public class Mensa {
         Matcher matcher;
 
         HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/feeds/speiseplan.rss?mid=" + MensaID);
-        String result = downloader.getString();
+        String result = downloader.getStringISO();
 
         // Prüfe ob Downloader ein Ergebnis zurückgibt
         if (result == null)
@@ -81,7 +81,7 @@ public class Mensa {
         else
             downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse-w1.html?print=1");
 
-        String result = downloader.getStringUTF8();
+        String result = downloader.getString();
 
         // Prüfe ob Downloader ein Ergebnis zurückgibt
         if (result == null)
@@ -130,7 +130,7 @@ public class Mensa {
 
         try {
             HTTPDownloader downloader = new HTTPDownloader("http://www.studentenwerk-dresden.de/mensen/speiseplan/mensa-reichenbachstrasse.html?print=1");
-            result  = downloader.getStringUTF8();
+            result  = downloader.getString();
             token   = result.split("class=\"speiseplan\"");
             Food    = new Meal[5];
 

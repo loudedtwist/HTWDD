@@ -44,12 +44,12 @@ public class HTTPDownloader
         return wifi.isConnected() || mobile.isConnected();
     }
 
-    public String getString()
+    public String getStringISO()
     {
         return getString("iso-8859-15");
     }
 
-    public String getStringUTF8()
+    public String getString()
     {
         return getString("UTF-8");
     }
