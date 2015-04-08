@@ -3,9 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="0dp"
-      >
+    android:orientation="vertical">
 
     <ProgressBar
         android:id="@+id/waitIndicator"
@@ -18,19 +16,11 @@
 
     <ListView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/list"
+        android:id="@id/android:list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/list_padding"
         android:paddingRight="@dimen/list_padding"
-        android:visibility="gone"
-         android:cacheColorHint="#00000000" />
+        android:visibility="gone"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="76dp" />
-    
-    </LinearLayout>
+</LinearLayout>

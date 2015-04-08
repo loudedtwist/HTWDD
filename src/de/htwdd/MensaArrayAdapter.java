@@ -21,7 +21,6 @@ public class MensaArrayAdapter extends ArrayAdapter<Meal>
 {
     private final Context context;
     private Meal[] essen;
-    ViewGroup parent;
 
     public MensaArrayAdapter(Context context, Meal[] essen)
     {
@@ -34,13 +33,25 @@ public class MensaArrayAdapter extends ArrayAdapter<Meal>
     public View getView(final int position, View convertView, ViewGroup parent)
     {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.mensa, parent, false);
-        TextView layout_Title   = (TextView) rowView.findViewById(R.id.titel);
-        TextView layout_Preis   = (TextView) rowView.findViewById(R.id.preis);
-        ImageView layout_Image  = (ImageView) rowView.findViewById(R.id.image);
-        this.parent = parent;
+        ViewHolder viewHolder;
 
-        if (essen[position].ID != 0) {
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.mensa, parent, false);
+
+            // Setup the ViewHolder
+            viewHolder          = new ViewHolder();
+            viewHolder.titel    = (TextView) convertView.findViewById(R.id.titel);
+            viewHolder.preis    = (TextView) convertView.findViewById(R.id.preis);
+            viewHolder.image    = (ImageView) convertView.findViewById(R.id.image);
+            viewHolder.separator= convertView.findViewById(R.id.separator);
+            viewHolder.linearLayout = (LinearLayout) convertView.findViewById(R.id.menurow);
+            convertView.setTag(viewHolder);
+        }
+        else viewHolder = (ViewHolder) convertView.getTag();
+
+        if (essen[position].ID != 0)
+        {
             // Füge Button "Weiter Informationen" hinzu
             Button button;
             if (android.os.Build.VERSION.SDK_INT >= 14) {
@@ -50,7 +61,7 @@ public class MensaArrayAdapter extends ArrayAdapter<Meal>
                 button = new Button(context, null, android.R.attr.buttonStyleSmall);
 
             button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            button.setText("mehr Informationen");
+            button.setText(R.string.mensa_more_information);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
@@ -59,23 +70,32 @@ public class MensaArrayAdapter extends ArrayAdapter<Meal>
                 }
             });
 
-            LinearLayout ln = (LinearLayout) rowView.findViewById(R.id.menurow);
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-            ln.addView(button, lp);
+            button.setTag("Button");
+            viewHolder.linearLayout.removeView(viewHolder.linearLayout.findViewWithTag("Button"));
+            viewHolder.linearLayout.addView(button, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            viewHolder.separator.setVisibility(View.VISIBLE);
         }
         else
-            rowView.findViewById(R.id.separator).setVisibility(View.GONE);
+            viewHolder.separator.setVisibility(View.GONE);
 
         // Ordne den Elementen ihre Daten zu
         if (essen[position].Thumbnail != null)
-            layout_Image.setImageBitmap(essen[position].Thumbnail);
+            viewHolder.image.setImageBitmap(essen[position].Thumbnail);
         else
-            layout_Image.setVisibility(View.GONE);
+            viewHolder.image.setVisibility(View.GONE);
 
-        layout_Title.setText(essen[position].Title);
-        layout_Preis.setText(essen[position].Price);
+        viewHolder.titel.setText(essen[position].Title);
+        viewHolder.preis.setText(essen[position].Price);
 
-        return rowView;
+        return convertView;
+    }
+
+    private static class ViewHolder
+    {
+        public TextView titel;
+        public TextView preis;
+        public ImageView image;
+        public View separator;
+        public LinearLayout linearLayout;
     }
 }

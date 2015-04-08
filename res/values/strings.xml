@@ -68,6 +68,9 @@
     <string name="exam_Room">Raum</string>
     <string name="exma_noExams">Keine Prüfungen gefunden</string>
 
+    
+    <string name="mensa_more_information">mehr Informationen</string>
+    
     <string name="overview_update_title">Eine neue Version ist verfügbar!</string>
     <string name="overview_update_message">Bitte Update auf die neuste Version.</string>
 </resources>
