@@ -20,7 +20,7 @@ public class MenuFragment extends ListFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.list, null);
+        return inflater.inflate(R.layout.list, container, false);
     }
 
     @Override
@@ -39,8 +39,7 @@ public class MenuFragment extends ListFragment
         if ((position != 0) && (position != 2) && (position != 7) && (position != 11))
         {
             Fragment newContent = new CardFragment();
-            if (newContent != null)
-                switchFragment(newContent, position);
+            switchFragment(newContent, position);
         }
     }
 
