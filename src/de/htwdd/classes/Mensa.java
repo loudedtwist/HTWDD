@@ -1,12 +1,12 @@
 package de.htwdd.classes;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.htwdd.types.Day;
 import de.htwdd.types.Meal;
 
 public class Mensa {
@@ -125,6 +125,7 @@ public class Mensa {
     {
         String result;
         String token[];
+        final String[] nameOfDays = DateFormatSymbols.getInstance().getWeekdays();
         Pattern title   = Pattern.compile(".*?<td class=\"text\">(.*?)</td>.*?");
         Matcher matcher;
 
@@ -139,7 +140,7 @@ public class Mensa {
             {
                 Food[i] = new Meal();
                 Food[i].Price = "";
-                Food[i].Title = Day.values()[i].toString();
+                Food[i].Title = nameOfDays[i+2];
 
                 // Extrahiere die benötigten Informationen
                 try {

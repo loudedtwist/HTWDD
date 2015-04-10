@@ -10,12 +10,12 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.widget.RemoteViews;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 import de.htwdd.classes.Mensa;
-import de.htwdd.types.Day;
 import de.htwdd.types.Meal;
 
 
@@ -23,6 +23,8 @@ import de.htwdd.types.Meal;
  * Implementation of App Widget functionality.
  */
 public class WidgetMensa_4 extends AppWidgetProvider {
+
+    private final String[] nameOfDays = DateFormatSymbols.getInstance().getWeekdays();
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
@@ -140,10 +142,10 @@ public class WidgetMensa_4 extends AppWidgetProvider {
             }
 
             // Tag von dem der Speiseplan angezeigt wird
-            views.setTextViewText(R.id.Menu_from, "Speiseplan von " + Day.values()[day-2]);
+            views.setTextViewText(R.id.Menu_from, "Speiseplan von " + nameOfDays[day]);
 
             // Setze aktuellen Stand
-            views.setTextViewText(R.id.Update, "Stand: " + (new SimpleDateFormat("HH:mm")).format(calendar.getTime()) + " Uhr, " + (new SimpleDateFormat("dd.MM.")).format(calendar.getTime()));
+            views.setTextViewText(R.id.Update, "Stand: " + (new SimpleDateFormat("HH:mm", Locale.getDefault())).format(calendar.getTime()) + " Uhr, " + (new SimpleDateFormat("dd.MM.", Locale.getDefault())).format(calendar.getTime()));
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(new ComponentName(context, WidgetMensa_4.class), views);
