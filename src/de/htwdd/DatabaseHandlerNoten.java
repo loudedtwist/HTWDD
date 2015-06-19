@@ -17,9 +17,9 @@ public class DatabaseHandlerNoten extends SQLiteOpenHelper
     public static final String COLUMN_NAME_VERSUCH = "versuch";
     public static final String COLUMN_NAME_SEMESTER = "semester";
     public static final String COLUMN_NAME_KENNZEICHEN = "kennzeichen";
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String FLOAT_TYPE = " REAL";
-    private static final String INT_TYPE = " INTEGER";
+    private static final String TYPE_TEXT = " TEXT";
+    private static final String TYPE_FLOAT = " REAL";
+    private static final String TYPE_INT = " INTEGER";
     private static final String COMMA_SEP = ",";
 
 
@@ -32,14 +32,14 @@ public class DatabaseHandlerNoten extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
-                COLUMN_NAME_MODUL + TEXT_TYPE + COMMA_SEP +
-                COLUMN_NAME_Note + FLOAT_TYPE + COMMA_SEP +
-                COLUMN_NAME_VERMERK + TEXT_TYPE + COMMA_SEP +
-                COLUMN_NAME_STATUS + TEXT_TYPE + COMMA_SEP +
-                COLUMN_NAME_CREDITS+ FLOAT_TYPE + COMMA_SEP +
-                COLUMN_NAME_VERSUCH+ INT_TYPE + COMMA_SEP +
-                COLUMN_NAME_SEMESTER + INT_TYPE + COMMA_SEP +
-                COLUMN_NAME_KENNZEICHEN + TEXT_TYPE +
+                COLUMN_NAME_MODUL + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_Note + TYPE_FLOAT + COMMA_SEP +
+                COLUMN_NAME_VERMERK + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_STATUS + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_CREDITS+ TYPE_FLOAT + COMMA_SEP +
+                COLUMN_NAME_VERSUCH+ TYPE_INT + COMMA_SEP +
+                COLUMN_NAME_SEMESTER + TYPE_INT + COMMA_SEP +
+                COLUMN_NAME_KENNZEICHEN + TYPE_TEXT +
                 " )");
         sqLiteDatabase.execSQL("CREATE INDEX IndexSemester ON "+TABLE_NAME+"("+COLUMN_NAME_SEMESTER+");");
     }

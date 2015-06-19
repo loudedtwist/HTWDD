@@ -76,7 +76,8 @@
             android:layout_marginRight="@dimen/sidemargin"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/willkommen"
@@ -217,131 +218,170 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:minHeight="200dp"
-                android:minWidth="200dp"
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="0dp">
 
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/linearLayout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:padding="0dp" >
+                    android:gravity="center|start"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/app_table_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin">
 
-                    <LinearLayout
-                        android:id="@+id/linearLayout4"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center|left"
-                        android:orientation="vertical" >
+                        android:text="@string/overview_lessons_current"
+                        android:textAppearance="@android:style/TextAppearance.Small"
+                        android:id="@+id/textView"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
 
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Aktuell"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <TextView
-                            android:id="@+id/textView12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textStyle="italic" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout5"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/overview_lessons_current_tag"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center|left"
-                        android:orientation="vertical" >
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginLeft="72dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_alignBaseline="@+id/textView"
+                        android:layout_alignBottom="@+id/textView"
+                        android:layout_toRightOf="@+id/textView"
+                        android:layout_toEndOf="@+id/textView"
+                        android:singleLine="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
-                        <TextView
-                            android:id="@+id/bibliotheksnummer"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nächste"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                    <TextView
+                        android:id="@+id/overview_lessons_current_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Small"
+                        android:layout_marginLeft="@dimen/app_table_margin"
+                        android:layout_marginStart="@dimen/app_table_margin"
+                        android:layout_gravity="end"
+                        android:layout_alignBaseline="@+id/overview_lessons_current_tag"
+                        android:layout_alignBottom="@+id/overview_lessons_current_tag"
+                        android:layout_toRightOf="@+id/overview_lessons_current_tag"
+                        android:layout_toEndOf="@+id/overview_lessons_current_tag"
+                        android:text="@string/overview_lessons_noLesson"
+                        android:singleLine="true" />
 
-                        <TextView
-                            android:id="@+id/textView13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <TextView
+                        android:id="@+id/overview_lessons_current_remaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="italic"
+                        android:layout_below="@+id/overview_lessons_current_tag"
+                        android:layout_alignLeft="@+id/overview_lessons_current_tag"
+                        android:layout_alignStart="@+id/overview_lessons_current_tag"
+                        android:textColor="@color/faded_grey" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textStyle="italic" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/overview_lessons_next"
+                        android:textAppearance="@android:style/TextAppearance.Small"
+                        android:id="@+id/textView1"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/overview_lessons_next_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginLeft="72dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_alignBaseline="@+id/textView1"
+                        android:layout_alignBottom="@+id/textView1"
+                        android:layout_toRightOf="@+id/textView1"
+                        android:layout_toEndOf="@+id/textView1"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <TextView
+                        android:id="@+id/overview_lessons_next_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Small"
+                        android:layout_marginLeft="@dimen/app_table_margin"
+                        android:layout_marginStart="@dimen/app_table_margin"
+                        android:layout_gravity="end"
+                        android:layout_alignBaseline="@+id/overview_lessons_next_tag"
+                        android:layout_alignBottom="@+id/overview_lessons_next_tag"
+                        android:layout_toRightOf="@+id/overview_lessons_next_tag"
+                        android:layout_toEndOf="@+id/overview_lessons_next_tag"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:id="@+id/overview_lessons_next_remaining"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="italic"
+                        android:layout_below="@+id/overview_lessons_next_tag"
+                        android:layout_alignLeft="@+id/overview_lessons_next_tag"
+                        android:layout_alignStart="@+id/overview_lessons_next_tag"
+                        android:textColor="@color/faded_grey" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/overview_lessons_busy_plan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/TextView01"
+                        android:id="@+id/overview_lessons_busy_plan_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Heute"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:text="@string/overview_today"
+                        android:textAppearance="@android:style/TextAppearance.Small"
+                        android:textStyle="bold"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="16sp" />
 
                     <ListView
-                        android:id="@+id/belegungslist"
-                        android:layout_width="0dp"
-                        android:layout_height="155dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="1"
+                        android:id="@+id/overview_lessons_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="145dp"
                         android:paddingLeft="@dimen/list_padding"
                         android:paddingRight="@dimen/list_padding"
                         android:paddingTop="5dp"
-                        android:visibility="gone">
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/TextView01"
+                        android:layout_toEndOf="@+id/TextView01"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="72dp"
+                        android:layout_marginStart="72dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" >
                     </ListView>
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
 
             <View

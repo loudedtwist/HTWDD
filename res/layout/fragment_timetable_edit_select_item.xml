@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/timetable_edit_LessonName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/timetable_edit_LessonType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/timetable_edit_LessonName"
+        android:layout_alignLeft="@+id/timetable_edit_LessonName"
+        android:layout_alignStart="@+id/timetable_edit_LessonName"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/timetable_edit_LessonWeeksOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/timetable_edit_LessonType"
+        android:layout_alignLeft="@+id/timetable_edit_LessonType"
+        android:layout_alignStart="@+id/timetable_edit_LessonType" />
+
+    <TextView
+        android:id="@+id/timetable_edit_LessonRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_above="@+id/timetable_edit_LessonWeeksOnly"
+        android:layout_toRightOf="@+id/timetable_edit_LessonType"
+        android:layout_toEndOf="@+id/timetable_edit_LessonType"
+        android:layout_marginLeft="@dimen/app_table_margin"
+        android:layout_marginStart="@dimen/app_table_margin" />
+</RelativeLayout>

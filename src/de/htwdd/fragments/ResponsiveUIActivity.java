@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -23,14 +22,13 @@ import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import de.htwdd.DatabaseHandlerRoomTimetable;
-import de.htwdd.Preference;
-
-import de.htwdd.R;
-
 import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import de.htwdd.DatabaseHandlerRoomTimetable;
+import de.htwdd.Preference;
+import de.htwdd.R;
 
 /**
  * This activity is an example of a responsive Android UI.
@@ -87,7 +85,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         // check if the content frame contains the menu frame
         if (findViewById(R.id.menu_frame) == null)
         {
-            setBehindContentView(R.layout.menu_frame);
+            setBehindContentView(R.layout.activity_frame);
             getSlidingMenu().setSlidingEnabled(true);
             getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
             // show home as up so we can toggle
@@ -142,17 +140,15 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId())
-        {
-            case android.R.id.home:
-                toggle();
-        }
-
         Intent intent;
         final Bundle args = new Bundle();
 
         switch (item.getItemId())
         {
+            case android.R.id.home:
+                toggle();
+                break;
+
             // Noten neuladen
             case 95:
                 getSupportActionBar().setSelectedNavigationItem(0);
@@ -243,22 +239,13 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
             // Stundenplan aktualisieren
             case 98:
-                args.putInt("fragmentheight",mContent.getView().getHeight());
-                args.putInt("fragmentwidth", mContent.getView().getWidth());
-                mContent = new StundenplanFragment();
+                args.putBoolean("Update",true);
+                mContent = new TimetableFragment();
                 mContent.setArguments(args);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)
                         .commit();
-                Handler h22 = new Handler();
-                h22.postDelayed(new Runnable()
-                {
-                    public void run()
-                    {
-                        getSlidingMenu().showContent();
-                    }
-                }, 50);
                 break;
 
             case 99:
@@ -586,26 +573,24 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
             mContent = new RaumplanFragment();
         }
         // Stundenplan
-        else if(mode == 3)
+        else if(mode == 3 && tab.getText().toString().contains("aktuelle"))
         {
-            args.putInt("fragmentheight",mContent.getView().getHeight());
-            args.putInt("fragmentwidth", mContent.getView().getWidth());
-
-            if (tab.getText().toString().contains("aktuelle"))
-                args.putInt("weekID", week);
-            else if (tab.getText().toString().contains("nächste"))
-                args.putInt("weekID", nextweek);
-
-            mContent = new StundenplanFragment();
+            args.putInt("week", week);
+            mContent = new TimetableFragment();
         }
-
-
-
-
+        else if(mode == 3 && tab.getText().toString().contains("nächste"))
+        {
+            args.putInt("week", nextweek);
+            mContent = new TimetableFragment();
+        }
+        // Mensa
+        else if ((mode == 4) && tab.getText().equals("Heute"))
+            mContent = new MensaDay();
+        else if ((mode == 4) && tab.getText().equals("Woche"))
+            mContent = new MensaWeek();
         // Bibliothek
-        if (tab.getText().equals("Rückgabe"))
+        else if (tab.getText().equals("Rückgabe"))
             mContent = new BiblioFragment();
-
         else if (tab.getText().equals("Suche"))
             mContent = new LibrarySearchFragment();
         // Career Service
@@ -621,12 +606,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         }
         else if (tab.getText().equals("Beratung"))
             mContent = new CareerServiceBeratung();
-            // Mensa
-        else if ((mode == 4) && tab.getText().equals("Heute"))
-            mContent = new MensaDay();
-        else if ((mode == 4) && tab.getText().equals("Woche"))
-            mContent = new MensaWeek();
-            // Noten
+        // Noten
         else if (tab.getText().equals("Noten"))
             mContent = new NotenFragment();
         else if (tab.getText().equals("Statistik"))

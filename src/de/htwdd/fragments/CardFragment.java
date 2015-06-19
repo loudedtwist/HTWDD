@@ -4,7 +4,6 @@ package de.htwdd.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.net.Uri;
@@ -23,439 +22,136 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
 
-import de.htwdd.BelegungsAdapter;
 import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.R;
+import de.htwdd.TimetableBusyPlan;
 import de.htwdd.WizardWelcome;
 import de.htwdd.classes.HTTPDownloader;
+import de.htwdd.classes.LessonSearch;
 import de.htwdd.classes.Mensa;
 import de.htwdd.classes.Noten;
+import de.htwdd.types.Lesson;
 import de.htwdd.types.Meal;
 import de.htwdd.types.News;
 import de.htwdd.types.Stats;
-import de.htwdd.types.Type_Stunde;
 
 public class CardFragment extends Fragment
 {
     public PackageInfo info;
     SharedPreferences sharedPreferences;
+    private View view;
+
+
 
     public CardFragment()
     {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.main, container, false);
-    }
+        view = inflater.inflate(R.layout.main, container, false);
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-
-        if (!sharedPreferences.getBoolean("first_run_bool", true))
-        {
-            getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
-        }
-        ImageView iv1 = (ImageView) getActivity().findViewById(R.id.imageView1);
-        iv1.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View arg0)
-            {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("first_run_bool", false);
-                editor.apply();
-                getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
-            }
-        });
-
-
-        PackageManager manager = this.getActivity().getPackageManager();
-
-        try
-        {
-            info = manager.getPackageInfo(this.getActivity().getPackageName(), 0);
-        } catch (NameNotFoundException e1)
-        {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-
-
-        final DatabaseHandlerTimetable db = new DatabaseHandlerTimetable(getActivity());
-
-        String daystring = "";
-        String odaystring = "";
-        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-        int week = calendar.get(Calendar.WEEK_OF_YEAR);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int min = calendar.get(Calendar.MINUTE);
-
-        int timeinmin = hour * 60 + min;
-        int aktstunde = 0;
-
-
-        if ((timeinmin >= 450) && (timeinmin < 560)) aktstunde = 1;
-        if ((timeinmin >= 560) && (timeinmin < 670)) aktstunde = 2;
-        if ((timeinmin >= 670) && (timeinmin < 790)) aktstunde = 3;
-        if ((timeinmin >= 790) && (timeinmin < 900)) aktstunde = 4;
-        if ((timeinmin >= 900) && (timeinmin < 1010)) aktstunde = 5;
-        if ((timeinmin >= 1010) && (timeinmin < 1110)) aktstunde = 6;
-        if ((timeinmin >= 1110) && (timeinmin < 1200)) aktstunde = 7;
-        if (timeinmin >= 1200) aktstunde = 8;
-
-        TextView tt4 = (TextView) getView().findViewById(R.id.textView4);
-        TextView tt6 = (TextView) getView().findViewById(R.id.textView6);
-        TextView tt8 = (TextView) getView().findViewById(R.id.textView8);
-        TextView tt9 = (TextView) getView().findViewById(R.id.textView9);
-        TextView tt5 = (TextView) getView().findViewById(R.id.textView5);
-        TextView tt7 = (TextView) getView().findViewById(R.id.textView7);
-
-        TextView tt12 = (TextView) getView().findViewById(R.id.textView12);
-        TextView tt13 = (TextView) getView().findViewById(R.id.textView13);
-
-
-        week = week % 2;
-
-
-        if (week == 0) week = 2;
-        int dayoffset = 0;
-
-        String currentday = "heute";
-
-
-        if (day == 2)
-        {
-            odaystring = "Montag";
-        }
-        else if (day == 3)
-        {
-            odaystring = "Dienstag";
-        }
-        else if (day == 4)
-        {
-            odaystring = "Mittwoch";
-        }
-        else if (day == 5)
-        {
-            odaystring = "Donnerstag";
-        }
-        else if (day == 6)
-        {
-            odaystring = "Freitag";
-        }
-        else if (day == 7)
-        {
-            odaystring = "Samstag";
-        }
-        else if (day == 1)
-        {
-            odaystring = "Sonntag";
-        }
-
-        //This will cause problems at the end of the month!
-        //tttoday.setText("Heute: "+odaystring+", "+	Integer.toString(calendar.get(Calendar.DATE)+dayoffset)+"."+(calendar.get(Calendar.MONTH)+1)+"."+calendar.get(Calendar.YEAR)+" (KW "+oweek+ ")");
-
-        if ((hour > 17) && (day != 1) && (day != 7))
-        {
-            day++;
-            currentday = "morgen";
-            dayoffset = 1;
-        }
-
-        if ((day == 1) || (day == 7))
-        {
-            day = 2;
-//
-            currentday = "Montag";
-            if (week == 1) week = 2;
-            else
-                week = 1;
-        }
-
-        //	tt2.setText("Stundenübersicht von "+currentday);
-
-
-        if (day == 2)
-        {
-            daystring = "Montag";
-        }
-        else if (day == 3)
-        {
-            daystring = "Dienstag";
-        }
-        else if (day == 4)
-        {
-            daystring = "Mittwoch";
-        }
-        else if (day == 5)
-        {
-            daystring = "Donnerstag";
-        }
-        else if (day == 6)
-        {
-            daystring = "Freitag";
-        }
-        else if (day == 7)
-        {
-            daystring = "Samstag";
-        }
-        else if (day == 1)
-        {
-            daystring = "Sonntag";
-        }
-
-
-        de.htwdd.types.Type_Stunde aktstundeOB = db.getStunde(odaystring, week, aktstunde);
-
-
-        if (!aktstundeOB.getName().equals("(leer)"))
-        {
-            if (currentday.equals("heute"))
-                tt8.setText(aktstundeOB.getTyp() + " - " + aktstundeOB.getRaum());
-
-            int maxtime = 0;
-
-            if (aktstunde == 1) maxtime = 540;
-            if (aktstunde == 2) maxtime = 650;
-            if (aktstunde == 3) maxtime = 760;
-            if (aktstunde == 4) maxtime = 880;
-            if (aktstunde == 5) maxtime = 990;
-            if (aktstunde == 6) maxtime = 1100;
-            if (aktstunde == 7) maxtime = 1200;
-
-            int timeleft = maxtime - timeinmin;
-
-            if (currentday.equals("heute"))
-                if (timeleft > 0)
-                    tt5.setText("noch " + timeleft + " Minuten");
-                else
-                    tt5.setText("Schluss seit " + -timeleft + " Min");
-
-
-            String uhrzeit = "";
-            switch (aktstundeOB.getStunde())
-            {
-                case 1:
-                    uhrzeit = "07:30 - 09:00";
-                    break;
-                case 2:
-                    uhrzeit = "09:20 - 10:50";
-                    break;
-                case 3:
-                    uhrzeit = "11:10 - 12:40";
-                    break;
-                case 4:
-                    uhrzeit = "13:10 - 14:40";
-                    break;
-                case 5:
-                    uhrzeit = "15:00 - 16:30";
-                    break;
-                case 6:
-                    uhrzeit = "16:50 - 18:20";
-                    break;
-                case 7:
-                    uhrzeit = "18:30 - 20:00";
-                    break;
-            }
-            if (currentday.equals("heute"))
-                tt12.setText(uhrzeit);
-
-
-            tt4.setText(aktstundeOB.getName());
-        }
-
-
-        de.htwdd.types.Type_Stunde upstundeOB = new de.htwdd.types.Type_Stunde();
-        int a = 1;
-        if (!currentday.equals("heute"))
-        {
-            aktstunde = 1;
-            a = 0;
-        }
-
-        do
-        {
-            upstundeOB = db.getStunde(daystring, week, aktstunde + a);
-
-            a++;
-            if ((aktstunde + a > 8)) break;
-        } while (upstundeOB.getName().equals("(leer)"));
-
-        if (!upstundeOB.getName().equals("(leer)"))
-        {
-
-            tt9.setText(upstundeOB.getTyp() + " - " + upstundeOB.getRaum());
-
-
-            int mintime = 0;
-            if (upstundeOB.getStunde() == 1) mintime = 450;
-            if (upstundeOB.getStunde() == 2) mintime = 560;
-            if (upstundeOB.getStunde() == 3) mintime = 670;
-            if (upstundeOB.getStunde() == 4) mintime = 790;
-            if (upstundeOB.getStunde() == 5) mintime = 900;
-            if (upstundeOB.getStunde() == 6) mintime = 1010;
-            if (upstundeOB.getStunde() == 7) mintime = 1110;
-
-
-            int timetogo = mintime - timeinmin;
-            int timetogoinhours = timetogo / 60;
-            int timetogoinmin = timetogo - (timetogoinhours * 60);
-
-            if (currentday.equals("heute"))
-            {
-                if (timetogo > 120)
-                    tt7.setText("in " + timetogoinhours + "h " + timetogoinmin + "min");
-                else
-                    tt7.setText("in " + timetogo + " Minuten");
-            }
-            else
-                tt7.setText(currentday);
-
-            String uhrzeit = "";
-            switch (upstundeOB.getStunde())
-            {
-                case 1:
-                    uhrzeit = "7:30 - 9:00";
-                    break;
-                case 2:
-                    uhrzeit = "9:20 - 10:50";
-                    break;
-                case 3:
-                    uhrzeit = "11:10 - 12:40";
-                    break;
-                case 4:
-                    uhrzeit = "13:10 - 14:40";
-                    break;
-                case 5:
-                    uhrzeit = "15:00 - 16:30";
-                    break;
-                case 6:
-                    uhrzeit = "16:50 - 18:20";
-                    break;
-                case 7:
-                    uhrzeit = "18:30 - 20:00";
-                    break;
-            }
-
-            tt13.setText(uhrzeit);
-
-            tt6.setText(upstundeOB.getName());
-        }
-
-        try
-        {
-            List<Type_Stunde> list2 = db.getStundenTag(odaystring, week);
-
-            Type_Stunde[] stunden = new Type_Stunde[7];
-
-            if (list2.size() != 0)
-            {
-                for (int ab = 0; ab < stunden.length; ab++)
-                {
-                    stunden[ab] = list2.get(ab);
-                }
-
-//		for (int ab=1;ab<=stunden.length;a++)
-//			for (int i=0;i<list2.size();i++)
-//				if (ab==list2.get(i).getStunde())
-//					stunden[ab-1]=list2.get(i);
-
-                ListView l = (ListView) getActivity().findViewById(R.id.belegungslist);
-                l.setVisibility(View.VISIBLE);
-                l.setDividerHeight(0);
-
-                String titles2[] = {"07:30 - 09:00", "09:20 - 10:50", "11:10 - 12:40", "13:10 - 14:40", "15:00 - 16:30", "16:50 - 18:20", "18:30 - 20:00"};
-
-                if (stunden.length > 0)
-                {
-                    BelegungsAdapter colorAdapter = new BelegungsAdapter(getActivity(), titles2, stunden);
-                    l.setAdapter(colorAdapter);
-                }
-            }
-
-        } catch (Exception e)
-        {
-            Toast.makeText(getActivity(), "Konnte Stundenplan nicht anzeigen.", Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
+        // Hilfsvariablen für Buttons
         Button button;
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion >= 14)
+        int currentAPIVersion = android.os.Build.VERSION.SDK_INT;
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        LinearLayout linearLayout;
+
+
+        // Willkomenskachel anzeigen?
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (sharedPreferences.getBoolean("first_run_bool", true))
+        {
+            // Anzeigen
+            view.findViewById(R.id.willkommen_box).setVisibility(View.VISIBLE);
+
+            // Onclick-Listener für Schliesen-Icon
+            ImageView imageView = (ImageView) view.findViewById(R.id.imageView1);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("first_run_bool", false);
+                    editor.apply();
+                    getActivity().findViewById(R.id.willkommen_box).setVisibility(View.GONE);
+                }
+            });
+
+            // Button anzeigen
+            if (currentAPIVersion >= 14)
+            {
+                button = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+                button.setTextColor(getResources().getColor(R.color.maintextcolor2));
+            }
+            else
+                button = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+
+            button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            button.setText(R.string.overview_show_config);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent nextScreen = new Intent(getActivity().getApplicationContext(), WizardWelcome.class);
+                    startActivity(nextScreen);
+                    getActivity().finish();
+                }
+            });
+
+            linearLayout = (LinearLayout) view.findViewById(R.id.willkommen);
+            linearLayout.addView(button, layoutParams);
+        }
+
+
+        // Button für Stundenplan einfügen
+        if (currentAPIVersion >= 14)
         {
             button = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            button.setTextColor(Color.parseColor("#33B5E5"));
+            button.setTextColor(getResources().getColor(R.color.maintextcolor2));
         }
         else
             button = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
-        button.setText("Stundenplan anzeigen");
-        LinearLayout ln = (LinearLayout) getActivity().findViewById(R.id.stundenplan);
-        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        button.setText(R.string.overview_show_timetable);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0)
-            {
-                if (getActivity() instanceof ResponsiveUIActivity)
-                {
-                    ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(new Fragment(), 3);
-                }
+            public void onClick(View view) {
+                ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
+                ra.switchContent(new Fragment(), 3);
             }
         });
 
+        linearLayout = (LinearLayout) view.findViewById(R.id.stundenplan);
+        linearLayout.addView(button, layoutParams);
 
-        ln.addView(button, lp);
 
-        Button button2;
-        int currentapiVersion2 = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion2 >= 14)
+        // Button für Mensa anzeigen
+        if (currentAPIVersion >= 14)
         {
-            button2 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            button2.setTextColor(Color.parseColor("#33B5E5"));
+            button = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+            button.setTextColor(getResources().getColor(R.color.maintextcolor2));
         }
         else
-            button2 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+            button = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
-        button2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
-        button2.setText("Mensa anzeigen");
-        LinearLayout ln2 = (LinearLayout) getActivity().findViewById(R.id.mensalayout);
-        LayoutParams lp2 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-        button2.setOnClickListener(new View.OnClickListener()
+        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        button.setText(R.string.overview_show_mensa);
+        button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View arg0)
@@ -468,90 +164,24 @@ public class CardFragment extends Fragment
             }
         });
 
-        ln2.addView(button2, lp2);
+        linearLayout = (LinearLayout) view.findViewById(R.id.mensalayout);
+        linearLayout.addView(button, layoutParams);
 
 
-        Button button3;
-
-        if (currentapiVersion >= 14)
+        // Button für Noten anzeigen
+        if (currentAPIVersion >= 14)
         {
-            button3 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            button3.setTextColor(Color.parseColor("#33B5E5"));
+            button = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+            button.setTextColor(getResources().getColor(R.color.maintextcolor2));
         }
         else
-            button3 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
+            button = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
-        button3.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        linearLayout = (LinearLayout) view.findViewById(R.id.Stats);
 
-        button3.setText("Konfigurations-Assistent starten");
-        LinearLayout ln3 = (LinearLayout) getActivity().findViewById(R.id.willkommen);
-        LayoutParams lp3 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-        button3.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View arg0)
-            {
-                Intent nextScreen = new Intent(getActivity().getApplicationContext(), WizardWelcome.class);
-                startActivity(nextScreen);
-                getActivity().finish();
-            }
-        });
-
-
-        ln3.addView(button3, lp3);
-
-        Button button4;
-
-        if (currentapiVersion >= 14)
-        {
-            button4 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            button4.setTextColor(Color.parseColor("#33B5E5"));
-        }
-        else
-            button4 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-
-        button4.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
-        button4.setText("Career Service öffnen");
-        LinearLayout ln4 = (LinearLayout) getActivity().findViewById(R.id.career);
-        LayoutParams lp4 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-        button4.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View arg0)
-            {
-                if (getActivity() instanceof ResponsiveUIActivity)
-                {
-                    ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-                    ra.switchContent(null, 7);
-                }
-            }
-        });
-
-
-        ln4.addView(button4, lp4);
-
-
-
-
-        Button button5;
-
-        if (currentapiVersion >= 14)
-        {
-            button5 = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            button5.setTextColor(Color.parseColor("#33B5E5"));
-        }
-        else
-            button5 = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-
-        button5.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        button5.setText("Noten anzeigen");
-        LinearLayout ln5 = (LinearLayout) getActivity().findViewById(R.id.Stats);
-        LayoutParams lp5 = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-        button5.setOnClickListener(new View.OnClickListener()
+        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        button.setText(R.string.overview_show_grades);
+        button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View arg0)
@@ -568,8 +198,8 @@ public class CardFragment extends Fragment
         divider.setBackgroundColor(getResources().getColor(R.color.appbg));
         divider.setMinimumHeight(2);
 
-        ln5.addView(divider,lp5);
-        ln5.addView(button5, lp5);
+        linearLayout.addView(divider,layoutParams);
+        linearLayout.addView(button, layoutParams);
 
 
         // Zeige Noten Statistik an
@@ -586,17 +216,17 @@ public class CardFragment extends Fragment
             count = statses[0].GradeCount;
         }
 
-        TextView semester = (TextView) getActivity().findViewById(R.id.StatsSemester);
+        TextView semester = (TextView) view.findViewById(R.id.StatsSemester);
         semester.setText("Noten");
         semester.setBackgroundColor(getResources().getColor(R.color.faded_magenta));
         semester.setTextColor(getResources().getColor(R.color.white));
         semester.setTextSize(30);
 
-        TextView textAverage  = (TextView) getActivity().findViewById(R.id.StatsAverage);
-        TextView textnote     = (TextView) getActivity().findViewById(R.id.StatsNoten);
-        TextView textcredits  = (TextView) getActivity().findViewById(R.id.StatsCredits);
-        TextView textnoteBest = (TextView) getActivity().findViewById(R.id.StatsNoteBest);
-        TextView textnoteWorst= (TextView) getActivity().findViewById(R.id.StatsNoteWorst);
+        TextView textAverage  = (TextView) view.findViewById(R.id.StatsAverage);
+        TextView textnote     = (TextView) view.findViewById(R.id.StatsNoten);
+        TextView textcredits  = (TextView) view.findViewById(R.id.StatsCredits);
+        TextView textnoteBest = (TextView) view.findViewById(R.id.StatsNoteBest);
+        TextView textnoteWorst= (TextView) view.findViewById(R.id.StatsNoteWorst);
 
         textAverage.setText(String.format("Durchschnitt: %.2f",average));
         textAverage.setPadding(0,15,0,0);
@@ -623,7 +253,191 @@ public class CardFragment extends Fragment
         // Lade Mensa
         MensaWorker w3 = new MensaWorker();
         w3.execute();
+
+        return view;
     }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        View view = getView();
+
+        // Stundenplan Anbindung
+        DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(getActivity());
+
+        // Typen
+        String[] lessonType = view.getResources().getStringArray(R.array.lesson_type);
+
+        // Stunde bestimmen
+        Calendar calendar   = GregorianCalendar.getInstance();
+        int current_time    = calendar.get(Calendar.HOUR_OF_DAY)*60+calendar.get(Calendar.MINUTE);
+        int week            = calendar.get(Calendar.WEEK_OF_YEAR);
+        int current_ds = 0;
+
+        if (current_time > LessonSearch.lessonEndTimes[7-1])
+            current_ds=0;
+        else if (current_time >= LessonSearch.lessonStartTimes[6])
+            current_ds=7;
+        else if (current_time >= LessonSearch.lessonStartTimes[5])
+            current_ds=6;
+        else if (current_time >= LessonSearch.lessonStartTimes[4])
+            current_ds=5;
+        else if (current_time >= LessonSearch.lessonStartTimes[3])
+            current_ds=4;
+        else if (current_time >= LessonSearch.lessonStartTimes[2])
+            current_ds=3;
+        else if (current_time >= LessonSearch.lessonStartTimes[1])
+            current_ds=2;
+        else if (current_time >= LessonSearch.lessonStartTimes[0])
+            current_ds=1;
+
+        // Aktuell Vorlesungszeit?
+        if (current_ds != 0 && calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY)
+        {
+            ArrayList<Lesson> lessons = databaseHandlerTimetable.getShortDS(week, calendar.get(Calendar.DAY_OF_WEEK)-1,current_ds);
+
+            // Gibt es aktuell eine Stunde?
+            if (lessons.size() != 0)
+            {
+                // Suche nach einer passenden Veranstaltung
+                LessonSearch lessonSearch = new LessonSearch();
+                int single = lessonSearch.searchLesson(lessons, week);
+
+                TextView overview_lessons_current_tag = (TextView) view.findViewById(R.id.overview_lessons_current_tag);
+                TextView overview_lessons_current_type = (TextView) view.findViewById(R.id.overview_lessons_current_type);
+
+                // verbleibende Zeit anzeigen
+                TextView overview_lessons_current_remaining = (TextView) view.findViewById(R.id.overview_lessons_current_remaining);
+                int difference = current_time - LessonSearch.lessonEndTimes[current_ds-1];
+
+                if (difference < 0)
+                    overview_lessons_current_remaining.setText(String.format(getResources().getString(R.string.overview_lessons_remaining_end), -difference));
+                else
+                    overview_lessons_current_remaining.setText(String.format(getResources().getString(R.string.overview_lessons_remaining_final), difference));
+
+                // Es gibt keine passende Veranstaltung die angezeigt werden kann
+                switch (single)
+                {
+                    case 0:
+                        overview_lessons_current_tag.setText("");
+                        overview_lessons_current_remaining.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        overview_lessons_current_tag.setText(lessonSearch.lesson.lessonTag);
+                        overview_lessons_current_type.setText(lessonType[lessonSearch.lesson.getTypeInt()]+" - "+lessonSearch.lesson.rooms);
+                        break;
+                    case 2:
+                        overview_lessons_current_tag.setText(R.string.timetable_moreLessons);
+                        break;
+                }
+            }
+        }
+
+        // Stundenplanvorschau
+        RelativeLayout overview_lessons_busy_plan = (RelativeLayout) view.findViewById(R.id.overview_lessons_busy_plan);
+
+        // Nächste Stunde suchen
+        LessonSearch lessonSearch = new LessonSearch();
+        Calendar nextLesson = GregorianCalendar.getInstance();
+        int single;
+        int ds = current_ds;
+
+        do {
+            // DS herhöhen
+            if ((ds++)%8==0)
+            {
+                ds=1;
+                nextLesson.add(Calendar.DAY_OF_MONTH,1);
+            }
+
+            // Lade Stunde aus DB
+            ArrayList<Lesson> lessons = databaseHandlerTimetable.getShortDS(nextLesson.get(Calendar.WEEK_OF_YEAR), nextLesson.get(Calendar.DAY_OF_WEEK)-1,ds);
+
+            // Suche nach passender Stunde
+            single=lessonSearch.searchLesson(lessons, nextLesson.get(Calendar.WEEK_OF_YEAR));
+
+        }while (single==0 && (nextLesson.get(Calendar.WEEK_OF_YEAR) - calendar.get(Calendar.WEEK_OF_YEAR)) < 2);
+
+        if (single!=0)
+        {
+            // Stunden
+            String[] lessonDS = getResources().getStringArray(R.array.lesson_ds_timeOnly);
+
+            // Abstand berechnen und anzeigen
+            TextView overview_lessons_next_remaining = (TextView) view.findViewById(R.id.overview_lessons_next_remaining);
+
+            int difference = nextLesson.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR);
+
+            if (difference == 0)
+                overview_lessons_next_remaining.setText(String.format(getResources().getString(R.string.overview_lessons_remaining_start), -(current_time - LessonSearch.lessonStartTimes[ds - 1])));
+            else if (difference == 1)
+            {
+                overview_lessons_next_remaining.setText(getResources().getText(R.string.overview_tomorrow) + " " + lessonDS[ds - 1]);
+
+                // Vorsschau setzen
+                TextView overview_lessons_busy_plan_day = (TextView) view.findViewById(R.id.overview_lessons_busy_plan_day);
+                overview_lessons_busy_plan_day.setText(R.string.overview_tomorrow);
+
+                // DS nicht mehr anzeigen
+                current_ds=99;
+            }
+            else
+            {
+                final String[] nameOfDays = DateFormatSymbols.getInstance().getWeekdays();
+                overview_lessons_next_remaining.setText(nameOfDays[nextLesson.get(Calendar.DAY_OF_WEEK)]+" "+lessonDS[ds-1]);
+
+                // Vorschau ausblenden
+                overview_lessons_busy_plan.setVisibility(View.GONE);
+            }
+
+            // Name + Art anzeigen
+            if (single==1)
+            {
+                TextView overview_lessons_next_tag = (TextView) view.findViewById(R.id.overview_lessons_next_tag);
+                overview_lessons_next_tag.setText(lessonSearch.lesson.lessonTag);
+
+                // Zeige Art an
+                TextView overview_lessons_next_type = (TextView) view.findViewById(R.id.overview_lessons_next_type);
+                overview_lessons_next_type.setText(lessonType[lessonSearch.lesson.getTypeInt()]+" - "+lessonSearch.lesson.rooms);
+            }
+            else if (single==2)
+            {
+                TextView overview_lessons_next_tag = (TextView) view.findViewById(R.id.overview_lessons_next_tag);
+                overview_lessons_next_tag.setText(R.string.timetable_moreLessons);
+            }
+        }
+
+        // Daten für Stundenplan-Vorschau
+        String[] values = new String[7];
+        for (int i=1;i<8;i++)
+        {
+            ArrayList<Lesson> lessons = databaseHandlerTimetable.getShortDS(nextLesson.get(Calendar.WEEK_OF_YEAR), nextLesson.get(Calendar.DAY_OF_WEEK)-1,i);
+
+            // Suche nach passender Stunde
+            single=lessonSearch.searchLesson(lessons, nextLesson.get(Calendar.WEEK_OF_YEAR));
+
+            switch (single)
+            {
+                case 0:
+                    values[i-1] = "";
+                    break;
+                case 1:
+                    values[i-1] = lessonSearch.lesson.lessonTag+ " ("+lessonSearch.lesson.type+")";
+                    break;
+                case 2:
+                    values[i-1] = getResources().getString(R.string.timetable_moreLessons);
+                    break;
+            }
+        }
+
+        TimetableBusyPlan busyPlan = new TimetableBusyPlan(getActivity(), values, current_ds);
+
+        ListView overview_lessons_list = (ListView) view.findViewById(R.id.overview_lessons_list);
+        overview_lessons_list.setAdapter(busyPlan);
+    }
+
 
     /**
      * Blendet die Kachel zur Information das ein Update verfügbar ist ein.
@@ -633,13 +447,13 @@ public class CardFragment extends Fragment
     private void showUpdateMessage(String AlternateUpdateMessage)
     {
         // Schalte Kachel sichtbar
-        LinearLayout linearLayout = (LinearLayout) getActivity().findViewById(R.id.UpdateMessage);
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.UpdateMessage);
         linearLayout.setVisibility(View.VISIBLE);
 
         // Alternativen Text anzeigen
         if(!AlternateUpdateMessage.isEmpty())
         {
-            TextView UpdateMessage = (TextView) getActivity().findViewById(R.id.UpdateMessageText);
+            TextView UpdateMessage = (TextView) view.findViewById(R.id.UpdateMessageText);
             UpdateMessage.setText(Html.fromHtml(AlternateUpdateMessage));
         }
 
@@ -656,7 +470,7 @@ public class CardFragment extends Fragment
         ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         ButtonUpdate.setText("Download App");
 
-        linearLayout = (LinearLayout) getActivity().findViewById(R.id.LinearLayout04);
+        linearLayout = (LinearLayout) view.findViewById(R.id.LinearLayout04);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
         ButtonUpdate.setOnClickListener(new View.OnClickListener() {
@@ -807,6 +621,14 @@ public class CardFragment extends Fragment
         {
             if (!isAdded())
                 return;
+
+            try
+            {
+                info = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            } catch (NameNotFoundException e1)
+            {
+                return;
+            }
 
             SharedPreferences.Editor edit = sharedPreferences.edit();
             if (result != null && Integer.parseInt(result[0]) > info.versionCode)

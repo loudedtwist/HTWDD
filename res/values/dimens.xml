@@ -15,11 +15,16 @@
 -->
 
 <resources>
+    <dimen name="app_table_margin">12dp</dimen>
+
 <dimen name="widget_margin">8dp</dimen>
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">0dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
   <dimen name="sidemargin">20dp</dimen>
     <integer name="num_cols">1</integer>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

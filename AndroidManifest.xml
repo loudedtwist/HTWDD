@@ -5,7 +5,7 @@
     android:versionName="3.71" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +18,7 @@
             android:theme="@style/ExampleTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -38,11 +39,6 @@
             android:label="Termin anfragen" >
         </activity>
         <activity
-            android:name=".EditTimetable"
-            android:label="Stunde Bearbeiten"
-            android:theme="@android:style/Theme.Panel" >
-        </activity>
-        <activity
             android:name=".datepicker"
             android:label="Termin wählen" >
         </activity>
@@ -51,11 +47,22 @@
             android:label="Einstellungen" >
         </activity>
 
-        <service android:name=".UpdateTimetableSmallWidgetService" />
+        <activity
+            android:name=".TimetableEditActivity"
+            android:label="@string/timetable_edit_lesson" >
+        </activity>
+        <activity
+            android:name=".TimetableDetailsActivity"
+            android:label="@string/title_activity_timetable_details" >
+        </activity>
 
+        <!-- Services -->
+        <service android:name=".WidgeTimetableService"/>
+
+        <!-- Widgets -->
         <receiver
-            android:name=".WidgetTimetableSmallProvider"
-            android:label="HTWDD Stundenübersicht" >
+            android:name=".WidgetTimetable"
+            android:label="@string/widget_timetable_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -67,7 +74,7 @@
 
         <receiver
             android:name=".WidgetMensa_6"
-            android:label="HTWDresdem Mensa" >
+            android:label="HTWDresdem Mensa">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -77,10 +84,9 @@
                 android:resource="@xml/widget_mensa_6" />
         </receiver>
 
-
         <receiver
             android:name=".WidgetMensa_4"
-            android:label="HTWDresden Mensa">
+            android:label="HTWDresden Mensa" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -89,7 +95,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_mensa_4" />
         </receiver>
-
     </application>
 
 </manifest>

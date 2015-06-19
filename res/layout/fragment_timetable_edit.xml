@@ -1,0 +1,217 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:stretchColumns="2"
+        android:paddingTop="@dimen/activity_horizontal_margin">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonName"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:id="@+id/timetable_edit_LessonName"
+                android:hint="@string/timetable_edit_LessonNameHint"
+                android:layout_column="2"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonTag"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:id="@+id/timetable_edit_LessonTag"
+                android:hint="@string/timetable_edit_LessonTagHint"
+                android:layout_column="2"
+                android:layout_span="2" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonType"
+                android:layout_column="0" />
+
+            <Spinner
+                android:id="@+id/timetable_edit_LessonType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:entries="@array/lesson_type"
+                android:layout_span="2" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lesson_Room"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timetable_edit_LessonRoom"
+                android:hint="@string/timetable_edit_LessonRoomHint"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:layout_column="2"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/app_table_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/timetable_edit_label_time"
+                android:textColor="@android:color/darker_gray" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonWeek"
+                android:layout_column="0" />
+
+            <Spinner
+                android:id="@+id/timetable_edit_LessonWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:entries="@array/lesson_week"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonDay"
+                android:layout_column="0" />
+
+            <Spinner
+                android:id="@+id/timetable_edit_LessonDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:entries="@array/lesson_day"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonDS"
+                android:layout_column="0" />
+
+            <Spinner
+                android:id="@+id/timetable_edit_LessonDS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:entries="@array/lesson_ds"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonWeeksOnly"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_table_margin"
+                android:layout_marginRight="@dimen/app_table_margin"
+                android:id="@+id/timetable_edit_LessonWeeksOnly"
+                android:hint="@string/timetable_edit_LessonWeeksOnlyHint"
+                android:layout_column="2"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonDelete"
+                android:id="@+id/timetable_edit_LessonDelete"
+                android:layout_column="2"
+                android:layout_weight="1" />
+            <Button
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/timetable_edit_LessonSave"
+                android:id="@+id/timetable_edit_LessonSave"
+                android:layout_column="3"
+                android:layout_weight="1" />
+        </TableRow>
+    </TableLayout>
+</ScrollView>
+

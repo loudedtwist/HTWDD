@@ -261,44 +261,4 @@ public class MyRoomAdapter extends BaseAdapter
 
 
     }
-
-    class MyOnClickListener implements OnClickListener
-    {
-        private int position;
-
-        public MyOnClickListener(int position)
-        {
-            this.position = position;
-        }
-
-        public void onClick(View v)
-        {
-            // Preform a function based on the position
-
-
-            int tag = 0;
-            int stunde = 0;
-
-
-            tag = (position - 1) % 6;
-
-            stunde = ((position - tag) / 6);
-
-
-            Intent i = new Intent(context, EditTimetable.class);
-            Bundle bundle = new Bundle();
-
-            bundle.putInt("tag", tag);
-            bundle.putInt("week", week);
-            bundle.putInt("stunde", stunde);
-            i.putExtras(bundle);
-
-
-            context.startActivity(i);
-
-
-            //	 Toast.makeText(context,"Woche"+week+" - Tag:"+tag+" - Stunde:"+stunde, Toast.LENGTH_SHORT).show();
-        }
-    }
-
 }

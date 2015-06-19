@@ -1,0 +1,23 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/Timetable"
+        android:numColumns="7"
+        android:scrollingCache="false"
+        android:verticalSpacing="1sp"
+        android:horizontalSpacing="1sp"
+        android:background="@color/whitegrey"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoadTimetable"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+</FrameLayout>

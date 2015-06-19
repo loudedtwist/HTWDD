@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="color_names">
-        <item>Red</item>
-        <item>Green</item>
-        <item>Blue</item>
-        <item>White</item>
-        <item>Black</item>
-    </string-array>
 
     <string-array name="birds">
         <item>@string/responsive_ui</item>
@@ -38,34 +31,48 @@
         <item>D</item>
     </string-array>
 
-    <string-array name="tag_array">
+
+
+
+    <string-array name="lesson_type">
+        <item>Vorlesung</item>
+        <item>Praktikum</item>
+        <item>Übung</item>
+        <item>sonstiges</item>
+    </string-array>
+
+    <string-array name="lesson_week">
+        <item>jede</item>
+        <item>ungerade</item>
+        <item>gerade</item>
+    </string-array>
+
+    <string-array name="lesson_day">
         <item>Montag</item>
         <item>Dienstag</item>
         <item>Mittwoch</item>
         <item>Donnerstag</item>
-        <item>Freitag</item>      
+        <item>Freitag</item>
+        <item>Samstag</item>
     </string-array>
 
-    <string-array name="stunden_array">
-        <item>07:30 - 09:00</item>
-        <item>09:20 - 10:50</item>
-        <item>11:10 - 12:40</item>
-        <item>13:10 - 14:40</item>
-        <item>15:00 - 16:30</item>
-        <item>16:50 - 18:20</item>
-        <item>18:30 - 20:00</item>
+    <string-array name="lesson_ds">
+        <item>1. DS (07:30 – 09:00)</item>
+        <item>2. DS (09:20 – 10:50)</item>
+        <item>3. DS (11:10 – 12:40)</item>
+        <item>4. DS (13:10 – 14:40)</item>
+        <item>5. DS (15:00 – 16:30)</item>
+        <item>6. DS (16:50 – 18:20)</item>
+        <item>7. DS (18:30 – 20:00)</item>
     </string-array>
 
-    <string-array name="typ_array">
-        <item>Vorlesung</item>
-        <item>Praktikum</item>
-        <item>Übung</item>
-        <item>anderes</item>
+    <string-array name="lesson_ds_timeOnly">
+        <item>07:30 – 09:00</item>
+        <item>09:20 – 10:50</item>
+        <item>11:10 – 12:40</item>
+        <item>13:10 – 14:40</item>
+        <item>15:00 – 16:30</item>
+        <item>16:50 – 18:20</item>
+        <item>18:30 – 20:00</item>
     </string-array>
-
-    <string-array name="gerade_array">       
-        <item>gerade</item>
-        <item>ungerade</item>
-    </string-array>
-
 </resources>

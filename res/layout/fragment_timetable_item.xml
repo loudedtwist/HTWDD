@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/TimetableLayout"
+              android:gravity="center_horizontal"
+              android:background="@color/faded_grey">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TimetableTag"
+        android:singleLine="false"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/TimetableType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/TimetableRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/TimetableMoreLessons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/timetable_moreLessonsPoints"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/TimetableOnlyKW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="10sp"
+        android:visibility="gone"
+        android:text="@string/timetable_only_KW" />
+</LinearLayout>
