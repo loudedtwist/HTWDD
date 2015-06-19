@@ -56,6 +56,7 @@ public class TimetableEditFragment extends Fragment
         // Lade Stunde
         DatabaseHandlerTimetable timetable = new DatabaseHandlerTimetable(getActivity());
         ArrayList<Lesson> lessonArrayList = timetable.getDS(week, day, ds);
+        timetable.close();
         final Lesson lesson;
 
         // OnClick-Listener zum Speichern
@@ -137,7 +138,10 @@ public class TimetableEditFragment extends Fragment
             @Override
             public void onClick(View view) {
                 DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(getActivity());
-                if (databaseHandlerTimetable.deleteLesson(lesson.internID))
+                boolean value = databaseHandlerTimetable.deleteLesson(lesson.internID);
+                databaseHandlerTimetable.close();
+
+                if (value)
                 {
                     Toast.makeText(getActivity(), R.string.timetable_edit_LessonDeleteSuccess, Toast.LENGTH_SHORT).show();
                     getActivity().finish();
@@ -187,6 +191,9 @@ public class TimetableEditFragment extends Fragment
         lesson.weeksOnly = editWeeksOnly.getText().toString();
 
         DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(getActivity());
-        return databaseHandlerTimetable.updateLesson(lesson);
+        boolean value = databaseHandlerTimetable.updateLesson(lesson);
+        databaseHandlerTimetable.close();
+
+        return value;
     }
 }

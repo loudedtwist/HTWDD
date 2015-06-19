@@ -43,7 +43,9 @@ public class TimetableAdapter extends BaseAdapter
         int Day = i%7;
 
         DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(context);
-        return databaseHandlerTimetable.getShortDS(week, Day, DS);
+        ArrayList<Lesson> lessons = databaseHandlerTimetable.getShortDS(week, Day, DS);
+        databaseHandlerTimetable.close();
+        return lessons;
     }
 
     @Override

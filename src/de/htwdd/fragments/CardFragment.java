@@ -432,6 +432,9 @@ public class CardFragment extends Fragment
             }
         }
 
+        // Datenbank schließen
+        databaseHandlerTimetable.close();
+
         TimetableBusyPlan busyPlan = new TimetableBusyPlan(getActivity(), values, current_ds);
 
         ListView overview_lessons_list = (ListView) view.findViewById(R.id.overview_lessons_list);

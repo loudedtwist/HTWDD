@@ -51,6 +51,7 @@ public class TimetableEditSelectFragment extends Fragment
         // Lade Stunden
         DatabaseHandlerTimetable timetable = new DatabaseHandlerTimetable(getActivity());
         ArrayList<Lesson> lessonArrayList = timetable.getDS(week, day, ds);
+        timetable.close();
 
         TimetableEditSelectAdapter adapter = new TimetableEditSelectAdapter(getActivity(), lessonArrayList);
 

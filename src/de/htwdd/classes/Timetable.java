@@ -57,6 +57,7 @@ public class Timetable
         DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(context);
         databaseHandlerTimetable.clearTable();
         databaseHandlerTimetable.saveTimetable(lessonArrayList);
+        databaseHandlerTimetable.close();
     }
 
     private int getTimetable(HTTPDownloader downloader)

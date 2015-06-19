@@ -35,6 +35,7 @@ public class TimetableDetailsActivity extends Activity {
         // Lade Stunden aus DB
         DatabaseHandlerTimetable timetable = new DatabaseHandlerTimetable(context);
         ArrayList<Lesson> lessons = timetable.getDS(week, day, ds);
+        timetable.close();
 
         // Keine Stunde vorhanden, zum Editieren wechseln
         if (lessons.size()==0)

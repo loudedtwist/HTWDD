@@ -3,318 +3,245 @@ package de.htwdd;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import de.htwdd.types.Type_Stunde;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import de.htwdd.types.Lesson;
 
 public class DatabaseHandlerTimetable extends SQLiteOpenHelper
 {
+    public static final int DATABASE_VERSION    = 2;
+    private static final String DATABASE_NAME   = "TimetableUser.db";
+    private static final String TYPE_TEXT       = " TEXT";
+    private static final String TYPE_FLOAT      = " REAL";
+    private static final String TYPE_INT        = " INTEGER";
+    private static final String TYPE_TIME       = " TIME";
+    private static final String COMMA_SEP       = ",";
 
-    // All Static variables
-    // Database Version
-    private static final int DATABASE_VERSION = 1;
-
-    // Database Name
-    private static final String DATABASE_NAME = "StundeManager2";
-
-    // Contacts table name
-    private static final String TABLE_STUNDEN = "stunden";
-
-    // Contacts Table Columns names
-    private static final String KEY_ID = "id";
-    private static final String KEY_WOCHE = "woche";
-    private static final String KEY_TAG = "tag";
-    private static final String KEY_STUNDE = "stunde";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_TYP = "typ";
-    private static final String KEY_RAUM = "raum";
+    public static final String TABLE_NAME       = "TimetableUser";
+    public static final String COLUMN_NAME_INTERNID = "internID";
+    public static final String COLUMN_NAME_LESSONTAG = "lessonTag";
+    public static final String COLUMN_NAME_NAME = "name";
+    public static final String COLUMN_NAME_TYP  = "typ";
+    public static final String COLUMN_NAME_WEEK = "week";
+    public static final String COLUMN_NAME_DAY  = "day";
+    public static final String COLUMN_NAME_DS   = "ds";
+    public static final String COLUMN_NAME_BEGINTIME  = "beginTime";
+    public static final String COLUMN_NAME_ENDTIME    = "endTime";
+    public static final String COLUMN_NAME_PROFESSOR  = "professor";
+    public static final String COLUMN_NAME_WEEKSONLY  = "WeeksOnly";
+    public static final String COLUMN_NAME_ROOMS      = "rooms";
 
     public DatabaseHandlerTimetable(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Creating Tables
     @Override
-    public void onCreate(SQLiteDatabase db)
+    public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
-        String CREATE_STUNDEN_TABLE = "CREATE TABLE " + TABLE_STUNDEN + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_WOCHE + " INTEGER,"
-                + KEY_TAG + " TEXT," + KEY_STUNDE + " INTEGER," + KEY_NAME
-                + " TEXT," + KEY_TYP + " TEXT," + KEY_RAUM + " TEXT" + ")";
-        db.execSQL(CREATE_STUNDEN_TABLE);
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
+                COLUMN_NAME_INTERNID + TYPE_INT +" PRIMARY KEY"+ COMMA_SEP +
+                COLUMN_NAME_LESSONTAG + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_NAME + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_TYP + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_WEEK + TYPE_INT + COMMA_SEP +
+                COLUMN_NAME_DAY + TYPE_INT + COMMA_SEP +
+                COLUMN_NAME_DS + TYPE_INT + COMMA_SEP +
+                COLUMN_NAME_BEGINTIME+ TYPE_TIME + COMMA_SEP +
+                COLUMN_NAME_ENDTIME+ TYPE_TIME + COMMA_SEP +
+                COLUMN_NAME_PROFESSOR + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_WEEKSONLY + TYPE_TEXT + COMMA_SEP +
+                COLUMN_NAME_ROOMS + TYPE_TEXT +
+                " )");
+        sqLiteDatabase.execSQL("CREATE INDEX IndexAll ON "+TABLE_NAME+"("+COLUMN_NAME_WEEK+COMMA_SEP+COLUMN_NAME_DS+COMMA_SEP+COLUMN_NAME_DAY+");");
     }
 
-    // Upgrading database
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2)
     {
-        // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUNDEN);
-
-        // Create tables again
-        onCreate(db);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        onCreate(sqLiteDatabase);
     }
 
-    // Adding new contact
-    public void addContact(Type_Stunde type_Stunde)
+    public void clearTable()
     {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        //sqLiteDatabase.execSQL("DELETE FROM "+TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        onCreate(sqLiteDatabase);
+        sqLiteDatabase.close();
+    }
 
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void saveTimetable(ArrayList<Lesson> lessonArrayList)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
+        for (Lesson lesson : lessonArrayList)
+        {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_NAME_LESSONTAG, lesson.lessonTag);
+            values.put(COLUMN_NAME_NAME, lesson.name);
+            values.put(COLUMN_NAME_TYP, lesson.type);
+            values.put(COLUMN_NAME_WEEK, lesson.week);
+            values.put(COLUMN_NAME_DAY, lesson.day);
+            values.put(COLUMN_NAME_DS, lesson.ds);
+            values.put(COLUMN_NAME_BEGINTIME, lesson.beginTime.toString());
+            values.put(COLUMN_NAME_ENDTIME, lesson.endTime.toString());
+            values.put(COLUMN_NAME_PROFESSOR, lesson.professor);
+            values.put(COLUMN_NAME_WEEKSONLY, lesson.weeksOnly);
+            values.put(COLUMN_NAME_ROOMS, lesson.rooms);
+
+            sqLiteDatabase.insert(TABLE_NAME,null,values);
+        }
+        sqLiteDatabase.close();
+    }
+
+    /**
+     * Löscht die übergebene Lesson
+     * @param lessonID ID der Lesson welche gelöscht werden soll
+     * @return Ergebniss
+     */
+    public boolean deleteLesson(int lessonID)
+    {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        return sqLiteDatabase.delete(TABLE_NAME, COLUMN_NAME_INTERNID + "=" + lessonID, null) > 0;
+    }
+
+    /**
+     * Ändert eine übergeben Stunde (wenn Lesson.internID gesetzt ist) oder fügt eine neue Stunde ein
+     *
+     * @param lesson Objekt-Eigenschaftem die geändert / gespeichert werden.
+     * @return true wenn Datensatz geändert / hinzugefügt wurde, sonst false
+     */
+    public boolean updateLesson(Lesson lesson)
+    {
+        long count;
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        // New value for one column
         ContentValues values = new ContentValues();
-        values.put(KEY_WOCHE, type_Stunde.getWoche());
-        values.put(KEY_TAG, type_Stunde.getTag());
-        values.put(KEY_STUNDE, type_Stunde.getStunde());
-        values.put(KEY_NAME, type_Stunde.getName());
-        values.put(KEY_TYP, type_Stunde.getTyp());
-        values.put(KEY_RAUM, type_Stunde.getRaum());
+        values.put(COLUMN_NAME_NAME, lesson.name);
+        values.put(COLUMN_NAME_LESSONTAG, lesson.lessonTag);
+        values.put(COLUMN_NAME_TYP, lesson.type);
+        values.put(COLUMN_NAME_ROOMS, lesson.rooms);
+        values.put(COLUMN_NAME_WEEK, lesson.week);
+        values.put(COLUMN_NAME_DAY, lesson.day);
+        values.put(COLUMN_NAME_DS, lesson.ds);
+        values.put(COLUMN_NAME_WEEKSONLY, lesson.weeksOnly);
 
-        Log.d("Inserting",
-                type_Stunde.getStunde() + " " + type_Stunde.getWoche() + " "
-                        + type_Stunde.getName() + " " + type_Stunde.getTyp() + " "
-                        + type_Stunde.getTyp() + " "
-        );
-        // Inserting Row
-        db.insert(TABLE_STUNDEN, null, values);
-        db.close(); // Closing database connection
+        if (lesson.internID == 0)
+            count = sqLiteDatabase.insert(TABLE_NAME, null, values);
+        else count = sqLiteDatabase.update(TABLE_NAME,values, COLUMN_NAME_INTERNID+"=="+lesson.internID, null);
 
+        sqLiteDatabase.close();
+
+        return count > 0;
     }
 
-    // Getting single contact
-    public Type_Stunde getContact(int id)
+    /**
+     * Gibt die passenden Stunden komplett aus der Datenbank zurück
+     *
+     * @param week Kalenderwoche
+     * @param  day Tag der Woche
+     * @param  ds  Doppelstunde
+     * @return ArrayList von Lessons
+     */
+    public ArrayList<Lesson> getDS(int week, int day, int ds)
     {
+        ArrayList<Lesson> lessons       = new ArrayList<Lesson>();
+        int week_db                     = week%2 == 0?2:week%2;
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_STUNDEN, new String[]{KEY_ID,
-                        KEY_WOCHE, KEY_TAG, KEY_STUNDE, KEY_NAME, KEY_TYP, KEY_RAUM},
-                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null,
-                null, null
-        );
-        if (cursor != null)
-            cursor.moveToFirst();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT "+COLUMN_NAME_INTERNID + COMMA_SEP
+                + COLUMN_NAME_LESSONTAG + COMMA_SEP
+                + COLUMN_NAME_NAME + COMMA_SEP
+                + COLUMN_NAME_TYP + COMMA_SEP
+                + COLUMN_NAME_WEEK + COMMA_SEP
+                + COLUMN_NAME_DAY + COMMA_SEP
+                + COLUMN_NAME_DS + COMMA_SEP
+                + COLUMN_NAME_PROFESSOR + COMMA_SEP
+                + COLUMN_NAME_WEEKSONLY + COMMA_SEP
+                + COLUMN_NAME_ROOMS +
+                " FROM " + TABLE_NAME +
+                " WHERE ("+ COLUMN_NAME_WEEK+"="+week_db+" OR "+ COLUMN_NAME_WEEK+"=0) AND "+COLUMN_NAME_DAY+"="+day+" AND "+COLUMN_NAME_DS+"="+ds,null);
 
-        Type_Stunde type_Stunde = new Type_Stunde(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2),
-                Integer.parseInt(cursor.getString(3)), cursor.getString(4),
-                cursor.getString(5), cursor.getString(6));
-        // return contact
-        cursor.close();
-        db.close();
-        return type_Stunde;
-
-    }
-
-    public void purge()
-    {
-
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-
-        db.delete(TABLE_STUNDEN, null, null);
-        db.close();
-    }
-
-    public Type_Stunde getStunde(String tag, int woche, int stundee)
-    {
-
-        List<Type_Stunde> stundenList = new ArrayList<Type_Stunde>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_STUNDEN
-                + " WHERE TAG = '" + tag + "' AND WOCHE =" + woche
-                + " AND STUNDE =" + stundee + "  GROUP BY STUNDE ORDER BY STUNDE";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
         if (cursor.moveToFirst())
         {
             do
             {
-                Type_Stunde type_Stunde = new Type_Stunde();
-                type_Stunde.setID(Integer.parseInt(cursor.getString(0)));
-                type_Stunde.setWoche(Integer.parseInt(cursor.getString(1)));
-                type_Stunde.setTag(cursor.getString(2));
-                type_Stunde.setStunde(Integer.parseInt(cursor.getString(3)));
-                type_Stunde.setName(cursor.getString(4));
-                type_Stunde.setTyp(cursor.getString(5));
-                type_Stunde.setRaum(cursor.getString(6));
+                Lesson lesson = new Lesson();
+                lesson.internID     = cursor.getInt(0);
+                lesson.lessonTag    = cursor.getString(1);
+                lesson.name         = cursor.getString(2);
+                lesson.type         = cursor.getString(3);
+                lesson.week         = cursor.getInt(4);
+                lesson.day          = cursor.getInt(5);
+                lesson.ds          = cursor.getInt(6);
+                lesson.professor    = cursor.getString(7);
+                lesson.weeksOnly    = cursor.getString(8);
+                lesson.rooms        = cursor.getString(9);
+                lessons.add(lesson);
 
-                // Adding contact to list
-                db.close();
-                return type_Stunde;
-            } while (cursor.moveToNext());
+            }while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
-        // return contact list
-        Type_Stunde stunde2 = new Type_Stunde();
-        stunde2.setName("(leer)");
-        return stunde2;
+        sqLiteDatabase.close();
 
+        //sqLiteDatabase.close();
+        return lessons;
     }
 
-    // Getting All Contacts
-    public List<Type_Stunde> getAllStunden()
+
+    /**
+     * Gibt alle Lessons(wichtigste Parameter) einer gegebenen Zeit zurück
+     * @param week Kalenderwoche des Jahres
+     * @param day Tag der Woche
+     * @param ds DS des Tages
+     * @return ArrayList von Lessons
+     */
+    public ArrayList<Lesson> getShortDS(int week, int day, int ds)
     {
+        ArrayList<Lesson> lessons       = new ArrayList<Lesson>();
+        int week_db                     = week%2 == 0?2:week%2;
 
-        List<Type_Stunde> stundenList = new ArrayList<Type_Stunde>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_STUNDEN;
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT "+ COLUMN_NAME_LESSONTAG + COMMA_SEP + COLUMN_NAME_TYP + COMMA_SEP + COLUMN_NAME_WEEKSONLY + COMMA_SEP + COLUMN_NAME_ROOMS +
+                " FROM " + TABLE_NAME +
+                " WHERE ("+ COLUMN_NAME_WEEK+"="+week_db+" OR "+ COLUMN_NAME_WEEK+"=0) AND "+COLUMN_NAME_DAY+"="+day+" AND "+COLUMN_NAME_DS+"="+ds,null);
 
-        // looping through all rows and adding to list
         if (cursor.moveToFirst())
         {
             do
             {
-                Type_Stunde type_Stunde = new Type_Stunde();
-                type_Stunde.setID(Integer.parseInt(cursor.getString(0)));
-                type_Stunde.setWoche(Integer.parseInt(cursor.getString(1)));
-                type_Stunde.setTag(cursor.getString(2));
-                type_Stunde.setStunde(Integer.parseInt(cursor.getString(3)));
-                type_Stunde.setName(cursor.getString(4));
-                type_Stunde.setTyp(cursor.getString(5));
-                type_Stunde.setRaum(cursor.getString(6));
+                Lesson lesson = new Lesson();
 
-                // Adding contact to list
-                stundenList.add(type_Stunde);
-            } while (cursor.moveToNext());
+                lesson.lessonTag    = cursor.getString(0);
+                lesson.type         = cursor.getString(1);
+                lesson.weeksOnly    = cursor.getString(2);
+                lesson.rooms        = cursor.getString(3);
+                lessons.add(lesson);
+
+            }while (cursor.moveToNext());
         }
         cursor.close();
-        db.close();
-        // return contact list
-        return stundenList;
+        sqLiteDatabase.close();
 
+        //sqLiteDatabase.close();
+        return lessons;
     }
 
-    public List<Type_Stunde> getStundenTag(String tag, int woche)
+    /**
+     * Anzahl der DS in der Tabelle
+     * @return Anzahl der DS in der Tabelle {@see DATABASE_NAME}
+     */
+    public long countDS()
     {
-
-        List<Type_Stunde> stundenList = new ArrayList<Type_Stunde>();
-        // Select All Query
-        String selectQuery = "SELECT * FROM " + TABLE_STUNDEN
-                + " WHERE TAG = '" + tag + "' AND WOCHE = "
-                + Integer.toString(woche) + "  GROUP BY STUNDE ORDER BY STUNDE";
-        Log.d("QUERY", selectQuery);
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst())
-        {
-            do
-            {
-                Type_Stunde type_Stunde = new Type_Stunde();
-                type_Stunde.setID(Integer.parseInt(cursor.getString(0)));
-                type_Stunde.setWoche(Integer.parseInt(cursor.getString(1)));
-                type_Stunde.setTag(cursor.getString(2));
-                type_Stunde.setStunde(Integer.parseInt(cursor.getString(3)));
-                type_Stunde.setName(cursor.getString(4));
-                type_Stunde.setTyp(cursor.getString(5));
-                type_Stunde.setRaum(cursor.getString(6));
-
-                // Adding contact to list
-                stundenList.add(type_Stunde);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        // return contact list
-        return stundenList;
-
+        return DatabaseUtils.queryNumEntries(getReadableDatabase(), TABLE_NAME);
     }
-
-    // Getting contacts Count
-    public int getStundeCount()
-    {
-
-        String countQuery = "SELECT  * FROM " + TABLE_STUNDEN;
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
-        db.close();
-        // return count
-        return cursor.getCount();
-
-    }
-
-    // Updating single contact
-    public int updateStunde(Type_Stunde type_Stunde)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_WOCHE, type_Stunde.getWoche());
-        values.put(KEY_TAG, type_Stunde.getTag());
-        values.put(KEY_STUNDE, type_Stunde.getStunde());
-        values.put(KEY_NAME, type_Stunde.getName());
-        values.put(KEY_TYP, type_Stunde.getTyp());
-        values.put(KEY_RAUM, type_Stunde.getRaum());
-
-        // updating row
-        int code = db.update(TABLE_STUNDEN, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(type_Stunde.getID())});
-        db.close();
-        return code;
-
-    }
-
-    // Deleting single contact
-    public void deleteStunde(Type_Stunde type_Stunde)
-    {
-        try
-        {
-            Log.d("Deleting",
-                    type_Stunde.getStunde() + " " + type_Stunde.getWoche() + " "
-                            + type_Stunde.getName() + " " + type_Stunde.getTyp() + " "
-                            + type_Stunde.getTyp() + " "
-            );
-
-            SQLiteDatabase db = this.getWritableDatabase();
-            db.delete(TABLE_STUNDEN, KEY_ID + " = ?",
-                    new String[]{String.valueOf(type_Stunde.getID())});
-            db.close();
-        } catch (Exception e)
-        {
-
-        }
-        //
-    }
-
-    public void overwriteStunde(Type_Stunde type_Stunde)
-    {
-
-        String selectQuery = "Delete FROM " + TABLE_STUNDEN + " WHERE TAG = '"
-                + type_Stunde.getTag() + "' AND WOCHE = " + type_Stunde.getWoche()
-                + " AND STUNDE = " + type_Stunde.getStunde();
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(selectQuery);
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_WOCHE, type_Stunde.getWoche());
-        values.put(KEY_TAG, type_Stunde.getTag());
-        values.put(KEY_STUNDE, type_Stunde.getStunde());
-        values.put(KEY_NAME, type_Stunde.getName());
-        values.put(KEY_TYP, type_Stunde.getTyp());
-        values.put(KEY_RAUM, type_Stunde.getRaum());
-
-        // Inserting Row
-        db.insert(TABLE_STUNDEN, null, values);
-        db.close(); // Closing database connection
-
-    }
-
 }

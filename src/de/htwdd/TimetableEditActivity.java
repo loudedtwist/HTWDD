@@ -32,6 +32,7 @@ public class TimetableEditActivity extends FragmentActivity
         // Lade Stunden aus DB
         DatabaseHandlerTimetable timetable = new DatabaseHandlerTimetable(context);
         ArrayList<Lesson> lessons = timetable.getDS(week, day, ds);
+        timetable.close();
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment;

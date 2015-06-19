@@ -78,6 +78,7 @@ public class TimetableFragment extends Fragment
             DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(context);
             if (databaseHandlerTimetable.countDS() == 0)
                 loadTimetable();
+            databaseHandlerTimetable.close();
         }
 
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
