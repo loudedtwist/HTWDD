@@ -221,10 +221,14 @@ public class TimetableAdapter extends BaseAdapter
                         layout.setBackgroundColor(context.getResources().getColor(R.color.faded_orange));
                         textViewType.setText(lessonType[1]);
                         break;
-                    default:
+                    case 2:
                         layout.setBackgroundColor(context.getResources().getColor(R.color.faded_green));
                         textViewType.setText(lessonType[2]);
                         break;
+                    default:
+                        layout.setBackgroundColor(context.getResources().getColor(R.color.faded_magenta));
+                        textViewType.setText(lessonType[3]);
+
                 }
         }
         return view;

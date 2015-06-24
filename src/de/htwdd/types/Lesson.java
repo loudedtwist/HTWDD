@@ -2,10 +2,6 @@ package de.htwdd.types;
 
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import de.htwdd.R;
 
 public class Lesson implements Cloneable
 {
@@ -50,6 +46,9 @@ public class Lesson implements Cloneable
                 break;
             case 2:
                 type = "Ü";
+                break;
+            default:
+                type = "sonst.";
                 break;
         }
     }
