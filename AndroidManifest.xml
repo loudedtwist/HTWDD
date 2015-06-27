@@ -57,7 +57,7 @@
         </activity>
 
         <!-- Services -->
-        <service android:name=".WidgeTimetableService"/>
+        <service android:name=".WidgetTimetableService"/>
 
         <!-- Widgets -->
         <receiver

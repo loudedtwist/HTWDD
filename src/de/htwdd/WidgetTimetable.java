@@ -24,7 +24,7 @@ public class WidgetTimetable extends AppWidgetProvider
     {
         Log.i("Widget", "onUpdate");
 
-        Intent intent = new Intent(context.getApplicationContext(), WidgeTimetableService.class);
+        Intent intent = new Intent(context.getApplicationContext(), WidgetTimetableService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
 
         if (pending == null)
@@ -46,7 +46,7 @@ public class WidgetTimetable extends AppWidgetProvider
         ComponentName name = new ComponentName(context, WidgetTimetable.class);
         int [] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(name);
 
-        Intent intent = new Intent(context.getApplicationContext(), WidgeTimetableService.class);
+        Intent intent = new Intent(context.getApplicationContext(), WidgetTimetableService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
 
         final AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

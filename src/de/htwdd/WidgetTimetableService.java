@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
 import android.widget.RemoteViews;
 
 import java.text.DateFormatSymbols;
@@ -18,7 +17,7 @@ import java.util.GregorianCalendar;
 import de.htwdd.classes.LessonSearch;
 import de.htwdd.types.Lesson;
 
-public class WidgeTimetableService extends Service
+public class WidgetTimetableService extends Service
 {
     @Override
     public void onDestroy()
