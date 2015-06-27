@@ -57,7 +57,10 @@ public class TimetableDetailsAdapter extends BaseAdapter
         String[] lessonType = view.getResources().getStringArray(R.array.lesson_type);
 
         TextView textType = (TextView) view.findViewById(R.id.timetable_edit_LessonType);
-        textType.setText(lessonType[lesson.getTypeInt()] + " " + view.getResources().getString(R.string.timetable_details_by) + " " + (lesson.professor!=null?lesson.professor:""));
+        if (lesson.professor==null)
+            textType.setText(lessonType[lesson.getTypeInt()]);
+        else
+            textType.setText(lessonType[lesson.getTypeInt()] + " " + view.getResources().getString(R.string.timetable_details_by) + " " + (lesson.professor!=null?lesson.professor:""));
 
         // Zeige Raum an
         TextView textRoom = (TextView) view.findViewById(R.id.timetable_edit_LessonRoom);
