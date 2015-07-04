@@ -132,8 +132,8 @@ public class WidgetTimetableService extends Service
         int ds = current_ds;
 
         do {
-            // DS herhöhen
-            if ((ds++)%8==0)
+            // DS erhöhen
+            if ((++ds)%7==0)
             {
                 ds=1;
                 nextLesson.add(Calendar.DAY_OF_MONTH,1);
@@ -145,6 +145,7 @@ public class WidgetTimetableService extends Service
             // Suche nach passender Stunde
             single=lessonSearch.searchLesson(lessons, nextLesson.get(Calendar.WEEK_OF_YEAR));
 
+            // Suche solange nach einer passenden Stunde bis eine Stunde gefunden wurde. Nach über zwei Tagen wird die Suche abgebrochen
         }while (single==0 && (nextLesson.get(Calendar.WEEK_OF_YEAR) - calendar.get(Calendar.WEEK_OF_YEAR)) < 2);
 
         if (single!=0)
