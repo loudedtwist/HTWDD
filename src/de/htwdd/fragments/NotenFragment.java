@@ -1,7 +1,6 @@
 package de.htwdd.fragments;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,7 +33,7 @@ public class NotenFragment extends Fragment
     private int mode = 0;
 
     private NotenListAdapter mAdapter;
-    private Context context;
+    private View view;
     private int countNoten;
     List<String> listDataHeader = new ArrayList<String>();
     HashMap<String, List<Grade>> listDataChild = new HashMap<String, List<Grade>>();
@@ -49,36 +48,29 @@ public class NotenFragment extends Fragment
         if (getArguments() != null)
             mode = getArguments().getInt("mode");
 
-        context = inflater.getContext();
-
-        View view = inflater.inflate(R.layout.fragment_noten, container, false);
+        view = inflater.inflate(R.layout.fragment_noten, container, false);
 
         // Get the ListView
         ExpandableListView expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
 
-        mAdapter = new NotenListAdapter(context, listDataHeader, listDataChild);
+        mAdapter = new NotenListAdapter(getActivity(), listDataHeader, listDataChild);
 
         // setting list adapter
         expandableListView.setAdapter(mAdapter);
 
-        return view;
-    }
 
-    @Override
-    public void onActivityCreated(final Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-
-        Noten noten = new Noten(context);
+        // Hole lokale Noten
+        Noten noten = new Noten(getActivity());
         noten.getNotenLocal();
         countNoten = noten.noten.length;
 
         // Hinweis falls keine Noten vorhanden
         if (countNoten == 0)
         {
-            LinearLayout hinweis = (LinearLayout) getActivity().findViewById(R.id.NotenHinweis);
-            hinweis.setVisibility(View.VISIBLE);
-            TextView message = (TextView) getActivity().findViewById(R.id.NotenHinweisText);
+            LinearLayout layoutHinweis = (LinearLayout) view.findViewById(R.id.NotenHinweis);
+            TextView message = (TextView) view.findViewById(R.id.NotenHinweisText);
+
+            layoutHinweis.setVisibility(View.VISIBLE);
             message.setText("Keine Noten vorhanden!");
         }
 
@@ -86,7 +78,6 @@ public class NotenFragment extends Fragment
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         if ((sharedPreferences.getString("bib", "").length() < 5) || (sharedPreferences.getString("RZLogin", "").length()) < 3)
         {
-            // Use the Builder class for convenient dialog construction
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage("Für die Notenanzeige müssen sNummer und RZ-Login angegeben werden\n\nSoll der Konfigurations-Assistent gestartet werden?")
                     .setTitle(R.string.noData)
@@ -104,21 +95,21 @@ public class NotenFragment extends Fragment
                     {
                         public void onClick(DialogInterface dialog, int id)
                         {
-                            LinearLayout hinweis = (LinearLayout) getActivity().findViewById(R.id.NotenHinweis);
+                            LinearLayout hinweis = (LinearLayout) view.findViewById(R.id.NotenHinweis);
                             hinweis.setVisibility(View.VISIBLE);
-                            TextView message = (TextView) getActivity().findViewById(R.id.NotenHinweisText);
+                            TextView message = (TextView) view.findViewById(R.id.NotenHinweisText);
                             message.setText("Die Noten konnten auf Grund von fehlenden Daten nicht aktualisiert werden.");
                         }
                     }).show();
         }
-        // Button aktuallisieren wurde gedrückt
+        // Button aktualisieren wurde gedrückt
         else if (mode == 1)
         {
-            LinearLayout hinweis = (LinearLayout) getActivity().findViewById(R.id.NotenHinweis);
+            LinearLayout hinweis = (LinearLayout) view.findViewById(R.id.NotenHinweis);
             hinweis.setVisibility(View.VISIBLE);
-            ProgressBar progressBar = (ProgressBar) getActivity().findViewById(R.id.NotenProgressBar);
+            ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.NotenProgressBar);
             progressBar.setVisibility(View.VISIBLE);
-            TextView message = (TextView) getActivity().findViewById(R.id.NotenHinweisText);
+            TextView message = (TextView) view.findViewById(R.id.NotenHinweisText);
             message.setText("Lade Noten...");
 
             WorkerGetNoten worker = new WorkerGetNoten();
@@ -126,6 +117,8 @@ public class NotenFragment extends Fragment
         }
         else
             sortData(noten);
+
+        return view;
     }
 
     private void sortData(Noten noten)
@@ -152,7 +145,7 @@ public class NotenFragment extends Fragment
         @Override
         protected Noten doInBackground(Void... voids)
         {
-            Noten noten = new Noten(context);
+            Noten noten = new Noten(getActivity());
             responseCode = noten.getNotenHIS();
 
             if (responseCode==200)
@@ -212,9 +205,9 @@ public class NotenFragment extends Fragment
                     case 200:
                         // Hinweis ob neue Noten vorhanden
                         if (countNoten == (countNoten = noten.noten.length))
-                            Toast.makeText(context,"Keine neuen Noten",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Keine neuen Noten",Toast.LENGTH_SHORT).show();
                         else
-                            Toast.makeText(context,"Neue Noten heruntergeladen",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Neue Noten heruntergeladen",Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         hinweis = (LinearLayout)  getActivity().findViewById(R.id.NotenHinweis);

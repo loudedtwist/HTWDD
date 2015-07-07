@@ -151,6 +151,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 
             // Noten neuladen
             case 95:
+                // Wechsel auf richtigen Tab
                 getSupportActionBar().setSelectedNavigationItem(0);
 
                 args.putInt("mode",1);
@@ -160,16 +161,7 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         .beginTransaction()
                         .replace(R.id.content_frame, mContent)
                         .commit();
-                Handler h12 = new Handler();
-                h12.postDelayed(new Runnable()
-                {
-                    public void run()
-                    {
-                        getSlidingMenu().showContent();
-                    }
-                }, 50);
                 break;
-
             case 96:
                 DatabaseHandlerRoomTimetable db = new DatabaseHandlerRoomTimetable(this);
                 db.purge();
@@ -617,6 +609,8 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         // Argumente übergeben
         mContent.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mContent).commit();
+
+        // Sliding-Menü schliesen
         Handler h = new Handler();
         h.postDelayed(new Runnable()
         {
