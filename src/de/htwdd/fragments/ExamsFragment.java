@@ -56,15 +56,18 @@ public class ExamsFragment extends Fragment
         context             = paramLayoutInflater.getContext();
         examsAdapter        = new ExamsAdapter(getActivity(), examses);
         ListView listView   = (ListView) view.findViewById(R.id.listExams);
-        listView.setAdapter(this.examsAdapter);
 
         // Füge Footer hinzu
-        View footer = paramLayoutInflater.inflate(R.layout.fragment_exams_footer, paramViewGroup, false);
+        View footer = paramLayoutInflater.inflate(R.layout.fragment_exams_footer, listView, false);
         listView.addFooterView(footer);
+
+        // Setze Adapter
+        listView.setAdapter(examsAdapter);
 
         // Prüfe ob alle Daten zur Abfrage vorhanden sind
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (((sharedPreferences.getString("im", "").length() != 2) || (sharedPreferences.getString("stdg", "").length() != 3)) && (sharedPreferences.getString("prof_name", "").length() <= 3))
+        if (((sharedPreferences.getString("im", "").length() != 2) || (sharedPreferences.getString("stdg", "").length() != 3) || (sharedPreferences.getString("abschluss", "").length() != 1))
+                && (sharedPreferences.getString("prof_name", "").length() <= 3))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(R.string.noData)
@@ -84,6 +87,7 @@ public class ExamsFragment extends Fragment
                         {
                             TextView message = (TextView) getActivity().findViewById(R.id.examNotes);
                             message.setText(R.string.exam_noData2);
+                            getActivity().findViewById(R.id.examProgressbar).setVisibility(View.GONE);
                         }
                     }).show();
 
