@@ -70,9 +70,7 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
     public void clearTable()
     {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        //sqLiteDatabase.execSQL("DELETE FROM "+TABLE_NAME);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
-        onCreate(sqLiteDatabase);
+        sqLiteDatabase.execSQL("DELETE FROM "+TABLE_NAME);
         sqLiteDatabase.close();
     }
 
@@ -225,6 +223,51 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
                 lesson.type         = cursor.getString(1);
                 lesson.weeksOnly    = cursor.getString(2);
                 lesson.rooms        = cursor.getString(3);
+                lessons.add(lesson);
+
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+
+        //sqLiteDatabase.close();
+        return lessons;
+    }
+
+    /**
+     * Gibt alle Lessons(wichtigste Parameter) einer gegebenen Woche zurück
+     * @param week Kalenderwoche des Jahres
+     * @return ArrayList von Lessons
+     */
+    public ArrayList<Lesson> getShortWeek(int week)
+    {
+        ArrayList<Lesson> lessons       = new ArrayList<Lesson>();
+        int week_db                     = week%2 == 0?2:week%2;
+
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT "
+                + COLUMN_NAME_DAY + COMMA_SEP
+                + COLUMN_NAME_DS + COMMA_SEP
+                + COLUMN_NAME_LESSONTAG + COMMA_SEP
+                + COLUMN_NAME_TYP + COMMA_SEP
+                + COLUMN_NAME_WEEKSONLY + COMMA_SEP
+                + COLUMN_NAME_ROOMS +
+                " FROM " + TABLE_NAME +
+                " WHERE ("+ COLUMN_NAME_WEEK+"="+week_db+" OR "+ COLUMN_NAME_WEEK+"=0)", null);
+
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                Lesson lesson = new Lesson();
+
+                lesson.day          = cursor.getInt(0);
+                lesson.ds          = cursor.getInt(1);
+                lesson.lessonTag    = cursor.getString(2);
+                lesson.type         = cursor.getString(3);
+                lesson.weeksOnly    = cursor.getString(4);
+                lesson.rooms        = cursor.getString(5);
                 lessons.add(lesson);
 
             }while (cursor.moveToNext());

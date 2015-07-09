@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -28,6 +29,7 @@ import de.htwdd.TimetableEditActivity;
 import de.htwdd.WizardWelcome;
 import de.htwdd.classes.HTTPDownloader;
 import de.htwdd.classes.Timetable;
+import de.htwdd.types.Lesson;
 
 
 public class TimetableFragment extends Fragment
@@ -36,8 +38,12 @@ public class TimetableFragment extends Fragment
     private String Stg;
     private String StgGrp;
     private String Prof;
+    private int week;
     private SharedPreferences sharedPreferences;
     private Context context;
+    // Liste mit allen Stunden der aktuellen Woche
+    private ArrayList<Lesson> lessons_week = new ArrayList<Lesson>();
+
     public TimetableAdapter timetableAdapter;
 
 
@@ -47,24 +53,20 @@ public class TimetableFragment extends Fragment
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         context = inflater.getContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        final int week = getArguments().getInt("week", new GregorianCalendar().get(Calendar.WEEK_OF_YEAR));
+        week = getArguments().getInt("week", new GregorianCalendar().get(Calendar.WEEK_OF_YEAR));
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_timetable, container, false);
 
+        // Hole Stunden aus DB
+        loadLessons();
+
         // Setze Adapter
-        timetableAdapter = new TimetableAdapter(getActivity());
-        timetableAdapter.week = week;
+        timetableAdapter = new TimetableAdapter(getActivity(), lessons_week, week);
 
         GridView gridView = (GridView) view.findViewById(R.id.Timetable);
         gridView.setAdapter(timetableAdapter);
@@ -118,8 +120,23 @@ public class TimetableFragment extends Fragment
     {
         super.onActivityResult(requestCode, resultCode, data);
 
+        loadLessons();
         timetableAdapter.notifyDataSetChanged();
     }
+
+
+    /**
+     * Lädt die Stunden der aktuellen Woche {@see week} aus der Datenbank und speichert sie in einer
+     * Liste {@see lesson_week}
+     */
+    void loadLessons()
+    {
+        DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(context);
+        lessons_week.clear();
+        lessons_week.addAll(databaseHandlerTimetable.getShortWeek(week));
+        databaseHandlerTimetable.close();
+    }
+
 
     private void loadTimetable()
     {
