@@ -111,24 +111,28 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </TableRow>
                     <TableRow android:layout_width="wrap_content"
-                              android:layout_height="wrap_content">
+                              android:layout_height="wrap_content"
+                        android:visibility="gone">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="10sp"
                             android:paddingRight="5sp"
                             android:text="@string/management_semester_free7"
-                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:visibility="gone" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="10sp"
                             android:paddingRight="5sp"
                             android:text="@string/management_semester_free8"
-                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:visibility="gone" />
                     </TableRow>
                     <TableRow android:layout_width="wrap_content"
-                              android:layout_height="wrap_content">
+                              android:layout_height="wrap_content"
+                        android:visibility="gone">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
