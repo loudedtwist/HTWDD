@@ -21,6 +21,9 @@ import de.htwdd.types.Lesson;
 
 public class WidgetTimetableService extends Service
 {
+
+    public static final String UPDATE = "update";
+
     @Override
     public void onDestroy()
     {
@@ -31,18 +34,11 @@ public class WidgetTimetableService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        Log.i("Service", "onStartCommand");
+        int appWidgetId = intent.getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        int[] appWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
 
-        // Service beenden wenn keine Widgets mehr vorhanden
-        if (appWidgetIds.length==0)
-            this.stopService(intent);
-
-        for (int appWidgetId : appWidgetIds) {
-            Log.i("Service", "update "+appWidgetId);
-            updateAppWidget(getApplicationContext(), appWidgetManager, appWidgetId);
-        }
+        Log.i("Service", "onStartCommand: update "+appWidgetId);
+        updateAppWidget(getApplicationContext(), appWidgetManager, appWidgetId);
 
         return super.onStartCommand(intent, flags, startId);
     }

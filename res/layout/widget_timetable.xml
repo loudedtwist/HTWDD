@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/widget_timetable_appLogo"
         android:src="@drawable/logo" />
 
     <LinearLayout
