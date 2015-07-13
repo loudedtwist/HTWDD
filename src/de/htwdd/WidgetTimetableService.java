@@ -1,5 +1,6 @@
 package de.htwdd;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import de.htwdd.classes.LessonSearch;
+import de.htwdd.fragments.ResponsiveUIActivity;
 import de.htwdd.types.Lesson;
 
 public class WidgetTimetableService extends Service
@@ -179,6 +181,11 @@ public class WidgetTimetableService extends Service
 
         // Datenbank schließen
         databaseHandlerTimetable.close();
+
+        // OnClick-Listener zum direkten starten der App
+        Intent intent = new Intent(context, ResponsiveUIActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,0);
+        views.setOnClickPendingIntent(R.id.widget_timetable_appLogo, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
