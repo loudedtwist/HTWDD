@@ -120,7 +120,7 @@
     <string name="overview_tomorrow">morgen</string>
     <string name="overview_today">heute</string>
     <string name="overview_show_timetable">Stundenplan anzeigen</string>
-    <string name="overview_show_grades">Notem anzeigen</string>
+    <string name="overview_show_grades">Noten anzeigen</string>
     <string name="overview_show_mensa">Mensa anzeigen</string>
     <string name="overview_show_config">Konfigurations-Assistent starten</string>
 
