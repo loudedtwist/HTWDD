@@ -344,6 +344,11 @@ public class CardFragment extends Fragment
         // Nächste Stunde suchen
         LessonSearch lessonSearch = new LessonSearch();
         Calendar nextLesson = GregorianCalendar.getInstance();
+
+        // Vorlesungszeit vorbei? Dann auf nächsten Tag springen
+        if (current_time > LessonSearch.lessonEndTimes[7-1])
+            nextLesson.add(Calendar.DAY_OF_YEAR, +1);
+
         int single;
         int ds = current_ds;
 
