@@ -458,9 +458,8 @@ public class CardFragment extends Fragment
      */
     private void showUpdateMessage(String AlternateUpdateMessage)
     {
-        // Schalte Kachel sichtbar
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.UpdateMessage);
-        linearLayout.setVisibility(View.VISIBLE);
+        // Layout der gesamten Update-Kachel
+        LinearLayout linearLayoutMain = (LinearLayout) view.findViewById(R.id.UpdateMessage);;
 
         // Alternativen Text anzeigen
         if(!AlternateUpdateMessage.isEmpty())
@@ -469,31 +468,39 @@ public class CardFragment extends Fragment
             UpdateMessage.setText(Html.fromHtml(AlternateUpdateMessage));
         }
 
-        // Button zum Updaten hinzufügen
-        Button ButtonUpdate;
-        if (Build.VERSION.SDK_INT >= 14)
+        // Wenn Kachel schon angezeigt wird, muss kein Button mehr hinzugefügt werden
+        if (linearLayoutMain.getVisibility() != View.VISIBLE)
         {
-            ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
-            ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
-        }
-        else
-            ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
-
-        ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        ButtonUpdate.setText("Download App");
-
-        linearLayout = (LinearLayout) view.findViewById(R.id.LinearLayout04);
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
-        ButtonUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
-                startActivity(browserIntent);
+            // Button zum Updaten hinzufügen
+            Button ButtonUpdate;
+            if (Build.VERSION.SDK_INT >= 14)
+            {
+                ButtonUpdate = new Button(getActivity(), null, android.R.attr.borderlessButtonStyle);
+                ButtonUpdate.setTextColor(Color.parseColor("#33B5E5"));
             }
-        });
+            else
+                ButtonUpdate = new Button(getActivity(), null, android.R.attr.buttonStyleSmall);
 
-        linearLayout.addView(ButtonUpdate, layoutParams);
+            ButtonUpdate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            ButtonUpdate.setText("Download App");
+
+            LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.LinearLayout04);
+            LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+            ButtonUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://htwdd.github.io/HTWDD-latest.apk"));
+                    startActivity(browserIntent);
+                }
+            });
+
+            // Button hinzufügen
+            linearLayout.addView(ButtonUpdate, layoutParams);
+        }
+
+        // Schalte Kachel sichtbar
+        linearLayoutMain.setVisibility(View.VISIBLE);
     }
 
 
