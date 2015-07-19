@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:id="@+id/TimetableLayout"
-              android:gravity="center_horizontal"
+              android:gravity="center_vertical|center_horizontal"
               android:background="@color/faded_grey">
 
     <TextView
