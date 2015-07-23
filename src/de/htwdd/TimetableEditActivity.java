@@ -45,7 +45,10 @@ public class TimetableEditActivity extends FragmentActivity
         else fragment = new TimetableEditSelectFragment();
 
         fragment.setArguments(bundle);
-        fragmentManager.beginTransaction().replace(R.id.menu_frame,fragment).commit();
+
+        // Bei Orientation change Fragment nicht neu einfügen
+        if (savedInstanceState == null)
+            fragmentManager.beginTransaction().replace(R.id.menu_frame,fragment).commit();
     }
 
 }
