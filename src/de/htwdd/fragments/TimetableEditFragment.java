@@ -42,7 +42,7 @@ public class TimetableEditFragment extends Fragment
             week    = getArguments().getInt("Week");
             day     = getArguments().getInt("Day");
             ds      = getArguments().getInt("DS");
-            index   = getArguments().getInt("Index");
+            index   = getArguments().getInt("index");
             createNew= getArguments().getBoolean("new", false);
         }
     }

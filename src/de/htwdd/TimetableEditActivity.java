@@ -37,11 +37,16 @@ public class TimetableEditActivity extends FragmentActivity
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment;
 
+        // Nur eine Stunde gefunden -> gleich bearbeiten
         if (lessons.size() <= 1)
         {
-            bundle.putInt("Index", 0);
+            bundle.putInt("index", 0);
             fragment = new TimetableEditFragment();
         }
+        // Mehrere Stunden gefunden, allerdings wurde bereits eine Stunde ausgewählt -> bearbeiten
+        else if (bundle.getInt("index", -1) != -1)
+            fragment = new TimetableEditFragment();
+        // Mehrere Stunden gefunden, Auswahl anzeigen
         else fragment = new TimetableEditSelectFragment();
 
         fragment.setArguments(bundle);
