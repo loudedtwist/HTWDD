@@ -40,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lesson_Room"
                 android:layout_column="1"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:minWidth="80dp" />
 
             <TextView
                 android:id="@+id/timetable_edit_LessonRoom"
@@ -48,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                android:paddingLeft="@dimen/app_table_margin"
+                android:paddingRight="@dimen/app_table_margin" />
         </TableRow>
 
         <TableRow
@@ -60,7 +62,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/timetable_edit_LessonWeek"
                 android:layout_column="1"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:minWidth="80dp" />
 
             <TextView
                 android:id="@+id/timetable_edit_LessonWeek"
@@ -68,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                android:paddingLeft="@dimen/app_table_margin"
+                android:paddingRight="@dimen/app_table_margin" />
         </TableRow>
 
         <TableRow
@@ -80,7 +84,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/timetable_edit_LessonDay"
                 android:layout_column="1"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:minWidth="80dp" />
 
             <TextView
                 android:id="@+id/timetable_edit_LessonDay"
@@ -88,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                android:paddingLeft="@dimen/app_table_margin"
+                android:paddingRight="@dimen/app_table_margin" />
         </TableRow>
 
         <TableRow
@@ -100,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/timetable_edit_LessonDS"
                 android:layout_column="1"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:minWidth="80dp" />
 
             <TextView
                 android:id="@+id/timetable_edit_LessonDS"
@@ -108,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                android:paddingLeft="@dimen/app_table_margin"
+                android:paddingRight="@dimen/app_table_margin" />
         </TableRow>
 
         <TableRow
@@ -120,7 +128,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/timetable_edit_LessonWeeksOnly"
                 android:layout_column="1"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:minWidth="80dp" />
 
             <TextView
                 android:id="@+id/timetable_edit_LessonWeeksOnly"
@@ -128,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                android:paddingLeft="@dimen/app_table_margin"
+                android:paddingRight="@dimen/app_table_margin" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>
