@@ -236,6 +236,7 @@ public class TimetableFragment extends Fragment
             }
 
             // Adapter über neue Daten informieren
+            loadLessons();
             timetableAdapter.notifyDataSetChanged();
         }
     }
