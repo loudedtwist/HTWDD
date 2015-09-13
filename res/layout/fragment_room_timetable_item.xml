@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:paddingBottom="8.0dip"
+              android:paddingLeft="@dimen/sidemargin"
+              android:paddingRight="@dimen/sidemargin"
+              android:paddingTop="8.0dip"
+        android:descendantFocusability="blocksDescendants">
+
+    <RelativeLayout
+        style="@style/nowCardStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_room_timetable_titel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/overview_lesson_day"
+            android:layout_below="@+id/fragment_room_timetable_titel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/overview_today"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/overview_lessons_list"
+            android:layout_marginStart="70dp"
+            android:layout_alignTop="@+id/overview_lesson_day"
+            android:layout_marginTop="5dp"/>
+    </RelativeLayout>
+</LinearLayout>

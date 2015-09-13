@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -26,7 +25,6 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import de.htwdd.DatabaseHandlerRoomTimetable;
 import de.htwdd.Preference;
 import de.htwdd.R;
 
@@ -44,7 +42,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
 {
     private Fragment mContent;
     public int mode = 0;
-    public String lastraum = "";
     public Boolean usedbackbutton = false;
 
     @Override
@@ -162,71 +159,37 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                         .replace(R.id.content_frame, mContent)
                         .commit();
                 break;
-            case 96:
-                DatabaseHandlerRoomTimetable db = new DatabaseHandlerRoomTimetable(this);
-                db.purge();
 
-                mContent = new BelegungsFragment();
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content_frame, mContent)
-                        .commit();
-                Handler h = new Handler();
-                h.postDelayed(new Runnable()
-                {
-                    public void run()
-                    {
-                        getSlidingMenu().showContent();
-                    }
-                }, 50);
-                break;
-
+            // Raum neu hinzufügen
             case 97:
-                AlertDialog.Builder editalert = new AlertDialog.Builder(this);
+                final EditText editText = new EditText(this);
 
-                editalert.setTitle("Raum hinzufügen");
-                editalert.setMessage("Geb die Raumnummer mit Leerzeichen zwischen Gebäude und Zimmernummer ein\n(z.B. S 305)");
+                // Erstelle Dialog zur Eingabe der Raumnummer
+                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
 
-
-                final EditText input = new EditText(this);
-                editalert.setView(input);
-
-                editalert.setPositiveButton("Hinzufügen", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int whichButton)
-                    {
-
-                        String raum = input.getText().toString();
-
-                        if (!raum.contains(" "))
-                            raum = raum.substring(0, 1) + " " + raum.substring(1);
-                        String firstchar = raum.substring(0, 1);
-                        String leftover = raum.substring(1);
-                        firstchar = firstchar.toUpperCase();
-                        raum = raum.toUpperCase();
-
-                        Toast.makeText(ResponsiveUIActivity.this, "Suche nach Raum " + firstchar + leftover, Toast.LENGTH_SHORT).show();
-
-                        args.putString("raum", firstchar + leftover);
-                        mContent = new BelegungsFragment();
-                        mContent.setArguments(args);
-
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.content_frame, mContent)
-                                .commit();
-                        Handler h = new Handler();
-                        h.postDelayed(new Runnable()
-                        {
-                            public void run()
-                            {
-                                getSlidingMenu().showContent();
-                            }
-                        }, 50);
-                    }
-                });
-
-                editalert.show();
+                alertBuilder.setTitle(R.string.room_timetable_add_room)
+                    .setMessage(R.string.room_timetable_add_room_message)
+                    .setView(editText)
+                    .setPositiveButton(R.string.room_timetable_add, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            String room = editText.getText().toString();
+                            args.putString("add_room", room);
+                            mContent = new RoomTimetableFragment();
+                            mContent.setArguments(args);
+                            getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.content_frame, mContent)
+                                    .commit();
+                        }
+                    })
+                    .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    })
+                    .show();
                 break;
 
             // Stundenplan aktualisieren
@@ -342,29 +305,25 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 break;
 
             case 6:
-                try
-                {
-                    getSupportActionBar().removeAllTabs();
-                    getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-                    getSupportActionBar().setTitle("Belegungsplan");
+                getSupportActionBar().removeAllTabs();
+                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+                getSupportActionBar().setTitle("Belegungsplan");
 
-                    mContent = new BelegungsFragment();
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content_frame, mContent)
-                            .commit();
-                    Handler h53 = new Handler();
-                    h53.postDelayed(new Runnable()
+                // Fragement erstellen
+                mContent = new RoomTimetableFragment();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, mContent)
+                        .commit();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable()
+                {
+                    public void run()
                     {
-                        public void run()
-                        {
-                            getSlidingMenu().showContent();
-                        }
-                    }, 50);
-                } catch (Exception e)
-                {
-                }
-
+                        getSlidingMenu().showContent();
+                    }
+                }, 50);
                 break;
 
             case 8:
@@ -550,22 +509,8 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         Bundle args = new Bundle();
         int nextweek = week==52?1:week+1;
 
-        // Übersicht Raumplan
-        if ((mode == 6) && lastraum != null)
-        {
-            args.putInt("fragmentheight",mContent.getView().getHeight());
-            args.putInt("fragmentwidth", mContent.getView().getWidth());
-            args.putString("raum", lastraum);
-
-            if (tab.getText().toString().contains("aktuelle"))
-                args.putInt("weekID", week);
-            else if (tab.getText().toString().contains("nächste"))
-                args.putInt("weekID", nextweek);
-
-            mContent = new RaumplanFragment();
-        }
         // Stundenplan
-        else if(mode == 3 && tab.getText().toString().contains("aktuelle"))
+        if(mode == 3 && tab.getText().toString().contains("aktuelle"))
         {
             args.putInt("week", week);
             mContent = new TimetableFragment();
@@ -646,10 +591,6 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
                 break;
 
             case 6:
-                menu.add(0, 96, 0, "Purge")
-                        .setIcon(R.drawable.ic_menu_delete)
-                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
                 menu.add(0, 97, 0, "Hinzufügen")
                         .setIcon(R.drawable.ic_menu_add)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -660,51 +601,5 @@ public class ResponsiveUIActivity extends SlidingFragmentActivity implements Act
         }
 
         return true;
-    }
-
-    public void showRaum(String raum)
-    {
-        Bundle args = new Bundle();
-        args.putString("raum", raum);
-        mContent = new BelegungsFragment();
-        mContent.setArguments(args);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content_frame, mContent)
-                .commit();
-        Handler h = new Handler();
-        h.postDelayed(new Runnable()
-        {
-            public void run()
-            {
-                getSlidingMenu().showContent();
-            }
-        }, 50);
-    }
-
-    public void switchtoRoom(String raum)
-    {
-        lastraum = raum;
-
-        int week = new GregorianCalendar().get(Calendar.WEEK_OF_YEAR);
-        int nextweek = week==52?1:week+1;
-
-        ActionBar.Tab tab, tab2;
-
-        getSupportActionBar().removeAllTabs();
-        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        getSupportActionBar().setTitle("Belegungsplan");
-
-        tab = getSupportActionBar().newTab();
-        tab.setText("aktuelle Woche (" + week + ")");
-        tab.setTabListener(this);
-        getSupportActionBar().addTab(tab);
-
-        tab2 = getSupportActionBar().newTab();
-        tab2.setText("nächste Woche (" + nextweek + ")");
-        tab2.setTabListener(this);
-        getSupportActionBar().addTab(tab2);
     }
 }

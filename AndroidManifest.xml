@@ -46,7 +46,6 @@
             android:name=".Preference"
             android:label="Einstellungen" >
         </activity>
-
         <activity
             android:name=".TimetableEditActivity"
             android:label="@string/timetable_edit_lesson" >
@@ -55,14 +54,22 @@
             android:name=".TimetableDetailsActivity"
             android:label="@string/title_activity_timetable_details" >
         </activity>
+        <activity
+            android:name=".RoomTimetableDetailsActivity"
+            android:label="@string/title_activity_room_timetable_details"
+            android:parentActivityName=".fragments.ResponsiveUIActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.htwdd.fragments.ResponsiveUIActivity" />
+        </activity>
 
         <!-- Services -->
-        <service android:name=".WidgetTimetableService"/>
+        <service android:name=".WidgetTimetableService" />
 
         <!-- Widgets -->
         <receiver
             android:name=".WidgetTimetable"
-            android:label="@string/widget_timetable_name">
+            android:label="@string/widget_timetable_name" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -71,10 +78,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_timetable" />
         </receiver>
-
         <receiver
             android:name=".WidgetMensa_6"
-            android:label="HTWDresdem Mensa">
+            android:label="HTWDresdem Mensa" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -83,7 +89,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_mensa_6" />
         </receiver>
-
         <receiver
             android:name=".WidgetMensa_4"
             android:label="HTWDresden Mensa" >

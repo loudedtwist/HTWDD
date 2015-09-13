@@ -1,8 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="false">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false">
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -373,14 +372,13 @@
                         android:paddingRight="@dimen/list_padding"
                         android:paddingTop="5dp"
                         android:layout_alignParentTop="true"
-                        android:layout_toRightOf="@+id/TextView01"
-                        android:layout_toEndOf="@+id/TextView01"
                         android:layout_alignParentEnd="true"
                         android:layout_marginLeft="72dp"
                         android:layout_marginStart="72dp"
                         android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" >
-                    </ListView>
+                        android:layout_alignParentStart="true"
+                        android:isScrollContainer="false" />
+
                 </RelativeLayout>
             </LinearLayout>
 

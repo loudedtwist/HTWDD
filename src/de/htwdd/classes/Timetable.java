@@ -5,6 +5,8 @@ import android.content.Context;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -49,6 +51,13 @@ public class Timetable
 
     public int getTimetableRoom(String Room)
     {
+        try {
+            Room = URLEncoder.encode(Room, "utf-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         return getTimetable(new HTTPDownloader("https://www2.htw-dresden.de/~app/API/GetTimetable.php?Room="+Room));
     }
 

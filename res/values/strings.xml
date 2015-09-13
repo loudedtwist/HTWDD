@@ -106,6 +106,15 @@
     <string name="timetable_details_newLesson">Neue Stunde hinzufügen</string>
     <string name="timetable_details_by">von</string>
 
+    <string name="room_timetable_no_rooms">Füge Räume hinzu indem du auf das +-Symbol drückst.</string>
+    <string name="room_timetable_add_room">Raum hinzufügen</string>
+    <string name="room_timetable_add">Hinzufügen</string>
+    <string name="room_timetable_add_room_message">Geb die Raumnummer mit Leerzeichen zwischen Gebäude und Zimmernummer ein \n(z.B. S 305)</string>
+    <string name="room_timetable_updade_success">Raumplan erfolgreich aktualisiert</string>
+    <string name="room_timetable_updade_error">Raumplan konnte nicht geladen werden!</string>
+    <string name="room_timetable_updade_notFound">Raum konnte nicht gefunden werden / enthält keine Stunden!</string>
+    <string name="room_timetable_delete">Löschen</string>
+    <string name="room_timetable_note">Belegungsplan berücksichtigt keine Zusatzveranstaltungen oder Umlegungen. Raumreservierung bitte mit Frau Neumann (Z 228 A) absprechen.</string>
 
 
     
@@ -128,5 +137,6 @@
     <string name="widget_timetable_name">HTWDresden Stundenplan</string>
 
     <string name="title_activity_timetable_details">Stunden Details</string>
+    <string name="title_activity_room_timetable_details">Belgungsplan</string>
 
 </resources>

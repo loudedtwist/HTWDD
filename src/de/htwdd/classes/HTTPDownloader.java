@@ -132,7 +132,7 @@ public class HTTPDownloader
         return null;
     }
 
-    private String getString(String Encoding)
+    protected String getString(String Encoding)
     {
         String tmp;
         StringBuilder result = new StringBuilder();

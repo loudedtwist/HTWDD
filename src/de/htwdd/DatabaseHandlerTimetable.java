@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import de.htwdd.classes.CONST;
 import de.htwdd.types.Lesson;
 
 public class DatabaseHandlerTimetable extends SQLiteOpenHelper
@@ -204,14 +205,13 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
      */
     public ArrayList<Lesson> getShortDS(int week, int day, int ds)
     {
-        ArrayList<Lesson> lessons       = new ArrayList<Lesson>();
-        int week_db                     = week%2 == 0?2:week%2;
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT "+ COLUMN_NAME_LESSONTAG + COMMA_SEP + COLUMN_NAME_TYP + COMMA_SEP + COLUMN_NAME_WEEKSONLY + COMMA_SEP + COLUMN_NAME_ROOMS +
                 " FROM " + TABLE_NAME +
-                " WHERE ("+ COLUMN_NAME_WEEK+"="+week_db+" OR "+ COLUMN_NAME_WEEK+"=0) AND "+COLUMN_NAME_DAY+"="+day+" AND "+COLUMN_NAME_DS+"="+ds,null);
+                " WHERE ("+ COLUMN_NAME_WEEK+"="+ CONST.db_week(week)+" OR "+ COLUMN_NAME_WEEK+"=0) AND "+COLUMN_NAME_DAY+"="+day+" AND "+COLUMN_NAME_DS+"="+ds,null);
 
         if (cursor.moveToFirst())
         {
@@ -241,8 +241,7 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
      */
     public ArrayList<Lesson> getShortWeek(int week)
     {
-        ArrayList<Lesson> lessons       = new ArrayList<Lesson>();
-        int week_db                     = week%2 == 0?2:week%2;
+        ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
@@ -254,7 +253,7 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
                 + COLUMN_NAME_WEEKSONLY + COMMA_SEP
                 + COLUMN_NAME_ROOMS +
                 " FROM " + TABLE_NAME +
-                " WHERE ("+ COLUMN_NAME_WEEK+"="+week_db+" OR "+ COLUMN_NAME_WEEK+"=0)", null);
+                " WHERE ("+ COLUMN_NAME_WEEK+"=" + CONST.db_week(week) + " OR "+ COLUMN_NAME_WEEK+"=0)", null);
 
         if (cursor.moveToFirst())
         {
@@ -263,7 +262,7 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
                 Lesson lesson = new Lesson();
 
                 lesson.day          = cursor.getInt(0);
-                lesson.ds          = cursor.getInt(1);
+                lesson.ds           = cursor.getInt(1);
                 lesson.lessonTag    = cursor.getString(2);
                 lesson.type         = cursor.getString(3);
                 lesson.weeksOnly    = cursor.getString(4);
@@ -275,7 +274,6 @@ public class DatabaseHandlerTimetable extends SQLiteOpenHelper
         cursor.close();
         sqLiteDatabase.close();
 
-        //sqLiteDatabase.close();
         return lessons;
     }
 

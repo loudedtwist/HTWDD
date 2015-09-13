@@ -40,6 +40,7 @@ import de.htwdd.DatabaseHandlerTimetable;
 import de.htwdd.R;
 import de.htwdd.TimetableBusyPlan;
 import de.htwdd.WizardWelcome;
+import de.htwdd.classes.CONST;
 import de.htwdd.classes.HTTPDownloader;
 import de.htwdd.classes.LessonSearch;
 import de.htwdd.classes.Mensa;
@@ -275,26 +276,10 @@ public class CardFragment extends Fragment
 
         // Stunde bestimmen
         Calendar calendar   = GregorianCalendar.getInstance();
-        int current_time    = calendar.get(Calendar.HOUR_OF_DAY)*60+calendar.get(Calendar.MINUTE);
         int week            = calendar.get(Calendar.WEEK_OF_YEAR);
-        int current_ds = 0;
+        int current_time    = CONST.TimetableCalc.currentTime();
+        int current_ds      = CONST.TimetableCalc.getCurrentDS(current_time);
 
-        if (current_time > LessonSearch.lessonEndTimes[7-1])
-            current_ds=0;
-        else if (current_time >= LessonSearch.lessonStartTimes[6])
-            current_ds=7;
-        else if (current_time >= LessonSearch.lessonStartTimes[5])
-            current_ds=6;
-        else if (current_time >= LessonSearch.lessonStartTimes[4])
-            current_ds=5;
-        else if (current_time >= LessonSearch.lessonStartTimes[3])
-            current_ds=4;
-        else if (current_time >= LessonSearch.lessonStartTimes[2])
-            current_ds=3;
-        else if (current_time >= LessonSearch.lessonStartTimes[1])
-            current_ds=2;
-        else if (current_time >= LessonSearch.lessonStartTimes[0])
-            current_ds=1;
 
         // Aktuell Vorlesungszeit?
         if (current_ds != 0 && calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY)
@@ -374,7 +359,7 @@ public class CardFragment extends Fragment
             // Stunden
             String[] lessonDS = getResources().getStringArray(R.array.lesson_ds_timeOnly);
 
-            // Abstand berechnen und anzeigen
+            // Zeit-Abstand berechnen und anzeigen
             TextView overview_lessons_next_remaining = (TextView) view.findViewById(R.id.overview_lessons_next_remaining);
 
             int difference = nextLesson.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR);
