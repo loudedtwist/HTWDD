@@ -7,8 +7,8 @@ import de.htwdd.types.Lesson;
 
 public class LessonSearch
 {
-    public final static int lessonEndTimes[]   = {9*60,10*60+50,12*60+40,14*60+40,16*60+30,18*60+20,20*60};
-    public final static int lessonStartTimes[] = {7*60+30,9*60+20,11*60+10,13*60+10,15*60,16*60+50,18*60+30};
+    public final static int lessonEndTimes[]   = {9*60,10*60+50,12*60+40,14*60+50,16*60+40,18*60+30,20*60+10};
+    public final static int lessonStartTimes[] = {7*60+30,9*60+20,11*60+10,13*60+20,15*60+10,17*60,18*60+40};
 
     public Lesson lesson=null;
 
