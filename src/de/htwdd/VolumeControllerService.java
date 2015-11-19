@@ -3,6 +3,7 @@ package de.htwdd;
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -50,7 +51,7 @@ public class VolumeControllerService extends IntentService {
             Calendar calendar = VolumeControllerService.setCalendar(LessonSearch.lessonStartTimes[i]);
             Intent intent = getIntentSoundSwitch(context,"turnSoundOff",calendar);
             PendingIntent pendingIntent = PendingIntent.getService(context,i,intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
 
          //SETTING THE TURNON ALARMS UP
@@ -58,7 +59,7 @@ public class VolumeControllerService extends IntentService {
             Calendar calendar = VolumeControllerService.setCalendar(LessonSearch.lessonEndTimes[l]);
             Intent intent = getIntentSoundSwitch(context, "turnSoundOn", calendar);
             PendingIntent pendingIntent = PendingIntent.getService(context, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
 
     }
@@ -109,4 +110,14 @@ public class VolumeControllerService extends IntentService {
         volumeController.setVolumeChangedStatus(VolumeControllerService.PREFERENCE_MODE_DEFAULT_NORMAL);
     }
 
+    public class HtwddBootReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+                VolumeControllerService volumeControllerService = new VolumeControllerService();
+                volumeControllerService.StartMultiAlarmVolumeController(getApplicationContext());
+            }
+        }
+    }
 }

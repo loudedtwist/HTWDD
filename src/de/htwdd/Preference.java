@@ -15,8 +15,10 @@
  */
 package de.htwdd;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
@@ -77,11 +79,27 @@ public class Preference extends SherlockPreferenceActivity implements SharedPref
                 //start background service:
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
                 volumeControllerService.StartMultiAlarmVolumeController(getApplicationContext());
+
+                //enable a receiver -> starts alarms on reboot
+                ComponentName receiver = new ComponentName(getApplicationContext(), VolumeControllerService.HtwddBootReceiver.class);
+                PackageManager pm = getApplicationContext().getPackageManager();
+                pm.setComponentEnabledSetting(receiver,
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
+
             }
             else{
+                //cancel background service:
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
                 volumeControllerService.cancelMultiAlarmVolumeController(getApplicationContext());
                 volumeControllerService.resetSettingsFile(getApplicationContext());
+
+                //disable a receiver, alarms will not be set on reboot
+                ComponentName receiver = new ComponentName(getApplicationContext(), VolumeControllerService.HtwddBootReceiver.class);
+                PackageManager pm = getApplicationContext().getPackageManager();
+                pm.setComponentEnabledSetting(receiver,
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
             }
 
         }
