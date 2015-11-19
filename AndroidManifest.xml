@@ -100,6 +100,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_mensa_4" />
         </receiver>
+
+        <service
+            android:name="de.htwdd.VolumeControllerService"
+            android:exported="false" />
     </application>
 
 </manifest>
