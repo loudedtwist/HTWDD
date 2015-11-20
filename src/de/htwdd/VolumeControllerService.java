@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -45,22 +46,24 @@ public class VolumeControllerService extends IntentService {
      public void StartMultiAlarmVolumeController(Context context){
         AlarmManager alarmMgr = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 
-         //SETTING THE TURNOFF ALARMS UP
+
          // Loop counter `i` is used as a `requestCode`
         for(int i = 0; i < LessonSearch.lessonStartTimes.length; i++) {
+
+            //SETTING THE TURNOFF ALARMS UP
             Calendar calendar = VolumeControllerService.setCalendar(LessonSearch.lessonStartTimes[i]);
             Intent intent = getIntentSoundSwitch(context,"turnSoundOff",calendar);
             PendingIntent pendingIntent = PendingIntent.getService(context,i,intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+            //SETTING THE TURNON ALARMS UP
+            Calendar calendar2 = VolumeControllerService.setCalendar(LessonSearch.lessonEndTimes[i]);
+            Intent intent2 = getIntentSoundSwitch(context, "turnSoundOn", calendar2);
+            PendingIntent pendingIntent2 = PendingIntent.getService(context, i+LessonSearch.lessonStartTimes.length, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
         }
 
-         //SETTING THE TURNON ALARMS UP
-        for(int i = LessonSearch.lessonStartTimes.length,l=0; i < LessonSearch.lessonEndTimes.length+LessonSearch.lessonStartTimes.length; i++,l++) {
-            Calendar calendar = VolumeControllerService.setCalendar(LessonSearch.lessonEndTimes[l]);
-            Intent intent = getIntentSoundSwitch(context, "turnSoundOn", calendar);
-            PendingIntent pendingIntent = PendingIntent.getService(context, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
+
 
     }
 
@@ -115,8 +118,10 @@ public class VolumeControllerService extends IntentService {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+                Log.e("boot","htwdd");
+                Toast.makeText(context, "BOOT_COMPLETED erhalten", Toast.LENGTH_SHORT).show();
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
-                volumeControllerService.StartMultiAlarmVolumeController(getApplicationContext());
+                volumeControllerService.StartMultiAlarmVolumeController(context);
             }
         }
     }
