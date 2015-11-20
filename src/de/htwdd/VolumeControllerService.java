@@ -117,8 +117,9 @@ public class VolumeControllerService extends IntentService {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.e("boot","outsideofif");
             if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-                Log.e("boot","htwdd");
+                Log.e("boot","insideofif");
                 Toast.makeText(context, "BOOT_COMPLETED erhalten", Toast.LENGTH_SHORT).show();
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
                 volumeControllerService.StartMultiAlarmVolumeController(context);

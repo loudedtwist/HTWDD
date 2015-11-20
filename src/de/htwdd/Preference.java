@@ -16,6 +16,7 @@
 package de.htwdd;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -73,16 +74,17 @@ public class Preference extends SherlockPreferenceActivity implements SharedPref
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(CONST.PREFERENCES_AUTO_STUMMSCHALTEN)) {
+            Context context = getApplicationContext();
             boolean value = sharedPreferences.getBoolean(key, false);
 
             if(value == true){
                 //start background service:
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
-                volumeControllerService.StartMultiAlarmVolumeController(getApplicationContext());
+                volumeControllerService.StartMultiAlarmVolumeController(context);
 
                 //enable a receiver -> starts alarms on reboot
-                ComponentName receiver = new ComponentName(getApplicationContext(), VolumeControllerService.HtwddBootReceiver.class);
-                PackageManager pm = getApplicationContext().getPackageManager();
+                ComponentName receiver = new ComponentName(context, VolumeControllerService.HtwddBootReceiver.class);
+                PackageManager pm = context.getPackageManager();
                 pm.setComponentEnabledSetting(receiver,
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                         PackageManager.DONT_KILL_APP);
@@ -91,12 +93,12 @@ public class Preference extends SherlockPreferenceActivity implements SharedPref
             else{
                 //cancel background service:
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
-                volumeControllerService.cancelMultiAlarmVolumeController(getApplicationContext());
-                volumeControllerService.resetSettingsFile(getApplicationContext());
+                volumeControllerService.cancelMultiAlarmVolumeController(context);
+                volumeControllerService.resetSettingsFile(context);
 
                 //disable a receiver, alarms will not be set on reboot
-                ComponentName receiver = new ComponentName(getApplicationContext(), VolumeControllerService.HtwddBootReceiver.class);
-                PackageManager pm = getApplicationContext().getPackageManager();
+                ComponentName receiver = new ComponentName(context, VolumeControllerService.HtwddBootReceiver.class);
+                PackageManager pm = context.getPackageManager();
                 pm.setComponentEnabledSetting(receiver,
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                         PackageManager.DONT_KILL_APP);
