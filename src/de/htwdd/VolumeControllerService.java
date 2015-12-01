@@ -114,6 +114,9 @@ public class VolumeControllerService extends IntentService {
     }
 
     public class HtwddBootReceiver extends BroadcastReceiver {
+        HtwddBootReceiver(){
+
+        }
 
         @Override
         public void onReceive(Context context, Intent intent) {
