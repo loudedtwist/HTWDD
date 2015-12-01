@@ -57,7 +57,7 @@ public class VolumeController {
         DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(context);
         // Stunde bestimmen
         Calendar calendar   = GregorianCalendar.getInstance();
-        int current_time    = calendar.get(Calendar.HOUR_OF_DAY)*60+calendar.get(Calendar.MINUTE);//in minutes
+        int current_time    = calendar.get(Calendar.HOUR_OF_DAY)*60+calendar.get(Calendar.MINUTE);
         int week            = calendar.get(Calendar.WEEK_OF_YEAR);
         int current_ds = 0;
 
