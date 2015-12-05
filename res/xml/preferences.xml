@@ -95,25 +95,22 @@
     <PreferenceCategory android:title="Audio">
 
         <SwitchPreference
-            android:title="@string/preference_title_stummschalten"
-            android:summary="@string/preference_summary_stummschalten"
+            android:defaultValue="false"
             android:key="autoStummSchalten"
-            android:defaultValue="false"/>
-
+            android:summary="@string/preference_summary_stummschalten"
+            android:title="@string/preference_title_stummschalten" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="Professoren">
+    <PreferenceCategory android:title="Professoren">
 
         <EditTextPreference
-            android:title="Kennung"
             android:key="prof_kennung"
-            android:summary="für Stundenplan"/>
+            android:summary="für Stundenplan"
+            android:title="Kennung" />
 
         <EditTextPreference
-            android:title="Name"
             android:key="prof_name"
-            android:summary="für Prüfungen"/>
-
+            android:summary="für Prüfungen"
+            android:title="Name" />
     </PreferenceCategory>
 </PreferenceScreen>
