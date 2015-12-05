@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import de.htwdd.classes.CONST;
 import de.htwdd.classes.LessonSearch;
 import de.htwdd.fragments.ResponsiveUIActivity;
 import de.htwdd.types.Lesson;
@@ -67,22 +68,8 @@ public class WidgetTimetableService extends Service
         int week            = calendar.get(Calendar.WEEK_OF_YEAR);
         int current_ds = 0;
 
-        if (current_time > LessonSearch.lessonEndTimes[7-1])
-            current_ds=0;
-        else if (current_time >= LessonSearch.lessonStartTimes[6])
-            current_ds=7;
-        else if (current_time >= LessonSearch.lessonStartTimes[5])
-            current_ds=6;
-        else if (current_time >= LessonSearch.lessonStartTimes[4])
-            current_ds=5;
-        else if (current_time >= LessonSearch.lessonStartTimes[3])
-            current_ds=4;
-        else if (current_time >= LessonSearch.lessonStartTimes[2])
-            current_ds=3;
-        else if (current_time >= LessonSearch.lessonStartTimes[1])
-            current_ds=2;
-        else if (current_time >= LessonSearch.lessonStartTimes[0])
-            current_ds=1;
+        current_ds= CONST.TimetableCalc.getCurrentDS(current_time);
+
 
         // Aktuell Vorlesungszeit?
         if (current_ds != 0 && calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY)

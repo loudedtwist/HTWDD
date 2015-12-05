@@ -139,4 +139,7 @@
     <string name="title_activity_timetable_details">Stunden Details</string>
     <string name="title_activity_room_timetable_details">Belgungsplan</string>
 
+    <string name="preference_title_stummschalten">Automatisches Stummschalten</string>
+    <string name="preference_summary_stummschalten">Während einer Lehrveranstaltung wird dein Handy automatisch stumm geschaltet</string>
+
 </resources>

@@ -76,11 +76,12 @@ public final class CONST
             return 0;
         }
 
+
         public static int currentTime()
         {
             Calendar calendar   = GregorianCalendar.getInstance();
             return calendar.get(Calendar.HOUR_OF_DAY)*60+calendar.get(Calendar.MINUTE);
         }
     }
-
+    public static final String PREFERENCES_AUTO_STUMMSCHALTEN="autoStummSchalten";
 }
