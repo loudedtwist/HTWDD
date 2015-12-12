@@ -59,7 +59,6 @@ public class WidgetTimetableService extends Service {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_timetable);
 
-        //views.setTextViewText(R.id.overview_lessons_current_remaining, "TEST");
         // Stundenplan Anbindung
         DatabaseHandlerTimetable databaseHandlerTimetable = new DatabaseHandlerTimetable(context);
 
@@ -70,10 +69,11 @@ public class WidgetTimetableService extends Service {
         Calendar calendar = GregorianCalendar.getInstance();
         int current_time = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
         int week = calendar.get(Calendar.WEEK_OF_YEAR);
-        int current_ds = 0;
+        int current_ds = CONST.TimetableCalc.getCurrentDS(current_time);
 
-        current_ds = CONST.TimetableCalc.getCurrentDS(current_time);
-
+        String overview_lessons_current_tag = "";
+        String overview_lessons_current_type = "";
+        String overview_lessons_current_remaining = "";
 
         // Aktuell Vorlesungszeit?
         if (current_ds != 0 && calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
@@ -89,27 +89,30 @@ public class WidgetTimetableService extends Service {
                 int difference = current_time - LessonSearch.lessonEndTimes[current_ds - 1];
 
                 if (difference < 0)
-                    views.setTextViewText(R.id.overview_lessons_current_remaining, String.format(context.getResources().getString(R.string.overview_lessons_remaining_end), -difference));
+                    overview_lessons_current_remaining = String.format(context.getResources().getString(R.string.overview_lessons_remaining_end), -difference);
                 else
-                    views.setTextViewText(R.id.overview_lessons_current_remaining, String.format(context.getResources().getString(R.string.overview_lessons_remaining_final), difference));
+                    overview_lessons_current_remaining = String.format(context.getResources().getString(R.string.overview_lessons_remaining_final), difference);
 
                 // Es gibt keine passende Veranstaltung die angezeigt werden kann
                 switch (single) {
                     case 0:
-                        views.setTextViewText(R.id.overview_lessons_current_tag, "");
-                        views.setTextViewText(R.id.overview_lessons_current_remaining, "");
+                        overview_lessons_current_remaining = "";
                         break;
                     case 1:
-                        views.setTextViewText(R.id.overview_lessons_current_tag, lessonSearch.lesson.lessonTag);
-                        views.setTextViewText(R.id.overview_lessons_current_type, lessonType[lessonSearch.lesson.getTypeInt()] + " - " + lessonSearch.lesson.rooms);
+                        overview_lessons_current_tag = lessonSearch.lesson.lessonTag;
+                        overview_lessons_current_type = lessonType[lessonSearch.lesson.getTypeInt()] + " - " + lessonSearch.lesson.rooms;
                         break;
                     case 2:
-                        views.setTextViewText(R.id.overview_lessons_current_tag, context.getResources().getString(R.string.timetable_moreLessons));
+                        overview_lessons_current_tag = context.getResources().getString(R.string.timetable_moreLessons);
                         break;
                 }
             }
         }
 
+        // Setze Views für aktuelle Stunde
+        views.setTextViewText(R.id.overview_lessons_current_tag, overview_lessons_current_tag);
+        views.setTextViewText(R.id.overview_lessons_current_type, overview_lessons_current_type);
+        views.setTextViewText(R.id.overview_lessons_current_remaining, overview_lessons_current_remaining);
 
         // Nächste Stunde suchen
         LessonSearch lessonSearch = new LessonSearch();
