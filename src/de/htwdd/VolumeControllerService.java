@@ -98,7 +98,7 @@ public class VolumeControllerService extends IntentService {
         volumeController.setVolumeChangedStatus(VolumeControllerService.PREFERENCE_MODE_DEFAULT_NORMAL);
     }
 
-    public class HtwddBootReceiver extends BroadcastReceiver {
+    public static class HtwddBootReceiver extends BroadcastReceiver {
         public HtwddBootReceiver() {
         }
 
