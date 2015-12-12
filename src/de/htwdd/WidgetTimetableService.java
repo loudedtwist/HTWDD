@@ -27,15 +27,23 @@ public class WidgetTimetableService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("Service", "Service beendet");
+        Log.d(this.getClass().getSimpleName(), "Service beendet");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(this.getClass().getSimpleName(), "Starte Service");
+
+        // Keine neuen Idents vorhanden, Service nicht neustarten
+        if (intent == null)
+            return START_NOT_STICKY;
+
+        // Bestimme Widget-ID
         int appWidgetId = intent.getExtras().getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
 
-        Log.i("Service", "onStartCommand: update " + appWidgetId);
+        // Aktualisiere Widget
+        Log.d(this.getClass().getSimpleName(), "Aktualisiere Widget: " + appWidgetId);
         updateAppWidget(getApplicationContext(), appWidgetManager, appWidgetId);
 
         return super.onStartCommand(intent, flags, startId);
