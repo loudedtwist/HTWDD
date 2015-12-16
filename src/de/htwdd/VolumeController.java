@@ -1,6 +1,9 @@
 package de.htwdd;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 
@@ -9,6 +12,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import de.htwdd.classes.CONST;
+import de.htwdd.classes.LessonSearch;
 import de.htwdd.types.Lesson;
 
 public class VolumeController {
@@ -49,7 +53,7 @@ public class VolumeController {
     }
 
     /**
-     * Wenn aktuell eine Vorlesung gibt, wird das Handy stummgeschaltet
+     * Wenn es aktuell eine Vorlesung gibt, wird das Handy stummgeschaltet
      */
     public void turnSoundOff() {
         // Stundenplan Anbindung
@@ -76,22 +80,31 @@ public class VolumeController {
 
         int mode = amanager.getRingerMode();
 
-        //if we dont changed the audio mode and it is in silent mode,
+        //if we don't changed the audio mode and it is in silent mode,
         //volumeStatus stays in Normal mode, so we don't turn it at the end of class
         if (mode == AudioManager.RINGER_MODE_SILENT)
             return;
 
-        // Setze Audio-Ausgabe auf Silent
+        //Status-bit setzen
         setVolumeChangedStatus(VolumeControllerService.PREFERENCE_MODE_CHANGED_SILENT);
 
-        // Setze Benachrichtungsmodus
+        // // Setze Audio-Ausgabe auf Silent, Setze Benachrichtungsmodus
         amanager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+
+        //Log.i("turnSoundOff","trying to set turnoffAlarm new");
+        //SETTING THE TURNON ALARM UP. Turn sound on after the class(+90min)
+        AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar2 = VolumeControllerService.setCalendar(LessonSearch.lessonEndTimes[current_ds-1]);
+        Intent intent2 = VolumeControllerService.getIntentSoundSwitch(context, "turnSoundOn", calendar2);
+        PendingIntent pendingIntent2 = PendingIntent.getService(context, current_ds-1 + LessonSearch.lessonStartTimes.length, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmMgr.set(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), pendingIntent2);
     }
 
     /**
      * Schaltet das Handy wieder in den Normalen-Modus
      */
     public void turnSoundOn() {
+        //Log.i("turnSoundOn","Entered");
         //LOAD, DID WE CHANGE VOLUME MODE OR NOT
         int mode = getVolumeChangedStatus();
 

@@ -44,12 +44,6 @@ public class VolumeControllerService extends IntentService {
             Intent intent = getIntentSoundSwitch(context, "turnSoundOff", calendar);
             PendingIntent pendingIntent = PendingIntent.getService(context, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-            //SETTING THE TURNON ALARMS UP
-            Calendar calendar2 = VolumeControllerService.setCalendar(LessonSearch.lessonEndTimes[i]);
-            Intent intent2 = getIntentSoundSwitch(context, "turnSoundOn", calendar2);
-            PendingIntent pendingIntent2 = PendingIntent.getService(context, i + LessonSearch.lessonStartTimes.length, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
         }
     }
 
@@ -75,7 +69,7 @@ public class VolumeControllerService extends IntentService {
     }
 
     @NonNull
-    private static Intent getIntentSoundSwitch(Context context, String turnOnOff, Calendar calendar) {
+    public static Intent getIntentSoundSwitch(Context context, String turnOnOff, Calendar calendar) {
         Intent intent = new Intent(context, VolumeControllerService.class);
         intent.putExtra("Mode", turnOnOff);
         String currentTime = "Hour: " + calendar.get(Calendar.HOUR_OF_DAY) + " min: " + calendar.get(Calendar.MINUTE);
