@@ -37,7 +37,6 @@ public class RoomTimetableFragment extends Fragment
     private ArrayList<RoomTimetable> roomTimetables;
     private RoomTimeTableAdapter adapter;
     private RoomTimetableDAO dao;
-    private View listView_footer;
 
     public RoomTimetableFragment() {
         // Required empty public constructor
@@ -53,8 +52,9 @@ public class RoomTimetableFragment extends Fragment
         // ListView holen
         ListView listView = (ListView) view.findViewById(R.id.room_timetable_listview);
 
-        // Footer View holen
-        listView_footer = inflater.inflate(R.layout.fragment_room_timetable_footer, listView, false);
+        // Footer View setzen
+        View listView_footer = inflater.inflate(R.layout.fragment_room_timetable_footer, listView, false);
+        listView.addFooterView(listView_footer, null, false);
 
         // Erstelle Liste mit Räumen für Adapter
         roomTimetables  = new ArrayList<RoomTimetable>();
@@ -84,7 +84,7 @@ public class RoomTimetableFragment extends Fragment
             }
         });
 
-        // Löschen, aktuallisieren über Context-Menu
+        // Löschen, aktualisieren über Context-Menu
         registerForContextMenu(listView);
 
         return view;
@@ -143,11 +143,11 @@ public class RoomTimetableFragment extends Fragment
 
         if (roomTimetables.size() == 0) {
             textView.setVisibility(View.VISIBLE);
-            listView.removeFooterView(listView_footer);
+            listView.setVisibility(View.GONE);
         }
         else {
             textView.setVisibility(View.GONE);
-            listView.addFooterView(listView_footer);
+            listView.setVisibility(View.VISIBLE);
         }
         adapter.notifyDataSetChanged();
     }

@@ -29,27 +29,23 @@ import com.actionbarsherlock.view.MenuItem;
 import de.htwdd.classes.CONST;
 import de.htwdd.fragments.ResponsiveUIActivity;
 
-public class Preference extends SherlockPreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener
-{
+public class Preference extends SherlockPreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 1, 0, "Speichern").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.preferences);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, ResponsiveUIActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -77,7 +73,7 @@ public class Preference extends SherlockPreferenceActivity implements SharedPref
             Context context = getApplicationContext();
             boolean value = sharedPreferences.getBoolean(key, false);
 
-            if(value == true){
+            if (value) {
                 //start background service:
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
                 volumeControllerService.StartMultiAlarmVolumeController(context);
@@ -89,8 +85,7 @@ public class Preference extends SherlockPreferenceActivity implements SharedPref
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                         PackageManager.DONT_KILL_APP);
 
-            }
-            else{
+            } else {
                 //cancel background service:
                 VolumeControllerService volumeControllerService = new VolumeControllerService();
                 volumeControllerService.cancelMultiAlarmVolumeController(context);
